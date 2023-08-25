@@ -15,8 +15,6 @@ class PanesService {
 
 	resizerSize = 5
 
-	containerRect
-
 	sizesList = []
 
 	get panes() {
@@ -44,10 +42,10 @@ class PanesService {
 	}
 
 	setMaxLimitingSize() {
-		this.containerRect = this.containerRef.current.getBoundingClientRect()
-		this.topAxix = this.containerRect.top
-		this.bottomAxis = this.containerRect.bottom
-		this.maxSize = this.containerRect.height - ((this.panes.length - 1) * this.resizerSize)
+		const {bottom, top, height} = this.containerRef.current.getBoundingClientRect()
+		this.topAxix = top
+		this.bottomAxis = bottom
+		this.maxSize = height - ((this.panes.length - 1) * this.resizerSize)
 	}
 
 	setCurrentLimitingLengthUpword(e) {
