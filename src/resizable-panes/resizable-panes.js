@@ -39,11 +39,6 @@ export const ResizablePanes = (props) => {
     document.addEventListener('mousemove', onMouseMove)
   }, [])
 
-  const onMouseLeave = useCallback(() => {
-  }, [])
-
-  const onMouseEnter = useCallback(() => {
-  }, [])
 
   const contentJsx = useMemo(() => {
     const content = []
@@ -78,8 +73,6 @@ export const ResizablePanes = (props) => {
     <div
       className="pane-container bg-lightblue"
       ref={containerRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       {contentJsx}
     </div>
