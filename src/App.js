@@ -1,6 +1,7 @@
 
 import './App.css';
-import  {ResizablePanes, Panes} from 'react-resizable-panes'
+import  {ResizablePanes, Panes} from './resizable-panes'
+import React from 'react';
 
 function App() {
   return (
