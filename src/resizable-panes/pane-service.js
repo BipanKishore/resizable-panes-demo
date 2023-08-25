@@ -87,22 +87,18 @@ class PanesService {
 	}
 
 	calculateAndSetHeight(e) {
-		this.setAxisConfig(e)
-		// if((this.topAxisCrossed|| this.bottomAxisCrossed)){
-		// 	return
-		// }
-		if (e.movementY > 0) {
-			this.goingDownLogic(e)
-		} else if (e.movementY < 0){
-			this.goingUpLogic(e)
+		if(e.movementY){
+			this.setAxisConfig(e)
+			if (e.movementY > 0) {
+				this.goingDownLogic(e)
+			} else if (e.movementY < 0){
+				this.goingUpLogic(e)
+			}
+			this.setPaneSizes()
 		}
-		this.setPaneSizes()
 	}
 
 	setAxisConfig(e) {
-		if(e.movementY === 0){
-			return
-		}
 		this.topAxisCrossed = false
 		this.bottomAxisCrossed = false
 		if(e.clientY < this.topAxix){
@@ -110,8 +106,7 @@ class PanesService {
 			this.sizesAtAxis = [...this.sizesList]
 			this.topAxisCrossed = true
 			return
-		}
-		if(e.clientY > this.bottomAxis){
+		} else if(e.clientY > this.bottomAxis){
 			this.axisCoordinate =this.bottomAxis
 			this.sizesAtAxis = [...this.sizesList]
 			this.bottomAxisCrossed = true
