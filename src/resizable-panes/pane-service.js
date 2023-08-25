@@ -2,10 +2,10 @@
 import { DIRECTIONS } from './constant'
 import { isDirectionDown, isDirectionUpFn } from './util'
 
-const noSelectedResizerIndex = -1
+
 
 class PanesService {
-	activeIndex = noSelectedResizerIndex
+	activeIndex = null
 
 	split = 'vertical'
 
@@ -19,10 +19,6 @@ class PanesService {
 
 	get panes() {
 		return this.panesRefs.current
-	}
-
-	get activePane() {
-		return this.panesRefs.current[this.activeIndex].current
 	}
 
 	initPanesService(containerRef, panesRefs, resizerSize) {
