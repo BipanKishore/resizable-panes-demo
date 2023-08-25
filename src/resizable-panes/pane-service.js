@@ -1,7 +1,77 @@
 /* eslint-disable no-unused-vars */
 import { DIRECTIONS } from './constant'
-import { isDirectionDown, isDirectionUpFn } from './util'
+import { isDirectionDown, isDirectionUpFn, toPx } from './util'
 
+
+class Pane {
+	id
+	index
+	size
+	pane
+
+	axisSize
+
+	defaultSize
+
+	constructor(pane, index){
+		this.id = pane.current.id
+		this.index = index
+		this.size = pane.current.getBoundingClientRect()
+		this.pane = pane
+		this.defaultSize = this.size
+	}
+
+	setSize(size){
+		this.pane.current.style.height = toPx(this.size)
+		return this.size
+	}
+
+	syncAxisSize(){
+		this.axisSize = this.size
+	}
+
+	restore(){
+		this.size = this.defaultSize
+	}
+}
+
+class PanesList {
+	paneList = []
+
+
+	panesRefs = []
+	
+	get panes() {
+		return this.panesRefs.current
+	}
+
+	constructor(panesRefs = []) {
+		this.panesRefs = panesRefs
+
+		this.panes.forEach((pane, index) => {
+			this.paneList.push(
+				new Pane(
+					pane,
+					index
+				)
+			)
+		})
+	}
+
+	setSizes(){
+		const sizesList = []
+		this.panes.forEach(((pane, i) => {
+
+		}))
+		console.log(sizesList, sizesList.reduce((p, c) => p + c, 0))
+	}
+
+	syncAxisSizes(){
+		this.panes.forEach(((pane) => {
+			pane.syncAxisSize()
+		}))
+	}  
+}
 
 
 class PanesService {
@@ -16,6 +86,8 @@ class PanesService {
 	resizerSize = 5
 
 	sizesList = []
+
+	panesList = new PanesList
 
 	get panes() {
 		return this.panesRefs.current
@@ -34,6 +106,8 @@ class PanesService {
 	}
 
 	setInitialSizesForPanes() {
+
+		this.panesList = new PanesList(this.panesRefs)
 		this.sizesList = []
 		this.panes.forEach((pane) => {
 			const { height } = pane.current.getBoundingClientRect()
