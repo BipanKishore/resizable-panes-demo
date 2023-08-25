@@ -36,7 +36,6 @@ export const ResizablePanes = (props) => {
     console.log(index)
     panesService.setMouseDownAndPaneAxisDetails(e)
     panesService.setActiveIndex(index)
-    panesService.preserveBoundingClientRect()
     document.addEventListener('mousemove', onMouseMove)
   }, [])
 

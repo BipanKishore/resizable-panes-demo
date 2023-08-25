@@ -7,8 +7,6 @@ const noSelectedResizerIndex = -1
 class PanesService {
 	activeIndex = noSelectedResizerIndex
 
-	initialPanesRect = []
-
 	split = 'vertical'
 
 	containerRef
@@ -74,11 +72,6 @@ class PanesService {
 			sizeOfAboveElements += this.sizesList[i]
 		}
 		this.currentMaxSize = this.maxSize - sizeOfAboveElements
-	}
-
-	preserveBoundingClientRect() {
-		this.initialPanesRect = this.panes.map((ref) => ref.current.getBoundingClientRect())
-		this.preservedActiveElementRect = this.initialPanesRect[this.activeIndex]
 	}
 
 	setActiveIndex(index) {
