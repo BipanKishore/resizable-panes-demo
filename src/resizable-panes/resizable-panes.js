@@ -15,9 +15,6 @@ export const ResizablePanes = (props) => {
   const panesRefs = useRef([])
   panesRefs.current = children.map((_element, i) => panesRefs.current[i] ?? createRef())
 
-  const resizerRef = useRef([])
-  resizerRef.current = children.map((_element, i) => resizerRef.current[i] ?? createRef())
-
   useEffect(() => {
     panesService.initPanesService(containerRef, panesRefs, resizerSize)
   }, [])
@@ -37,7 +34,7 @@ export const ResizablePanes = (props) => {
 
   const onMouseDown = useCallback((e, index) => {
     console.log(index)
-    panesService.setMouseDownAndPaneAxisDetails(e, resizerRef.current[index].current)
+    panesService.setMouseDownAndPaneAxisDetails(e)
     panesService.setActiveIndex(index)
     panesService.preserveBoundingClientRect()
     document.addEventListener('mousemove', onMouseMove)
@@ -67,7 +64,6 @@ export const ResizablePanes = (props) => {
           key={`${key}-resizer`}
           resizerSize={resizerSize}
           onMouseDown={(e) => onMouseDown(e, iCopy)}
-          ref={resizerRef.current[iCopy]}
         />,
       )
     }

@@ -81,13 +81,6 @@ class PanesService {
 		this.preservedActiveElementRect = this.initialPanesRect[this.activeIndex]
 	}
 
-	getNewSizeDownword(e) {
-		const { clientX, clientY } = e
-		const { bottom, top } = this.preservedActiveElementRect
-		const newCalculatedHeight = clientY - top - this.mousedownAndPaneTopDiffDownword
-		return newCalculatedHeight
-	}
-
 	setActiveIndex(index) {
 		this.activeIndex = index
 		this.currentIndex = index
@@ -228,13 +221,10 @@ class PanesService {
 		console.log(this.sizesList, this.sizesList.reduce((p, c) => p + c, 0))
 	}
 
-	setMouseDownAndPaneAxisDetails(e, resizerElement) {
+	setMouseDownAndPaneAxisDetails(e) {
 		const { clientX, clientY } = e
 		this.axisCoordinate = clientY
 		this.sizesAtAxis = [...this.sizesList]
-		const { top, bottom } = resizerElement.getBoundingClientRect()
-		this.mousedownAndPaneTopDiffDownword = clientY - top
-		this.mousedownAndPaneTopDiffUpword = bottom - clientY
 	}
 }
 
