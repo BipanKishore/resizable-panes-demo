@@ -95,9 +95,9 @@ class PanesService {
 
 	calculateAndSetHeight(e) {
 		this.setAxisConfig(e)
-		if((this.topAxisCrossed|| this.bottomAxisCrossed)){
-			return
-		}
+		// if((this.topAxisCrossed|| this.bottomAxisCrossed)){
+		// 	return
+		// }
 		if (e.movementY > 0) {
 			this.goingDownLogic(e)
 		} else if (e.movementY < 0){
@@ -113,10 +113,14 @@ class PanesService {
 		this.topAxisCrossed = false
 		this.bottomAxisCrossed = false
 		if(e.clientY < this.topAxix){
+			this.axisCoordinate = this.topAxix
+			this.sizesAtAxis = [...this.sizesList]
 			this.topAxisCrossed = true
 			return
 		}
 		if(e.clientY > this.bottomAxis){
+			this.axisCoordinate =this.bottomAxis
+			this.sizesAtAxis = [...this.sizesList]
 			this.bottomAxisCrossed = true
 			return
 		}
@@ -132,15 +136,12 @@ class PanesService {
 		console.log('axis', this.axisCoordinate, e.clientY)
 	}
 
-	setSizeOfOtherElementsDownword(previousActiveElementSize, e) {
-		let newChangeInSize = this.sizesList[this.activeIndex] - previousActiveElementSize
-		// console.log('v-- newChangeInSize', newChangeInSize)
-		if (newChangeInSize === 0) {
-			return
-		}
+	setSizeOfOtherElementsDownword() {
+
+		let newChangeInSize = Math.abs(this.sizesList[this.activeIndex] - this.sizesAtAxis[this.activeIndex])
 
 		for (let i = this.activeIndex + 1; i < this.sizesList.length; i += 1) {
-			const changeInSizeOfNextElement = this.sizesList[i] - newChangeInSize
+			const changeInSizeOfNextElement = this.sizesAtAxis[i] - newChangeInSize
 			if (changeInSizeOfNextElement < 0) {
 				this.sizesList[i] = 0
 				newChangeInSize = Math.abs(changeInSizeOfNextElement)
@@ -156,9 +157,20 @@ class PanesService {
 	goingDownLogic(e) {
 
 		this.activeIndex = this.currentIndex
-
-		const newSize = this.getNewSizeDownword(e)
 		this.setCurrentLimitingLengthDownword(e)
+
+		// const newSize = this.getNewSizeDownword(e)
+
+		let newSize 
+		if(this.topAxisCrossed){
+			newSize = this.currentMaxSize
+		}
+		if(this.bottomAxisCrossed) {
+			newSize = 0
+		}
+		console.log('newSize', this.topAxisCrossed, this.bottomAxisCrossed, newSize)
+		 newSize = this.sizesAtAxis[this.activeIndex] + (e.clientY - this.axisCoordinate)
+
 		console.log('v-- goingDownLogic', this.currentMaxSize, newSize, this.sizesList[this.activeIndex])
 		const previousActiveElementSize = this.sizesList[this.activeIndex]
 		this.getNewSizeWithLimits(newSize)
@@ -179,17 +191,22 @@ class PanesService {
 	}
 
 	goingUpLogic(e) {
-
 		this.activeIndex = this.currentIndex + 1
-		
-		const newCalculatedHeight = this.sizesAtAxis[this.activeIndex] + (this.axisCoordinate  - e.clientY)
 		this.setCurrentLimitingLengthUpword(e)
-		const previousActiveElementSize = this.sizesAtAxis[this.activeIndex]
+		let newCalculatedHeight 
+		if(this.topAxisCrossed){
+			newCalculatedHeight = this.currentMaxSize
+		}
+		if(this.bottomAxisCrossed) {
+			newCalculatedHeight = 0
+		}
+		console.log('newCalculatedHeight', this.topAxisCrossed, this.bottomAxisCrossed, newCalculatedHeight)
+		 newCalculatedHeight = this.sizesAtAxis[this.activeIndex] + (this.axisCoordinate  - e.clientY)
 		this.getNewSizeWithLimits(newCalculatedHeight)
-		this.setHeightOfOtherElementsUpword(previousActiveElementSize)
+		this.setHeightOfOtherElementsUpword()
 	}
 
-	setHeightOfOtherElementsUpword(previousActiveElementSize) {
+	setHeightOfOtherElementsUpword() {
 		let newChangeInSize = Math.abs(this.sizesList[this.activeIndex] - this.sizesAtAxis[this.activeIndex])
 
 		for (let i = this.activeIndex - 1; i > -1; i -= 1) {
@@ -206,9 +223,7 @@ class PanesService {
 
 	setPaneSizes() {
 		this.panes.forEach(((pane, i) => {
-			// eslint-disable-next-line no-param-reassign
 			pane.current.style.height = this.sizesList[i] + 'px'
-			// console.log('v-- height', pane.current.style.height,  this.sizesList[i])
 		}))
 		console.log(this.sizesList, this.sizesList.reduce((p, c) => p + c, 0))
 	}
