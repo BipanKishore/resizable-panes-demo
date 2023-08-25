@@ -12,3 +12,6 @@ export const getMovementDirection = (e) => {
 export const isDirectionUpFn = (e) => e.movementY < 0;
 
 export const isDirectionDown = (e) => e.movementY > 0;
+
+
+export const toPx = (value) => `${value}px`

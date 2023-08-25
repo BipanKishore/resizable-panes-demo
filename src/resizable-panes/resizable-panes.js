@@ -9,7 +9,7 @@ import { Resizer } from './resizer'
 
 export const ResizablePanes = (props) => {
   console.log('rerender')
-  const { children, resizerSize } = props
+  const { children, resizerSize, onReady } = props
 
   const containerRef = createRef()
   const panesRefs = useRef([])
@@ -17,7 +17,10 @@ export const ResizablePanes = (props) => {
 
   useEffect(() => {
     panesService.initPanesService(containerRef, panesRefs, resizerSize)
-  }, [])
+    if(onReady){
+      onReady(panesService)
+    }
+  }, [onReady])
 
   const onMouseMove = useCallback((e) => {
     panesService.calculateAndSetHeight(e)

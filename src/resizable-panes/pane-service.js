@@ -21,6 +21,10 @@ class PanesService {
 		return this.panesRefs.current
 	}
 
+	constructor(){
+		this.setVisibility = this.setVisibility.bind(this)
+	}
+
 	initPanesService(containerRef, panesRefs, resizerSize) {
 		this.containerRef = containerRef
 		this.panesRefs = panesRefs
@@ -208,6 +212,14 @@ class PanesService {
 		this.axisCoordinate = clientY
 		this.sizesAtAxis = [...this.sizesList]
 	}
+
+	setVisibility(visibility){
+		for(const key in visibility){
+			console.log(key)
+			this.sizesList[0] = 0
+			this.setPaneSizes()
+		} 
+	} 
 }
 
 const panesService = new PanesService()
