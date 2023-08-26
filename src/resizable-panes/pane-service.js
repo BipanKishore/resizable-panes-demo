@@ -16,18 +16,21 @@ class Pane {
 	constructor(pane, index){
 		this.id = pane.current.id
 		this.index = index
-		this.size = pane.current.getBoundingClientRect()
+		const {height} = pane.current.getBoundingClientRect()
+		this.size = height
 		this.pane = pane
-		this.defaultSize = this.size
+		this.defaultSize = height
+		this.show = true
 	}
 
-	setSize(size){
+	setUISize(){
 		this.pane.current.style.height = toPx(this.size)
 		return this.size
 	}
 
 	syncAxisSize(){
 		this.axisSize = this.size
+		return this.axisSize
 	}
 
 	restore(){
@@ -48,7 +51,7 @@ class PanesList {
 	constructor(panesRefs = []) {
 		this.panesRefs = panesRefs
 
-		this.panes.forEach((pane, index) => {
+		panesRefs?.current?.forEach((pane, index) => {
 			this.paneList.push(
 				new Pane(
 					pane,
@@ -58,19 +61,34 @@ class PanesList {
 		})
 	}
 
-	setSizes(){
-		const sizesList = []
-		this.panes.forEach(((pane, i) => {
+	setSize(i, size){
+		this.paneList[i].size = size
+	}
 
+	setUISizes(){
+		const sizesList = []
+		this.paneList.forEach(((pane) => {
+			pane.setUISize()
 		}))
-		console.log(sizesList, sizesList.reduce((p, c) => p + c, 0))
+		// console.log('sizesList',sizesList, sizesList.reduce((p, c) => p + c, 0))
 	}
 
 	syncAxisSizes(){
-		this.panes.forEach(((pane) => {
-			pane.syncAxisSize()
+		const axisSizes = []
+		this.paneList.forEach(((pane) => {
+		  const a =	pane.syncAxisSize()
+		  axisSizes.push(a)
 		}))
-	}  
+	}
+	
+	log(){
+		let str = ''
+		this.paneList.forEach(({size})=> str+=size +', ')
+		str +=';'
+		this.paneList.forEach(({axisSize})=> str+=axisSize+', ')
+		console.log('panes', str)
+	}
+
 }
 
 
@@ -84,8 +102,6 @@ class PanesService {
 	panesRefs = []
 
 	resizerSize = 5
-
-	sizesList = []
 
 	panesList = new PanesList
 
@@ -101,18 +117,8 @@ class PanesService {
 		this.containerRef = containerRef
 		this.panesRefs = panesRefs
 		this.resizerSize = resizerSize
-		this.setInitialSizesForPanes()
+		this.panesList = new PanesList(panesRefs)
 		this.setMaxLimitingSize()
-	}
-
-	setInitialSizesForPanes() {
-
-		this.panesList = new PanesList(this.panesRefs)
-		this.sizesList = []
-		this.panes.forEach((pane) => {
-			const { height } = pane.current.getBoundingClientRect()
-			this.sizesList.push(height)
-		})
 	}
 
 	setMaxLimitingSize() {
@@ -122,14 +128,14 @@ class PanesService {
 		this.maxSize = height - ((this.panes.length - 1) * this.resizerSize)
 	}
 
-	setCurrentLimitingLengthUpword(e) {
+	setCurrentLimitingLengthUpword() {
 		if (this.activeIndex + 1 === this.panes.length) {
 			this.currentMaxSize = this.maxSize
 			return
 		}
 		let sizeOfBellowElements = 0
 		for (let i = this.activeIndex + 1; i < this.panes.length; i += 1) {
-			sizeOfBellowElements += this.sizesList[i]
+			sizeOfBellowElements += this.panesList.paneList[i].size
 		}
 		this.currentMaxSize = this.maxSize - sizeOfBellowElements
 	}
@@ -141,7 +147,7 @@ class PanesService {
 		}
 		let sizeOfAboveElements = 0
 		for (let i = this.activeIndex - 1; i > -1; i -= 1) {
-			sizeOfAboveElements += this.sizesList[i]
+			sizeOfAboveElements += this.panesList.paneList[i].size
 		}
 		this.currentMaxSize = this.maxSize - sizeOfAboveElements
 	}
@@ -154,12 +160,13 @@ class PanesService {
 	calculateAndSetHeight(e) {
 		if(e.movementY){
 			this.setAxisConfig(e)
+			this.panesList.log()
 			if (e.movementY > 0) {
 				this.goingDownLogic(e)
 			} else if (e.movementY < 0){
 				this.goingUpLogic(e)
 			}
-			this.setPaneSizes()
+			this.panesList.setUISizes()
 		}
 	}
 
@@ -168,41 +175,42 @@ class PanesService {
 		this.bottomAxisCrossed = false
 		if(e.clientY < this.topAxix){
 			this.axisCoordinate = this.topAxix
-			this.sizesAtAxis = [...this.sizesList]
+			this.panesList.syncAxisSizes()
 			this.topAxisCrossed = true
 			return
 		} else if(e.clientY > this.bottomAxis){
 			this.axisCoordinate =this.bottomAxis
-			this.sizesAtAxis = [...this.sizesList]
+			this.panesList.syncAxisSizes()
 			this.bottomAxisCrossed = true
 			return
 		}
 		const newIsForwardDirection = e.movementY > 0
 		if(this.isForwardDirection !== newIsForwardDirection) {
 			this.axisCoordinate = e.clientY
-			this.sizesAtAxis = [...this.sizesList]
+			this.panesList.syncAxisSizes()
 		}
 
 		this.currentCoordinate = e.clientY
 		this.isForwardDirection = e.movementY > 0
-		
-		console.log('axis', this.axisCoordinate, e.clientY)
 	}
 
 	setSizeOfOtherElementsDownword() {
 
-		let newChangeInSize = Math.abs(this.sizesList[this.activeIndex] - this.sizesAtAxis[this.activeIndex])
-
-		for (let i = this.activeIndex + 1; i < this.sizesList.length; i += 1) {
-			const changeInSizeOfNextElement = this.sizesAtAxis[i] - newChangeInSize
+		let newChangeInSize = Math.abs(
+			this.panesList.paneList[this.activeIndex].size - this.panesList.paneList[this.activeIndex].axisSize)
+			let str = 'newChangeInSize: ' + newChangeInSize
+		for (let i = this.activeIndex + 1; i < this.panesList.paneList.length; i += 1) {
+			const changeInSizeOfNextElement = this.panesList.paneList[i].axisSize - newChangeInSize
+			str += ' changeInSizeOfNextElement:' + changeInSizeOfNextElement + ', ' + i
 			if (changeInSizeOfNextElement < 0) {
-				this.sizesList[i] = 0
+				this.panesList.paneList[i].size = 0
 				newChangeInSize = Math.abs(changeInSizeOfNextElement)
 			} else {
-				this.sizesList[i] = changeInSizeOfNextElement
+				this.panesList.paneList[i].size = changeInSizeOfNextElement
 				break
 			}
 		}
+		console.log( str)
 	}
 
 
@@ -221,13 +229,10 @@ class PanesService {
 		if(this.bottomAxisCrossed) {
 			newSize = 0
 		}
-		console.log('newSize', this.topAxisCrossed, this.bottomAxisCrossed, newSize)
-		 newSize = this.sizesAtAxis[this.activeIndex] + (e.clientY - this.axisCoordinate)
-
-		console.log('v-- goingDownLogic', this.currentMaxSize, newSize, this.sizesList[this.activeIndex])
-		const previousActiveElementSize = this.sizesList[this.activeIndex]
+		 newSize = this.panesList.paneList[this.activeIndex].axisSize + (e.clientY - this.axisCoordinate)
 		this.getNewSizeWithLimits(newSize)
-		this.setSizeOfOtherElementsDownword(previousActiveElementSize)
+		this.setSizeOfOtherElementsDownword()
+		this.log(newSize, this.panesList.paneList[this.activeIndex].size, e,   this.panesList.paneList[this.activeIndex].axisSize)
 	}
 
 	getNewSizeWithLimits(size) {
@@ -239,8 +244,13 @@ class PanesService {
 		} else {
 			newSize = size
 		}
-		console.log('v-- newSize', newSize, this.currentMaxSize)
-		this.sizesList[this.activeIndex] = newSize
+		this.panesList.paneList[this.activeIndex].size = newSize
+	}
+
+	log(s1,s2, e ={},pa) {
+		console.log(
+			`${this.topAxisCrossed ? 'topCross': '', this.bottomAxisCrossed ? 'BottomCross': ''} newSize:${s1},${s2} axis:${this.axisCoordinate} x,y${this.topAxix},${this.bottomAxis} Y:${e.clientY} CMax:${this.currentMaxSize} paxis:${pa} `
+		)
 	}
 
 	goingUpLogic(e) {
@@ -249,49 +259,44 @@ class PanesService {
 		let newCalculatedHeight 
 		if(this.topAxisCrossed){
 			newCalculatedHeight = this.currentMaxSize
-		}
-		if(this.bottomAxisCrossed) {
+		} else if(this.bottomAxisCrossed) {
 			newCalculatedHeight = 0
+		} else {
+			newCalculatedHeight = this.panesList.paneList[this.activeIndex].axisSize + (this.axisCoordinate  - e.clientY)
 		}
-		console.log('newCalculatedHeight', this.topAxisCrossed, this.bottomAxisCrossed, newCalculatedHeight)
-		 newCalculatedHeight = this.sizesAtAxis[this.activeIndex] + (this.axisCoordinate  - e.clientY)
 		this.getNewSizeWithLimits(newCalculatedHeight)
 		this.setHeightOfOtherElementsUpword()
+		 this.log(newCalculatedHeight, this.panesList.paneList[this.activeIndex].size, e,   this.panesList.paneList[this.activeIndex].axisSize)
 	}
 
 	setHeightOfOtherElementsUpword() {
-		let newChangeInSize = Math.abs(this.sizesList[this.activeIndex] - this.sizesAtAxis[this.activeIndex])
+		let newChangeInSize = Math.abs( this.panesList.paneList[this.activeIndex].size - this.panesList.paneList[this.activeIndex].axisSize)
 
 		for (let i = this.activeIndex - 1; i > -1; i -= 1) {
-			const changeInSizeOfNextElement = this.sizesAtAxis[i] - newChangeInSize
-			if (changeInSizeOfNextElement < 0) {
-				this.sizesList[i] = 0
-				newChangeInSize = Math.abs(changeInSizeOfNextElement)
-			} else {
-				this.sizesList[i] = changeInSizeOfNextElement
-				break
-			}
-		}
-	}
+				const changeInSizeOfNextElement =  this.panesList.paneList[i].axisSize - newChangeInSize
+					if (changeInSizeOfNextElement < 0) {
+					 this.panesList.paneList[i].size = 0
+					newChangeInSize = Math.abs(changeInSizeOfNextElement)
+				} else {
+					 this.panesList.paneList[i].size = changeInSizeOfNextElement
+					break
+				}
 
-	setPaneSizes() {
-		this.panes.forEach(((pane, i) => {
-			pane.current.style.height = this.sizesList[i] + 'px'
-		}))
-		console.log(this.sizesList, this.sizesList.reduce((p, c) => p + c, 0))
+
+		}
 	}
 
 	setMouseDownAndPaneAxisDetails(e) {
 		const { clientX, clientY } = e
 		this.axisCoordinate = clientY
-		this.sizesAtAxis = [...this.sizesList]
+		this.panesList.syncAxisSizes()
 	}
 
 	setVisibility(visibility){
 		for(const key in visibility){
 			console.log(key)
 			this.sizesList[0] = 0
-			this.setPaneSizes()
+			this.panesList.setUISizes()
 		} 
 	} 
 }
