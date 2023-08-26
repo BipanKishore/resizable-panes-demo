@@ -7,10 +7,6 @@ export class PanesList {
 	panesRefs = [
 ]
 
-	get panes () {
-		return this.panesRefs.current
-	}
-
 	constructor (panesRefs = [
 ]) {
 		this.panesRefs = panesRefs

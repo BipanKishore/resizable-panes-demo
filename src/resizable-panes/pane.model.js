@@ -3,12 +3,11 @@ import {toPx} from './util'
 export class Pane {
 	id
 	index
-	size
 	pane
-
+	size
 	axisSize
-
 	defaultSize
+    show
 
 	constructor (pane, index) {
 		this.id = pane.current.id
@@ -37,9 +36,8 @@ height
 	}
 
     getSizeChange () {
-        const t = Math.abs(
+        return Math.abs(
             this.axisSize - this.size
         )
-        return t
     }
 }
