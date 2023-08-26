@@ -1,271 +1,268 @@
 /* eslint-disable no-unused-vars */
 import {
-DIRECTIONS, MINUS_ONE, ZERO
+    DIRECTIONS, MINUS_ONE, ZERO
 } from './constant'
 import {PaneModel} from './pane-model'
 import {
-isDirectionDown, isDirectionUpFn, toPx
+    isDirectionDown, isDirectionUpFn, toPx
 } from './util'
 
 class PanesService {
-	activeIndex = null
+    activeIndex = null
 
-	split = 'vertical'
+    split = 'vertical'
 
-	containerRef
+    containerRef
 
-	panesRefs = [
-]
+    panesRefs = [
+    ]
 
-	resizerSize
+    resizerSize
 
-	panesList = [
-]
-	get panes () {
-		return this.panesRefs.current
-	}
+    panesList = [
+    ]
 
-	constructor () {
-		this.setVisibility = this.setVisibility.bind(this)
-	}
-
-	createPaneList (panesRefs) {
-        this.panesRefs = panesRefs
-		this.panesList = [
-]
-		panesRefs?.current?.forEach(((pane, index) => {
-			this.panesList.push(
-				new PaneModel(pane, index)
-			)
-		}))
+    get panes () {
+        return this.panesRefs.current
     }
 
-	setSize (i, size) {
-		this.panesList[i].size = size
-	}
+    constructor () {
+        this.setVisibility = this.setVisibility.bind(this)
+    }
 
-	setUISizes () {
-// 		const sizesList = [
-// ]
-		this.panesList.forEach(((pane) => {
-			pane.setUISize()
-		}))
-		// console.log('sizesList',sizesList, sizesList.reduce((p, c) => p + c, 0))
-	}
+    createPaneList (panesRefs) {
+        this.panesRefs = panesRefs
+        this.panesList = [
+        ]
+        panesRefs?.current?.forEach(((pane, index) => {
+            this.panesList.push(
+                new PaneModel(pane, index)
+            )
+        }))
+    }
 
-	syncAxisSizes () {
-		const axisSizes = [
-]
-		this.panesList.forEach(((pane) => {
+    setSize (i, size) {
+        this.panesList[i].size = size
+    }
+
+    setUISizes () {
+    // 		const sizesList = [
+    // ]
+        this.panesList.forEach(((pane) => {
+            pane.setUISize()
+        }))
+    // console.log('sizesList',sizesList, sizesList.reduce((p, c) => p + c, 0))
+    }
+
+    syncAxisSizes () {
+        const axisSizes = [
+        ]
+        this.panesList.forEach(((pane) => {
 		  const a =	pane.syncAxisSize()
 		  axisSizes.push(a)
-		}))
-	}
+        }))
+    }
 
-	logSizes () {
-		let str = ''
-		this.panesList.forEach(({
-size
-}) => str+=size +', ')
-		str +=';'
-		this.panesList.forEach(({
-axisSize
-}) => str+=axisSize+', ')
-		console.log('panes', str)
-	}
+    logSizes (e) {
+        const z = 5
+        const sizes = [
+        ]
+        const axisSizes = [
+        ]
+        this.panesList.forEach(({
+            size,
+            axisSize
+        }) => {
+            sizes.push(size)
+            axisSizes.push(axisSize)
+        })
 
-	initPanesService (containerRef, panesRefs, resizerSize) {
-		this.containerRef = containerRef
-		this.panesRefs = panesRefs
-		this.resizerSize = resizerSize
-		this.createPaneList(panesRefs)
-		this.setMaxLimitingSize()
-	}
+        let str = sizes.join(', ') + '; ' + axisSizes.join(', ')
+        console.log('panes', str, 'clientY', e.clientY, 'axisCoordinate', this.axisCoordinate)
+    }
 
-	setMaxLimitingSize () {
-		const {
-bottom, top, height
-} = this.containerRef.current.getBoundingClientRect()
-		this.topAxix = top
-		this.bottomAxis = bottom
-		this.maxSize = height - ((this.panes.length - 1) * this.resizerSize)
-	}
+    initPanesService (containerRef, panesRefs, resizerSize) {
+        this.containerRef = containerRef
+        this.panesRefs = panesRefs
+        this.resizerSize = resizerSize
+        this.createPaneList(panesRefs)
+        this.setMaxLimitingSize()
+    }
 
-	setCurrentLimitingLengthUpword () {
-		if (this.activeIndex + 1 === this.panes.length) {
-			this.currentMaxSize = this.maxSize
-			return
-		}
-		let sizeOfBellowElements = 0
-		for (let i = this.activeIndex + 1; i < this.panes.length; i += 1) {
-			sizeOfBellowElements += this.panesList[i].size
-		}
-		this.currentMaxSize = this.maxSize - sizeOfBellowElements
-	}
+    setMaxLimitingSize () {
+        const {
+            bottom, top
+        } = this.containerRef.current.getBoundingClientRect()
+        this.topAxix = top
+        this.bottomAxis = bottom
+    }
 
-	setCurrentLimitingLengthDownword () {
-		if (this.activeIndex === ZERO) {
-			this.currentMaxSize = this.maxSize
-			return
-		}
-		let sizeOfAboveElements = 0
-		for (let i = this.activeIndex - 1; i > MINUS_ONE; i -= 1) {
-			sizeOfAboveElements += this.panesList[i].size
-		}
-		this.currentMaxSize = this.maxSize - sizeOfAboveElements
-	}
+    setCurrentLimitingSize () {
+        this.currentMaxSizeUp = this.calculatePanesSize(ZERO, this.activeIndex + 1)
+        this.currentMaxSizeDown = this.calculatePanesSize(this.activeIndex, this.panesList.length -1 )
+    }
 
-	setActiveIndex (index) {
-		this.activeIndex = index
-		this.currentIndex = index
-	}
+    calculatePanesSize (startIndex, endIndex) {
+        let panesSize = 0
+        for (let i = startIndex; i <= endIndex; ++i) {
+            panesSize += this.panesList[i].size
+        }
+        return panesSize
+    }
 
-	calculateAndSetHeight (e) {
-		if(e.movementY) {
-			this.setAxisConfig(e)
-			this.logSizes()
-			if (e.movementY > ZERO) {
-				this.goingDownLogic(e)
-			} else if (e.movementY < ZERO) {
-				this.goingUpLogic(e)
-			}
-			this.setUISizes()
-		}
-	}
+    setActiveIndex (index) {
+        this.activeIndex = index
+    }
 
-	setAxisConfig (e) {
-		this.topAxisCrossed = false
-		this.bottomAxisCrossed = false
-		if(e.clientY < this.topAxix) {
-			this.axisCoordinate = this.topAxix
-			this.syncAxisSizes()
-			this.topAxisCrossed = true
-			return
-		} else if(e.clientY > this.bottomAxis) {
-			this.axisCoordinate =this.bottomAxis
-			this.syncAxisSizes()
-			this.bottomAxisCrossed = true
-			return
-		}
-		const newIsForwardDirection = e.movementY > ZERO
-		if(this.isForwardDirection !== newIsForwardDirection) {
-			this.axisCoordinate = e.clientY
-			this.syncAxisSizes()
-		}
+    calculateAndSetHeight (e) {
+        if(e.movementY) {
+            this.setAxisConfig(e)
 
-		this.currentCoordinate = e.clientY
-		this.isForwardDirection = e.movementY > ZERO
-	}
+            // if(!(this.topAxisCrossed || this.bottomAxisCrossed)) {
+            //     if (e.movementY > ZERO) {
+            //         this.goingDownLogic(e)
+            //     } else if (e.movementY < ZERO) {
+            //         this.goingUpLogic(e)
+            //     }
+            // }
+            if (e.movementY > ZERO) {
+                this.goingDownLogic(e)
+            } else if (e.movementY < ZERO) {
+                this.goingUpLogic(e)
+            }
+            this.setUISizes(e)
+        }
+    }
 
-	setSizeOfOtherElementsDownword () {
+    setAxisConfig (e) {
+        this.topAxisCrossed = false
+        this.bottomAxisCrossed = false
+        const isDirectionChanged = this.isForwardDirection !== (e.movementY > ZERO)
+        this.isForwardDirection = e.movementY > ZERO
+        if(isDirectionChanged) {
+            console.log('v----------------------------------------------------')
+        }
+        this.logSizes(e)
 
-		let newChangeInSize = this.panesList[this.activeIndex].getSizeChange()
-			let str = 'newChangeInSize: ' + newChangeInSize +', '
-		for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
-			const changeInSizeOfNextElement = this.panesList[i].axisSize - newChangeInSize
-			str += ' changeInSizeOfNextElement:' + changeInSizeOfNextElement + ', ' + i
-			if (changeInSizeOfNextElement < ZERO) {
-				this.panesList[i].size = 0
-				newChangeInSize = Math.abs(changeInSizeOfNextElement)
-			} else {
-				this.panesList[i].size = changeInSizeOfNextElement
-				break
-			}
-		}
-		console.log( str)
-	}
+        if(e.clientY < this.topAxix) {
+            this.axisCoordinate = this.topAxix
+            this.syncAxisSizes()
+            this.topAxisCrossed = true
+            this.setCurrentLimitingSize()
+            return
+        } else if(e.clientY > this.bottomAxis) {
+            this.axisCoordinate =this.bottomAxis
+            this.syncAxisSizes()
+            this.setCurrentLimitingSize()
+            this.bottomAxisCrossed = true
+            return
+        }
+        if(isDirectionChanged) {
+            console.log('v---------------------------------------------------- in if')
+            this.axisCoordinate = e.clientY
+            this.syncAxisSizes()
+            this.setCurrentLimitingSize()
+        }
 
-	goingDownLogic (e) {
+    }
 
-		this.activeIndex = this.currentIndex
-		this.setCurrentLimitingLengthDownword(e)
+    setSizeOfOtherElementsDownword (sizeChange) {
+        let str = 'newChangeInSize: ' + sizeChange +', '
+        if(sizeChange < ZERO) {
+            return
+        }
+        let changeInSizeUpward = sizeChange
 
-		// const newSize = this.getNewSizeDownword(e)
+        for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
+            const changeInSizeOfNextElement = this.panesList[i].axisSize - sizeChange
+            str += ' changeInSizeOfNextElement:' + changeInSizeOfNextElement + ', ' + i
+            if (changeInSizeOfNextElement < ZERO) {
+                this.panesList[i].size = 0
+                sizeChange = Math.abs(changeInSizeOfNextElement)
+            } else {
+                this.panesList[i].size = changeInSizeOfNextElement
+                break
+            }
+        }
 
-		let newSize
-		if(this.topAxisCrossed) {
-			newSize = this.currentMaxSize
-		}
-		if(this.bottomAxisCrossed) {
-			newSize = ZERO
-		}
-		 newSize = this.panesList[this.activeIndex].axisSize + (e.clientY - this.axisCoordinate)
-		this.getNewSizeWithLimits(newSize)
-		this.setSizeOfOtherElementsDownword()
-		this.log(newSize, this.panesList[this.activeIndex].size,
-			e, this.panesList[this.activeIndex].axisSize)
-	}
+        for(let i = this.activeIndex; i > MINUS_ONE; i -=1) {
+            let changeInSizeOfPreviousElement = this.panesList[i].axisSize + changeInSizeUpward
+		   if (changeInSizeOfPreviousElement > this.currentMaxSizeDown) {
+			   this.panesList[i].size = this.currentMaxSizeDown
+			   break
+		  } else {
+			   this.panesList[i].size = changeInSizeOfPreviousElement
+			  break
+		  }
+	   }
 
-	getNewSizeWithLimits (size) {
-		let newSize = 0
-		if (size <= ZERO) {
-			// no change required
-		} else if (size >= this.currentMaxSize) {
-			newSize = this.currentMaxSize
-		} else {
-			newSize = size
-		}
-		this.panesList[this.activeIndex].size = newSize
-	}
+        console.log( str)
+    }
 
-	log (s1,s2, e ={
-},pa) {
-		console.log(
-			// eslint-disable-next-line max-len
-			`${this.topAxisCrossed ? 'topCross': '', this.bottomAxisCrossed ? 'BottomCross': ''} newSize:${s1},${s2} axis:${this.axisCoordinate} x,y${this.topAxix},${this.bottomAxis} Y:${e.clientY} CMax:${this.currentMaxSize} paxis:${pa} `
-		)
-	}
+    goingDownLogic (e) {
 
-	goingUpLogic (e) {
-		this.activeIndex = this.currentIndex + 1
-		this.setCurrentLimitingLengthUpword(e)
-		let newCalculatedHeight
-		if(this.topAxisCrossed) {
-			newCalculatedHeight = this.currentMaxSize
-		} else if(this.bottomAxisCrossed) {
-			newCalculatedHeight = ZERO
-		} else {
-			newCalculatedHeight = this.panesList[this.activeIndex].axisSize + (this.axisCoordinate - e.clientY)
-		}
-		this.getNewSizeWithLimits(newCalculatedHeight)
-		this.setHeightOfOtherElementsUpword()
-		 this.log(newCalculatedHeight, this.panesList[this.activeIndex].size, e,
-			this.panesList[this.activeIndex].axisSize)
-	}
+        const sizeChange = e.clientY - this.axisCoordinate
 
-	setHeightOfOtherElementsUpword () {
-		let newChangeInSize = this.panesList[this.activeIndex].getSizeChange()
-		let str = 'newChangeInSize: ' + newChangeInSize +', '
-		for (let i = this.activeIndex - 1; i > MINUS_ONE; i -= 1) {
-				const changeInSizeOfNextElement = this.panesList[i].axisSize - newChangeInSize
-					if (changeInSizeOfNextElement < ZERO) {
-					 this.panesList[i].size = 0
-					newChangeInSize = Math.abs(changeInSizeOfNextElement)
-				} else {
-					 this.panesList[i].size = changeInSizeOfNextElement
-					break
-				}
+		 this.setSizeOfOtherElementsDownword(sizeChange)
+    // this.log(newSize, this.panesList[this.activeIndex].size,
+    // 	e, this.panesList[this.activeIndex].axisSize)
+    }
 
-		}
+    goingUpLogic (e) {
+        const changeInsize =this.axisCoordinate - e.clientY
+        this.setSizeOfElementsUpward(changeInsize)
+    }
 
-		console.log(str)
-	}
+    setSizeOfElementsUpward (changeInsize) {
+        let str = 'newChangeInSize: ' + changeInsize +', '
+        if(changeInsize < ZERO) {
+            return
+        }
+        let changeInSizeUpward = changeInsize
 
-	setMouseDownAndPaneAxisDetails (e) {
-		const {
-clientX, clientY
-} = e
-		this.axisCoordinate = clientY
-		this.syncAxisSizes()
-	}
+        let isAllZero = true
+        let changeInSizeOfPreviousElement
 
-	setVisibility (visibility) {
-		for(const key in visibility) {
-			console.log(key)
-			this.sizesList[ZERO] = 0
-			this.setUISizes()
-		}
-	}
+        for(let i = this.activeIndex; i > MINUS_ONE; i -=1) {
+            changeInSizeOfPreviousElement = this.panesList[i].axisSize - changeInSizeUpward
+            if (changeInSizeOfPreviousElement < ZERO) {
+                this.panesList[i].size = 0
+                changeInSizeUpward = Math.abs(changeInSizeOfPreviousElement)
+            } else {
+                isAllZero = false
+                this.panesList[i].size = changeInSizeOfPreviousElement
+                break
+            }
+        }
+
+        for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
+            const changeInSizeOfNextElement = this.panesList[i].axisSize + changeInsize
+            if(this.currentMaxSizeUp < changeInSizeOfNextElement) {
+                this.panesList[i].size = this.currentMaxSizeUp
+                break
+            } else {
+                this.panesList[i].size = changeInSizeOfNextElement
+                break
+            }
+        }
+        console.log(str)
+    }
+
+    setMouseDownAndPaneAxisDetails (e) {
+        const {
+            clientX, clientY
+        } = e
+        this.axisCoordinate = clientY
+        this.syncAxisSizes()
+        this.setCurrentLimitingSize()
+    }
+
+    setVisibility (visibility) {
+        for(const key in visibility) {
+            this.sizesList[ZERO] = 0
+            this.setUISizes()
+        }
+    }
 }
 
 const panesService = new PanesService()

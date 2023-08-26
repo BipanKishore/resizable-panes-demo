@@ -5,7 +5,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -72,10 +73,21 @@
             }, 
             "ExportDeclaration": "always"
             }],
-            "object-curly-spacing": ["error", "never"], // not required,
-            "object-property-newline": "error",
-            "space-before-blocks": "error",
-            "space-before-function-paren": "error"
+        "object-curly-spacing": ["error", "never"], // not required,
+        "object-property-newline": "error",
+        "space-before-blocks": "error",
+        "space-before-function-paren": "error",
+        "indent":["error", 4,  {"SwitchCase": 1 }],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-unused-vars": ["error",  { 
+            "vars": "local", 
+            "args": "all", 
+            "argsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_" 
+            }],
+        "no-unused-expressions": ["error", { "allowTernary": true }],
+        "no-use-before-define":"error"
     },
     "reportUnusedDisableDirectives": true
 }

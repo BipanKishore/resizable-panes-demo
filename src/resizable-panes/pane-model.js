@@ -1,43 +1,41 @@
 import {toPx} from './util'
 
 export class PaneModel {
-	id
-	index
-	pane
-	size
-	axisSize
-	defaultSize
+    id
+    index
+    pane
+    size
+    axisSize
+    defaultSize
     show
 
-	constructor (pane, index) {
-		this.id = pane.current.id
-		this.index = index
-		const {
-height
-} = pane.current.getBoundingClientRect()
-		this.size = height
-		this.pane = pane
-		this.defaultSize = height
-		this.show = true
-	}
+    constructor (pane, index) {
+        this.id = pane.current.id
+        this.index = index
+        const {
+            height
+        } = pane.current.getBoundingClientRect()
+        this.size = height
+        this.pane = pane
+        this.defaultSize = height
+        this.show = true
+    }
 
-	setUISize () {
-		this.pane.current.style.height = toPx(this.size)
-		return this.size
-	}
+    setUISize () {
+        this.pane.current.style.height = toPx(this.size)
+        return this.size
+    }
 
-	syncAxisSize () {
-		this.axisSize = this.size
-		return this.axisSize
-	}
+    syncAxisSize () {
+        this.axisSize = this.size
+        return this.axisSize
+    }
 
-	restore () {
-		this.size = this.defaultSize
-	}
+    restore () {
+        this.size = this.defaultSize
+    }
 
     getSizeChange () {
-        return Math.abs(
-            this.axisSize - this.size
-        )
+        return Math.abs(this.axisSize - this.size)
     }
 }
