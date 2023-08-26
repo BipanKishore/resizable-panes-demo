@@ -1,20 +1,17 @@
-
-
-
-
 class Subscription {
 
-    subscriptionList = {}
+    subscriptionList = {
+}
 
-    subscribe(id, event) {
+    subscribe (id, event) {
          this.subscriptionList[id] = event
     }
 
-    publish(id, value){
+    publish (id, value) {
         this.subscriptionList[id](value)
     }
 
-    unSubscribe(id){
+    unSubscribe (id) {
         delete this.subscriptionList[id]
     }
 }
