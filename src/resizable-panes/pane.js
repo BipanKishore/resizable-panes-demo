@@ -1,14 +1,23 @@
 import PropTypes from 'prop-types'
 import React, {forwardRef} from 'react'
 
+import {toPx} from './util'
+
 function Pane (props, ref) {
 
 	const {
 // eslint-disable-next-line react/prop-types
-className, children, id
+className, children, id, size
 } = props
 	return (
-		<div className={className} ref={ref} id={id}>
+		<div
+		className={className}
+		 ref={ref}
+		 id={id}
+		 style={{
+			height: toPx(size)
+		 }}
+		 >
 			{children}
 		</div>
 	)
@@ -17,7 +26,9 @@ className, children, id
 Pane.prototypes = {
 	children: PropTypes.element,
 	className: PropTypes.string,
-	id: PropTypes.string.isRequired
+	id: PropTypes.string.isRequired,
+	minSize: PropTypes.number,
+	size: PropTypes.number
 }
 
 export default forwardRef(Pane)

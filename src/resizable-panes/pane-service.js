@@ -29,13 +29,13 @@ class PanesService {
 		this.setVisibility = this.setVisibility.bind(this)
 	}
 
-	createPaneList (panesRefs) {
+	createPaneList (panesRefs, children) {
         this.panesRefs = panesRefs
 		this.panesList = [
 ]
 		panesRefs?.current?.forEach(((pane, index) => {
 			this.panesList.push(
-				new PaneModel(pane, index)
+				new PaneModel(pane, index, children[index])
 			)
 		}))
     }
@@ -44,12 +44,28 @@ class PanesService {
 		this.panesList[i].size = size
 	}
 
+	synSizesToUI () {
+		this.panesList.forEach((pane) => pane.synSizeToUI())
+	}
+
 	setUISizes () {
 // 		const sizesList = [
 // ]
-		this.panesList.forEach(((pane) => {
-			pane.setUISize()
-		}))
+		let isValid = true
+		for(const pane of this.panesList) {
+			if(!pane.validateSize()) {
+				isValid = false
+				break
+			}
+		}
+		if(isValid) {
+			this.panesList.forEach(((pane) => {
+				pane.setUISize()
+			}))
+		} else {
+			this.synSizesToUI()
+		}
+
 		// console.log('sizesList',sizesList, sizesList.reduce((p, c) => p + c, 0))
 	}
 
@@ -74,11 +90,16 @@ axisSize
 		console.log('panes', str)
 	}
 
-	initPanesService (containerRef, panesRefs, resizerSize) {
+	initPanesService ({
+		children,
+		containerRef,
+		panesRefs,
+		resizerSize
+		}) {
 		this.containerRef = containerRef
 		this.panesRefs = panesRefs
 		this.resizerSize = resizerSize
-		this.createPaneList(panesRefs)
+		this.createPaneList(panesRefs, children)
 		this.setMaxLimitingSize()
 	}
 
@@ -88,7 +109,8 @@ bottom, top, height
 } = this.containerRef.current.getBoundingClientRect()
 		this.topAxix = top
 		this.bottomAxis = bottom
-		this.maxSize = height - ((this.panes.length - 1) * this.resizerSize)
+		this.maxSize = height - ((this.panesList.length - 1) * this.resizerSize)
+		// this.maxSize = height
 	}
 
 	setCurrentLimitingLengthUpword () {
@@ -109,8 +131,10 @@ bottom, top, height
 			return
 		}
 		let sizeOfAboveElements = 0
+		let count = 0
 		for (let i = this.activeIndex - 1; i > MINUS_ONE; i -= 1) {
 			sizeOfAboveElements += this.panesList[i].size
+			++count
 		}
 		this.currentMaxSize = this.maxSize - sizeOfAboveElements
 	}
@@ -123,7 +147,7 @@ bottom, top, height
 	calculateAndSetHeight (e) {
 		if(e.movementY) {
 			this.setAxisConfig(e)
-			this.logSizes()
+			// this.logSizes()
 			if (e.movementY > ZERO) {
 				this.goingDownLogic(e)
 			} else if (e.movementY < ZERO) {
@@ -179,17 +203,19 @@ bottom, top, height
 
 		this.activeIndex = this.currentIndex
 		this.setCurrentLimitingLengthDownword(e)
-
-		// const newSize = this.getNewSizeDownword(e)
-
 		let newSize
-		if(this.topAxisCrossed) {
-			newSize = this.currentMaxSize
-		}
-		if(this.bottomAxisCrossed) {
-			newSize = ZERO
-		}
-		 newSize = this.panesList[this.activeIndex].axisSize + (e.clientY - this.axisCoordinate)
+		// if(this.topAxisCrossed) {
+		// 	newSize = this.currentMaxSize
+		// } else if(this.bottomAxisCrossed) {
+		// 	newSize = ZERO
+		// } else {
+		// 	newSize = this.panesList[this.activeIndex].axisSize + (e.clientY - this.axisCoordinate)
+		// }
+		newSize = this.panesList[this.activeIndex].axisSize + (e.clientY - this.axisCoordinate)
+		// if(newCalculatedHeight < this.panesList[this.activeIndex].minSize ) {
+		// 	newCalculatedHeight = this.panesList[this.activeIndex].minSize
+		// }
+
 		this.getNewSizeWithLimits(newSize)
 		this.setSizeOfOtherElementsDownword()
 		this.log(newSize, this.panesList[this.activeIndex].size,
@@ -206,6 +232,8 @@ bottom, top, height
 			newSize = size
 		}
 		this.panesList[this.activeIndex].size = newSize
+
+		// console.log('v----', this.panesList[this.activeIndex])
 	}
 
 	log (s1,s2, e ={
@@ -218,18 +246,12 @@ bottom, top, height
 
 	goingUpLogic (e) {
 		this.activeIndex = this.currentIndex + 1
-		this.setCurrentLimitingLengthUpword(e)
-		let newCalculatedHeight
-		if(this.topAxisCrossed) {
-			newCalculatedHeight = this.currentMaxSize
-		} else if(this.bottomAxisCrossed) {
-			newCalculatedHeight = ZERO
-		} else {
-			newCalculatedHeight = this.panesList[this.activeIndex].axisSize + (this.axisCoordinate - e.clientY)
-		}
-		this.getNewSizeWithLimits(newCalculatedHeight)
+		this.setCurrentLimitingLengthUpword()
+		const newSize = this.panesList[this.activeIndex].axisSize + (this.axisCoordinate - e.clientY)
+
+		this.getNewSizeWithLimits(newSize)
 		this.setHeightOfOtherElementsUpword()
-		 this.log(newCalculatedHeight, this.panesList[this.activeIndex].size, e,
+		 this.log(newSize, this.panesList[this.activeIndex].size, e,
 			this.panesList[this.activeIndex].axisSize)
 	}
 

@@ -21,7 +21,12 @@ children, resizerSize, onReady
   panesRefs.current = children.map((_element, i) => panesRefs.current[i] ?? createRef())
 
   useEffect(() => {
-    panesService.initPanesService(containerRef, panesRefs, resizerSize)
+    panesService.initPanesService({
+children,
+containerRef,
+panesRefs,
+resizerSize
+})
     if(onReady) {
       onReady(panesService)
     }
