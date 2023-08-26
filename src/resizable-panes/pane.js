@@ -1,10 +1,12 @@
-import React, { forwardRef } from 'react'
-
 import PropTypes from 'prop-types'
+import React, {forwardRef} from 'react'
 
-function Pane(props, ref) {
-	// eslint-disable-next-line react/prop-types
-	const { className, children, id } = props
+function Pane (props, ref) {
+
+	const {
+// eslint-disable-next-line react/prop-types
+className, children, id
+} = props
 	return (
 		<div className={className} ref={ref} id={id}>
 			{children}
@@ -13,8 +15,9 @@ function Pane(props, ref) {
 }
 
 Pane.prototypes = {
-	className: PropTypes.string,
 	children: PropTypes.element,
+	className: PropTypes.string,
+	id: PropTypes.string.isRequired
 }
 
 export default forwardRef(Pane)
