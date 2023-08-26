@@ -2,8 +2,7 @@
 import {
 DIRECTIONS, MINUS_ONE, ZERO
 } from './constant'
-import {Pane} from './pane.model'
-import {PanesList} from './panelist.model'
+import {PaneModel} from './pane-model'
 import {
 isDirectionDown, isDirectionUpFn, toPx
 } from './util'
@@ -36,10 +35,7 @@ class PanesService {
 ]
 		panesRefs?.current?.forEach(((pane, index) => {
 			this.panesList.push(
-				new Pane(
-					pane,
-					index
-				)
+				new PaneModel(pane, index)
 			)
 		}))
     }

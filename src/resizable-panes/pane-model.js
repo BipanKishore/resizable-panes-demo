@@ -1,6 +1,6 @@
 import {toPx} from './util'
 
-export class Pane {
+export class PaneModel {
 	id
 	index
 	pane
