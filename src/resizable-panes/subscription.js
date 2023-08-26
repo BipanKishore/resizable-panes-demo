@@ -1,10 +1,10 @@
 class Subscription {
 
     subscriptionList = {
-}
+    }
 
     subscribe (id, event) {
-         this.subscriptionList[id] = event
+        this.subscriptionList[id] = event
     }
 
     publish (id, value) {
