@@ -1,3 +1,4 @@
+import {ZERO} from './constant'
 import {toPx} from './util'
 
 export class PaneModel {
@@ -9,21 +10,52 @@ export class PaneModel {
     defaultSize
     show
 
-    constructor (pane, index) {
-        this.id = pane.current.id
+    constructor (pane, index, child) {
+        const{
+            id, minSize = ZERO, size, maxSize = Infinity
+        } = child.props
+
+        this.id = id
+        this.minSize = minSize
         this.index = index
-        const {
-            height
-        } = pane.current.getBoundingClientRect()
-        this.size = height
+        this.size = size
+        this.defaultSize = size
         this.pane = pane
-        this.defaultSize = height
         this.show = true
+        this.uiSize = size
+        this.maxSize = maxSize
+        this.defaultMaxSize = maxSize
+    }
+
+    validateSize () {
+        if(this.size < this.minSize) {
+            return false
+        } else if(this.size > this.maxSize) {
+            return false
+        }
+        return true
+    }
+
+    newSetSize (newSize) {
+        if(newSize > this.minSize && newSize <= this.maxSize) {
+            this.size = newSize
+            return ZERO
+        } else if (newSize > this.maxSize) {
+            this.size = this.maxSize
+        } else {
+            this.size = this.minSize
+        }
+        return Math.abs(this.size - newSize)
     }
 
     setUISize () {
+        this.uiSize = this.size
         this.pane.current.style.height = toPx(this.size)
         return this.size
+    }
+
+    synSizeToUI () {
+        this.size = this.uiSize
     }
 
     syncAxisSize () {
@@ -37,5 +69,9 @@ export class PaneModel {
 
     getSizeChange () {
         return Math.abs(this.axisSize - this.size)
+    }
+
+    setCurrentLimits (isActive) {
+
     }
 }

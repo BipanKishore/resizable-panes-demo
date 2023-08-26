@@ -87,7 +87,10 @@
             "destructuredArrayIgnorePattern": "^_" 
             }],
         "no-unused-expressions": ["error", { "allowTernary": true }],
-        "no-use-before-define":"error"
+        "no-use-before-define":"error",
+        "no-case-declarations": 0,
+        "space-before-keywords": ["error", "always"],
+        "space-infix-ops": "error"
     },
     "reportUnusedDisableDirectives": true
 }
