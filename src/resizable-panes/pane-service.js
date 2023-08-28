@@ -217,17 +217,21 @@ class PanesService {
                 break
         }
 
+        console.log(this.limitFinishedDirection)
         switch(true) {
             case this.limitFinishedAxis
             && this.limitFinishedDirection === DIRECTIONS.UP
             && this.limitFinishedAxis <= e.clientY
             && this.direction === DIRECTIONS.DOWN :
+            console.log('are we here')
 
             // eslint-disable-next-line no-fallthrough
             case this.limitFinishedAxis
             && this.limitFinishedDirection === DIRECTIONS.DOWN
             && this.limitFinishedAxis >= e.clientY
             && this.direction === DIRECTIONS.UP :
+
+            console.log('are we here 2' )
                 this.axisCoordinate = this.limitFinishedAxis
                 this.limitFinishedAxis = null
                 this.limitFinishedDirection = DIRECTIONS.NONE
@@ -247,35 +251,34 @@ class PanesService {
     }
 
     setSizeOfOtherElementsDownword (sizeChange, e) {
-        let str = 'newChangeInSize: ' + sizeChange + ', '
         if(sizeChange < ZERO) {
             return
         }
         let changeInSizeUpward = sizeChange
 
-        let changeInsize
+        let decreasingNewSize
         for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
-            changeInsize = this.panesList[i].axisSize - sizeChange
-            str += ' changeInSizeOfNextElement:' + changeInsize + ', ' + i
-            sizeChange = this.panesList[i].newSetSize(changeInsize)
+            decreasingNewSize = this.panesList[i].axisSize - sizeChange
+            sizeChange = this.panesList[i].newSetSize(decreasingNewSize)
             this.panesList[i].left = sizeChange
         }
-        str += ' changeInSizeUpward:' + changeInSizeUpward
-        str += ' left:' + (changeInSizeUpward - changeInsize )
-        // if(changeInSizeUpward) {
-        //     changeInsize = changeInsize - changeInSizeUpward
-        // }
 
-	   const changeInSizeOfNextElement = this.panesList[this.activeIndex].axisSize + changeInSizeUpward
-	   const finalChange = this.panesList[this.activeIndex].newSetSize(changeInSizeOfNextElement)
-        this.panesList[this.activeIndex].finalChange = finalChange
+        for(let i = this.activeIndex; i > MINUS_ONE; i -= 1) {
+            const newSize = this.panesList[i].axisSize + changeInSizeUpward
+            const changeLeft = this.panesList[i].newSetSize(newSize)
+             this.panesList[i].left = changeLeft
+             changeInSizeUpward = changeLeft
+        }
+        this.panesList[ZERO].finalChange = changeInSizeUpward
 
-	   if(finalChange) {
+	   if(sizeChange) {
         this.limitFinishedAxis = e.clientY
-        console.log('v-- synSizesToUI setSizeOfOtherElementsDownword')
+
+        if(this.limitFinishedDirection === DIRECTIONS.NONE) {
+            this.limitFinishedDirection = this.direction
+            }
 		//    this.synSizesToUI()
 	   }
-        console.log( str)
     }
 
     goingDownLogic (e) {
@@ -304,7 +307,9 @@ class PanesService {
 
         if(sizeChangeUp) {
             this.limitFinishedAxis = e.clientY
-            this.limitFinishedDirection = this.direction
+            if(this.limitFinishedDirection === DIRECTIONS.NONE) {
+                this.limitFinishedDirection = this.direction
+                }
         }
 
         str += ' sizeChangeUp:' + sizeChangeUp

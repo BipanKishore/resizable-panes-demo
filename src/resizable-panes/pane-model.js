@@ -53,6 +53,16 @@ export class PaneModel {
         return Math.abs(this.size - newSize)
     }
 
+    addSize (sizeChange) {
+        const newSize = this.axisSize + sizeChange
+        return this.newSetSize(newSize)
+    }
+
+    removeSize (sizeChange) {
+        const newSize = this.axisSize - sizeChange
+        return this.newSetSize(newSize)
+    }
+
     setUISize () {
         this.uiSize = this.size
         this.pane.current.style.height = toPx(this.size)
