@@ -256,28 +256,17 @@ class PanesService {
         }
         let changeInSizeUpward = sizeChange
 
-        let decreasingNewSize
         for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
-            decreasingNewSize = this.panesList[i].axisSize - sizeChange
-            sizeChange = this.panesList[i].newSetSize(decreasingNewSize)
-            this.panesList[i].left = sizeChange
+            sizeChange = this.panesList[i].removeSize(sizeChange)
         }
 
         for(let i = this.activeIndex; i > MINUS_ONE; i -= 1) {
-            const newSize = this.panesList[i].axisSize + changeInSizeUpward
-            const changeLeft = this.panesList[i].newSetSize(newSize)
-             this.panesList[i].left = changeLeft
-             changeInSizeUpward = changeLeft
+            changeInSizeUpward = this.panesList[i].addSize(changeInSizeUpward)
         }
-        this.panesList[ZERO].finalChange = changeInSizeUpward
 
 	   if(sizeChange) {
         this.limitFinishedAxis = e.clientY
-
-        if(this.limitFinishedDirection === DIRECTIONS.NONE) {
-            this.limitFinishedDirection = this.direction
-            }
-		//    this.synSizesToUI()
+        this.limitFinishedDirection = this.direction
 	   }
     }
 
@@ -300,16 +289,12 @@ class PanesService {
         let sizeChangeUp = sizeChange
 
         for(let i = this.activeIndex; i > MINUS_ONE; i -= 1) {
-            const newSize = this.panesList[i].axisSize - sizeChangeUp
-            sizeChangeUp = this.panesList[i].newSetSize(newSize)
-            this.panesList[i].left = sizeChangeUp
+            sizeChangeUp = this.panesList[i].removeSize(sizeChangeUp)
         }
 
         if(sizeChangeUp) {
             this.limitFinishedAxis = e.clientY
-            if(this.limitFinishedDirection === DIRECTIONS.NONE) {
-                this.limitFinishedDirection = this.direction
-                }
+            this.limitFinishedDirection = this.direction
         }
 
         str += ' sizeChangeUp:' + sizeChangeUp
@@ -319,9 +304,7 @@ class PanesService {
         }
 
         for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
-            const changeInSizeOfNextElement = this.panesList[i].axisSize + sizeChange
-            sizeChange = this.panesList[i].newSetSize(changeInSizeOfNextElement)
-            this.panesList[i].finalChange = sizeChange
+            sizeChange = this.panesList[i].addSize(sizeChange)
         }
 
         if(sizeChange) {

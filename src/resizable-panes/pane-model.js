@@ -44,13 +44,16 @@ export class PaneModel {
     newSetSize (newSize) {
         if(newSize > this.minSize && newSize <= this.maxSize) {
             this.size = newSize
+            this.left = ZERO
             return ZERO
         } else if (newSize > this.maxSize) {
             this.size = this.maxSize
         } else {
             this.size = this.minSize
         }
-        return Math.abs(this.size - newSize)
+        const left = Math.abs(this.size - newSize)
+        this.left = left
+        return left
     }
 
     addSize (sizeChange) {
