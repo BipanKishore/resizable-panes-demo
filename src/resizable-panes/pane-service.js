@@ -98,38 +98,110 @@ class PanesService {
 
     setMaxLimitingSize () {
         const {
-            bottom, top
+            bottom, top, height
         } = this.containerRef.current.getBoundingClientRect()
         this.topAxix = top
         this.bottomAxis = bottom
+        this.MaxPaneSize = height - ((this.panesList.length - 1) * this.resizerSize)
     }
 
-    setCurrentLimitingSize () {
-        // To substrac MinSize
+    getPanesSizeTotal (start, end) {
+        let sum = 0
+        for(let i = start; i <= end; i++) {
+           sum += this.panesList[i].size
+        }
+        return sum
+    }
 
+    getPanesMaxSizeSum (start, end) {
+        let sum = 0
+        for(let i = start; i <= end; i++) {
+           sum += this.panesList[i].maxSize
+        }
+        return sum
+    }
+
+    getMaxSizeOfElementsDownward (index) {
+        const minSizeCollection = this.getMinSizesTotal(this.activeIndex + 1, this.panesList.length)
+        const otherElementsSizesSum = this.getPanesSizeTotal(ZERO, index - 1)
+        const maxSizesSum = this.getPanesMaxSizeSum(index + 1, this.activeIndex)
+        const indexeMaxSize = this.MaxPaneSize - ( minSizeCollection + maxSizesSum + otherElementsSizesSum)
+
+        console.log('relative MaxPaneSize', index, this.MaxPaneSize, 'min'
+        , minSizeCollection, 'otherElementsSizesSum', otherElementsSizesSum,
+        'maxSizesSum', maxSizesSum, 'indexeMaxSize:', indexeMaxSize)
+        return indexeMaxSize
+    }
+
+    getMaxSizesTotal (start, end) {
+        let maxSizeCollection = 0
+        for (let i = start ; i > end; --i) {
+            maxSizeCollection += this.panesList[i].maxSize
+        }
+        return maxSizeCollection
+    }
+
+    getMinSizesTotal (start, end) {
+        let minSizeCollection = 0
+        for (let i = start; i < end; ++i) {
+            minSizeCollection += this.panesList[i].minSize
+        }
+        return minSizeCollection
+    }
+
+    // 0, 2 min
+    // index = 1
+    // 0  size
+    getMaxSizeOfElementsUpward (index) {
+        let maxSizesSum
+        let minSizeCollection
+        let otherElementsSizesSum
+        let indexeMaxSize
+        if(this.activeIndex + 1 === index) {
+             minSizeCollection = this.getMinSizesTotal(ZERO, index)
+             otherElementsSizesSum = this.getPanesSizeTotal(index + 2, this.panesList.length - 1)
+             indexeMaxSize = this.MaxPaneSize - ( minSizeCollection + otherElementsSizesSum)
+        } else {
+            minSizeCollection = this.getMinSizesTotal(ZERO, this.activeIndex + 1)
+            maxSizesSum = this.getPanesMaxSizeSum( this.activeIndex + 1, index - 1 )
+            otherElementsSizesSum = this.getPanesSizeTotal(index + 1, this.panesList.length - 1)
+            indexeMaxSize = this.MaxPaneSize - ( minSizeCollection + maxSizesSum + otherElementsSizesSum)
+        }
+
+        console.log('relative MaxPaneSize',this.activeIndex, index, this.MaxPaneSize, 'min'
+        , minSizeCollection, 'otherElementsSizesSum', otherElementsSizesSum,
+        'maxSizesSum', maxSizesSum, 'indexeMaxSize:', indexeMaxSize)
+        return indexeMaxSize
+    }
+
+    // eslint-disable-next-line complexity
+    setCurrentLimitingSize () {
         if(this.direction === DIRECTIONS.NONE) {
             return
         }
 
-        let currentLimit
         if(this.direction === DIRECTIONS.UP) {
-            currentLimit = this.calculateRelativePaneLimit(ZERO, this.activeIndex + 1)
-        } else if(this.direction === DIRECTIONS.DOWN) {
-            currentLimit = this.calculateRelativePaneLimit(this.activeIndex, this.panesList.length - 1 )
-        }
-
-        this.panesList.forEach((pane, index) => {
-            switch(true) {
-                case this.activeIndex === index && this.direction === DIRECTIONS.DOWN:
-                case (this.activeIndex + 1) === index && this.direction === DIRECTIONS.UP:
-                    pane.setMaxSize(currentLimit)
-                    break
-                default:
-                    pane.resetDefaultMinAndMaxSize()
-
+            for(let i = 0; i < this.activeIndex + 1; i++) {
+                this.panesList[i].resetDefaultMinAndMaxSize()
             }
 
-        })
+            for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
+                const relativeMaxSize = this.getMaxSizeOfElementsUpward(i)
+                this.panesList[i].setMaxSize(relativeMaxSize)
+            }
+        } else {
+
+        //Max size not required for elements reducing in size
+            for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
+                this.panesList[i].resetDefaultMinAndMaxSize()
+            }
+
+            for(let i = this.activeIndex; i > MINUS_ONE; i--) {
+                const relativeMaxSize = this.getMaxSizeOfElementsDownward(i)
+                this.panesList[i].setMaxSize(relativeMaxSize)
+
+            }
+        }
 
     }
 

@@ -40,6 +40,18 @@ export const MIN_MAX_SET_1 = {
         500,200,300,500
     ],
     minSizes: [
+        10, 100, 100, 140
+    ],
+    sizes: [
+        200, 150, 200, 200
+    ]
+}
+
+export const MIN_MAX_SET_2 = {
+    maxSizes: [
+        500,200,300,500
+    ],
+    minSizes: [
         150, 100, 100, 140
     ],
     sizes: [
