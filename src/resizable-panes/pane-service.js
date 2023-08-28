@@ -269,7 +269,6 @@ class PanesService {
         this.setSizeOfElementsUpward(changeInsize, e)
     }
 
-    // eslint-disable-next-line complexity
     setSizeOfElementsUpward (sizeChange, e) {
         let str = 'sizeChange: ' + sizeChange + ', '
         if(sizeChange < ZERO) {
@@ -284,9 +283,6 @@ class PanesService {
         if(sizeChangeUp) {
             this.limitFinishedAxis = e.clientY
             this.limitFinishedDirection = this.direction
-        }
-
-        if(sizeChangeUp) {
             sizeChange = sizeChange - sizeChangeUp
         }
 
