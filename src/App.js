@@ -5,12 +5,13 @@ import React, {
 } from 'react'
 
 import {
-    MAX_SIZES_SET_1, MIN_SIZES_SET_1,
+    MAX_SIZES_SET_1, MIN_MAX_SET_1,
+MIN_SIZES_SET_1,
     ONLY_SIZES_SET_1
 } from './component/constant'
 import {DefaultSizes} from './component/default-sizes'
 
-const set = MIN_SIZES_SET_1
+const set = MIN_MAX_SET_1
 function App () {
 
     const ref = createRef()
