@@ -205,22 +205,6 @@ class PanesService {
 
     }
 
-    calculateRelativePaneLimit (startIndex, endIndex) {
-        let panesSize = 0
-        for (let i = startIndex; i <= endIndex; ++i) {
-            switch(true) {
-                case this.activeIndex === i && this.direction === DIRECTIONS.DOWN:
-                case (this.activeIndex + 1) === i && this.direction === DIRECTIONS.UP:
-                    panesSize += this.panesList[i].size
-                    break
-                default:
-                    panesSize += this.panesList[i].size - this.panesList[i].minSize
-            }
-
-        }
-        return panesSize
-    }
-
     setActiveIndex (index) {
         this.activeIndex = index
     }
