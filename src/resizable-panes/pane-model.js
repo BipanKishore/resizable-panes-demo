@@ -10,6 +10,7 @@ export class PaneModel {
     defaultSize
     show
     mouseDownSize
+    isFiniteMaxSize = false
 
     constructor (pane, index, child) {
         const{
@@ -26,6 +27,9 @@ export class PaneModel {
         this.uiSize = size
         this.maxSize = maxSize
         this.defaultMaxSize = maxSize
+        if(Number.isFinite(maxSize)) {
+            this.isFiniteMaxSize = true
+        }
     }
 
     resetDefaultMinAndMaxSize () {
@@ -91,6 +95,14 @@ export class PaneModel {
 
     setMouseDownSize () {
         this.mouseDownSize = this.size
+    }
+
+    setMaxSize (limit) {
+        if(this.isFiniteMaxSize) {
+            this.maxSize = limit < this.defaultMaxSize ? limit : this.defaultMaxSize
+        } else {
+            this.maxSize = limit
+        }
     }
 
     setCurrentLimits (isActive) {

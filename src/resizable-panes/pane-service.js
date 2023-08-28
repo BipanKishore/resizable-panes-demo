@@ -113,36 +113,27 @@ class PanesService {
 
         let currentLimit
         if(this.direction === DIRECTIONS.UP) {
-            currentLimit = this.calculatePanesSize(ZERO, this.activeIndex + 1)
+            currentLimit = this.calculateRelativePaneLimit(ZERO, this.activeIndex + 1)
         } else if(this.direction === DIRECTIONS.DOWN) {
-            currentLimit = this.calculatePanesSize(this.activeIndex, this.panesList.length - 1 )
+            currentLimit = this.calculateRelativePaneLimit(this.activeIndex, this.panesList.length - 1 )
         }
-        // eslint-disable-next-line complexity
+
         this.panesList.forEach((pane, index) => {
-            const {
-                defaultMaxSize
-            } = pane
             switch(true) {
                 case this.activeIndex === index && this.direction === DIRECTIONS.DOWN:
                 case (this.activeIndex + 1) === index && this.direction === DIRECTIONS.UP:
-                    let currentMaxSize
-                    if(Number.isFinite(defaultMaxSize)) {
-                        currentMaxSize = currentLimit < defaultMaxSize ? currentLimit : defaultMaxSize
-                    } else {
-                        currentMaxSize = currentLimit
-                    }
-
-                    pane.maxSize = currentMaxSize
+                    pane.setMaxSize(currentLimit)
                     break
                 default:
-                    pane.maxSize = defaultMaxSize
+                    pane.resetDefaultMinAndMaxSize()
+
             }
 
         })
 
     }
 
-    calculatePanesSize (startIndex, endIndex) {
+    calculateRelativePaneLimit (startIndex, endIndex) {
         let panesSize = 0
         for (let i = startIndex; i <= endIndex; ++i) {
             switch(true) {
@@ -223,7 +214,6 @@ class PanesService {
             && this.limitFinishedDirection === DIRECTIONS.UP
             && this.limitFinishedAxis <= e.clientY
             && this.direction === DIRECTIONS.DOWN :
-            console.log('are we here')
 
             // eslint-disable-next-line no-fallthrough
             case this.limitFinishedAxis
@@ -231,7 +221,6 @@ class PanesService {
             && this.limitFinishedAxis >= e.clientY
             && this.direction === DIRECTIONS.UP :
 
-            console.log('are we here 2' )
                 this.axisCoordinate = this.limitFinishedAxis
                 this.limitFinishedAxis = null
                 this.limitFinishedDirection = DIRECTIONS.NONE
@@ -297,8 +286,6 @@ class PanesService {
             this.limitFinishedDirection = this.direction
         }
 
-        str += ' sizeChangeUp:' + sizeChangeUp
-        str += ' left:' + ( sizeChange - sizeChangeUp)
         if(sizeChangeUp) {
             sizeChange = sizeChange - sizeChangeUp
         }
@@ -308,9 +295,7 @@ class PanesService {
         }
 
         if(sizeChange) {
-            console.log('v-- synSizesToUI setSizeOfOtherElementsDownword')
             this.limitFinishedAxis = e.clientY
-            //  this.synSizesToUI()
         }
 
         console.log(str)
