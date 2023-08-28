@@ -12,25 +12,30 @@ export const OnlyMaxSize = ({
 
     return(
 
-        <ResizablePanes resizerSize={5}
+      <ResizablePanes
+            resizerSize={5}
             onReady={onReady}
         >
-            {
-                <Panes id='pane1' className='pane1' size={200} maxSize={200} >
-                    <TestComp name={'Pane 1'} />
+          {
+              <Panes
+                    id='pane1'
+                    className='pane1'
+                    size={200} maxSize={200} >
+                  <TestComp name={'Pane 1'} />
                 </Panes>
             }
 
-            <Panes id='pane2' className='pane2' size={50} maxSize={100} >
-                <TestComp name={'Pane 2'} />
+          <Panes
+                id='pane2' className='pane2' size={50 } maxSize={100} >
+              <TestComp name={'Pane 2'} />
             </Panes>
 
-            <Panes id='pane3' className='pane3' size={100} maxSize={130}>
-            Pane 111
+          <Panes id='pane3' className='pane3' size={100} maxSize={130}>
+              Pane 111
             </Panes>
 
-            <Panes id='pane4' className='pane2' size={250} maxSize={300}>
-            Pane 1111
+          <Panes id='pane4' className='pane2' size={250} maxSize={300}>
+              Pane 1111
             </Panes>
         </ResizablePanes>
     )

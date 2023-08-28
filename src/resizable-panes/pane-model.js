@@ -9,6 +9,7 @@ export class PaneModel {
     axisSize
     defaultSize
     show
+    mouseDownSize
 
     constructor (pane, index, child) {
         const{
@@ -25,6 +26,10 @@ export class PaneModel {
         this.uiSize = size
         this.maxSize = maxSize
         this.defaultMaxSize = maxSize
+    }
+
+    resetDefaultMinAndMaxSize () {
+        this.maxSize = this.defaultMaxSize
     }
 
     validateSize () {
@@ -69,6 +74,10 @@ export class PaneModel {
 
     getSizeChange () {
         return Math.abs(this.axisSize - this.size)
+    }
+
+    setMouseDownSize () {
+        this.mouseDownSize = this.size
     }
 
     setCurrentLimits (isActive) {

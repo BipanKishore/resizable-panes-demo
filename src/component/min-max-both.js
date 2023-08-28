@@ -12,7 +12,8 @@ export const MinMaxBoth = ({
 
     return(
 
-        <ResizablePanes resizerSize={5}
+        <ResizablePanes
+            resizerSize={5}
             onReady={onReady}
         >
             {

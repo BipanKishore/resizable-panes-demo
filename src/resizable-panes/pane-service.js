@@ -105,10 +105,16 @@ class PanesService {
     }
 
     setCurrentLimitingSize () {
+        // To substrac MinSize
+
+        if(this.direction === DIRECTIONS.NONE) {
+            return
+        }
+
         let currentLimit
-        if(this.direction == DIRECTIONS.UP) {
+        if(this.direction === DIRECTIONS.UP) {
             currentLimit = this.calculatePanesSize(ZERO, this.activeIndex + 1)
-        } else {
+        } else if(this.direction === DIRECTIONS.DOWN) {
             currentLimit = this.calculatePanesSize(this.activeIndex, this.panesList.length - 1 )
         }
         // eslint-disable-next-line complexity
@@ -139,7 +145,15 @@ class PanesService {
     calculatePanesSize (startIndex, endIndex) {
         let panesSize = 0
         for (let i = startIndex; i <= endIndex; ++i) {
-            panesSize += this.panesList[i].size
+            switch(true) {
+                case this.activeIndex === i && this.direction === DIRECTIONS.DOWN:
+                case (this.activeIndex + 1) === i && this.direction === DIRECTIONS.UP:
+                    panesSize += this.panesList[i].size
+                    break
+                default:
+                    panesSize += this.panesList[i].size - this.panesList[i].minSize
+            }
+
         }
         return panesSize
     }
@@ -320,6 +334,8 @@ class PanesService {
         this.prevDirection = DIRECTIONS.NONE
 
         this.axisCoordinate = clientY
+        this.limitFinishedAxis = null
+        this.resetDefaultMinAndMaxSizes()
         this.syncAxisSizes()
         this.setCurrentLimitingSize()
     }
@@ -329,6 +345,12 @@ class PanesService {
             this.sizesList[ZERO] = 0
             this.setUISizes()
         }
+    }
+
+    resetDefaultMinAndMaxSizes () {
+        this.panesList.forEach((pane) => {
+            pane.resetDefaultMinAndMaxSize()
+        })
     }
 }
 

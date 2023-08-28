@@ -3,6 +3,8 @@ export const DIRECTIONS = {
     LEFT: 'LEFT',
     NONE: 'None',
     RIGHT: 'RIGHT',
+    STARTED_DOWN: 'STARTED_DOWN',
+    STARTED_UP: 'STARTED_UP',
     UP: 'UP'
 }
 
