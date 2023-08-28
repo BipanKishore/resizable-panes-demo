@@ -37,7 +37,7 @@ export const ONLY_SIZES_SET_1 = {
 
 export const MIN_MAX_SET_1 = {
     maxSizes: [
-        250,200,300,500
+        500,200,300,500
     ],
     minSizes: [
         150, 100, 100, 140

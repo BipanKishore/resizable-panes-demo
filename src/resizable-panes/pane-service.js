@@ -246,7 +246,7 @@ class PanesService {
         this.setCurrentLimitingSize()
     }
 
-    setSizeOfOtherElementsDownword (sizeChange) {
+    setSizeOfOtherElementsDownword (sizeChange, e) {
         let str = 'newChangeInSize: ' + sizeChange + ', '
         if(sizeChange < ZERO) {
             return
@@ -271,14 +271,16 @@ class PanesService {
         this.panesList[this.activeIndex].finalChange = finalChange
 
 	   if(finalChange) {
-		   this.synSizesToUI()
+        this.limitFinishedAxis = e.clientY
+        console.log('v-- synSizesToUI setSizeOfOtherElementsDownword')
+		//    this.synSizesToUI()
 	   }
         console.log( str)
     }
 
     goingDownLogic (e) {
         const sizeChange = e.clientY - this.axisCoordinate
-		 this.setSizeOfOtherElementsDownword(sizeChange)
+		 this.setSizeOfOtherElementsDownword(sizeChange, e)
     }
 
     goingUpLogic (e) {
@@ -318,6 +320,7 @@ class PanesService {
         }
 
         if(sizeChange) {
+            console.log('v-- synSizesToUI setSizeOfOtherElementsDownword')
             this.limitFinishedAxis = e.clientY
             //  this.synSizesToUI()
         }
