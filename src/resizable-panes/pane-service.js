@@ -253,6 +253,9 @@ class PanesService {
             sum += this.panesList[maxIndex].syncMaxUpToMax()
             --minIndex
             ++maxIndex
+            if(minIndex === this.panesList.length || maxIndex === MINUS_ONE) {
+                return
+            }
             maxDiff2 = this.panesList[maxIndex].getMaxDiff()
             minDiff1 = this.panesList[minIndex].getMinDiff()
         }
