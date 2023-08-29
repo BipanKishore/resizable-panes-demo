@@ -2,177 +2,175 @@ import {ZERO} from './constant'
 import {keyConsole, toPx} from './util'
 
 export class PaneModel {
-    id
-    index
-    pane
-    size
-    axisSize
-    defaultSize
-    show
-    mouseDownSize
-    isFiniteMaxSize = false
-    isNoMinSize = false
-    defaultMaxSize
-    defaultMinSize
+  id
+  index
+  pane
+  size
+  axisSize
+  defaultSize
+  show
+  mouseDownSize
+  isFiniteMaxSize = false
+  isNoMinSize = false
+  defaultMaxSize
+  defaultMinSize
 
-    constructor (pane, index, child) {
-        const{
-            id, minSize = ZERO, size, maxSize = Infinity
-        } = child.props
+  constructor (pane, index, child) {
+    const {
+      id, minSize = ZERO, size, maxSize = Infinity
+    } = child.props
 
-        this.id = id
-        this.minSize = minSize
-        this.index = index
-        this.size = size
-        this.defaultSize = size
-        this.pane = pane
-        this.show = true
-        this.uiSize = size
-        this.maxSize = maxSize
-        this.defaultMaxSize = maxSize
-        this.defaultMinSize = minSize
-        this.isFiniteMaxSize = Number.isFinite(maxSize)
-        this.isNoMinSize = minSize === ZERO
-        if(size < minSize) {
-            throw Error('Size can not be smaller than minSize for pane id ' + id)
-        }
-
-        if(size > maxSize) {
-            throw Error('Size can not be greatter than maxSize for pane id ' + id)
-        }
-
-        if(minSize > maxSize) {
-            throw Error('minSize can not be greatter than maxSize for pane id ' + id)
-
-        }
-
+    this.id = id
+    this.minSize = minSize
+    this.index = index
+    this.size = size
+    this.defaultSize = size
+    this.pane = pane
+    this.show = true
+    this.uiSize = size
+    this.maxSize = maxSize
+    this.defaultMaxSize = maxSize
+    this.defaultMinSize = minSize
+    this.isFiniteMaxSize = Number.isFinite(maxSize)
+    this.isNoMinSize = minSize === ZERO
+    if (size < minSize) {
+      throw Error('Size can not be smaller than minSize for pane id ' + id)
     }
 
-    newSetSize (newSize) {
-        if(newSize >= this.minSize && newSize <= this.maxSize) {
-            this.size = newSize
-            this.left = ZERO
-            return ZERO
-        } else if (newSize > this.maxSize) {
-            this.size = this.maxSize
-        } else {
-            this.size = this.minSize
-        }
-        const left = Math.abs(this.size - newSize)
-        this.left = left
-        return left
+    if (size > maxSize) {
+      throw Error('Size can not be greatter than maxSize for pane id ' + id)
     }
 
-    addSize (sizeChange) {
-        const newSize = this.axisSize + sizeChange
-        return this.newSetSize(newSize)
+    if (minSize > maxSize) {
+      throw Error('minSize can not be greatter than maxSize for pane id ' + id)
     }
+  }
 
-    removeSize (sizeChange) {
-        const newSize = this.axisSize - sizeChange
-        return this.newSetSize(newSize)
+  newSetSize (newSize) {
+    if (newSize >= this.minSize && newSize <= this.maxSize) {
+      this.size = newSize
+      this.left = ZERO
+      return ZERO
+    } else if (newSize > this.maxSize) {
+      this.size = this.maxSize
+    } else {
+      this.size = this.minSize
     }
+    const left = Math.abs(this.size - newSize)
+    this.left = left
+    return left
+  }
 
-    setUISize () {
-        this.uiSize = this.size
-        this.pane.current.style.height = toPx(this.size)
-        return this.size
-    }
+  addSize (sizeChange) {
+    const newSize = this.axisSize + sizeChange
+    return this.newSetSize(newSize)
+  }
 
-    synSizeToUI () {
-        this.size = this.uiSize
-    }
+  removeSize (sizeChange) {
+    const newSize = this.axisSize - sizeChange
+    return this.newSetSize(newSize)
+  }
 
-    syncAxisSize () {
-        this.axisSize = this.size
-        return this.axisSize
-    }
+  setUISize () {
+    this.uiSize = this.size
+    this.pane.current.style.height = toPx(this.size)
+    return this.size
+  }
 
-    restore () {
-        this.size = this.defaultSize
-    }
+  synSizeToUI () {
+    this.size = this.uiSize
+  }
 
-    getSizeChange () {
-        return Math.abs(this.axisSize - this.size)
-    }
+  syncAxisSize () {
+    this.axisSize = this.size
+    return this.axisSize
+  }
 
-    setMouseDownSize () {
-        this.mouseDownSize = this.size
-    }
+  restore () {
+    this.size = this.defaultSize
+  }
 
-    restoreLimits () {
-        this.minSize = this.defaultMinSize
-        this.maxSize = this.defaultMaxSize
-    }
+  getSizeChange () {
+    return Math.abs(this.axisSize - this.size)
+  }
 
-    resetMax () {
-        this.maxSize = this.defaultMaxSize
-        return this.maxSize
-    }
+  setMouseDownSize () {
+    this.mouseDownSize = this.size
+  }
 
-    resetMin () {
-        this.minSize = this.defaultMinSize
-        return this.minSize
-    }
+  restoreLimits () {
+    this.minSize = this.defaultMinSize
+    this.maxSize = this.defaultMaxSize
+  }
 
-    synMaxToSize () {
-        this.maxSize = this.size
-        return this.size
-    }
+  resetMax () {
+    this.maxSize = this.defaultMaxSize
+    return this.maxSize
+  }
 
-    synMinToSize () {
-        this.minSize = this.size
-        return this.size
-    }
+  resetMin () {
+    this.minSize = this.defaultMinSize
+    return this.minSize
+  }
 
-    setMaxSize (newMaxSize) {
-        if(this.defaultMaxSize < newMaxSize) {
-            this.maxSize = this.defaultMaxSize
-            console.log('size newMaxSize', this.maxSize , newMaxSize)
-        }else {
-            this.maxSize = newMaxSize
-        }
-    }
+  synMaxToSize () {
+    this.maxSize = this.size
+    return this.size
+  }
 
-    setMinSize (newMinSize) {
-        if(this.defaultMinSize > newMinSize) {
-            this.minSize = this.defaultMaxSize
-            console.log('size newMinSize', this.maxSize , newMinSize)
-        }else {
-            this.minSize = newMinSize
-        }
-    }
+  synMinToSize () {
+    this.minSize = this.size
+    return this.size
+  }
 
-    getMinDiff () {
-        return this.size - this.defaultMinSize
+  setMaxSize (newMaxSize) {
+    if (this.defaultMaxSize < newMaxSize) {
+      this.maxSize = this.defaultMaxSize
+      console.log('size newMaxSize', this.maxSize, newMaxSize)
+    } else {
+      this.maxSize = newMaxSize
     }
+  }
 
-    getMaxDiff () {
-        return this.defaultMaxSize - this.size
+  setMinSize (newMinSize) {
+    if (this.defaultMinSize > newMinSize) {
+      this.minSize = this.defaultMaxSize
+      console.log('size newMinSize', this.maxSize, newMinSize)
+    } else {
+      this.minSize = newMinSize
     }
+  }
 
-    setMinChangePossible (aMaxChange, bMaxChange, nextAMaxChange) {
-        let aMaxChangePossible
-        const orignalAMaxChange = this.getMinDiff()
-        if(orignalAMaxChange === aMaxChange) {
-            aMaxChangePossible = bMaxChange
-        } else {
-            aMaxChangePossible = orignalAMaxChange - nextAMaxChange
-        }
-        keyConsole({aMaxChange, aMaxChangePossible, nextAMaxChange, orignalAMaxChange})
-        this.minSize = this.size - aMaxChangePossible
-    }
+  getMinDiff () {
+    return this.size - this.defaultMinSize
+  }
 
-    // (bMaxChange, aMaxChange, nextBMaxChange)
-    setMaxChangePossible (bMaxChange, aMaxChange, nextBMaxChange) {
-        let aMaxChangePossible
-        const orignalBMaxChange = this.getMaxDiff()
-        if(orignalBMaxChange === bMaxChange) {
-            aMaxChangePossible = aMaxChange
-        } else {
-            aMaxChangePossible = orignalBMaxChange - nextBMaxChange
-        }
-        keyConsole({aMaxChangePossible, bMaxChange, nextBMaxChange, orignalBMaxChange})
-        this.maxSize = this.size + aMaxChangePossible
+  getMaxDiff () {
+    return this.defaultMaxSize - this.size
+  }
+
+  setMinChangePossible (aMaxChange, bMaxChange, nextAMaxChange) {
+    let aMaxChangePossible
+    const orignalAMaxChange = this.getMinDiff()
+    if (orignalAMaxChange === aMaxChange) {
+      aMaxChangePossible = bMaxChange
+    } else {
+      aMaxChangePossible = orignalAMaxChange - nextAMaxChange
     }
+    keyConsole({aMaxChange, aMaxChangePossible, nextAMaxChange, orignalAMaxChange})
+    this.minSize = this.size - aMaxChangePossible
+  }
+
+  // (bMaxChange, aMaxChange, nextBMaxChange)
+  setMaxChangePossible (bMaxChange, aMaxChange, nextBMaxChange) {
+    let aMaxChangePossible
+    const orignalBMaxChange = this.getMaxDiff()
+    if (orignalBMaxChange === bMaxChange) {
+      aMaxChangePossible = aMaxChange
+    } else {
+      aMaxChangePossible = orignalBMaxChange - nextBMaxChange
+    }
+    keyConsole({aMaxChangePossible, bMaxChange, nextBMaxChange, orignalBMaxChange})
+    this.maxSize = this.size + aMaxChangePossible
+  }
 }

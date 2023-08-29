@@ -2,24 +2,24 @@ import PropTypes from 'prop-types'
 import React, {forwardRef} from 'react'
 
 export const Resizer = forwardRef((props, ref) => {
-    const {
-        onMouseDown, resizerSize
-    } = props
-    return (
-        <div
-            style={{
-                height: `${resizerSize}px`
-            }}
-            className='resizer vertical-cursur'
-            onMouseDown={onMouseDown}
-            ref={ref}
-        />
-    )
+  const {
+    onMouseDown, resizerSize
+  } = props
+  return (
+    <div
+      className='resizer vertical-cursur'
+      ref={ref}
+      style={{
+        height: `${resizerSize}px`
+      }}
+      onMouseDown={onMouseDown}
+    />
+  )
 })
 
 Resizer.displayName = 'Resizer'
 
 Resizer.propTypes = {
-    onMouseDown: PropTypes.func.isRequired,
-    resizerSize: PropTypes.number.isRequired
+  resizerSize: PropTypes.number.isRequired,
+  onMouseDown: PropTypes.func.isRequired
 }
