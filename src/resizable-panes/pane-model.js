@@ -153,11 +153,11 @@ export class PaneModel {
     }
 
     getMinDiff () {
-        return this.size - this.defaultMinSize
+        return this.defaultSize - this.defaultMinSize
     }
 
     getMaxDiff () {
-        return this.defaultMaxSize - this.size
+        return this.defaultMaxSize - this.defaultSize
     }
 
     syncMinUpToSize () {
@@ -180,10 +180,20 @@ export class PaneModel {
 
     resetMax () {
         this.maxSize = this.defaultMaxSize
+        return this.maxSize
     }
 
     resetMin () {
         this.minSize = this.defaultMinSize
+        return this.minSize
+    }
+
+    synMaxToSize () {
+        this.maxSize = this.size
+    }
+
+    synMinToSize () {
+        this.minSize = this.size
     }
 
 }

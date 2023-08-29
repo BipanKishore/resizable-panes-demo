@@ -189,43 +189,48 @@ class PanesService {
         ]
     }
 
-    setPanesMinSizeUp () {
+    setCurrentMinMax () {
 
         let minDiff1Up = this.panesList[this.activeIndex].getMinDiff()
         let maxDiff2Up = this.panesList[this.activeIndex + 1].getMaxDiff()
+        // this.setPaneList([
+        //     'minSize', 'maxSize'
+        //     ])
+        this.minMaxLogicUp(minDiff1Up, maxDiff2Up, this.activeIndex, this.activeIndex + 1)
 
-         this.minMaxLogicUp(minDiff1Up, maxDiff2Up, this.activeIndex, this.activeIndex + 1)
-
-        this.paneConsole('minSizeUp')
-        this.paneConsole('maxSizeUp')
-        // this.resetDefaultMinAndMaxSizes()
+        this.paneConsole('minSize')
+        this.paneConsole('maxSize')
+        this.minMaxTotal()
 
         let minDiff1 = this.panesList[this.activeIndex + 1].getMinDiff()
         let maxDiff2 = this.panesList[this.activeIndex].getMaxDiff()
-
+        console.log('v---------------------------------------------------------------------------------------')
+        // this.setPaneList([
+        //     'minSize', 'maxSize'
+        //     ])
         this.minMaxLogicDown(minDiff1, maxDiff2, this.activeIndex, this.activeIndex + 1)
 
-        this.paneConsole('minSizeUp')
-        this.paneConsole('maxSizeUp')
+        this.paneConsole('minSize')
+        this.paneConsole('maxSize')
+        this.minMaxTotal()
 
     }
 
         // eslint-disable-next-line max-params
         minMaxLogicDown (minDiff1, maxDiff2, maxIndex, minIndex, sum = 0) {
-            console.warn('START size min', minDiff1, 'max',maxDiff2, 'minIndex', minIndex, 'maxIndex', maxIndex)
-
+            console.warn('START size min', minDiff1, 'max',maxDiff2,
+             'minIndex', minIndex, 'maxIndex', maxIndex, 'sum', sum)
+             //min 190 max 150 minIndex 3 maxIndex 0 sum 200
             if(maxDiff2 < minDiff1) {
-                const t = this.panesList[maxIndex].syncMaxUpToMax()
+                const t = this.panesList[maxIndex].resetMax()
                 sum += t
-                console.log('size MAX maxIndex, minIndex', maxIndex,minIndex, t)
-
                 if(maxIndex === ZERO) {
-                    if(minIndex === this.length - 1) {
-                        this.panesList[minIndex].minSizeUp = this.MaxPaneSize - sum
+                    if(minIndex === this.panesList.length - 1) {
+                        this.panesList[minIndex].minSize = this.MaxPaneSize - sum
                     } else {
-                        this.panesList[minIndex].minSizeUp = this.panesList[minIndex].size - maxDiff2
+                        this.panesList[minIndex].minSize = this.panesList[minIndex].size - maxDiff2
                         for(let i = minIndex - 1; i < this.panesList.length; i++) {
-                            this.panesList[i].syncMinUpToSize()
+                            this.panesList[i].synMinToSize()
                         }
                     }
                     return
@@ -235,16 +240,15 @@ class PanesService {
                 --maxIndex
                 maxDiff2 = this.panesList[maxIndex].getMaxDiff()
             } else if(maxDiff2 > minDiff1) {
-                    const t = this.panesList[minIndex].syncMinUpToMin()
+                    const t = this.panesList[minIndex].resetMin()
                     sum += t
-                    console.log('size MIN maxIndex, minIndex', maxIndex,minIndex, t)
                     if(minIndex === this.panesList.length - 1 ) {
                         if(maxIndex === ZERO) {
-                            this.panesList[maxIndex].maxSizeUp = this.MaxPaneSize - sum
+                            this.panesList[maxIndex].maxSize = this.MaxPaneSize - sum
                         } else {
-                            this.panesList[maxIndex].maxSizeUp = this.panesList[minIndex].size - minDiff1
+                            this.panesList[maxIndex].maxSize = this.panesList[minIndex].size - minDiff1
                             for(let i = maxIndex + 1; i < this.panesList.length; i++) {
-                                this.panesList[i].syncMaxUpToSize()
+                                this.panesList[i].synMaxToSize()
                             }
                         }
                         return
@@ -254,14 +258,15 @@ class PanesService {
                     ++minIndex
                     minDiff1 = this.panesList[minIndex].getMinDiff()
                 } else {
-                sum += this.panesList[minIndex].syncMinUpToMin()
-                sum += this.panesList[maxIndex].syncMaxUpToMax()
+                sum += this.panesList[minIndex].resetMin()
+                sum += this.panesList[maxIndex].resetMax()
                 ++minIndex
                 --maxIndex
                 maxDiff2 = this.panesList[maxIndex].getMaxDiff()
                 minDiff1 = this.panesList[minIndex].getMinDiff()
             }
-
+            this.paneConsole('minSize')
+            this.paneConsole('maxSize')
             this.minMaxLogicDown(minDiff1, maxDiff2, maxIndex, minIndex, sum)
 
         }
@@ -302,19 +307,20 @@ class PanesService {
 
         // eslint-disable-next-line max-params
         minMaxLogicUp (minDiff1, maxDiff2, minIndex, maxIndex, sum = 0) {
-            console.log('size minmax', minDiff1, maxDiff2, minIndex, maxIndex)
+            console.error('size minDiff1', minDiff1, 'maxDiff2', maxDiff2,
+            'minIndex', minIndex, 'maxIndex', maxIndex, 'sum', sum)
 
             if(maxDiff2 < minDiff1) {
-                sum += this.panesList[maxIndex].syncMaxUpToMax()
+                sum += this.panesList[maxIndex].resetMax()
                 minDiff1 = minDiff1 - maxDiff2
 
                 if(maxIndex === this.panesList.length - 1) {
                     if(minIndex === ZERO) {
-                        this.panesList[minIndex].minSizeUp = this.MaxPaneSize - sum
+                        this.panesList[minIndex].minSize = this.MaxPaneSize - sum
                     } else {
-                        this.panesList[minIndex].minSizeUp = this.panesList[minIndex].size - maxDiff2
+                        this.panesList[minIndex].minSize = this.panesList[minIndex].size - maxDiff2
                         for(let i = minIndex - 1; i > MINUS_ONE; i--) {
-                            this.panesList[i].syncMinUpToSize()
+                            this.panesList[i].synMinToSize()
                         }
                     }
                     return
@@ -324,16 +330,16 @@ class PanesService {
                 maxDiff2 = this.panesList[maxIndex].getMaxDiff()
             } else if (maxDiff2 > minDiff1) {
                 if(maxDiff2 > minDiff1) {
-                    sum += this.panesList[minIndex].syncMinUpToMin()
+                    sum += this.panesList[minIndex].resetMin()
                     maxDiff2 = maxDiff2 - minDiff1
                     if(minIndex === ZERO ) {
 
                         if(maxIndex === this.panesList.length - 1) {
-                            this.panesList[maxIndex].maxSizeUp = this.MaxPaneSize - sum
+                            this.panesList[maxIndex].maxSize = this.MaxPaneSize - sum
                         } else {
-                            this.panesList[minIndex].maxSizeUp = this.panesList[minIndex].size - minDiff1
+                            this.panesList[minIndex].maxSize = this.panesList[minIndex].size - minDiff1
                             for(let i = maxIndex + 1; i < this.panesList.length; i++) {
-                                this.panesList[i].syncMaxUpToSize()
+                                this.panesList[i].synMaxToSize()
                             }
                         }
                         return
@@ -343,8 +349,8 @@ class PanesService {
                     minDiff1 = this.panesList[minIndex].getMinDiff()
                 }
             } else {
-                sum += this.panesList[minIndex].syncMinUpToMin()
-                sum += this.panesList[maxIndex].syncMaxUpToMax()
+                sum += this.panesList[minIndex].resetMin()
+                sum += this.panesList[maxIndex].resetMax()
 
                 if(minIndex === this.panesList.length - 1 || maxIndex === ZERO) {
                     return
@@ -355,6 +361,8 @@ class PanesService {
                 minDiff1 = this.panesList[minIndex].getMinDiff()
             }
 
+            this.paneConsole('minSize')
+            this.paneConsole('maxSize')
             this.minMaxLogicUp(minDiff1, maxDiff2, minIndex, maxIndex, sum)
         }
 
@@ -444,7 +452,7 @@ class PanesService {
     directionChangeActions (e) {
         this.axisCoordinate = e.clientY
         this.syncAxisSizes()
-        this.resetDefaultMinAndMaxSizes()
+        // this.resetDefaultMinAndMaxSizes()
         this.setCurrentLimitingSize()
     }
 
@@ -510,7 +518,7 @@ class PanesService {
         this.resetDefaultMinAndMaxSizes()
         this.syncAxisSizes()
         this.setCurrentLimitingSize()
-        this.setPanesMinSizeUp()
+        this.setCurrentMinMax()
     }
 
     setVisibility (visibility) {
@@ -533,6 +541,27 @@ class PanesService {
     paneConsole (key) {
         const list =
         console.log('v-- ' + key, this.getList(key))
+    }
+
+    setPaneList (keys = [
+], value) {
+        this.panesList.forEach((pane) => keys.forEach(key => pane[key] = value) )
+       keys.forEach((key) => this.paneConsole(key))
+    }
+
+    minMaxTotal () {
+        let sum = 0
+        this.panesList.forEach(({
+                                minSize, maxSize
+                                }) => {
+                                    sum += ( (maxSize ? maxSize : 0) + (minSize ? minSize : 0))
+                                        })
+
+        console.warn('size SSSSUUUUUUMMMM', sum)
+
+        if(this.MaxPaneSize === sum) {
+          ///  throw ('Max limit cross, Max Pane Size:' + this.MaxPaneSize + ' Sum:', sum)
+        }
     }
 
 }
