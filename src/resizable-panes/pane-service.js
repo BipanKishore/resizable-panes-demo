@@ -218,9 +218,6 @@ class PanesService {
 
         // eslint-disable-next-line max-params
         minMaxLogicDown (minDiff1, maxDiff2, maxIndex, minIndex, sum = 0) {
-            console.warn('START size min', minDiff1, 'max',maxDiff2,
-             'minIndex', minIndex, 'maxIndex', maxIndex, 'sum', sum)
-             //min 190 max 150 minIndex 3 maxIndex 0 sum 200
             if(maxDiff2 < minDiff1) {
                 const t = this.panesList[maxIndex].resetMax()
                 sum += t
@@ -265,50 +262,12 @@ class PanesService {
                 maxDiff2 = this.panesList[maxIndex].getMaxDiff()
                 minDiff1 = this.panesList[minIndex].getMinDiff()
             }
-            this.paneConsole('minSize')
-            this.paneConsole('maxSize')
             this.minMaxLogicDown(minDiff1, maxDiff2, maxIndex, minIndex, sum)
 
         }
 
-    setCurrentLimitingSize () {
-        // if(this.direction === DIRECTIONS.NONE) {
-        //     return
-        // }
-
-        // if(this.direction === DIRECTIONS.UP) {
-
-        //     for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
-        //         const relativeMaxSize = this.getMaxSizeOfElementsUpward(i)
-        //         this.panesList[i].setMaxSize(relativeMaxSize)
-        //     }
-
-        //     for(let i = 0; i < this.activeIndex + 1; i++) {
-        //         // this.panesList[i].resetDefaultMinAndMaxSize()
-        //         //  const relativeMaxSize = this.getMinSizeOfElementsUpward(i)
-        //         // this.panesList[i].setMinSize(relativeMaxSize)
-        //     }
-        //     // this.getMinSizeOfElementsUpward()
-        // } else {
-
-        // //Max size not required for elements reducing in size
-        //     for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
-        //         // this.panesList[i].resetDefaultMinAndMaxSize()
-        //     }
-
-        //     for(let i = this.activeIndex; i > MINUS_ONE; i--) {
-        //         const relativeMaxSize = this.getMaxSizeOfElementsDownward(i)
-        //         this.panesList[i].setMaxSize(relativeMaxSize)
-
-        //     }
-        // }
-
-    }
-
         // eslint-disable-next-line max-params
         minMaxLogicUp (minDiff1, maxDiff2, minIndex, maxIndex, sum = 0) {
-            console.error('size minDiff1', minDiff1, 'maxDiff2', maxDiff2,
-            'minIndex', minIndex, 'maxIndex', maxIndex, 'sum', sum)
 
             if(maxDiff2 < minDiff1) {
                 sum += this.panesList[maxIndex].resetMax()
@@ -361,8 +320,6 @@ class PanesService {
                 minDiff1 = this.panesList[minIndex].getMinDiff()
             }
 
-            this.paneConsole('minSize')
-            this.paneConsole('maxSize')
             this.minMaxLogicUp(minDiff1, maxDiff2, minIndex, maxIndex, sum)
         }
 
@@ -395,12 +352,10 @@ class PanesService {
             this.axisCoordinate = this.topAxix
             this.syncAxisSizes()
             this.topAxisCrossed = true
-            this.setCurrentLimitingSize()
 
         } else if(e.clientY > this.bottomAxis) {
             this.axisCoordinate = this.bottomAxis
             this.syncAxisSizes()
-            this.setCurrentLimitingSize()
             this.bottomAxisCrossed = true
 
         }
@@ -452,8 +407,6 @@ class PanesService {
     directionChangeActions (e) {
         this.axisCoordinate = e.clientY
         this.syncAxisSizes()
-        // this.resetDefaultMinAndMaxSizes()
-        this.setCurrentLimitingSize()
     }
 
     goingDownLogic (e) {
@@ -517,7 +470,6 @@ class PanesService {
         this.limitFinishedAxis = null
         this.resetDefaultMinAndMaxSizes()
         this.syncAxisSizes()
-        this.setCurrentLimitingSize()
         this.setCurrentMinMax()
     }
 
