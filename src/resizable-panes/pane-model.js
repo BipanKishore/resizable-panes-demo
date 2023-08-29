@@ -15,6 +15,12 @@ export class PaneModel {
     defaultMaxSize
     defaultMinSize
 
+    maxSizeUp
+    maxSizeDown
+
+    minSizeUp
+    minSizeDown
+
     constructor (pane, index, child) {
         const{
             id, minSize = ZERO, size, maxSize = Infinity
@@ -33,11 +39,19 @@ export class PaneModel {
         this.defaultMinSize = minSize
         this.isFiniteMaxSize = Number.isFinite(maxSize)
         this.isNoMinSize = minSize === ZERO
+        if(size < minSize) {
+            throw Error('Size can not be smaller than minSize for pane id ' + id)
+        }
 
-    }
+        if(size > maxSize) {
+            throw Error('Size can not be greatter than maxSize for pane id ' + id)
+        }
 
-    resetDefaultMinAndMaxSize () {
-        this.maxSize = this.defaultMaxSize
+        if(minSize > maxSize) {
+            throw Error('minSize can not be greatter than maxSize for pane id ' + id)
+
+        }
+
     }
 
     validateSize () {
@@ -50,7 +64,7 @@ export class PaneModel {
     }
 
     newSetSize (newSize) {
-        if(newSize > this.minSize && newSize <= this.maxSize) {
+        if(newSize >= this.minSize && newSize <= this.maxSize) {
             this.size = newSize
             this.left = ZERO
             return ZERO
@@ -124,4 +138,44 @@ export class PaneModel {
         }
         this.minSize = limit > this.defaultMinSize ? limit : this.defaultMinSize
     }
+
+    setMaxSizeCollection () {
+        this.maxSizeCollection = [
+]
+
+    }
+
+    restoreLimits () {
+        this.minSize = this.defaultMinSize
+        this.maxSize = this.defaultMaxSize
+        this.minSizeUp = null
+        this.maxSizeUp = null
+    }
+
+    getMinDiff () {
+        return this.size - this.defaultMinSize
+    }
+
+    getMaxDiff () {
+        return this.defaultMaxSize - this.size
+    }
+
+    syncMinUpToSize () {
+        this.minSizeUp = this.size
+    }
+
+    syncMaxUpToSize () {
+        this.maxSizeUp = this.size
+    }
+
+    syncMinUpToMin () {
+        this.minSizeUp = this.minSize
+        return this.minSize
+    }
+
+    syncMaxUpToMax () {
+        this.maxSizeUp = this.maxSize
+        return this.maxSize
+    }
+
 }
