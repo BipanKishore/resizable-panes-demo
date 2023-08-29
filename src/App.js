@@ -9,10 +9,11 @@ import {
     MAX_SIZES_SET_1, MIN_FULLMAX_SET_1,
 MIN_MAX_SET_1,
 MIN_SIZES_SET_1,
+    MIN_ZERO_FULLMAX_SET_1,
     ONLY_SIZES_SET_1} from './component/constant'
 import {DefaultSizes} from './component/default-sizes'
 
-const set = CLOSE_MIN_FULLMAX_SET_1
+const set = MIN_ZERO_FULLMAX_SET_1
 function App () {
 
     const ref = createRef()

@@ -59,6 +59,18 @@ export const MIN_FULLMAX_SET_1 = {
     ]
 }
 
+export const MIN_ZERO_FULLMAX_SET_1 = {
+    maxSizes: [
+        1000,1000,1000,1000
+    ],
+    minSizes: [
+        0, 0, 0, 0
+    ],
+    sizes: [
+        200, 150, 200, 200
+    ]
+}
+
 export const MIN_MAX_SET_1 = {
     maxSizes: [
         500,200,220,250
