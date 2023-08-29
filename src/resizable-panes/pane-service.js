@@ -188,7 +188,6 @@ class PanesService {
             }
 
             this.minMaxLogicDown(nextBMaxChange, nextAMaxChange, aIndex, bIndex, sum)
-
         }
 
         minMaxLogicUp (aMaxChange, bMaxChange, aIndex, bIndex, sum = 0) {
@@ -251,7 +250,6 @@ class PanesService {
 
     calculateAndSetHeight (e) {
         if(e.movementY) {
-            console.log('limitFinishedAxis', this.limitFinishedAxis)
             this.setDirection(e)
             if(!this.limitFinishedAxis) {
                 this.setAxisConfig(e)
@@ -348,13 +346,9 @@ class PanesService {
         this.limitFinishedAxis = e.clientY
         this.limitFinishedDirection = this.direction
 	   }
-
-       const diffTotal = this.getDiffTotalOfPanesSizes()
-       this.panesList[this.panesList.length - 1].size = this.panesList[this.panesList.length - 1].size - diffTotal
     }
 
     goingUpLogic (e) {
-        let str = ''
         let sizeChange = this.axisCoordinate - e.clientY
         if(sizeChange < ZERO) {
             return
@@ -364,34 +358,16 @@ class PanesService {
         for(let i = this.activeIndex + 1; i < this.panesList.length; i++) {
             sizeChangeUp = this.panesList[i].addSize(sizeChangeUp)
         }
-        str = 'sizeChangeUp ' + sizeChangeUp
+
         sizeChange -= sizeChangeUp
         for(let i = this.activeIndex; i > MINUS_ONE; i -= 1) {
             sizeChange = this.panesList[i].removeSize(sizeChange)
         }
 
-        str += 'sizeChange ' + sizeChange
-
         if(sizeChangeUp || sizeChange) {
             this.limitFinishedAxis = e.clientY
             this.limitFinishedDirection = this.direction
         }
-
-        const diffTotal = this.getDiffTotalOfPanesSizes()
-        this.panesList[0].size = this.panesList[0].size - diffTotal
-    }
-
-    getDiffTotalOfPanesSizes () {
-        const panesSizeSum = this.getPanesSizeTotal(0, this.panesList.length - 1)
-        return panesSizeSum - this.MaxPaneSize
-    }
-
-    getPanesSizeTotal (start, end) {
-        let sum = 0
-        for(let i = start; i <= end; i++) {
-           sum += this.panesList[i].size
-        }
-        return sum
     }
 
     setMouseDownAndPaneAxisDetails (e) {
