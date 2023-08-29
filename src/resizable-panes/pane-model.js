@@ -117,10 +117,12 @@ export class PaneModel {
 
     synMaxToSize () {
         this.maxSize = this.size
+        return this.size
     }
 
     synMinToSize () {
         this.minSize = this.size
+        return this.size
     }
 
     setMaxSize (newMaxSize) {

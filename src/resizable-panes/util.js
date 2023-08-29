@@ -31,4 +31,5 @@ export const findById = (list = [
 export const keyConsole = (obj = {}, add = 'v--') => {
     const keys = Object.keys(obj)
     let str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v],add )
+    console.log(str)
 }
