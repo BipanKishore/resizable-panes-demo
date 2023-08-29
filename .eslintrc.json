@@ -81,7 +81,8 @@
         "no-case-declarations": 0,
         "space-before-keywords": ["error", "always"],
         "space-infix-ops": "error",
-        "react/jsx-first-prop-new-line":["error", "multiline-multiprop"]
+        "react/jsx-first-prop-new-line":["error", "multiline-multiprop"],
+        "no-fallthrough": 0
     },
     "reportUnusedDisableDirectives": true
 }

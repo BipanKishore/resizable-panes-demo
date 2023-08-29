@@ -100,23 +100,32 @@ class PanesService {
         this.MaxPaneSize = height - ((this.panesList.length - 1) * this.resizerSize)
     }
 
-    setCurrentMinMax (index = this.activeIndex) {
-        // this.setPaneList([
-        //     'minSize', 'maxSize'
-        //     ])
-        //     console.log('v---------------------------------------------------------------------------------------')
+    initMinMaxLogic () {
+        this.setPaneList([
+            'minSize'
+            ], 0)
 
+        this.setPaneList([
+             'maxSize'
+            ], Infinity)
+    }
+
+    setCurrentMinMax (index) {
         let aMaxChangeUp = this.panesList[index].getMinDiff()
         let bMaxChangeUp = this.panesList[index + 1].getMaxDiff()
         this.minMaxLogicUp(aMaxChangeUp, bMaxChangeUp, index, index + 1)
-
         let aMaxChangeDown = this.panesList[index + 1].getMinDiff()
         let bMaxChangeDown = this.panesList[index].getMaxDiff()
         this.minMaxLogicDown(bMaxChangeDown, aMaxChangeDown, index + 1, index )
+        this.devMinMaxCheck()
+    }
 
+    devMinMaxCheck () {
         // Only for Development
+        console.log('v---------------------------------------------------------------------------------------')
+        this.paneConsole('minSize')
+        this.paneConsole('maxSize')
         this.minMaxTotal()
-
     }
 
         // eslint-disable-next-line max-params
@@ -253,7 +262,6 @@ class PanesService {
                 }
                 this.setUISizes(e)
             }
-
         }
     }
 
@@ -270,9 +278,7 @@ class PanesService {
             this.axisCoordinate = this.bottomAxis
             this.syncAxisSizes()
             this.bottomAxisCrossed = true
-
         }
-
     }
 
     setDirection (e) {
@@ -298,7 +304,6 @@ class PanesService {
             && this.limitFinishedAxis <= e.clientY
             && this.direction === DIRECTIONS.DOWN :
 
-            // eslint-disable-next-line no-fallthrough
             case this.limitFinishedAxis
             && this.limitFinishedDirection === DIRECTIONS.DOWN
             && this.limitFinishedAxis >= e.clientY
@@ -319,6 +324,7 @@ class PanesService {
     directionChangeActions (e) {
         this.axisCoordinate = e.clientY
         this.syncAxisSizes()
+        this.setCurrentMinMax(this.activeIndex)
     }
 
     goingDownLogic (e) {
@@ -396,10 +402,7 @@ class PanesService {
 
         this.axisCoordinate = clientY
         this.limitFinishedAxis = null
-        this.resetDefaultMinAndMaxSizes()
         this.syncAxisSizes()
-        this.setCurrentMinMax(this.activeIndex)
-
     }
 
     setVisibility (visibility) {
@@ -409,18 +412,11 @@ class PanesService {
         }
     }
 
-    resetDefaultMinAndMaxSizes () {
-        this.panesList.forEach((pane) => {
-            pane.restoreLimits()
-        })
-    }
-
     getList (key) {
         return this.panesList.map((pane) => pane[key])
     }
 
     paneConsole (key) {
-        const list =
         console.log('v-- ' + key, this.getList(key))
     }
 
