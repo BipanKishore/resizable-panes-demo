@@ -31,7 +31,7 @@ function App () {
     }
 
     return (
-        <div className='App' >
+        <div className='App p-relative t-100' >
             <button onClick={toggleShow} >Buttoib</button>
             <DefaultSizes onReady={onReady} set={set} />
         </div>

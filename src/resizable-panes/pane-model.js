@@ -15,12 +15,6 @@ export class PaneModel {
     defaultMaxSize
     defaultMinSize
 
-    maxSizeUp
-    maxSizeDown
-
-    minSizeUp
-    minSizeDown
-
     constructor (pane, index, child) {
         const{
             id, minSize = ZERO, size, maxSize = Infinity
@@ -52,15 +46,6 @@ export class PaneModel {
 
         }
 
-    }
-
-    validateSize () {
-        if(this.size < this.minSize) {
-            return false
-        } else if(this.size > this.maxSize) {
-            return false
-        }
-        return true
     }
 
     newSetSize (newSize) {
@@ -115,41 +100,9 @@ export class PaneModel {
         this.mouseDownSize = this.size
     }
 
-    setMaxSize (limit) {
-        // It will still have to run for no finite
-        if(this.isFiniteMaxSize) {
-
-            if(limit < this.size) {
-                this.maxSize = this.size
-                return
-            }
-
-            this.maxSize = limit < this.defaultMaxSize ? limit : this.defaultMaxSize
-        } else {
-            this.maxSize = limit
-        }
-        console.log('maxSize', this.maxSize, 'limit', limit, 'defaut', this.defaultMaxSize)
-    }
-
-    setMinSize (limit) {
-        if(limit > this.size) {
-            this.minSize = this.size
-            return
-        }
-        this.minSize = limit > this.defaultMinSize ? limit : this.defaultMinSize
-    }
-
-    setMaxSizeCollection () {
-        this.maxSizeCollection = [
-]
-
-    }
-
     restoreLimits () {
         this.minSize = this.defaultMinSize
         this.maxSize = this.defaultMaxSize
-        this.minSizeUp = null
-        this.maxSizeUp = null
     }
 
     getMinDiff () {
@@ -158,24 +111,6 @@ export class PaneModel {
 
     getMaxDiff () {
         return this.defaultMaxSize - this.defaultSize
-    }
-
-    syncMinUpToSize () {
-        this.minSizeUp = this.size
-    }
-
-    syncMaxUpToSize () {
-        this.maxSizeUp = this.size
-    }
-
-    syncMinUpToMin () {
-        this.minSizeUp = this.minSize
-        return this.minSize
-    }
-
-    syncMaxUpToMax () {
-        this.maxSizeUp = this.maxSize
-        return this.maxSize
     }
 
     resetMax () {
