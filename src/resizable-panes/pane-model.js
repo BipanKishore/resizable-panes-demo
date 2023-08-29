@@ -178,4 +178,12 @@ export class PaneModel {
         return this.maxSize
     }
 
+    resetMax () {
+        this.maxSize = this.defaultMaxSize
+    }
+
+    resetMin () {
+        this.minSize = this.defaultMinSize
+    }
+
 }
