@@ -5,19 +5,15 @@ import React, {
 } from 'react'
 
 import {
-    Panes,ResizablePanes
-} from './resizable-panes'
+    CLOSE_MIN_FULLMAX_SET_1,
+    MAX_SIZES_SET_1, MIN_FULLMAX_SET_1,
+MIN_MAX_SET_1,
+MIN_SIZES_SET_1,
+    MIN_ZERO_FULLMAX_SET_1,
+    ONLY_SIZES_SET_1} from './component/constant'
+import {DefaultSizes} from './component/default-sizes'
 
-const TestComp = ({
-// eslint-disable-next-line react/prop-types
-    name
-}) => {
-
-    console.log('v-- rendering ', name)
-    return <div>{name}</div>
-
-}
-
+const set = MIN_ZERO_FULLMAX_SET_1
 function App () {
 
     const ref = createRef()
@@ -37,31 +33,9 @@ function App () {
     }
 
     return (
-        <div className='App' >
+        <div className='App p-relative t-100' >
             <button onClick={toggleShow} >Buttoib</button>
-            <ResizablePanes resizerSize={5}
-                onReady={onReady}
-            >
-                {
-
-                    <Panes id='pane1' className='pane1' size={204} >
-                        <TestComp name={'Pane 1'} />
-                    </Panes>
-                }
-
-                <Panes id='pane2' className='pane2' size={204}>
-                    <TestComp name={'Pane 2'} />
-                </Panes>
-
-                <Panes id='pane3' className='pane3' size={204}>
-        Pane 111
-                </Panes>
-
-                <Panes id='pane4' className='pane2' size={203}>
-        Pane 1111
-                </Panes>
-
-            </ResizablePanes>
+            <DefaultSizes onReady={onReady} set={set} />
         </div>
     )
 }

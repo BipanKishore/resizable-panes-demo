@@ -18,3 +18,18 @@ export const isDirectionUpFn = (e) => e.movementY < ZERO
 export const isDirectionDown = (e) => e.movementY > ZERO
 
 export const toPx = (value) => `${value}px`
+
+export const getDirection = e => e.movementY < ZERO ? DIRECTIONS.UP : DIRECTIONS.DOWN
+
+export const findById = (list = [
+], _id) => {
+    return list.find(({
+        id
+    }) => id === _id)
+}
+
+export const keyConsole = (obj = {}, add = 'v--') => {
+    const keys = Object.keys(obj)
+    let str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v],add )
+    console.log(str)
+}

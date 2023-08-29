@@ -65,19 +65,9 @@
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
         "no-multi-spaces": "error",
         "no-whitespace-before-property":"error",
-        "object-curly-newline": ["error", { 
-            "ObjectExpression": "always", 
-            "ObjectPattern": "always",
-            "ImportDeclaration": {
-                "minProperties": 2
-            }, 
-            "ExportDeclaration": "always"
-            }],
         "object-curly-spacing": ["error", "never"], // not required,
-        "object-property-newline": "error",
         "space-before-blocks": "error",
         "space-before-function-paren": "error",
-        "indent":["error", 4,  {"SwitchCase": 1 }],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "no-unused-vars": ["error",  { 
@@ -87,7 +77,11 @@
             "destructuredArrayIgnorePattern": "^_" 
             }],
         "no-unused-expressions": ["error", { "allowTernary": true }],
-        "no-use-before-define":"error"
+        "no-use-before-define":"error",
+        "no-case-declarations": 0,
+        "space-before-keywords": ["error", "always"],
+        "space-infix-ops": "error",
+        "react/jsx-first-prop-new-line":["error", "multiline-multiprop"]
     },
     "reportUnusedDisableDirectives": true
 }
