@@ -65,16 +65,7 @@
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
         "no-multi-spaces": "error",
         "no-whitespace-before-property":"error",
-        "object-curly-newline": ["error", { 
-            "ObjectExpression": "always", 
-            "ObjectPattern": "always",
-            "ImportDeclaration": {
-                "minProperties": 2
-            }, 
-            "ExportDeclaration": "always"
-            }],
         "object-curly-spacing": ["error", "never"], // not required,
-        "object-property-newline": "error",
         "space-before-blocks": "error",
         "space-before-function-paren": "error",
         "react-hooks/rules-of-hooks": "error",
