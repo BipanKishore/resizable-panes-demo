@@ -9,6 +9,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 exclude: /node_modules/,
                 test: /.js$/,
                 use: {
@@ -44,7 +49,9 @@ module.exports = {
             title: 'CRA without CRA'
         })
     ],
-
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+      },
     watch: true
 
 }

@@ -33,3 +33,19 @@ export const keyConsole = (obj = {}, add = 'v--') => {
   const str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v], add)
   console.log(str)
 }
+
+export const synPanesMaxToSize = (panesList, start, end) => {
+  let sum = 0
+  for (let i = start; i <= end; i++) {
+    sum += panesList[i].synMaxToSize()
+  }
+  return sum
+}
+
+export const synPanesMinToSize = (panesList, start, end) => {
+  let sum = 0
+  for (let i = start; i <= end; i++) {
+    sum += panesList[i].synMinToSize()
+  }
+  return sum
+}

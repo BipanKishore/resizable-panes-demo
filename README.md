@@ -68,3 +68,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+Feature to add
+Full Size Button
+Max Size Button
+Min Size Button
+Hide Button
+Hide/Show api
+Lock/UnLock
+onResizeStop
+onResizeStart
+onResize
+direction
+Dynamic Resizer Element
+className
+
+KeyBoard Events
+
+
+Group to connect two panels together
