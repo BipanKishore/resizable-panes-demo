@@ -2,28 +2,34 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const glob = require('glob')
+const webpack = require('webpack')
+
+const babelLoader = {
+    loader: 'babel-loader',
+    options: {
+        presets: [
+            '@babel/preset-env', '@babel/preset-react'
+        ]
+    }
+}
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js'
+    },
     mode: 'development',
+    devtool:'source-map',
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: [babelLoader,  'ts-loader'],
                 exclude: /node_modules/,
             },
             {
                 exclude: /node_modules/,
                 test: /.js$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env', '@babel/preset-react'
-                        ]
-                    }
-                }
+                use: babelLoader
             },
             {
                 test: /\.css$/i,
@@ -39,7 +45,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.join(__dirname, '/dist')
     },
 

@@ -14,13 +14,13 @@ import {
   SECOND_SIZE_MAX_SIZE_SAME_SET_1
 } from './component/constant'
 import {DefaultSizes} from './component/default-sizes'
-import {isBrowser} from '#is-development'
+// import {isBrowser} from '#is-development'
 
-console.log('v-- isBrowser', isBrowser)
+// console.log('v-- isBrowser', isBrowser)
 
 const set = SECOND_SIZE_MAX_SIZE_SAME_SET_1
 function App () {
-  const ref = createRef()
+  const ref:any = createRef()
 
   const toggleShow = useCallback(() => {
     ref.current.setVisibility({
@@ -30,7 +30,7 @@ function App () {
     ref
   ])
 
-  const onReady = (panesService) => {
+  const onReady = (panesService: any) => {
     ref.current = {
       setVisibility: panesService.setVisibility
     }
