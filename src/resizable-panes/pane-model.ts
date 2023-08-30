@@ -1,5 +1,8 @@
 import {ZERO} from './constant'
+import {Pannes} from './test-file'
 import {toPx} from './util'
+
+console.log(new Pannes())
 
 export class PaneModel {
   id
@@ -13,12 +16,15 @@ export class PaneModel {
   maxSize
   defaultMaxSize
 
-  axisSize
+  axisSize: number
   isFiniteMaxSize = false
   isNoMinSize = false
   show
 
-  constructor (pane, index, child) {
+  // Development Variables
+  left: number
+
+  constructor (pane: any, index: number, child: any) {
     const {
       id, minSize = ZERO, size, maxSize = Infinity
     } = child.props
@@ -49,7 +55,7 @@ export class PaneModel {
     }
   }
 
-  setSize (newSize) {
+  setSize (newSize: number) {
     if (newSize >= this.minSize && newSize <= this.maxSize) {
       this.size = newSize
       this.left = ZERO
@@ -64,12 +70,12 @@ export class PaneModel {
     return left
   }
 
-  addSize (sizeChange) {
+  addSize (sizeChange: number) {
     const newSize = this.axisSize + sizeChange
     return this.setSize(newSize)
   }
 
-  removeSize (sizeChange) {
+  removeSize (sizeChange: number) {
     const newSize = this.axisSize - sizeChange
     return this.setSize(newSize)
   }

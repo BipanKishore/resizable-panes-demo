@@ -21,6 +21,15 @@
     /* height: 203px; */
 }
 
+.pane4 {
+    background-color: greenyellow;
+    /* height: 203px; */
+}
+
+.pane5 {
+    background-color: red;
+    /* height: 204px; */
+}
 
 .pane-container {
     /* height: 830px; */
@@ -28,6 +37,11 @@
 
 .resizer {
     background-color: darkblue;
+}
+
+.resizer:hover{
+    background-color: brown;
+    height: 5px;
 }
 
 .vertical-cursur:hover {
