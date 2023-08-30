@@ -1,4 +1,4 @@
-import './style.css'
+import '../style.css'
 
 import PropTypes from 'prop-types'
 import React, {
@@ -6,7 +6,7 @@ import React, {
   createRef, useCallback, useEffect, useMemo, useRef
 } from 'react'
 
-import panesService from './pane-service'
+import panesService from '../hooks/pane-service'
 import {Resizer} from './resizer'
 
 export const ResizablePanes = (props) => {

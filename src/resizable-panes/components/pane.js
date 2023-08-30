@@ -3,8 +3,8 @@ import React, {
   forwardRef, useEffect, useState
 } from 'react'
 
-import {subscription} from './subscription'
-import {toPx} from './util'
+import {subscription} from '../services/subscription'
+import {toPx} from '../utils/util'
 
 function Pane (props, ref) {
   const {

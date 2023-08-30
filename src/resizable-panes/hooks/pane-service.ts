@@ -3,17 +3,18 @@
 import { SyntheticEvent } from 'react'
 import {
   DIRECTIONS, MINUS_ONE, ONE, ZERO
-} from './constant'
-import {PaneModel} from './pane-model'
-import {subscription} from './subscription'
+} from '../constant'
+import {PaneModel} from '../models/pane-model'
+import {subscription} from '../services/subscription'
 import {
   getDirection,
-  isDirectionDown, isDirectionUpFn, keyConsole,
+  isDirectionDown, isDirectionUpFn,
   synPanesMaxToSize,
   synPanesMinToSize,
   toPx
-} from './util'
-import { IInitPaneService, IPanesVisibility } from './pane-service-models'
+} from '../utils/util'
+import { IInitPaneService, IPanesVisibility } from '../models/pane-service-models'
+import { keyConsole, minMaxTotal, paneConsole, setPaneList } from '../utils/development-util'
 
 class PanesService {
   activeIndex: number = null
@@ -489,35 +490,9 @@ class PanesService {
     }
   }
 
-  getList (key: string) {
-    return this.panesList.map((pane: any) => pane[key])
-  }
-
-  paneConsole (key: string) {
-    console.log('v-- ' + key, this.getList(key))
-  }
-
-  setPaneList (keys: string[] = [], value: any = null) {
-    this.panesList.forEach((pane: any) => keys.forEach((key: string) => (pane[key] = value)))
-    keys.forEach((key) => this.paneConsole(key))
-  }
-
-  minMaxTotal () {
-    let sum = 0
-    this.panesList
-      .forEach(({minSize, maxSize}) => {
-        maxSize = Number.isFinite(maxSize) ? maxSize : 0
-        sum += ((maxSize || 0) + (minSize || 0))
-      })
-
-    // const paneSizeTotal = sum
-    const paneSizeTotal = sum / 2
-    console.warn('SIZE SUM', sum, paneSizeTotal, 'max allowd', this.MaxPaneSize)
-    if ((this.MaxPaneSize !== sum && this.MaxPaneSize !== paneSizeTotal)) {
-      console.error('Max limit cross, Max Pane Size:' + this.MaxPaneSize + ' Sum:' + paneSizeTotal)
-      //  throw new Error ('Max limit cross, Max Pane Size:' + this.MaxPaneSize + ' Sum:' + paneSizeTotal)
-    }
-  }
+  paneConsole = (key:string) => paneConsole(this.panesList, key)
+  setPaneList =(keys: string[] = [], value: any = null) => setPaneList(this.panesList, keys, value)
+  minMaxTotal = () => minMaxTotal(this.panesList, this.MaxPaneSize)
 }
 
 const panesService = new PanesService()

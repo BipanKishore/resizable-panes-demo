@@ -8,28 +8,17 @@
 
 .pane1 {
     background-color: red;
-    /* height: 204px; */
 }
 
 .pane2 {
     background-color: greenyellow;
-    /* height: 203px; */
 }
 
 .pane3 {
     background-color: orange;
-    /* height: 203px; */
 }
 
-.pane4 {
-    background-color: greenyellow;
-    /* height: 203px; */
-}
 
-.pane5 {
-    background-color: red;
-    /* height: 204px; */
-}
 
 .pane-container {
     /* height: 830px; */

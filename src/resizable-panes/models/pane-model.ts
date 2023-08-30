@@ -1,8 +1,6 @@
-import {ZERO} from './constant'
-import {Pannes} from './test-file'
-import {toPx} from './util'
+import {ZERO} from '../constant'
+import {toPx} from '../utils/util'
 
-console.log(new Pannes())
 
 export class PaneModel {
   id

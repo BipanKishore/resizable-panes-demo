@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import {
   DIRECTIONS, RIGHT_BUTTON_VALUE, ZERO
-} from './constant'
+} from '../constant'
 
 export const isNotRightButtonPressed = (e) => e.button !== RIGHT_BUTTON_VALUE
 
@@ -26,12 +26,6 @@ export const findById = (list = [
   return list.find(({
     id
   }) => id === _id)
-}
-
-export const keyConsole = (obj = {}, add = 'v--') => {
-  const keys = Object.keys(obj)
-  const str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v], add)
-  console.log(str)
 }
 
 export const synPanesMaxToSize = (panesList, start, end) => {
