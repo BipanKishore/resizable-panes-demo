@@ -24,13 +24,11 @@ class PanesService {
   limitFinishedAxis = null
   limitFinishedDirection = DIRECTIONS.NONE
 
-  panesRefs = [
-  ]
+  panesRefs = []
 
   resizerSize
 
-  panesList = [
-  ]
+  panesList = []
 
   get panes () {
     return this.panesRefs.current
@@ -42,8 +40,7 @@ class PanesService {
 
   createPaneList (panesRefs, children) {
     this.panesRefs = panesRefs
-    this.panesList = [
-    ]
+    this.panesList = []
     panesRefs?.current?.forEach((pane, index) => {
       this.panesList.push(
         new PaneModel(pane, index, children[index])
@@ -61,11 +58,6 @@ class PanesService {
       pane.setUISize()
     })
     this.publishPanes(e)
-  }
-
-  // Not using now
-  setSize (i, size) {
-    this.panesList[i].size = size
   }
 
   syncAxisSizes () {
@@ -267,11 +259,11 @@ class PanesService {
     this.topAxisCrossed = false
     this.bottomAxisCrossed = false
 
-    if (e.clientY < this.topAxix) {
+    if (e.clientY <= this.topAxix) {
       this.axisCoordinate = this.topAxix
       this.syncAxisSizes()
       this.topAxisCrossed = true
-    } else if (e.clientY > this.bottomAxis) {
+    } else if (e.clientY >= this.bottomAxis) {
       this.axisCoordinate = this.bottomAxis
       this.syncAxisSizes()
       this.bottomAxisCrossed = true
@@ -396,7 +388,7 @@ class PanesService {
 
   setPaneList (keys = [
   ], value = null) {
-    this.panesList.forEach((pane) => keys.forEach(key => pane[key] = value))
+    this.panesList.forEach((pane) => keys.forEach(key => (pane[key] = value)))
     keys.forEach((key) => this.paneConsole(key))
   }
 

@@ -57,5 +57,49 @@ Pane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane Class
         }
         this.minSize = limit > this.defaultMinSize ? limit : this.defaultMinSize
     }
+
+  setMaxSize (newMaxSize) {
+    if (this.defaultMaxSize < newMaxSize) {
+      this.maxSize = this.defaultMaxSize
+      console.log('size newMaxSize', this.maxSize, newMaxSize)
+    } else {
+      this.maxSize = newMaxSize
+    }
+  }
+
+  setMinSize (newMinSize) {
+    if (this.defaultMinSize > newMinSize) {
+      this.minSize = this.defaultMaxSize
+      console.log('size newMinSize', this.maxSize, newMinSize)
+    } else {
+      this.minSize = newMinSize
+    }
+  }
+
+    setMinChangePossible (aMaxChange, bMaxChange, nextAMaxChange) {
+    let aMaxChangePossible
+    const orignalAMaxChange = this.getMinDiff()
+    if (orignalAMaxChange === aMaxChange) {
+      aMaxChangePossible = bMaxChange
+    } else {
+      aMaxChangePossible = orignalAMaxChange - nextAMaxChange
+    }
+    keyConsole({aMaxChange, aMaxChangePossible, nextAMaxChange, orignalAMaxChange})
+    this.minSize = this.size - aMaxChangePossible
+  }
+
+  // (bMaxChange, aMaxChange, nextBMaxChange)
+  setMaxChangePossible (bMaxChange, aMaxChange, nextBMaxChange) {
+    let aMaxChangePossible
+    const orignalBMaxChange = this.getMaxDiff()
+    if (orignalBMaxChange === bMaxChange) {
+      aMaxChangePossible = aMaxChange
+    } else {
+      aMaxChangePossible = orignalBMaxChange - nextBMaxChange
+    }
+    keyConsole({aMaxChangePossible, bMaxChange, nextBMaxChange, orignalBMaxChange})
+    this.maxSize = this.size + aMaxChangePossible
+  }
+
 Pane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane Class
 */

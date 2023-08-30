@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 import {
-    DIRECTIONS, RIGHT_BUTTON_VALUE, ZERO
+  DIRECTIONS, RIGHT_BUTTON_VALUE, ZERO
 } from './constant'
 
 export const isNotRightButtonPressed = (e) => e.button !== RIGHT_BUTTON_VALUE
 
 export const getMovementDirection = (e) => {
-    const {
-        movementX, movementY
-    } = e
-    const direction = movementY < ZERO ? DIRECTIONS.UP : DIRECTIONS.DOWN
-    return direction
+  const {
+    movementX, movementY
+  } = e
+  const direction = movementY < ZERO ? DIRECTIONS.UP : DIRECTIONS.DOWN
+  return direction
 }
 
 export const isDirectionUpFn = (e) => e.movementY < ZERO
@@ -23,13 +23,13 @@ export const getDirection = e => e.movementY < ZERO ? DIRECTIONS.UP : DIRECTIONS
 
 export const findById = (list = [
 ], _id) => {
-    return list.find(({
-        id
-    }) => id === _id)
+  return list.find(({
+    id
+  }) => id === _id)
 }
 
 export const keyConsole = (obj = {}, add = 'v--') => {
-    const keys = Object.keys(obj)
-    let str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v],add )
-    console.log(str)
+  const keys = Object.keys(obj)
+  const str = keys.reduce((p, v) => p + ' ' + v + ': ' + obj[v], add)
+  console.log(str)
 }
