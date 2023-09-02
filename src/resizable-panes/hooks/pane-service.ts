@@ -32,12 +32,12 @@ class PanesService {
 
   resizerSize: number
   axisCoordinate: number
-  maxTopAxis: number
-  maxBottomAxis: number
 
-  MaxPaneSize: number
-  newBottomAxis__: number
-  newTopAxix__: number
+  maxPaneSize: number
+  maxTopAxis: number
+
+  bottomAxis: number
+  topAxis: number
   panesList: PaneModel[] = []
 
   get panes () {
@@ -106,8 +106,7 @@ class PanesService {
   setMaxLimitingSize () {
     const {bottom, top, height} = this.containerRef.current.getBoundingClientRect()
     this.maxTopAxis = top
-    this.maxBottomAxis = bottom
-    this.MaxPaneSize = height - ((this.panesList.length - 1) * this.resizerSize)
+    this.maxPaneSize = height - ((this.panesList.length - 1) * this.resizerSize)
   }
 
   initMinMaxLogic () {
@@ -126,12 +125,8 @@ class PanesService {
     const aMaxChangeUp = this.panesList[index].getMinDiff()
     const bMaxChangeUp = this.panesList[index + 1].getMaxDiff()
 
-    
-
     this.minMaxLogicUp(aMaxChangeUp - bMaxChangeUp, index, index + 1)
 
-    this.newBottomAxis__ =0
-    this.newTopAxix__ = 0
     // this.initMinMaxLogic()
     const aMaxChangeDown = this.panesList[index + 1].getMinDiff()
     const bMaxChangeDown = this.panesList[index].getMaxDiff()
@@ -149,14 +144,9 @@ class PanesService {
   }
 
   calculateAxes(index: number){
-    let newBottomAxis
-    let newTopAxix
     const resizerSizeHalf = Math.floor(this.resizerSize/2)
-      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index) + index  * this.resizerSize + resizerSizeHalf
-      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)  + index * this.resizerSize + resizerSizeHalf
-   this.newTopAxix__ = newTopAxix
-   this.newBottomAxis__ = newBottomAxis
-    keyConsole({newBottomAxis, newTopAxix, index, Direction: this.direction}, 'calculateAxes')
+    this.bottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index) + index  * this.resizerSize + resizerSizeHalf
+    this.topAxis = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)  + index * this.resizerSize + resizerSizeHalf
   }
 
   setDownMaxLimits(index: number){
@@ -170,7 +160,7 @@ class PanesService {
   }
 
 
-  setUpnMaxLimits(index: number){
+  setUpMaxLimits(index: number){
     for(let i = 0; i <= index; i++){
       this.panesList[i].size = this.panesList[i].minSize
     }
@@ -216,7 +206,7 @@ class PanesService {
           case value < 0:
             sum += this.panesList[aIndex].resetMin()
             sum += synPanesMaxToSize(this.panesList, bIndex + 1, this.lastIndex)
-            this.panesList[bIndex].maxSize = this.MaxPaneSize - sum
+            this.panesList[bIndex].maxSize = this.maxPaneSize - sum
             return
 
           case value === 0:
@@ -251,7 +241,7 @@ class PanesService {
           case value > 0:
             sum += this.panesList[bIndex].resetMax()
             sum += synPanesMinToSize(this.panesList, 0, aIndex - 1)
-            this.panesList[aIndex].minSize = this.MaxPaneSize - sum
+            this.panesList[aIndex].minSize = this.maxPaneSize - sum
             return
         }
         break
@@ -262,7 +252,7 @@ class PanesService {
           case value < 0:
             sum += this.panesList[aIndex].resetMin()
             // synPanesMinToSize(this.panesList, bIndex + 1, this.lastIndex) // It wont run
-            this.panesList[bIndex].maxSize = this.MaxPaneSize - sum
+            this.panesList[bIndex].maxSize = this.maxPaneSize - sum
             break
 
           case value === 0:
@@ -272,7 +262,7 @@ class PanesService {
           case value > 0:
             sum += this.panesList[bIndex].resetMax()
             // synPanesMaxToSize(this.panesList, 0, aIndex - 1) // It wont Run
-            this.panesList[aIndex].minSize = this.MaxPaneSize - sum
+            this.panesList[aIndex].minSize = this.maxPaneSize - sum
         }
         return
         // ---------------------------------------------------------------------------------
@@ -321,7 +311,7 @@ class PanesService {
           case value < 0:
             sum += this.panesList[aIndex].resetMax()
             sum += synPanesMinToSize(this.panesList, bIndex + 1, this.lastIndex)
-            this.panesList[bIndex].minSize = this.MaxPaneSize - sum
+            this.panesList[bIndex].minSize = this.maxPaneSize - sum
             return
 
           case value === 0:
@@ -356,7 +346,7 @@ class PanesService {
           case value > 0:
             sum += this.panesList[bIndex].resetMin()
             sum += synPanesMaxToSize(this.panesList, 0, aIndex - 1)
-            this.panesList[aIndex].maxSize = this.MaxPaneSize - sum
+            this.panesList[aIndex].maxSize = this.maxPaneSize - sum
             return
         }
         break
@@ -367,7 +357,7 @@ class PanesService {
           case value < 0:
             sum += this.panesList[aIndex].resetMax()
             // synPanesMinToSize(this.panesList, bIndex + 1, this.lastIndex) // It wont run
-            this.panesList[bIndex].minSize = this.MaxPaneSize - sum
+            this.panesList[bIndex].minSize = this.maxPaneSize - sum
             break
 
           case value === 0:
@@ -377,7 +367,7 @@ class PanesService {
           case value > 0:
             sum += this.panesList[bIndex].resetMin()
             // synPanesMaxToSize(this.panesList, 0, aIndex - 1) // It wont Run
-            this.panesList[aIndex].maxSize = this.MaxPaneSize - sum
+            this.panesList[aIndex].maxSize = this.maxPaneSize - sum
         }
         return
         // ---------------------------------------------------------------------------------
@@ -411,14 +401,14 @@ class PanesService {
   }
 
   setAxisConfig (e: any) {
-    if(e.clientY <= this.newTopAxix__){
-      this.setUpnMaxLimits(this.activeIndex)
+    if(e.clientY <= this.topAxis){
+      this.setUpMaxLimits(this.activeIndex)
       this.syncAxisSizes()
-      this.axisCoordinate = this.newTopAxix__
-    } else if(e.clientY >= this.newBottomAxis__){
+      this.axisCoordinate = this.topAxis
+    } else if(e.clientY >= this.bottomAxis){
       this.setDownMaxLimits(this.activeIndex)
       this.syncAxisSizes()
-      this.axisCoordinate = this.newBottomAxis__
+      this.axisCoordinate = this.bottomAxis
     }
 
     return true
@@ -504,7 +494,7 @@ class PanesService {
 
   paneConsole = (key:string) => paneConsole(this.panesList, key)
   setPaneList =(keys: string[] = [], value: any = null) => setPaneList(this.panesList, keys, value)
-  minMaxTotal = () => minMaxTotal(this.panesList, this.MaxPaneSize)
+  minMaxTotal = () => minMaxTotal(this.panesList, this.maxPaneSize)
 }
 
 const panesService = new PanesService()
