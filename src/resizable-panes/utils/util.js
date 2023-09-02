@@ -43,3 +43,19 @@ export const synPanesMinToSize = (panesList, start, end) => {
   }
   return sum
 }
+
+export const getMaxSizeSum = (panesList, start, end) => {
+  let sum = 0
+  for (let i = start; i <= end; i++) {
+    sum += panesList[i].maxSize
+  }
+  return sum
+}
+
+export const getMinSizeSum = (panesList, start, end) => {
+  let sum = 0
+  for (let i = start; i <= end; i++) {
+    sum += panesList[i].minSize
+  }
+  return sum
+}

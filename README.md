@@ -78,6 +78,7 @@ Full Size Button
 Max Size Button
 Min Size Button
 Hide Button
+Close/Open
 Hide/Show api
 Lock/UnLock
 onResizeStop
@@ -87,7 +88,11 @@ direction
 Dynamic Resizer Element
 className
 
-KeyBoard Events
+Lock Perosnal Size
 
+KeyBoard Events
+collapsedSize
 
 Group to connect two panels together
+local/session storage
+minimize & maximize

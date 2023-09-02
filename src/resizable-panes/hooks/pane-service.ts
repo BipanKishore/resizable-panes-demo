@@ -8,6 +8,8 @@ import {PaneModel} from '../models/pane-model'
 import {subscription} from '../services/subscription'
 import {
   getDirection,
+  getMaxSizeSum,
+  getMinSizeSum,
   isDirectionDown, isDirectionUpFn,
   synPanesMaxToSize,
   synPanesMinToSize,
@@ -33,9 +35,12 @@ class PanesService {
 
   resizerSize: number
   axisCoordinate: number
-  topAxix: number
-  bottomAxis: number
+  maxTopAxis: number
+  maxBottomAxis: number
+
   MaxPaneSize: number
+  newBottomAxis__: number
+  newTopAxix__: number
   topAxisCrossed: boolean
   bottomAxisCrossed: boolean
   panesList: PaneModel[] = []
@@ -105,8 +110,8 @@ class PanesService {
 
   setMaxLimitingSize () {
     const {bottom, top, height} = this.containerRef.current.getBoundingClientRect()
-    this.topAxix = top
-    this.bottomAxis = bottom
+    this.maxTopAxis = top
+    this.maxBottomAxis = bottom
     this.MaxPaneSize = height - ((this.panesList.length - 1) * this.resizerSize)
   }
 
@@ -122,13 +127,21 @@ class PanesService {
 
   setCurrentMinMax (index: number) {
     // this.initMinMaxLogic()
+
     const aMaxChangeUp = this.panesList[index].getMinDiff()
     const bMaxChangeUp = this.panesList[index + 1].getMaxDiff()
+
+    
+
     this.minMaxLogicUp(aMaxChangeUp - bMaxChangeUp, index, index + 1)
 
+    this.newBottomAxis__ =0
+    this.newTopAxix__ = 0
+    // this.initMinMaxLogic()
     const aMaxChangeDown = this.panesList[index + 1].getMinDiff()
     const bMaxChangeDown = this.panesList[index].getMaxDiff()
     this.minMaxLogicDown(bMaxChangeDown - aMaxChangeDown, index, index + 1)
+    this.calculateAxes(this.activeIndex)
     this.devMinMaxCheck()
   }
 
@@ -138,6 +151,15 @@ class PanesService {
     this.paneConsole('minSize')
     this.paneConsole('maxSize')
     this.minMaxTotal()
+  }
+
+  calculateAxes(index: number){
+    let newBottomAxis
+    let newTopAxix
+      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index)
+      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)
+   
+    keyConsole({newBottomAxis, newTopAxix, index, Direction: this.direction}, 'calculateAxes')
   }
 
   minMaxLogicUp (value: number, aIndex: number, bIndex: number, sum = 0) {
@@ -372,12 +394,12 @@ class PanesService {
     this.topAxisCrossed = false
     this.bottomAxisCrossed = false
 
-    if (e.clientY <= this.topAxix) {
-      this.axisCoordinate = this.topAxix
+    if (e.clientY <= this.maxTopAxis) {
+      this.axisCoordinate = this.maxTopAxis
       this.syncAxisSizes()
       this.topAxisCrossed = true
-    } else if (e.clientY >= this.bottomAxis) {
-      this.axisCoordinate = this.bottomAxis
+    } else if (e.clientY >= this.maxBottomAxis) {
+      this.axisCoordinate = this.maxBottomAxis
       this.syncAxisSizes()
       this.bottomAxisCrossed = true
     }
@@ -415,6 +437,8 @@ class PanesService {
         this.limitFinishedAxis = null
         this.limitFinishedDirection = DIRECTIONS.NONE
     }
+
+    console.log('v---- limitFinishedAxis', this.limitFinishedAxis , this.limitFinishedDirection)
 
     if (this.prevDirection !== this.direction) {
       this.directionChangeActions(e)
