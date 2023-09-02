@@ -16,7 +16,7 @@ import {
   toPx
 } from '../utils/util'
 import { IInitPaneService, IPanesVisibility } from '../models/pane-service-models'
-import { keyConsole, minMaxTotal, paneConsole, setPaneList } from '../utils/development-util'
+import { directionBehaviourConsole, keyConsole, minMaxTotal, paneConsole, setPaneList } from '../utils/development-util'
 
 class PanesService {
   activeIndex: number = null
@@ -416,20 +416,7 @@ class PanesService {
 
   setDirection (e: any) {
     this.direction = getDirection(e)
-    switch (true) {
-      case this.prevDirection === DIRECTIONS.NONE && this.direction === DIRECTIONS.UP:
-        console.warn('direction we have starteed Up')
-        break
-      case this.prevDirection === DIRECTIONS.NONE && this.direction === DIRECTIONS.DOWN:
-        console.warn('direction we have starteed Down')
-        break
-      case this.prevDirection === DIRECTIONS.UP && this.direction === DIRECTIONS.DOWN:
-        console.warn('direction UP to Down')
-        break
-      case this.prevDirection === DIRECTIONS.DOWN && this.direction === DIRECTIONS.UP:
-        console.warn('direction Down to UP')
-        break
-    }
+    directionBehaviourConsole(this.direction, this.prevDirection)
 
     if (this.prevDirection !== this.direction) {
       this.directionChangeActions(e)
