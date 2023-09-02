@@ -28,9 +28,6 @@ class PanesService {
   direction = DIRECTIONS.NONE
   prevDirection = DIRECTIONS.NONE
 
-  limitFinishedAxis: number = null
-  limitFinishedDirection = DIRECTIONS.NONE
-
   panesRefs:any = []
 
   resizerSize: number
@@ -41,8 +38,6 @@ class PanesService {
   MaxPaneSize: number
   newBottomAxis__: number
   newTopAxix__: number
-  topAxisCrossed: boolean
-  bottomAxisCrossed: boolean
   panesList: PaneModel[] = []
 
   get panes () {
@@ -156,10 +151,33 @@ class PanesService {
   calculateAxes(index: number){
     let newBottomAxis
     let newTopAxix
-      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index)
-      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)
-   
+    const resizerSizeHalf = Math.floor(this.resizerSize/2)
+      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index) + index  * this.resizerSize + resizerSizeHalf
+      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)  + index * this.resizerSize + resizerSizeHalf
+   this.newTopAxix__ = newTopAxix
+   this.newBottomAxis__ = newBottomAxis
     keyConsole({newBottomAxis, newTopAxix, index, Direction: this.direction}, 'calculateAxes')
+  }
+
+  setDownMaxLimits(index: number){
+    for(let i = 0; i <= index; i++){
+      this.panesList[i].size = this.panesList[i].maxSize
+    }
+    
+    for(let i = index + 1; i <= this.lastIndex; i++){
+      this.panesList[i].size = this.panesList[i].minSize
+    }
+  }
+
+
+  setUpnMaxLimits(index: number){
+    for(let i = 0; i <= index; i++){
+      this.panesList[i].size = this.panesList[i].minSize
+    }
+    
+    for(let i = index + 1; i <= this.lastIndex; i++){
+      this.panesList[i].size = this.panesList[i].maxSize
+    }
   }
 
   minMaxLogicUp (value: number, aIndex: number, bIndex: number, sum = 0) {
@@ -378,31 +396,32 @@ class PanesService {
   calculateAndSetHeight (e: any) {
     if (e.movementY) {
       this.setDirection(e)
-      if (!this.limitFinishedAxis) {
-        this.setAxisConfig(e)
+      const isChangeRequired = this.setAxisConfig(e)
+
+      if(isChangeRequired){
         if (e.movementY > ZERO) {
           this.goingDownLogic(e)
         } else if (e.movementY < ZERO) {
           this.goingUpLogic(e)
         }
-        this.setUISizes(e)
       }
+
+      this.setUISizes(e)
     }
   }
 
   setAxisConfig (e: any) {
-    this.topAxisCrossed = false
-    this.bottomAxisCrossed = false
-
-    if (e.clientY <= this.maxTopAxis) {
-      this.axisCoordinate = this.maxTopAxis
+    if(e.clientY <= this.newTopAxix__){
+      this.setUpnMaxLimits(this.activeIndex)
       this.syncAxisSizes()
-      this.topAxisCrossed = true
-    } else if (e.clientY >= this.maxBottomAxis) {
-      this.axisCoordinate = this.maxBottomAxis
+      this.axisCoordinate = this.newTopAxix__
+    } else if(e.clientY >= this.newBottomAxis__){
+      this.setDownMaxLimits(this.activeIndex)
       this.syncAxisSizes()
-      this.bottomAxisCrossed = true
+      this.axisCoordinate = this.newBottomAxis__
     }
+
+    return true
   }
 
   setDirection (e: any) {
@@ -421,24 +440,6 @@ class PanesService {
         console.warn('direction Down to UP')
         break
     }
-
-    switch (true) {
-      case this.limitFinishedAxis &&
-            this.limitFinishedDirection === DIRECTIONS.UP &&
-            this.limitFinishedAxis <= e.clientY &&
-            this.direction === DIRECTIONS.DOWN :
-
-      case this.limitFinishedAxis &&
-            this.limitFinishedDirection === DIRECTIONS.DOWN &&
-            this.limitFinishedAxis >= e.clientY &&
-            this.direction === DIRECTIONS.UP :
-
-        this.axisCoordinate = this.limitFinishedAxis
-        this.limitFinishedAxis = null
-        this.limitFinishedDirection = DIRECTIONS.NONE
-    }
-
-    console.log('v---- limitFinishedAxis', this.limitFinishedAxis , this.limitFinishedDirection)
 
     if (this.prevDirection !== this.direction) {
       this.directionChangeActions(e)
@@ -468,11 +469,6 @@ class PanesService {
     for (let i = this.activeIndex + 1; i < this.panesList.length; i += 1) {
       sizeChange = this.panesList[i].removeSize(sizeChange)
     }
-
-    if (sizeChangeUp || sizeChange) {
-      this.limitFinishedAxis = e.clientY
-      this.limitFinishedDirection = this.direction
-    }
   }
 
   goingUpLogic (e: any) {
@@ -490,21 +486,13 @@ class PanesService {
     for (let i = this.activeIndex; i > MINUS_ONE; i -= 1) {
       sizeChange = this.panesList[i].removeSize(sizeChange)
     }
-
-    if (sizeChangeUp || sizeChange) {
-      this.limitFinishedAxis = e.clientY
-      this.limitFinishedDirection = this.direction
-    }
   }
 
   setMouseDownAndPaneAxisDetails (e: any) {
     const {clientX, clientY} = e
-
     this.direction = DIRECTIONS.NONE
     this.prevDirection = DIRECTIONS.NONE
-
     this.axisCoordinate = clientY
-    this.limitFinishedAxis = null
     this.syncAxisSizes()
   }
 
