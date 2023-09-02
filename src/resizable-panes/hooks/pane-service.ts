@@ -156,9 +156,11 @@ class PanesService {
   calculateAxes(index: number){
     let newBottomAxis
     let newTopAxix
-      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index)
-      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)
-   
+    const resizerSizeHalf = Math.floor(this.resizerSize/2)
+      newBottomAxis = this.maxTopAxis  + getMaxSizeSum(this.panesList, 0, index) + index  * this.resizerSize + resizerSizeHalf
+      newTopAxix = this.maxTopAxis  + getMinSizeSum(this.panesList, 0, index)  + index * this.resizerSize + resizerSizeHalf
+   this.newTopAxix__ = newTopAxix
+   this.newBottomAxis__ = newBottomAxis
     keyConsole({newBottomAxis, newTopAxix, index, Direction: this.direction}, 'calculateAxes')
   }
 
@@ -427,15 +429,18 @@ class PanesService {
             this.limitFinishedDirection === DIRECTIONS.UP &&
             this.limitFinishedAxis <= e.clientY &&
             this.direction === DIRECTIONS.DOWN :
+              this.axisCoordinate = this.newTopAxix__
+              this.limitFinishedAxis = null
+              this.limitFinishedDirection = DIRECTIONS.NONE
+            break
 
       case this.limitFinishedAxis &&
             this.limitFinishedDirection === DIRECTIONS.DOWN &&
             this.limitFinishedAxis >= e.clientY &&
             this.direction === DIRECTIONS.UP :
-
-        this.axisCoordinate = this.limitFinishedAxis
-        this.limitFinishedAxis = null
-        this.limitFinishedDirection = DIRECTIONS.NONE
+              this.axisCoordinate = this.newBottomAxis__
+              this.limitFinishedAxis = null
+              this.limitFinishedDirection = DIRECTIONS.NONE
     }
 
     console.log('v---- limitFinishedAxis', this.limitFinishedAxis , this.limitFinishedDirection)
