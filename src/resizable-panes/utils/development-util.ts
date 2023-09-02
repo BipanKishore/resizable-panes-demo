@@ -1,4 +1,6 @@
+import { DIRECTIONS } from "../constant"
 import { PaneModel } from "../models/pane-model"
+import { subscription } from "../services/subscription"
 
 export const keyConsole = (obj: any = {}, add = 'v--') => {
     const keys = Object.keys(obj)
@@ -35,4 +37,33 @@ export const paneConsole = (panesList: PaneModel[], key: string) => {
   export const setPaneList   = (panesList: PaneModel[], keys: string[] = [], value: any = null) => {
     panesList.forEach((pane: any) => keys.forEach((key: string) => (pane[key] = value)))
     keys.forEach((key) => paneConsole(panesList, key))
+  }
+
+
+  export const directionBehaviourConsole = (direction: string, prevDirection: string) => {
+    switch (true) {
+      case prevDirection === DIRECTIONS.NONE && direction === DIRECTIONS.UP:
+        console.warn('direction we have starteed Up')
+        break
+      case prevDirection === DIRECTIONS.NONE && direction === DIRECTIONS.DOWN:
+        console.warn('direction we have starteed Down')
+        break
+      case prevDirection === DIRECTIONS.UP && direction === DIRECTIONS.DOWN:
+        console.warn('direction UP to Down')
+        break
+      case prevDirection === DIRECTIONS.DOWN && direction === DIRECTIONS.UP:
+        console.warn('direction Down to UP')
+        break
+    }
+  }
+
+
+  export const publishPanes = (e:any, panesList: PaneModel[], axisCoordinate: number) =>{
+    panesList.forEach((pane) => {
+      subscription.publish(pane.id, {
+        ...pane,
+        Y: e.clientY,
+        axisCoordinate: axisCoordinate
+      })
+    })
   }
