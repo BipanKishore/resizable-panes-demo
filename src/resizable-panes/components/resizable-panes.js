@@ -14,33 +14,24 @@ export const ResizablePanes = (props) => {
     children, resizerSize, onReady
   } = props
 
-  const {
-    initPanesService,
-    setMouseDownAndPaneAxisDetails,
-    setActiveIndex,
-    calculateAndSetHeight
-  } = useResizablePanes()
-
   const containerRef = createRef()
   const panesRefs = useRef([
   ])
   panesRefs.current = children.map((_, i) => panesRefs.current[i] ?? createRef())
 
-  useEffect(() => {
-    initPanesService({
+  const {
+    setMouseDownAndPaneAxisDetails,
+    setActiveIndex,
+    calculateAndSetHeight
+  } = useResizablePanes(
+    {
       children,
       containerRef,
       panesRefs,
-      resizerSize
-    })
-
-    if (onReady) {
-      onReady({})
+      resizerSize,
+      onReady
     }
-  }, [
-    initPanesService,
-    onReady, resizerSize, containerRef, panesRefs, children
-  ])
+  )
 
   const onMouseMove = useCallback((e) => {
     calculateAndSetHeight(e)

@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useRef } from "react"
+import { SyntheticEvent, useCallback, useEffect, useRef } from "react"
 import { IInitPaneService } from "../models/pane-service-models"
 import { PaneModel } from "../models/pane-model"
 import { minMaxLogicDown, minMaxLogicUp, setDownMaxLimits, setUpMaxLimits } from "../utils/panes"
@@ -21,15 +21,42 @@ interface IServiceRef{
 }
 
 interface IUseResizablePanes {
-  initPanesService: Function,
   setMouseDownAndPaneAxisDetails: Function,
   setActiveIndex: Function,
   calculateAndSetHeight: Function
 }
 
-const useResizablePanes = () => {
+interface IUseResizablePanesParams {
+  children: any,
+  containerRef: any,
+  panesRefs: any,
+  resizerSize: any,
+  onReady: Function
+}
 
+
+const useResizablePanes = (props: IUseResizablePanesParams) => {
+    const { 
+      children,
+      containerRef,
+      panesRefs,
+      resizerSize, onReady} = props
     const serviceRef = useRef<IServiceRef>({})
+
+    useEffect(() => {
+      initPanesService({
+        children,
+        containerRef,
+        panesRefs,
+        resizerSize
+      })
+  
+      if (onReady) {
+        onReady({})
+      }
+    }, [
+      onReady, resizerSize, containerRef, panesRefs, children
+    ])
 
     const  createPaneList = useCallback((panesRefs: any, children: any[]) =>{
         serviceRef.current.panesRefs = panesRefs
@@ -191,7 +218,6 @@ const useResizablePanes = () => {
 
 
       return {
-        initPanesService,
         setMouseDownAndPaneAxisDetails,
         setActiveIndex,
         calculateAndSetHeight
