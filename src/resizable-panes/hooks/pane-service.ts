@@ -17,8 +17,9 @@ import {
 } from '../utils/util'
 import { IInitPaneService, IPanesVisibility } from '../models/pane-service-models'
 import { directionBehaviourConsole, keyConsole, minMaxTotal, paneConsole, setPaneList } from '../utils/development-util'
+import { minMaxLogicDown, minMaxLogicUp, setDownMaxLimits, setUpMaxLimits } from '../utils/panes'
 
-class PanesService {
+export class PanesService {
   activeIndex: number = null
 
   split = 'vertical'
@@ -125,12 +126,12 @@ class PanesService {
     const aMaxChangeUp = this.panesList[index].getMinDiff()
     const bMaxChangeUp = this.panesList[index + 1].getMaxDiff()
 
-    this.minMaxLogicUp(aMaxChangeUp - bMaxChangeUp, index, index + 1)
+    minMaxLogicUp(this.panesList, aMaxChangeUp - bMaxChangeUp, index, index + 1, 0, this.maxPaneSize)
 
     // this.initMinMaxLogic()
     const aMaxChangeDown = this.panesList[index + 1].getMinDiff()
     const bMaxChangeDown = this.panesList[index].getMaxDiff()
-    this.minMaxLogicDown(bMaxChangeDown - aMaxChangeDown, index, index + 1)
+    minMaxLogicDown(this.panesList, bMaxChangeDown - aMaxChangeDown, index, index + 1, 0, this.maxPaneSize)
     this.calculateAxes(this.activeIndex)
     this.devMinMaxCheck()
   }
@@ -402,11 +403,11 @@ class PanesService {
 
   setAxisConfig (e: any) {
     if(e.clientY <= this.topAxis){
-      this.setUpMaxLimits(this.activeIndex)
+      setUpMaxLimits(this.panesList, this.activeIndex)
       this.syncAxisSizes()
       this.axisCoordinate = this.topAxis
     } else if(e.clientY >= this.bottomAxis){
-      this.setDownMaxLimits(this.activeIndex)
+      setDownMaxLimits(this.panesList, this.activeIndex)
       this.syncAxisSizes()
       this.axisCoordinate = this.bottomAxis
     }
@@ -487,3 +488,5 @@ class PanesService {
 const panesService = new PanesService()
 
 export default panesService
+
+

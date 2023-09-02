@@ -5,9 +5,8 @@ import React, {
   cloneElement,
   createRef, useCallback, useEffect, useMemo, useRef
 } from 'react'
-
-import panesService from '../hooks/pane-service'
 import {Resizer} from './resizer'
+import useResizablePanes from '../hooks/use-resizable-panes'
 
 export const ResizablePanes = (props) => {
   console.log('rerender')
@@ -15,13 +14,20 @@ export const ResizablePanes = (props) => {
     children, resizerSize, onReady
   } = props
 
+  const {
+    initPanesService,
+    setMouseDownAndPaneAxisDetails,
+    setActiveIndex,
+    calculateAndSetHeight
+  } = useResizablePanes()
+
   const containerRef = createRef()
   const panesRefs = useRef([
   ])
   panesRefs.current = children.map((_, i) => panesRefs.current[i] ?? createRef())
 
   useEffect(() => {
-    panesService.initPanesService({
+    initPanesService({
       children,
       containerRef,
       panesRefs,
@@ -29,14 +35,15 @@ export const ResizablePanes = (props) => {
     })
 
     if (onReady) {
-      onReady(panesService)
+      onReady({})
     }
   }, [
+    initPanesService,
     onReady, resizerSize, containerRef, panesRefs, children
   ])
 
   const onMouseMove = useCallback((e) => {
-    panesService.calculateAndSetHeight(e)
+    calculateAndSetHeight(e)
   }, [
   ])
 
@@ -55,10 +62,12 @@ export const ResizablePanes = (props) => {
 
   const onMouseDown = useCallback((e, index) => {
     console.log(index)
-    panesService.setActiveIndex(index)
-    panesService.setMouseDownAndPaneAxisDetails(e)
+    setActiveIndex(index)
+    setMouseDownAndPaneAxisDetails(e)
     document.addEventListener('mousemove', onMouseMove)
   }, [
+    setActiveIndex,
+    setMouseDownAndPaneAxisDetails,
     onMouseMove
   ])
 
