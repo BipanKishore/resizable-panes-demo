@@ -18,7 +18,7 @@ import {DefaultSizes} from './component/default-sizes'
 
 // console.log('v-- isBrowser', isBrowser)
 
-const set = SECOND_SIZE_MAX_SIZE_SAME_SET_1
+
 function App () {
   const ref:any = createRef()
 
