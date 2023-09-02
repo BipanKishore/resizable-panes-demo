@@ -1,9 +1,6 @@
 import { PaneModel } from "../models/pane-model"
 import { keyConsole } from "./development-util"
-import { getMaxSizeSum, getMinSizeSum, synPanesMaxToSize, synPanesMinToSize } from "./util"
-
-
-
+import { synPanesMaxToSize, synPanesMinToSize } from "./util"
 
 export const minMaxLogicUp  = (panesList: PaneModel[], value: number, aIndex: number, bIndex: number, sum = 0, maxPaneSize: number) =>{
     const lastIndex = panesList.length -1

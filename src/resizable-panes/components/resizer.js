@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, {forwardRef} from 'react'
+import {toPx} from '../utils/util'
 
 export const Resizer = forwardRef((props, ref) => {
   const {
@@ -10,7 +11,7 @@ export const Resizer = forwardRef((props, ref) => {
       className='resizer vertical-cursur'
       ref={ref}
       style={{
-        height: `${resizerSize}px`
+        height: `${toPx(resizerSize)}`
       }}
       onMouseDown={onMouseDown}
     />
