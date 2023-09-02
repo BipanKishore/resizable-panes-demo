@@ -1,7 +1,6 @@
 import {ZERO} from '../constant'
 import {toPx} from '../utils/util'
 
-
 export class PaneModel {
   id
   index

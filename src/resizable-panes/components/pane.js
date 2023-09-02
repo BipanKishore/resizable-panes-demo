@@ -3,7 +3,7 @@ import React, {
   forwardRef, useEffect, useState
 } from 'react'
 
-import {subscription} from '../services/subscription'
+import {subscription} from '../services/subscription.ts'
 import {toPx} from '../utils/util'
 
 function Pane (props, ref) {
@@ -76,3 +76,6 @@ Pane.prototypes = {
 }
 
 export default forwardRef(Pane)
+
+const abc = 6
+console.log(abc)

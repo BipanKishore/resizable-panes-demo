@@ -1,6 +1,4 @@
-
-
-export  interface IInitPaneService {
+export interface IInitPaneService {
     children: any[],
     containerRef: any,
     panesRefs: any[],

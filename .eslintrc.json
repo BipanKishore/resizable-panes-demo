@@ -1,12 +1,16 @@
+
 {
     "env": {
         "browser": true,
         "es2021": true
-    },
+    }, 
+    "root": true,
     "extends": [
+        "eslint:recommended",
         "standard",
         "standard-react",
-        "plugin:react-hooks/recommended"
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -15,13 +19,16 @@
             "jsx": true
         }
     },
+    "parser": "@typescript-eslint/parser",
     "plugins": [
         "react",
         "sort-keys-fix",
         "simple-import-sort",
-        "react-hooks"
-    ],
+        "react-hooks",
+        "@typescript-eslint"],
     "rules": {
+      "@typescript-eslint/no-explicit-any": 0,
+      "space-infix-ops": "error",
         "camelcase": ["error", {"allow": ["^UNSAFE_"]}],
         "complexity": ["error", 5],
         "max-len": ["error", {
@@ -133,7 +140,6 @@
         // "no-use-before-define":"error",
         // "no-case-declarations": 0,
         // "space-before-keywords": ["error", "always"],
-        // "space-infix-ops": "error",
         // "react/jsx-first-prop-new-line":["error", "multiline-multiprop"],
     },
     "reportUnusedDisableDirectives": true
