@@ -21,7 +21,6 @@ export const ResizablePanes = (props) => {
 
   const {
     setMouseDownAndPaneAxisDetails,
-    setActiveIndex,
     calculateAndSetHeight
   } = useResizablePanes(
     {
@@ -52,12 +51,9 @@ export const ResizablePanes = (props) => {
   ])
 
   const onMouseDown = useCallback((e, index) => {
-    console.log(index)
-    setActiveIndex(index)
-    setMouseDownAndPaneAxisDetails(e)
+    setMouseDownAndPaneAxisDetails(e, index)
     document.addEventListener('mousemove', onMouseMove)
   }, [
-    setActiveIndex,
     setMouseDownAndPaneAxisDetails,
     onMouseMove
   ])

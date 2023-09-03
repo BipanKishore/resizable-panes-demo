@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   DIRECTIONS, RIGHT_BUTTON_VALUE, ZERO
 } from '../constant'

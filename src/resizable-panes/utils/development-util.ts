@@ -1,6 +1,6 @@
 import {DIRECTIONS} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {subscription} from '../services/subscription.ts'
+import {subscription} from '../services/subscription'
 
 export const keyConsole = (obj: any = {}, add = 'v--') => {
   const keys = Object.keys(obj)
