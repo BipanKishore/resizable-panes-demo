@@ -43,7 +43,7 @@ let [count, setCount] = useState(0)
   const key =  configKeys [count%configKeys.length]
 
   return (
-    <div className='App p-relative t-100' >
+    <div className=' p-relative t-100' >
       <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <DefaultSizes set={PaneConfigSet[key]} onReady={()=>{}} />
     </div>
