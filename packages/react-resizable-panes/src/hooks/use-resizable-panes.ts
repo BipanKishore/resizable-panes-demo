@@ -21,7 +21,8 @@ interface IServiceRef{
     topAxis?: number,
     bottomAxis?: number,
     prevDirection?: string,
-    axisCoordinate?: number
+    axisCoordinate?: number,
+    isVertical?: boolean
 }
 
 interface IResizableApi {
@@ -70,11 +71,12 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
   }, [])
 
-  const setMaxLimitingSize = useCallback((containerRef: any) => {
-    const {top, height} = containerRef.current.getBoundingClientRect() || {}
-    serviceRef.current.maxTopAxis = top
-    serviceRef.current.maxPaneSize = height -
-    ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
+  const setMaxLimitingSize = useCallback((containerRef: any, isVertical: boolean) => {
+    const rect = containerRef.current.getBoundingClientRect() || {}
+    const {top, height, left, width} = rect
+    serviceRef.current.maxTopAxis = isVertical ? top : left
+    serviceRef.current.maxPaneSize = (isVertical ? height : width) -
+              ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
   }, [])
 
   const initPanesService = ({
@@ -86,8 +88,9 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
+    serviceRef.current.isVertical = isVertical
     createPaneList(panesRefs, children, isVertical)
-    setMaxLimitingSize(containerRef)
+    setMaxLimitingSize(containerRef, isVertical)
   }
 
   const setCurrentMinMaxAndAxes = useCallback(() => {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   Panes, ResizablePanes
@@ -8,13 +8,15 @@ import {TestComp} from './test-comp'
 import {CLASS_NAME} from './constant'
 
 export const DefaultSizes = ({
-  onReady, set
+  onReady, set, split
 }) => {
+
+
   return (
     <ResizablePanes
       resizerSize={5}
       onReady={onReady}
-      split='horizontal'
+      split={split}
     >
 
       {set.ids.map((id, index) => (
@@ -38,5 +40,6 @@ export const DefaultSizes = ({
 
 DefaultSizes.propTypes = {
   set: PropTypes.object,
-  onReady: PropTypes.func
+  onReady: PropTypes.func,
+  split: PropTypes.string
 }
