@@ -1,7 +1,7 @@
-import { IResizableEvent } from '../@types'
+import { IResizableEvent, SplitType } from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
-import {getMaxSizeSum, getMinSizeSum} from './util'
+import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
@@ -77,10 +77,47 @@ export const setUISizesFn = ({panesList}: any) => {
   // publishPanes(e)
 }
 
-export const getResizableEvent = (e: any): IResizableEvent =>{
-  const {clientX, clientY, movementY} = e
-  return {
-    mouseCoordinate: clientY,
-    movement: movementY
+export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent => {
+  if(isVertical){
+    const {clientY, movementY} = e
+    return {
+      mouseCoordinate: clientY,
+      movement: movementY
+    }
+  } else {
+    const {clientX, movementX} = e
+    return {
+      mouseCoordinate: clientX,
+      movement: movementX
+    }
   }
+}
+
+export const getSizeStyle = (split: SplitType, size: number) => {
+  const style: any = {}
+  const px = toPx(size)
+  if(split === 'horizontal'){
+    style.width = px
+  } else {
+    style.height = px
+  }
+  return style
+}
+
+interface IJoinClassNameParam {
+  [key : string]: boolean | string
+}
+
+export const getContainerClass = (split: SplitType, isVertical: boolean) => {
+  return joinClassName({
+    'd-flex': true,
+    'f-row': !isVertical,
+    'f-column': isVertical
+  })
+}
+
+export const joinClassName = (param: IJoinClassNameParam) => {
+    const keys = Object.keys(param)
+
+    return keys.map((key) => param[key] ? key: '' ).join(' ')
 }

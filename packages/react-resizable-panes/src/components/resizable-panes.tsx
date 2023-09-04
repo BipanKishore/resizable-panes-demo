@@ -6,8 +6,9 @@ import React, {
 } from 'react'
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
-import { getResizableEvent } from '../utils/new-util'
+import { getContainerClass, getResizableEvent } from '../utils/new-util'
 import { IResizablePanes } from '../@types'
+import '../style.css'
 
 
 export const ResizablePanes = (props: IResizablePanes) => {
@@ -15,6 +16,8 @@ export const ResizablePanes = (props: IResizablePanes) => {
   const {
     children, resizerSize, onReady, split
   } = props
+
+  const isVertical = split !== 'horizontal'
 
   const containerRef: any = createRef()
   const panesRefs: any = useRef([])
@@ -35,9 +38,9 @@ export const ResizablePanes = (props: IResizablePanes) => {
   )
 
   const onMouseMove = useCallback((e: any) => {
-    const resizableEvent = getResizableEvent(e)
+    const resizableEvent = getResizableEvent(e, isVertical)
     calculateAndSetHeight(resizableEvent)
-  }, [])
+  }, [isVertical])
 
   const onMouseUp = useCallback(() => {
     document.removeEventListener('mousemove', onMouseMove)
@@ -49,12 +52,13 @@ export const ResizablePanes = (props: IResizablePanes) => {
   }, [onMouseUp])
 
   const onMouseDown = useCallback((e: any, index: number) => {
-    const resizableEvent = getResizableEvent(e)
+    const resizableEvent = getResizableEvent(e, isVertical)
     setMouseDownAndPaneAxisDetails(resizableEvent, index)
     document.addEventListener('mousemove', onMouseMove)
   }, [
     setMouseDownAndPaneAxisDetails,
-    onMouseMove
+    onMouseMove,
+    isVertical
   ])
 
   const contentJsx = useMemo(() => {
@@ -66,6 +70,7 @@ export const ResizablePanes = (props: IResizablePanes) => {
       const iCopy = i
       key = children[iCopy].props.id
       content.push(cloneElement(children[iCopy], {
+        split,
         key,
         ref: panesRefs.current[iCopy]
       }))
@@ -75,6 +80,7 @@ export const ResizablePanes = (props: IResizablePanes) => {
           key={`${key}-resizer`}
           resizerSize={resizerSize}
           onMouseDown={(e: any) => onMouseDown(e, iCopy)}
+          split={split}
         />
       )
     }
@@ -88,9 +94,13 @@ export const ResizablePanes = (props: IResizablePanes) => {
     children, onMouseDown, resizerSize
   ])
 
+
+  const className = getContainerClass(split, isVertical)
+
+
   return (
     <div
-      className='pane-container bg-lightblue'
+      className={className}
       ref={containerRef}
     >
       {contentJsx}

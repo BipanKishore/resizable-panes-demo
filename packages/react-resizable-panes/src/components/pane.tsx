@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types'
 import React, {
-  forwardRef, useEffect, useState
+  forwardRef, useEffect, useMemo, useState
 } from 'react'
 
 import {subscription} from '../services/subscription'
-import {toPx} from '../utils/util'
+import { SplitType } from '../@types'
+import { getSizeStyle } from '../utils/new-util'
 
 
 interface IPane {
   className: string,
   children: any[], 
   id: string, 
-  size: number
+  size: number,
+  split: SplitType
 }
 
 
@@ -19,7 +21,8 @@ function Pane (props: IPane, ref: any) {
   const {
 
     // eslint-disable-next-line react/prop-types
-    className, children, id, size
+    className, children, id, size,
+    split
   } = props
 
   const [
@@ -51,11 +54,18 @@ function Pane (props: IPane, ref: any) {
   }: any = state || {
   }
 
+
+
+  const style = useMemo(
+                  () => getSizeStyle(split, size),
+                  [split, size])
+
   return (
     <div
-      className={className} id={id} ref={ref} style={{
-        height: toPx(size)
-      }}
+      className={className} 
+      id={id} 
+      ref={ref} 
+      style={style}
     >
       <div>
         <span>axisCoordinate: {axisCoordinate}</span> {', '}
@@ -73,16 +83,5 @@ function Pane (props: IPane, ref: any) {
   )
 }
 
-Pane.prototypes = {
-  children: PropTypes.element,
-  className: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  maxSize: PropTypes.number,
-  minSize: PropTypes.number,
-  size: PropTypes.number
-}
-
 export default forwardRef(Pane)
 
-const abc = 6
-console.log(abc)

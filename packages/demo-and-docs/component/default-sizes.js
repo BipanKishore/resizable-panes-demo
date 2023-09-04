@@ -14,6 +14,7 @@ export const DefaultSizes = ({
     <ResizablePanes
       resizerSize={5}
       onReady={onReady}
+      split='horizontal'
     >
 
       {set.ids.map((id, index) => (
