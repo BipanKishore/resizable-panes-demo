@@ -15,7 +15,7 @@ const babelLoader = {
 
 module.exports = {
     entry: {
-        index: './src/index.js'
+        index: './index.js'
     },
     mode: 'development',
     devtool:'source-map',
@@ -51,7 +51,7 @@ module.exports = {
 
     plugins: [
         new HTMLWebpackPlugin({
-            template: './src/index.html',
+            template: './public/index.html',
             title: 'CRA without CRA'
         })
     ],
