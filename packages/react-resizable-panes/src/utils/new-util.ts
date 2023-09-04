@@ -1,9 +1,10 @@
+import { IResizableEvent } from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
 import {getMaxSizeSum, getMinSizeSum} from './util'
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
-  let sizeChange = e.clientY - axisCoordinate
+  let sizeChange = e.mouseCoordinate - axisCoordinate
   if (sizeChange < ZERO) {
     return
   }
@@ -21,7 +22,7 @@ export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}:
 }
 
 export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
-  let sizeChange = axisCoordinate - e.clientY
+  let sizeChange = axisCoordinate - e.mouseCoordinate
   if (sizeChange < ZERO) {
     return
   }
@@ -74,4 +75,12 @@ export const setUISizesFn = ({panesList}: any) => {
     pane.setUISize()
   })
   // publishPanes(e)
+}
+
+export const getResizableEvent = (e: any): IResizableEvent =>{
+  const {clientX, clientY, movementY} = e
+  return {
+    mouseCoordinate: clientY,
+    movement: movementY
+  }
 }

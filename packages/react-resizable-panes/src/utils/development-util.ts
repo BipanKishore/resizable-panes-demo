@@ -60,7 +60,7 @@ export const publishPanes = (e:any, panesList: PaneModel[], axisCoordinate: numb
   panesList.forEach((pane) => {
     subscription.publish(pane.id, {
       ...pane,
-      Y: e.clientY,
+      Y: e.mouseCoordinate,
       axisCoordinate
     })
   })

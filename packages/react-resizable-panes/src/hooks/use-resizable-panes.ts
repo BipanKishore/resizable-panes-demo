@@ -110,15 +110,15 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }, [])
 
   const calculateAndSetHeight = useCallback((e: any) => {
-    const {movementY} = e
-    if (movementY) {
+    const {movement} = e
+    if (movement) {
       setDirection(e)
       const isChangeRequired = setAxisConfig(e)
 
       if (isChangeRequired) {
-        if (movementY > ZERO) {
+        if (movement > ZERO) {
           goingDownLogic(e, serviceRef.current)
-        } else if (movementY < ZERO) {
+        } else if (movement < ZERO) {
           goingUpLogic(e, serviceRef.current)
         }
       }
@@ -139,18 +139,18 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const directionChangeActions = (e: any) => {
-    serviceRef.current.axisCoordinate = e.clientY
+    serviceRef.current.axisCoordinate = e.mouseCoordinate
     syncAxisSizes()
     setCurrentMinMaxAndAxes()
   }
 
   const setAxisConfig = (e: any) => {
     const {bottomAxis, topAxis, panesList, activeIndex} = serviceRef.current
-    if (e.clientY <= topAxis) {
+    if (e.mouseCoordinate <= topAxis) {
       setUpMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = topAxis
-    } else if (e.clientY >= bottomAxis) {
+    } else if (e.mouseCoordinate >= bottomAxis) {
       setDownMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = bottomAxis
@@ -160,10 +160,10 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const setMouseDownAndPaneAxisDetails = (e: any, index: number) => {
-    const {clientX, clientY} = e
+    const {clientX, mouseCoordinate} = e
     setActiveIndex(index)
     serviceRef.current.prevDirection = DIRECTIONS.NONE
-    serviceRef.current.axisCoordinate = clientY
+    serviceRef.current.axisCoordinate = mouseCoordinate
     syncAxisSizes()
   }
 

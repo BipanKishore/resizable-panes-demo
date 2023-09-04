@@ -6,11 +6,14 @@ import React, {
 } from 'react'
 import {Resizer} from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
+import { getResizableEvent } from '../utils/new-util'
+
+
 
 export const ResizablePanes = (props) => {
   console.log('rerender')
   const {
-    children, resizerSize, onReady
+    children, resizerSize, onReady, split
   } = props
 
   const containerRef = createRef()
@@ -32,25 +35,22 @@ export const ResizablePanes = (props) => {
   )
 
   const onMouseMove = useCallback((e) => {
-    calculateAndSetHeight(e)
-  }, [
-  ])
+    const resizableEvent = getResizableEvent(e)
+    calculateAndSetHeight(resizableEvent)
+  }, [])
 
   const onMouseUp = useCallback(() => {
     document.removeEventListener('mousemove', onMouseMove)
-  }, [
-    onMouseMove
-  ])
+  }, [onMouseMove])
 
   useEffect(() => {
     document.addEventListener('mouseup', onMouseUp)
     return () => document.removeEventListener('mouseup', onMouseUp)
-  }, [
-    onMouseUp
-  ])
+  }, [onMouseUp])
 
   const onMouseDown = useCallback((e, index) => {
-    setMouseDownAndPaneAxisDetails(e, index)
+    const resizableEvent = getResizableEvent(e)
+    setMouseDownAndPaneAxisDetails(resizableEvent, index)
     document.addEventListener('mousemove', onMouseMove)
   }, [
     setMouseDownAndPaneAxisDetails,
@@ -58,8 +58,7 @@ export const ResizablePanes = (props) => {
   ])
 
   const contentJsx = useMemo(() => {
-    const content = [
-    ]
+    const content = []
 
     let i = 0
     let key
