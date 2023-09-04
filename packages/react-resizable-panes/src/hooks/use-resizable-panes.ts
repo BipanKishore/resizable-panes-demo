@@ -3,7 +3,7 @@ import {IInitPaneService} from '../models/pane-service-models'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits} from '../utils/panes'
 import {getDirection} from '../utils/util'
-import {directionBehaviourConsole} from '../utils/development-util'
+import {directionBehaviourConsole, keyConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
   calculateAxes, goingDownLogic, goingUpLogic,
@@ -21,7 +21,8 @@ interface IServiceRef{
     topAxis?: number,
     bottomAxis?: number,
     prevDirection?: string,
-    axisCoordinate?: number
+    axisCoordinate?: number,
+    isVertical?: boolean
 }
 
 interface IResizableApi {
@@ -33,6 +34,7 @@ interface IUseResizablePanesParams {
   containerRef: any,
   panesRefs: any,
   resizerSize: any,
+  isVertical: boolean,
   onReady: (api: IResizableApi) => void
 }
 
@@ -41,7 +43,9 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     children,
     containerRef,
     panesRefs,
-    resizerSize, onReady
+    resizerSize, 
+    isVertical,
+    onReady
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
@@ -50,7 +54,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       children,
       containerRef,
       panesRefs,
-      resizerSize
+      resizerSize,
+      isVertical
     })
 
     if (onReady) {
@@ -60,29 +65,32 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     onReady, resizerSize, containerRef, panesRefs, children
   ])
 
-  const createPaneList = useCallback((panesRefs: any, children: any[]) => {
+  const createPaneList = useCallback((panesRefs: any, children: any[], isVertical: boolean) => {
     serviceRef.current.panesRefs = panesRefs
     serviceRef.current.panesList = panesRefs
-      ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index]))
+      ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
   }, [])
 
-  const setMaxLimitingSize = useCallback((containerRef: any) => {
-    const {top, height} = containerRef.current.getBoundingClientRect() || {}
-    serviceRef.current.maxTopAxis = top
-    serviceRef.current.maxPaneSize = height -
-    ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
+  const setMaxLimitingSize = useCallback((containerRef: any, isVertical: boolean) => {
+    const rect = containerRef.current.getBoundingClientRect() || {}
+    const {top, height, left, width} = rect
+    serviceRef.current.maxTopAxis = isVertical ? top : left
+    serviceRef.current.maxPaneSize = (isVertical ? height : width) -
+              ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
   }, [])
 
   const initPanesService = ({
     children,
     containerRef,
     panesRefs,
-    resizerSize
+    resizerSize,
+    isVertical
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
-    createPaneList(panesRefs, children)
-    setMaxLimitingSize(containerRef)
+    serviceRef.current.isVertical = isVertical
+    createPaneList(panesRefs, children, isVertical)
+    setMaxLimitingSize(containerRef, isVertical)
   }
 
   const setCurrentMinMaxAndAxes = useCallback(() => {
@@ -130,6 +138,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   const setDirection = (e: any) => {
     const {prevDirection} = serviceRef.current
     const direction = getDirection(e)
+    keyConsole({direction})
     directionBehaviourConsole(direction, prevDirection)
 
     if (prevDirection !== direction) {
@@ -160,7 +169,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const setMouseDownAndPaneAxisDetails = (e: any, index: number) => {
-    const {clientX, mouseCoordinate} = e
+    const {mouseCoordinate} = e
     setActiveIndex(index)
     serviceRef.current.prevDirection = DIRECTIONS.NONE
     serviceRef.current.axisCoordinate = mouseCoordinate

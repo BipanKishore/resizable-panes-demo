@@ -12,3 +12,11 @@
 .f-row {
     flex-direction: row;
 }
+
+.h-200{
+    height: 200px;
+}
+
+.w-fit-content{
+    width: fit-content;
+}

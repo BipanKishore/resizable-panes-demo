@@ -1,4 +1,5 @@
 import {ZERO} from '../constant'
+import { keyConsole } from '../utils/development-util'
 import {toPx} from '../utils/util'
 
 export class PaneModel {
@@ -13,6 +14,8 @@ export class PaneModel {
   maxSize
   defaultMaxSize
 
+  isVertical: boolean
+
   axisSize: number
   isFiniteMaxSize = false
   isNoMinSize = false
@@ -21,7 +24,7 @@ export class PaneModel {
   // Development Variables
   left: number
 
-  constructor (pane: any, index: number, child: any) {
+  constructor (pane: any, index: number, child: any, isVertical: boolean) {
     const {
       id, minSize = ZERO, size, maxSize = Infinity
     } = child.props
@@ -39,6 +42,8 @@ export class PaneModel {
     this.defaultMinSize = minSize
     this.isFiniteMaxSize = Number.isFinite(maxSize)
     this.isNoMinSize = minSize === ZERO
+    this.isVertical = isVertical
+
     if (size < minSize) {
       throw Error('Size can not be smaller than minSize for pane id ' + id)
     }
@@ -79,7 +84,13 @@ export class PaneModel {
 
   setUISize () {
     this.uiSize = this.size
-    this.pane.current.style.height = toPx(this.size)
+    if(this.isVertical){
+      this.pane.current.style.height = toPx(this.size)
+    } else {
+      this.pane.current.style.width = toPx(this.size)
+      keyConsole({isVertical: this.isVertical, px: toPx(this.size)})
+    }
+
     return this.size
   }
 

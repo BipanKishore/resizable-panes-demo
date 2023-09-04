@@ -1,5 +1,6 @@
 import { IResizableEvent, SplitType } from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
+import { keyConsole } from './development-util'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
 
@@ -78,19 +79,22 @@ export const setUISizesFn = ({panesList}: any) => {
 }
 
 export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent => {
+  let resizeEvent 
   if(isVertical){
     const {clientY, movementY} = e
-    return {
+    resizeEvent = {
       mouseCoordinate: clientY,
       movement: movementY
     }
   } else {
     const {clientX, movementX} = e
-    return {
+    resizeEvent = {
       mouseCoordinate: clientX,
       movement: movementX
     }
   }
+  keyConsole({...resizeEvent})
+  return resizeEvent
 }
 
 export const getSizeStyle = (split: SplitType, size: number) => {
@@ -111,7 +115,7 @@ interface IJoinClassNameParam {
 export const getContainerClass = (split: SplitType, isVertical: boolean) => {
   return joinClassName({
     'd-flex': true,
-    'f-row': !isVertical,
+    'f-row h-200 w-fit-content': !isVertical,
     'f-column': isVertical
   })
 }

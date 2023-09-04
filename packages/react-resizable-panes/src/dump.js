@@ -102,4 +102,18 @@ Pane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane Class
   }
 
 Pane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane ClassPane Class
+
+export const getMovementDirection = (e) => {
+  const {
+    movementX, movementY
+  } = e
+  const direction = movementY < ZERO ? DIRECTIONS.UP : DIRECTIONS.DOWN
+  return direction
+}
+
+
+export const isDirectionUpFn = (e) => e.movementY < ZERO
+
+export const isDirectionDown = (e) => e.movementY > ZERO
+
 */

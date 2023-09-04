@@ -31,19 +31,30 @@ const configKeys: string[] = Object.keys(
 
 function App () {
 let [count, setCount] = useState(0)
-  const toggleShow = useCallback(() => {
-    setCount(++count)
-  }, [
-    count
-  ])
+
+const [split, setSplit] = useState('horizontal')
+
+const toggleShow = useCallback(() => {
+  setCount(++count)
+}, [
+  count
+])
+
+const toggleSplit = useCallback(() => {
+  setSplit(split ? 'vertical': 'horizontal')
+}, [
+  split
+])
 
 
   const key =  configKeys [count%configKeys.length]
 
   return (
     <div className='App p-relative t-100' >
-      <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
-      <DefaultSizes set={PaneConfigSet[key]} onReady={()=>{}} />
+    <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
+      <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
+
+      <DefaultSizes set={PaneConfigSet[key]} onReady={()=>{}} split={split} />
     </div>
   )
 }
