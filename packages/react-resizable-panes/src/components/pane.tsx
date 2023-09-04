@@ -6,7 +6,16 @@ import React, {
 import {subscription} from '../services/subscription'
 import {toPx} from '../utils/util'
 
-function Pane (props, ref) {
+
+interface IPane {
+  className: string,
+  children: any[], 
+  id: string, 
+  size: number
+}
+
+
+function Pane (props: IPane, ref: any) {
   const {
 
     // eslint-disable-next-line react/prop-types
@@ -15,16 +24,14 @@ function Pane (props, ref) {
 
   const [
     state, setState
-  ] = useState()
+  ] = useState<any>()
 
   useEffect(() => {
     subscription.subscribe(id, ({
-      size, maxSize, minSize, axisSize, Y, axisCoordinate,
+      size, maxSize, minSize, axisSize, axisCoordinate,
       finalChange, left
-    }) => {
+    }: any) => {
       setState({
-        Y,
-        axisCoordinate,
         axisSize,
         finalChange,
         left,
@@ -40,8 +47,8 @@ function Pane (props, ref) {
   ])
 
   const {
-    size: currentSize, minSize, maxSize, axisSize, Y, axisCoordinate, finalChange, left
-  } = state || {
+    size: currentSize, minSize, maxSize, axisSize, mouseCoordinate, axisCoordinate, finalChange, left
+  }: any = state || {
   }
 
   return (
@@ -52,7 +59,7 @@ function Pane (props, ref) {
     >
       <div>
         <span>axisCoordinate: {axisCoordinate}</span> {', '}
-        <span>Y: {Y}</span> {', '}
+        <span>mouseCoordinate: {mouseCoordinate}</span> {', '}
         <span>axisSize: {axisSize}</span> {', '}
         <span>size: {currentSize}</span> {', '}
         <span>minSize: {minSize}</span> {', '}

@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types'
-import React, {forwardRef} from 'react'
+import React, {MouseEventHandler, forwardRef} from 'react'
 import {toPx} from '../utils/util'
 
-export const Resizer = forwardRef((props, ref) => {
+interface IResizer {
+  onMouseDown: MouseEventHandler<HTMLDivElement>,
+  resizerSize: number
+}
+
+ const Resizer = (props: IResizer, ref: any) => {
   const {
     onMouseDown, resizerSize
   } = props
@@ -16,11 +21,6 @@ export const Resizer = forwardRef((props, ref) => {
       onMouseDown={onMouseDown}
     />
   )
-})
-
-Resizer.displayName = 'Resizer'
-
-Resizer.propTypes = {
-  resizerSize: PropTypes.number.isRequired,
-  onMouseDown: PropTypes.func.isRequired
 }
+
+export default forwardRef(Resizer)

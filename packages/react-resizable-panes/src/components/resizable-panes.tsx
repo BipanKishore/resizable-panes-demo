@@ -4,22 +4,22 @@ import React, {
   cloneElement,
   createRef, useCallback, useEffect, useMemo, useRef
 } from 'react'
-import {Resizer} from './resizer'
+import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
 import { getResizableEvent } from '../utils/new-util'
+import { IResizablePanes } from '../@types'
 
 
-
-export const ResizablePanes = (props) => {
+export const ResizablePanes = (props: IResizablePanes) => {
   console.log('rerender')
   const {
     children, resizerSize, onReady, split
   } = props
 
-  const containerRef = createRef()
-  const panesRefs = useRef([
-  ])
-  panesRefs.current = children.map((_, i) => panesRefs.current[i] ?? createRef())
+  const containerRef: any = createRef()
+  const panesRefs: any = useRef([])
+
+  panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef())
 
   const {
     setMouseDownAndPaneAxisDetails,
@@ -34,7 +34,7 @@ export const ResizablePanes = (props) => {
     }
   )
 
-  const onMouseMove = useCallback((e) => {
+  const onMouseMove = useCallback((e: any) => {
     const resizableEvent = getResizableEvent(e)
     calculateAndSetHeight(resizableEvent)
   }, [])
@@ -48,7 +48,7 @@ export const ResizablePanes = (props) => {
     return () => document.removeEventListener('mouseup', onMouseUp)
   }, [onMouseUp])
 
-  const onMouseDown = useCallback((e, index) => {
+  const onMouseDown = useCallback((e: any, index: number) => {
     const resizableEvent = getResizableEvent(e)
     setMouseDownAndPaneAxisDetails(resizableEvent, index)
     document.addEventListener('mousemove', onMouseMove)
@@ -74,7 +74,7 @@ export const ResizablePanes = (props) => {
         <Resizer
           key={`${key}-resizer`}
           resizerSize={resizerSize}
-          onMouseDown={(e) => onMouseDown(e, iCopy)}
+          onMouseDown={(e: any) => onMouseDown(e, iCopy)}
         />
       )
     }
@@ -96,11 +96,4 @@ export const ResizablePanes = (props) => {
       {contentJsx}
     </div>
   )
-}
-
-ResizablePanes.propTypes = {
-
-  children: PropTypes.any.isRequired,
-  resizerSize: PropTypes.number.isRequired,
-  onReady: PropTypes.func
 }
