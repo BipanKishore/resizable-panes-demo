@@ -40,3 +40,11 @@
 .horizontal-cursur:hover {
     cursor: e-resize;
 }
+
+.p-relative{
+    position: relative;;
+}
+
+.t-100{
+    top: 70px;
+}
