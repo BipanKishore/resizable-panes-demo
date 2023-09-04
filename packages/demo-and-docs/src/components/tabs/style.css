@@ -1,0 +1,12 @@
+
+
+
+.tab {
+    height: 30px;
+    width: fit-content;
+    background-color: greenyellow;
+}
+
+.tab-active{
+    background-color: green;
+}

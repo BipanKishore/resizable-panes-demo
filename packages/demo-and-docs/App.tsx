@@ -12,6 +12,7 @@ import {
   SECOND_SIZE_MAX_SIZE_SAME_SET_1
 } from './component/constant'
 import {DefaultSizes} from './component/default-sizes'
+import { Tabs } from './src/components/tabs'
 
 
 const PaneConfigSet: any = {
@@ -32,7 +33,7 @@ const configKeys: string[] = Object.keys(
 function App () {
 let [count, setCount] = useState(0)
 
-const [split, setSplit] = useState('horizontal')
+const [split, setSplit] = useState('vertical')
 
 const toggleShow = useCallback(() => {
   setCount(++count)
@@ -51,6 +52,8 @@ const toggleSplit = useCallback(() => {
 
   return (
     <div className='App p-relative t-100' >
+
+      <Tabs />
     <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
 
