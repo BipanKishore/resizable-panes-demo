@@ -67,7 +67,7 @@ function Pane (props: IPane, ref: any) {
       ref={ref} 
       style={style}
     >
-      <div>
+      {/* <div>
         <span>axisCoordinate: {axisCoordinate}</span> {', '}
         <span>mouseCoordinate: {mouseCoordinate}</span> {', '}
         <span>axisSize: {axisSize}</span> {', '}
@@ -77,7 +77,7 @@ function Pane (props: IPane, ref: any) {
         <span>left: {left}</span> {', '}
         <span>finalChange: {finalChange}</span> {', '}
 
-      </div>
+      </div> */}
       {/* {children} */}
     </div>
   )

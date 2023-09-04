@@ -111,7 +111,7 @@ interface IJoinClassNameParam {
 export const getContainerClass = (split: SplitType, isVertical: boolean) => {
   return joinClassName({
     'd-flex': true,
-    'f-row': !isVertical,
+    'f-row h-200': !isVertical,
     'f-column': isVertical
   })
 }

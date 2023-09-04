@@ -17,7 +17,8 @@ export const FIRST_SIZE_AND_MAX_SAME_SET_1 = {
 }
 
 export const SECOND_SIZE_MAX_SIZE_SAME_SET_1 = {
-  ids: ['pane1', 'pane2', 'pane3', 'pane4', 'pane5'],
+  ids: ['pane1', 'pane2'],
+  // ids: ['pane1', 'pane2', 'pane3', 'pane4', 'pane5'],
   maxSizes: [
     200, 100, 130, 300
   ],

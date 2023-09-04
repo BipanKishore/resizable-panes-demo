@@ -9,7 +9,7 @@ import useResizablePanes from '../hooks/use-resizable-panes'
 import { getContainerClass, getResizableEvent } from '../utils/new-util'
 import { IResizablePanes } from '../@types'
 import '../style.css'
-
+import { keyConsole } from '../utils/development-util'
 
 export const ResizablePanes = (props: IResizablePanes) => {
   console.log('rerender')
@@ -33,12 +33,14 @@ export const ResizablePanes = (props: IResizablePanes) => {
       containerRef,
       panesRefs,
       resizerSize,
-      onReady
+      onReady,
+      isVertical
     }
   )
 
   const onMouseMove = useCallback((e: any) => {
     const resizableEvent = getResizableEvent(e, isVertical)
+    keyConsole({resizableEvent: JSON.stringify(resizableEvent)})
     calculateAndSetHeight(resizableEvent)
   }, [isVertical])
 
@@ -86,6 +88,7 @@ export const ResizablePanes = (props: IResizablePanes) => {
     }
 
     content.push(cloneElement(children[i], {
+      split,
       key: children[i].props.id,
       ref: panesRefs.current[i]
     }))
