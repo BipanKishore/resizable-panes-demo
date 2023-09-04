@@ -1,0 +1,42 @@
+.h-100p {
+    height: 100%;
+}
+
+.bg-lightblue {
+    background-color: lightblue;
+}
+
+.pane1 {
+    background-color: red;
+}
+
+.pane2 {
+    background-color: greenyellow;
+}
+
+.pane3 {
+    background-color: orange;
+}
+
+
+
+.pane-container {
+    /* height: 830px; */
+}
+
+.resizer {
+    background-color: darkblue;
+}
+
+.resizer:hover{
+    background-color: brown;
+    height: 5px;
+}
+
+.vertical-cursur:hover {
+    cursor: n-resize;
+}
+
+.horizontal-cursur:hover {
+    cursor: e-resize;
+}
