@@ -1,4 +1,5 @@
 import { PaneModel } from "../models/pane-model"
+import { onResizeType } from "./component-types"
 
 export interface IServiceRef{
     containerRef?: any,
@@ -31,7 +32,8 @@ export interface IUseResizablePanesParams {
     resizerSize: any,
     isVertical: boolean,
     onReady: (api: IResizableApi) => void,
-    storage: any
+    storage: any,
+    onResizeStart?: onResizeType
   }
   
 

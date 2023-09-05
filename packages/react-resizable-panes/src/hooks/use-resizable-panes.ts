@@ -6,7 +6,7 @@ import {getDirection} from '../utils/util'
 import {directionBehaviourConsole, keyConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
-  calculateAxes, closeFullSizeFn, goingDownLogic, goingUpLogic,
+  calculateAxes, closeFullSizeFn, createItToSizeMap, goingDownLogic, goingUpLogic,
   restoreDefaultFn,
   setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
 } from '../utils/new-util'
@@ -143,6 +143,11 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     }
   }, [])
 
+  
+  const getIdToSizeMap = () => {
+   return createItToSizeMap(serviceRef.current.panesList)
+  }
+
   const setDirection = (e: any) => {
     const {prevDirection} = serviceRef.current
     const direction = getDirection(e)
@@ -187,8 +192,10 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   return {
     setMouseDownAndPaneAxisDetails,
     setActiveIndex,
-    calculateAndSetHeight
+    calculateAndSetHeight,
+    getIdToSizeMap
   }
 }
+
 
 export default useResizablePanes

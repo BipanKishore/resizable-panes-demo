@@ -20,6 +20,12 @@ export const DefaultSizes = ({
       split={split}
       storage={window.sessionStorage}
       resizerNode={ResizerNode1}
+      onResize={(map) => {
+        // console.log('v-- onResize', map)
+      }}
+      onResizeStop={(map) => {
+        // console.log('v-- onResizeStop', map)
+      }}
     >
 
       {set.ids.map((id, index) => (

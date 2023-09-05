@@ -82,7 +82,7 @@ Close/Open
 Hide/Show api
 Lock/UnLock
 onResizeStop
-onResizeStart
+onResizeStart  // Not doing
 onResize
 direction
 Dynamic Resizer Element

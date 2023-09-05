@@ -5,7 +5,10 @@ import { PaneModel } from '../models/pane-model'
 import { keyConsole } from './development-util'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
 import { storageGetItem, storageSetItem } from './storage'
-import {getMaxSizeSum, getMinSizeSum, noop, toPx} from './util'
+import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
+
+
+export const noop = (_: any): any =>  _
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
@@ -200,6 +203,15 @@ export const createMap = (paneList: PaneModel[]) => {
       show,
       index
     }
+  })
+  return map
+}
+
+
+export const createItToSizeMap = (paneList: PaneModel[]) => {
+  const map: IAnyMap = {}
+  paneList.forEach(({id, size, show, index}) => {
+    map[id] = size
   })
   return map
 }

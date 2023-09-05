@@ -7,16 +7,24 @@ import React, {
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
 import { getContainerClass, getResizableEvent } from '../utils/new-util'
-import { IResizablePanes } from '../@types'
+
 import '../style.css'
 import { keyConsole } from '../utils/development-util'
+import { IResizablePanesProps } from '../@types/component-types'
+import { noop } from '../utils/new-util'
 
-export const ResizablePanes = (props: IResizablePanes) => {
+export const ResizablePanes = (props: IResizablePanesProps) => {
   console.log('rerender')
   const {
-    children, resizerSize, 
-    onReady, split,
-    storage, resizerNode
+    children, 
+    resizerSize, 
+    onReady = noop, 
+    split,
+    storage, 
+    resizerNode,
+    onResizeStop = noop,
+    onResizeStart = noop,
+    onResize = noop,
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -28,7 +36,8 @@ export const ResizablePanes = (props: IResizablePanes) => {
 
   const {
     setMouseDownAndPaneAxisDetails,
-    calculateAndSetHeight
+    calculateAndSetHeight,
+    getIdToSizeMap
   } = useResizablePanes(
     {
       children,
@@ -37,7 +46,8 @@ export const ResizablePanes = (props: IResizablePanes) => {
       resizerSize: 2,
       onReady,
       isVertical,
-      storage
+      storage,
+      onResizeStart
     }
   )
 
@@ -45,10 +55,14 @@ export const ResizablePanes = (props: IResizablePanes) => {
     const resizableEvent = getResizableEvent(e, isVertical)
     keyConsole({resizableEvent: JSON.stringify(resizableEvent)})
     calculateAndSetHeight(resizableEvent)
-  }, [isVertical])
+    const resizeParams = getIdToSizeMap()
+    onResize(resizeParams)
+  }, [isVertical, onResize])
 
   const onMouseUp = useCallback(() => {
     document.removeEventListener('mousemove', onMouseMove)
+    const resizeParams = getIdToSizeMap()
+    onResizeStop(resizeParams)
   }, [onMouseMove])
 
   useEffect(() => {

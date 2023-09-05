@@ -48,4 +48,3 @@ export const getMinSizeSum = (panesList, start, end) => {
   return sum
 }
 
-export const noop = _ => _

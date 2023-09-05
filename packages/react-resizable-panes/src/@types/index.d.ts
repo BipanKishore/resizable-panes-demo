@@ -7,15 +7,13 @@ export interface IResizableEvent {
     movement: number
 }
 
-export interface IResizablePanes {
-    children: any[],
-    resizerSize: number,
-    onReady: () => {}, 
-    split: SplitType,
-    storage?: any,
-    resizerNode?: any
-  }
 
-  interface IAnyMap {
+
+
+export interface IMapIdToSize {
+  [key:string] : number
+}
+
+export  interface IAnyMap {
     [key: string]: any
   }
