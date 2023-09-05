@@ -93,6 +93,8 @@ Lock Perosnal Size
 KeyBoard Events
 collapsedSize
 
+Fit to screen
+
 Group to connect two panels together
 local/session storage
 minimize & maximize

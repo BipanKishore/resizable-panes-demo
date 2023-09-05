@@ -6,37 +6,11 @@ import {getDirection} from '../utils/util'
 import {directionBehaviourConsole, keyConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
-  calculateAxes, goingDownLogic, goingUpLogic,
-  setCurrentMinMax, setUISizesFn, syncAxisSizesFn
+  calculateAxes, closeFullSizeFn, goingDownLogic, goingUpLogic,
+  setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullSizeFn
 } from '../utils/new-util'
+import { IServiceRef, IUseResizablePanesParams } from '../@types/use-resizable-panes-types'
 
-interface IServiceRef{
-    containerRef?: any,
-    panesRefs?: any
-    resizerSize?: number,
-    panesList?: PaneModel[],
-    maxTopAxis?: number,
-    maxPaneSize?: number,
-    activeIndex?: number
-    topAxis?: number,
-    bottomAxis?: number,
-    prevDirection?: string,
-    axisCoordinate?: number,
-    isVertical?: boolean
-}
-
-interface IResizableApi {
-
-}
-
-interface IUseResizablePanesParams {
-  children: any,
-  containerRef: any,
-  panesRefs: any,
-  resizerSize: any,
-  isVertical: boolean,
-  onReady: (api: IResizableApi) => void
-}
 
 const useResizablePanes = (props: IUseResizablePanesParams) => {
   const {
@@ -49,6 +23,18 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
+  //---------------------------------  API --------------------------------------------//
+
+  const toFullSize = (paneId: string) => {
+    toFullSizeFn(serviceRef.current, paneId)
+  }
+
+  const closeFullSize = () => {
+    closeFullSizeFn(serviceRef.current)
+  }
+
+  //---------------------------------  API --------------------------------------------//
+
   useEffect(() => {
     initPanesService({
       children,
@@ -59,7 +45,10 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     })
 
     if (onReady) {
-      onReady({})
+      onReady({
+        toFullSize,
+        closeFullSize
+      })
     }
   }, [
     onReady, resizerSize, containerRef, panesRefs, children
@@ -95,7 +84,6 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
 
   const setCurrentMinMaxAndAxes = useCallback(() => {
     setCurrentMinMax(serviceRef.current)
-
     const {
       bottomAxis,
       topAxis

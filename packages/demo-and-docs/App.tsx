@@ -1,5 +1,5 @@
 import React, {
-  createRef, useCallback, useState
+  createRef, useCallback, useRef, useState
 } from 'react'
 
 import {
@@ -30,8 +30,13 @@ const configKeys: string[] = Object.keys(
 )
 
 
+
+
+
 function App () {
 let [count, setCount] = useState(0)
+
+const ref: any = useRef()
 
 const [split, setSplit] = useState('vertical')
 
@@ -52,12 +57,19 @@ const toggleSplit = useCallback(() => {
 
   return (
     <div className='App p-relative t-100' >
+       <div>
+    
+    <button onClick={() => ref.current.toFullSize('pane1') }>toFullSize </button>
+    <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>
 
+</div>
       <Tabs />
     <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
 
-      <DefaultSizes set={PaneConfigSet[key]} onReady={()=>{}} split={split} />
+      <DefaultSizes set={PaneConfigSet[key]} onReady={(api)=>{
+        ref.current = api
+      }} split={split} />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { IResizableEvent, SplitType } from '../@types'
+import { IServiceRef } from '../@types/use-resizable-panes-types'
 import {MINUS_ONE, ZERO} from '../constant'
 import { keyConsole } from './development-util'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
@@ -122,6 +123,31 @@ export const getContainerClass = (split: SplitType, isVertical: boolean) => {
 
 export const joinClassName = (param: IJoinClassNameParam) => {
     const keys = Object.keys(param)
-
     return keys.map((key) => param[key] ? key: '' ).join(' ')
+}
+
+export const findPaneIndex = (param: IServiceRef, paneId: string) => {
+  const {panesList} = param
+  return panesList.findIndex((({id}) => id === paneId))
+}
+
+export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
+  const {panesList, maxPaneSize} = param
+  panesList.forEach((pane) => {
+    pane.synPreservedSize()
+    if(pane.id === paneId) {
+      pane.size = maxPaneSize
+    } else {
+      pane.size = 0
+    }
+  })
+  setUISizesFn(param)
+}
+
+export const closeFullSizeFn = (param: IServiceRef) => {
+  const {panesList} = param
+  panesList.forEach((pane) => {
+    pane.synSizeToStored()
+  })
+  setUISizesFn(param)
 }

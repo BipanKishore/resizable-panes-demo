@@ -13,6 +13,7 @@ export class PaneModel {
   defaultMinSize
   maxSize
   defaultMaxSize
+  storedSize: number
 
   isVertical: boolean
 
@@ -92,6 +93,14 @@ export class PaneModel {
     }
 
     return this.size
+  }
+
+  synPreservedSize(){
+    this.storedSize = this.size
+  }
+
+  synSizeToStored(){
+    this.size = this.storedSize
   }
 
   synSizeToUI () {
