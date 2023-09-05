@@ -5,6 +5,10 @@
     display: flex;
 }
 
+.d-block {
+    display: block;
+}
+
 .f-column{
     flex-direction: column;
 }
@@ -19,4 +23,8 @@
 
 .w-fit-content{
     width: fit-content;
+}
+
+.m-auto {
+    margin: auto;
 }

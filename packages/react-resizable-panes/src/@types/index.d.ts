@@ -12,7 +12,8 @@ export interface IResizablePanes {
     resizerSize: number,
     onReady: () => {}, 
     split: SplitType,
-    storage?: any
+    storage?: any,
+    resizerNode?: any
   }
 
   interface IAnyMap {

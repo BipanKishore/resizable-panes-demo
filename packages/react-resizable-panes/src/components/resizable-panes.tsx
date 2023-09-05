@@ -14,8 +14,9 @@ import { keyConsole } from '../utils/development-util'
 export const ResizablePanes = (props: IResizablePanes) => {
   console.log('rerender')
   const {
-    children, resizerSize, onReady, split,
-    storage
+    children, resizerSize, 
+    onReady, split,
+    storage, resizerNode
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -83,6 +84,7 @@ export const ResizablePanes = (props: IResizablePanes) => {
         <Resizer
           key={`${key}-resizer`}
           resizerSize={resizerSize}
+          node={resizerNode}
           onMouseDown={(e: any) => onMouseDown(e, iCopy)}
           split={split}
         />

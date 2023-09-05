@@ -13,6 +13,7 @@ import {
 } from './component/constant'
 import {DefaultSizes} from './component/default-sizes'
 import { Tabs } from './src/components/tabs'
+import { ResizerNode1 } from './component/src/components/resizer-nodes/resize-node-1'
 
 
 const PaneConfigSet: any = {
@@ -65,7 +66,7 @@ const toggleSplit = useCallback(() => {
       <Tabs />
     <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
-
+    <ResizerNode1 />
       <DefaultSizes set={PaneConfigSet[key]} onReady={(api)=>{
         ref.current = api
       }} split={split} />
