@@ -18,7 +18,8 @@ export interface IServiceRef{
 
 export interface IResizableApi {
     toFullSize: (paneId: string) => void,
-    closeFullSize: () => void
+    closeFullSize: () => void,
+    restoreDefault: () => void
 }
 
 

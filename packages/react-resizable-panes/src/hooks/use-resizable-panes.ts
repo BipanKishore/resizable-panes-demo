@@ -7,6 +7,7 @@ import {directionBehaviourConsole, keyConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
   calculateAxes, closeFullSizeFn, goingDownLogic, goingUpLogic,
+  restoreDefaultFn,
   setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullSizeFn
 } from '../utils/new-util'
 import { IServiceRef, IUseResizablePanesParams } from '../@types/use-resizable-panes-types'
@@ -38,6 +39,10 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     
   }
 
+  const restoreDefault = () => {
+    restoreDefaultFn(serviceRef.current)
+  }
+
   //---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
@@ -53,7 +58,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     if (onReady) {
       onReady({
         toFullSize,
-        closeFullSize
+        closeFullSize,
+        restoreDefault
       })
     }
   }, [

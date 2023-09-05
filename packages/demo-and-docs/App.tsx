@@ -61,7 +61,8 @@ const toggleSplit = useCallback(() => {
     
     <button onClick={() => ref.current.toFullSize('pane1') }>toFullSize </button>
     <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>
-
+    <button onClick={() => ref.current.restoreDefault() }>restoreDefault </button>
+    
 </div>
       <Tabs />
     <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>

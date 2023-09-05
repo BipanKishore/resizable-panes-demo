@@ -34,7 +34,7 @@ export const ResizablePanes = (props: IResizablePanes) => {
       children,
       containerRef,
       panesRefs,
-      resizerSize: 1,
+      resizerSize: 2,
       onReady,
       isVertical,
       storage

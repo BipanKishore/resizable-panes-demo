@@ -170,6 +170,14 @@ export const closeFullSizeFn = (param: IServiceRef) => {
   setUISizesFn(param)
 }
 
+export const restoreDefaultFn = (param: IServiceRef) => {
+  const {panesList} = param
+  panesList.forEach((pane) => {
+    pane.restore()
+  })
+  setUISizesFn(param)
+}
+
 
 export const createMap = (paneList: PaneModel[]) => {
   const map: IAnyMap = {}
