@@ -62,6 +62,7 @@ const toggleSplit = useCallback(() => {
     <button onClick={() => ref.current.toFullSize('pane1') }>toFullSize </button>
     <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>
     <button onClick={() => ref.current.restoreDefault() }>restoreDefault </button>
+    <button onClick={() => ref.current.toFullPage('pane1') }>toFullPage </button>
     
 </div>
       <Tabs />

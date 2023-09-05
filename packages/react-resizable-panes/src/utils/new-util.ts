@@ -149,6 +149,19 @@ export const findPaneIndex = (param: IServiceRef, paneId: string) => {
   return panesList.findIndex((({id}) => id === paneId))
 }
 
+
+export const toFullPageFn = (param: IServiceRef, paneId: string) => {
+  const {panesList} = param
+  panesList.forEach((pane) => {
+    if(pane.id === paneId) {
+      pane.synPreservedSize()
+      pane.removeProperty('')
+      pane.pane.current.classList.add('full-page-class')
+    }
+  })
+  // setUISizesFn(param)
+}
+
 export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
   const {panesList, maxPaneSize} = param
   panesList.forEach((pane) => {

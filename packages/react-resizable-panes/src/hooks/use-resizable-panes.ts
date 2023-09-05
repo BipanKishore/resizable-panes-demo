@@ -8,7 +8,7 @@ import {DIRECTIONS, ZERO} from '../constant'
 import {
   calculateAxes, closeFullSizeFn, goingDownLogic, goingUpLogic,
   restoreDefaultFn,
-  setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullSizeFn
+  setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
 } from '../utils/new-util'
 import { IServiceRef, IUseResizablePanesParams } from '../@types/use-resizable-panes-types'
 
@@ -26,6 +26,11 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   const serviceRef = useRef<IServiceRef>({})
 
   //---------------------------------  API --------------------------------------------//
+
+  const toFullPage = (paneId: string) => {
+    toFullPageFn(serviceRef.current, paneId)
+    
+  }
 
   const toFullSize = (paneId: string) => {
     toFullSizeFn(serviceRef.current, paneId)
@@ -59,7 +64,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       onReady({
         toFullSize,
         closeFullSize,
-        restoreDefault
+        restoreDefault,
+        toFullPage
       })
     }
   }, [

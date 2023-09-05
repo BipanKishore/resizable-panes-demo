@@ -43,3 +43,15 @@
 .resizer:hover{
     background-color: brown;
 }
+
+
+.full-page-class {
+    display: block;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 1000px;
+    bottom: 100px;
+    width: 100%;
+}
