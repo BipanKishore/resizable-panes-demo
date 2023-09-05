@@ -23,9 +23,11 @@ interface IResizer {
     <div
       className='resizer vertical-cursur'
       ref={ref}
-      style={style}
+      // style={style}
       onMouseDown={onMouseDown}
-    ><Node className='d-block m-auto' /></div>
+    >
+      {/* <Node className='d-block m-auto' /> */}
+      </div>
   )
 }
 

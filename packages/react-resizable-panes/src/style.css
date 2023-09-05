@@ -28,3 +28,18 @@
 .m-auto {
     margin: auto;
 }
+
+.resizer {
+    height: 11px;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    margin: -5px 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    cursor: row-resize;
+    background-color: darkblue;
+}
+
+.resizer:hover{
+    background-color: brown;
+}
