@@ -3,7 +3,8 @@ export interface IInitPaneService {
     containerRef: any,
     panesRefs: any[],
     resizerSize: number,
-    isVertical: boolean
+    isVertical: boolean,
+    storage: any
 }
 
 export interface IPanesVisibility{

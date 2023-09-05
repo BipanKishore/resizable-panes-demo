@@ -73,7 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-Feature to add
+# Feature to add
 Full Size Button
 Max Size Button
 Min Size Button
@@ -92,7 +92,7 @@ Lock Perosnal Size
 
 KeyBoard Events
 collapsedSize
-
+Drag Enable to set Order
 Fit to screen
 
 Group to connect two panels together

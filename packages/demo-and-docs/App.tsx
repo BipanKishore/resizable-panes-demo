@@ -56,8 +56,7 @@ const toggleSplit = useCallback(() => {
   const key =  configKeys [count%configKeys.length]
 
   return (
-    <div className='App p-relative t-100' >
-       <div>
+    <div className='App p-relative t-100' ><div>
     
     <button onClick={() => ref.current.toFullSize('pane1') }>toFullSize </button>
     <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>

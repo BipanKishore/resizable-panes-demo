@@ -12,7 +12,8 @@ export interface IServiceRef{
     bottomAxis?: number,
     prevDirection?: string,
     axisCoordinate?: number,
-    isVertical?: boolean
+    isVertical?: boolean,
+    storage?: any
 }
 
 export interface IResizableApi {
@@ -27,7 +28,8 @@ export interface IUseResizablePanesParams {
     panesRefs: any,
     resizerSize: any,
     isVertical: boolean,
-    onReady: (api: IResizableApi) => void
+    onReady: (api: IResizableApi) => void,
+    storage: any
   }
   
 

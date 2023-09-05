@@ -17,6 +17,7 @@ export const DefaultSizes = ({
       resizerSize={5}
       onReady={onReady}
       split={split}
+      storage={window.sessionStorage}
     >
 
       {set.ids.map((id, index) => (

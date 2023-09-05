@@ -1,5 +1,6 @@
 
 type SplitType = 'horizontal' | 'vertical'
+type StorageType = 'local' | 'session'
 
 export interface IResizableEvent {
     mouseCoordinate: number,
@@ -10,5 +11,10 @@ export interface IResizablePanes {
     children: any[],
     resizerSize: number,
     onReady: () => {}, 
-    split: SplitType
+    split: SplitType,
+    storage?: any
+  }
+
+  interface IAnyMap {
+    [key: string]: any
   }

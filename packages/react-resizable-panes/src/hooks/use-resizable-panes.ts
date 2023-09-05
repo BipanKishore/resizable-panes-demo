@@ -19,7 +19,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     panesRefs,
     resizerSize, 
     isVertical,
-    onReady
+    onReady,
+    storage
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
@@ -33,6 +34,10 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     closeFullSizeFn(serviceRef.current)
   }
 
+  const clearStorage = () => {
+    
+  }
+
   //---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
@@ -41,7 +46,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       containerRef,
       panesRefs,
       resizerSize,
-      isVertical
+      isVertical,
+      storage
     })
 
     if (onReady) {
@@ -54,7 +60,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     onReady, resizerSize, containerRef, panesRefs, children
   ])
 
-  const createPaneList = useCallback((panesRefs: any, children: any[], isVertical: boolean) => {
+  const createPaneList = useCallback(({panesRefs, children, isVertical}: any) => {
     serviceRef.current.panesRefs = panesRefs
     serviceRef.current.panesList = panesRefs
       ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
@@ -73,12 +79,14 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     containerRef,
     panesRefs,
     resizerSize,
-    isVertical
+    isVertical,
+    storage
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
     serviceRef.current.isVertical = isVertical
-    createPaneList(panesRefs, children, isVertical)
+    serviceRef.current.storage = storage
+    createPaneList({panesRefs, children, isVertical})
     setMaxLimitingSize(containerRef, isVertical)
   }
 

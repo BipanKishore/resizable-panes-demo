@@ -83,6 +83,10 @@ export class PaneModel {
     return this.setSize(newSize)
   }
 
+  setFixSize(size: number) {
+    this.size = size
+  }
+
   setUISize () {
     this.uiSize = this.size
     if(this.isVertical){

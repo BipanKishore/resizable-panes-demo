@@ -13,3 +13,6 @@ export const RIGHT_BUTTON_VALUE = 0
 export const ZERO = 0
 export const ONE = 1
 export const MINUS_ONE = -1
+
+export const APP_NAME = 'react-split-pane'
+export const SIZE_MAP_STORAGE_KEY = 'size-map'

@@ -14,7 +14,8 @@ import { keyConsole } from '../utils/development-util'
 export const ResizablePanes = (props: IResizablePanes) => {
   console.log('rerender')
   const {
-    children, resizerSize, onReady, split
+    children, resizerSize, onReady, split,
+    storage
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -34,7 +35,8 @@ export const ResizablePanes = (props: IResizablePanes) => {
       panesRefs,
       resizerSize,
       onReady,
-      isVertical
+      isVertical,
+      storage
     }
   )
 
