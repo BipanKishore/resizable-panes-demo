@@ -74,27 +74,42 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 # Feature to add
+**Api**
+    Full Size - Done
+    Full Page - Done
+    close Fullsize - Done
+    setVisibility
+
+**Props**
+onResizeStop -> Done
+onResize -> Done
+direction
+
+Dynamic Resizer Element
+Resizer Icon
+className
+
+Drag Enable to set Order
+Fit to screen -> Done
+
+**Memoizable**
+
+
+**GIF**
+-To others for understanding
+
+
+# Not Doing in phase 1
+Close/Open Button
+Hide Button
 Full Size Button
 Max Size Button
 Min Size Button
-Hide Button
-Close/Open
-Hide/Show api
-Lock/UnLock
-onResizeStop
+Lock/UnLock // Not 
 onResizeStart  // Not doing
-onResize
-direction
-Dynamic Resizer Element
-className
-
 Lock Perosnal Size
-
-KeyBoard Events
 collapsedSize
-Drag Enable to set Order
-Fit to screen
-
-Group to connect two panels together
-local/session storage
-minimize & maximize
+KeyBoard Events
+Group to connect two panels together // Not doing
+local/session storage // Not doing
+minimize & maximize // Not doing
