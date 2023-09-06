@@ -1,3 +1,4 @@
+import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {DIRECTIONS} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {subscription} from '../services/subscription'
@@ -8,7 +9,8 @@ export const keyConsole = (obj: any = {}, add = 'v--') => {
   console.log(str)
 }
 
-export const minMaxTotal = (panesList: PaneModel[], MaxPaneSize: number) => {
+export const minMaxTotal = (param: IServiceRef) => {
+  const {panesList, maxPaneSize} = param
   let sum = 0
   panesList
     .forEach(({minSize, maxSize}) => {
@@ -18,9 +20,9 @@ export const minMaxTotal = (panesList: PaneModel[], MaxPaneSize: number) => {
 
   // const paneSizeTotal = sum
   const paneSizeTotal = sum / 2
-  console.warn('SIZE SUM', sum, paneSizeTotal, 'max allowd', MaxPaneSize)
-  if ((MaxPaneSize !== sum && MaxPaneSize !== paneSizeTotal)) {
-    console.error('Max limit cross, Max Pane Size:' + MaxPaneSize + ' Sum:' + paneSizeTotal)
+  console.warn('SIZE SUM', sum, paneSizeTotal, 'max allowd', maxPaneSize)
+  if ((maxPaneSize !== sum && maxPaneSize !== paneSizeTotal)) {
+    throw new Error('Max limit cross, Max Pane Size:' + maxPaneSize + ' Sum:' + paneSizeTotal)
     //  throw new Error ('Max limit cross, Max Pane Size:' + MaxPaneSize + ' Sum:' + paneSizeTotal)
   }
 }

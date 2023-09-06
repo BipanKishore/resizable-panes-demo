@@ -3,7 +3,7 @@ import {IInitPaneService} from '../models/pane-service-models'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits} from '../utils/panes'
 import {getDirection} from '../utils/util'
-import {directionBehaviourConsole, keyConsole} from '../utils/development-util'
+import {directionBehaviourConsole, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
   calculateAxes, closeFullSizeFn, createItToSizeMap, goingDownLogic, goingUpLogic,
@@ -108,6 +108,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     } = calculateAxes(serviceRef.current)
     serviceRef.current.bottomAxis = bottomAxis
     serviceRef.current.topAxis = topAxis
+
+    minMaxTotal(serviceRef.current)
   }, [])
 
   const syncAxisSizes = useCallback(() => {
