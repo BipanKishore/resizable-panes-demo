@@ -39,7 +39,7 @@ let [count, setCount] = useState(0)
 
 const ref: any = useRef()
 
-const [split, setSplit] = useState('vertical')
+const [split, setSplit] = useState('horizontal')
 
 const toggleShow = useCallback(() => {
   setCount(++count)

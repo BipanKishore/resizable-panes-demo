@@ -18,10 +18,11 @@ interface IResizer {
 
   const style = useMemo(() => getSizeStyle(split, resizerSize), [split, resizerSize])
 
+  const className = split === 'vertical' ? 'resizer-vertical' : 'resizer-horizontal'
 
   return (
     <div
-      className='resizer vertical-cursur'
+      className={`resizer ${className}`}
       ref={ref}
       // style={style}
       onMouseDown={onMouseDown}

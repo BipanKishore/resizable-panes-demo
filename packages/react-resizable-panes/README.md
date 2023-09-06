@@ -79,6 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     Full Page - Done
     close Fullsize - Done
     setVisibility
+    restore default
 
 **Props**
 onResizeStop -> Done
