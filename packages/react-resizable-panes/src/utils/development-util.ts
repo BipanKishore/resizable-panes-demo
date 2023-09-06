@@ -27,7 +27,7 @@ export const minMaxTotal = (param: IServiceRef) => {
   }
 }
 
-export const getList = (panesList: PaneModel[], key: string) => {
+export const getList = (panesList: PaneModel[], key: string): unknown[] => {
   return panesList.map((pane: any) => pane[key])
 }
 

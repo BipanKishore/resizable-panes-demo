@@ -20,7 +20,7 @@ export class PaneModel {
   axisSize: number
   isFiniteMaxSize = false
   isNoMinSize = false
-  show
+  visibility
 
   // Development Variables
   left: number
@@ -35,7 +35,7 @@ export class PaneModel {
     this.size = size
     this.defaultSize = size
     this.pane = pane
-    this.show = true
+    this.visibility = true
     this.uiSize = size
     this.maxSize = maxSize
     this.defaultMaxSize = maxSize

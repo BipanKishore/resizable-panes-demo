@@ -198,10 +198,10 @@ export const restoreDefaultFn = (param: IServiceRef) => {
 
 export const createMap = (paneList: PaneModel[]) => {
   const map: IAnyMap = {}
-  paneList.forEach(({id, size, show, index}) => {
+  paneList.forEach(({id, size, visibility, index}) => {
     map[id] = {
       size,
-      show,
+      visibility,
       index
     }
   })

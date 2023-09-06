@@ -1,31 +1,34 @@
-import React, {MouseEventHandler, forwardRef, useMemo} from 'react'
-import {getSizeStyle} from '../utils/new-util'
+import React, {MouseEventHandler, forwardRef} from 'react'
 import {SplitType} from '../@types'
 
 interface IResizer {
   onMouseDown: MouseEventHandler<HTMLDivElement>,
-  resizerSize: number,
+  resizerSize?: number,
   split: SplitType,
-  node: any
+  node?: any,
+  visibility?: boolean
 }
 
 const Resizer = (props: IResizer, ref: any) => {
   const {
-    onMouseDown, resizerSize, split, node: Node
+    onMouseDown,
+    split,
+    visibility
   } = props
 
-  const style = useMemo(() => getSizeStyle(split, resizerSize), [split, resizerSize])
-
   const className = split === 'vertical' ? 'resizer-vertical' : 'resizer-horizontal'
+
+  // Only hiding for the case of false
+  if (visibility === false) {
+    return null
+  }
 
   return (
     <div
       className={`resizer ${className}`}
       ref={ref}
-      // style={style}
       onMouseDown={onMouseDown}
     >
-      {/* <Node className='d-block m-auto' /> */}
     </div>
   )
 }

@@ -253,6 +253,7 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
       sizeChangeMap[pane.id] = pane.size
       pane.synPreservedSize()
       pane.setFixSize(0)
+      pane.visibility = false
     }
   }
   setUISizesFn(param)

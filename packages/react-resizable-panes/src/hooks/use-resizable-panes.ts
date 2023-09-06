@@ -1,8 +1,8 @@
-import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
+import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
 import {getDirection} from '../utils/util'
-import {directionBehaviourConsole, keyConsole, minMaxTotal} from '../utils/development-util'
+import {directionBehaviourConsole, getList, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 import {
   calculateAxes, closeFullSizeFn, createItToSizeMap, goingDownLogic, goingUpLogic,
@@ -24,6 +24,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
+  const [resizerVisibilityList, setResizerVisibilityList] = useState([])
+
   // ---------------------------------  API --------------------------------------------//
 
   const toFullPage = (paneId: string) => {
@@ -44,6 +46,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
 
   const setVisibility = (param: IKeyToBoolMap) => {
     const sizeChangeMap = setVisibilityFn(serviceRef.current, param)
+    const list = <boolean[]>getList(serviceRef.current.panesList, 'visibility')
+    setResizerVisibilityList(list)
     keyConsole({...sizeChangeMap}, 'v-------')
 
     // const resizableEvent = getResizableEvent(e, isVertical)
@@ -197,7 +201,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     setMouseDownAndPaneAxisDetails,
     setActiveIndex,
     calculateAndSetHeight,
-    getIdToSizeMap
+    getIdToSizeMap,
+    resizerVisibilityList
   }
 }
 

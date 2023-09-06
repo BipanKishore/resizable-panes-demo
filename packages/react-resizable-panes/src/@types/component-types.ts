@@ -13,6 +13,7 @@ export interface IResizablePanesProps {
     onResizeStop?: onResizeType,
     onResizeStart?: onResizeType,
     onResize?: onResizeType,
+    name: string
   }
 
 export interface IPane {

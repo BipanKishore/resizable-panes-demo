@@ -1,5 +1,5 @@
 import React, {
-  forwardRef, useMemo
+  forwardRef, memo, useMemo
 } from 'react'
 import {getSizeStyle} from '../utils/new-util'
 import {IPane} from '../@types/component-types'
@@ -27,4 +27,4 @@ function Pane (props: IPane, ref: any) {
   )
 }
 
-export default forwardRef(Pane)
+export default memo(forwardRef(Pane))
