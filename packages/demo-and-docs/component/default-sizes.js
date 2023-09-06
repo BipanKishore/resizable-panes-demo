@@ -6,7 +6,7 @@ import {
 } from 'react-resizable-panes'
 import {TestComp} from './test-comp'
 import {CLASS_NAME} from './constant'
-import {ResizerNode1} from './src/components/resizer-nodes/resize-node-1'
+import {ResizerNode1} from '../src/components/resizer-nodes/resize-node-1'
 
 export const DefaultSizes = ({
   onReady, set, split

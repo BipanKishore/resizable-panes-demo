@@ -12,7 +12,7 @@ import {
   , SECOND_SIZE_MAX_SIZE_SAME_SET_1
 } from '../../component/constant'
 import {DefaultSizes} from '../../component/default-sizes'
-import {ResizerNode1} from '../../component/src/components/resizer-nodes/resize-node-1'
+import {ResizerNode1} from '../components/resizer-nodes/resize-node-1'
 
 const PaneConfigSet: any = {
   SECOND_SIZE_MAX_SIZE_SAME_SET_1,
