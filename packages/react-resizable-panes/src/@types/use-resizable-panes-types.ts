@@ -1,5 +1,6 @@
 import {PaneModel} from '../models/pane-model'
 import {onResizeType} from './component-types'
+import {IKeyToBoolMap} from './general-type'
 
 export interface IServiceRef{
     containerRef?: any,
@@ -21,7 +22,8 @@ export interface IResizableApi {
     toFullSize: (paneId: string) => void,
     closeFullSize: () => void,
     restoreDefault: () => void,
-    toFullPage: (paneId: string) => void
+    toFullPage: (paneId: string) => void,
+    setVisibility: (map: IKeyToBoolMap) => void
 }
 
 export interface IUseResizablePanesParams {
@@ -33,8 +35,4 @@ export interface IUseResizablePanesParams {
     onReady: (api: IResizableApi) => void,
     storage: any,
     onResizeStart?: onResizeType
-  }
-
-export interface IPanesIdBoolMap {
-    [name: string]: boolean
   }

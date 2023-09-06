@@ -57,6 +57,8 @@ export const ApiDocs = () => {
       <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>
       <button onClick={() => ref.current.restoreDefault() }>restoreDefault </button>
       <button onClick={() => ref.current.toFullPage('pane1') }>toFullPage </button>
+      <button onClick={() => ref.current.setVisibility({pane1: false, pane4: false}) }>Hide Pane 1 & 4 </button>
+      <button onClick={() => ref.current.setVisibility({pane1: true, pane4: true}) }>Show Pane 1 & 4 </button>
 
       <button onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>

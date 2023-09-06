@@ -1,6 +1,9 @@
+import {IKeyToBoolMap} from '../@types/general-type'
+import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole} from './development-util'
-import {synPanesMaxToSize, synPanesMinToSize} from './util'
+import {setCurrentMinMax, setUISizesFn} from './new-util'
+import {findById, synPanesMaxToSize, synPanesMinToSize} from './util'
 
 // eslint-disable-next-line complexity
 export const minMaxLogicUp = (
@@ -236,4 +239,22 @@ export const setUpMaxLimits = (panesList: PaneModel[], index: number) => {
   for (let i = index + 1; i < panesList.length; i++) {
     panesList[i].size = panesList[i].maxSize
   }
+}
+
+export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
+  const {panesList} = param
+  const keys = Object.keys(idMap)
+
+  const sizeChangeMap: any = {}
+
+  for (let i = 0; i < panesList.length; i++) {
+    const pane = panesList[i]
+    if (keys.includes(pane.id)) {
+      sizeChangeMap[pane.id] = pane.size
+      pane.synPreservedSize()
+      pane.setFixSize(0)
+    }
+  }
+  setUISizesFn(param)
+  return sizeChangeMap
 }

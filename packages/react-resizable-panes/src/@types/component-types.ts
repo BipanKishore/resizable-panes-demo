@@ -1,4 +1,5 @@
-import {IMapIdToSize, SplitType} from '.'
+import {SplitType} from '.'
+import {IMapIdToSize} from './general-type'
 
 export type onResizeType = (param: IMapIdToSize) => void
 

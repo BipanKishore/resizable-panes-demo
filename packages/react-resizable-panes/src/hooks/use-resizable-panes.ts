@@ -1,7 +1,7 @@
 import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
 import {IInitPaneService} from '../models/pane-service-models'
 import {PaneModel} from '../models/pane-model'
-import {setDownMaxLimits, setUpMaxLimits} from '../utils/panes'
+import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
 import {getDirection} from '../utils/util'
 import {directionBehaviourConsole, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
@@ -11,6 +11,7 @@ import {
   setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
 } from '../utils/new-util'
 import {IServiceRef, IUseResizablePanesParams} from '../@types/use-resizable-panes-types'
+import {IKeyToBoolMap} from '../@types/general-type'
 
 const useResizablePanes = (props: IUseResizablePanesParams) => {
   const {
@@ -46,6 +47,11 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     restoreDefaultFn(serviceRef.current)
   }
 
+  const setVisibility = (param: IKeyToBoolMap) => {
+    console.log(param)
+    setVisibilityFn(serviceRef.current, param)
+  }
+
   // ---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
@@ -63,7 +69,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
         toFullSize,
         closeFullSize,
         restoreDefault,
-        toFullPage
+        toFullPage,
+        setVisibility
       })
     }
   }, [
@@ -100,12 +107,12 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     setMaxLimitingSize(containerRef, isVertical)
   }
 
-  const setCurrentMinMaxAndAxes = useCallback(() => {
-    setCurrentMinMax(serviceRef.current)
+  const setCurrentMinMaxAndAxes = useCallback((index?: number) => {
+    setCurrentMinMax(serviceRef.current, index)
     const {
       bottomAxis,
       topAxis
-    } = calculateAxes(serviceRef.current)
+    } = calculateAxes(serviceRef.current, index)
     serviceRef.current.bottomAxis = bottomAxis
     serviceRef.current.topAxis = topAxis
 

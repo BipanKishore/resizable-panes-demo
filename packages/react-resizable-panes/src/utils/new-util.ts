@@ -1,4 +1,5 @@
-import {IAnyMap, IResizableEvent, SplitType} from '../@types'
+import {IResizableEvent, SplitType} from '../@types'
+import {IAnyMap} from '../@types/general-type'
 import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {APP_NAME, MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
@@ -44,26 +45,29 @@ export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: a
   }
 }
 
-export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any) => {
+export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, index?: number) => {
   // initMinMaxLogic()
 //   const {panesList, maxPaneSize, activeIndex} = serviceRef.current
-  const aMaxChangeUp = panesList[activeIndex].getMinDiff()
-  const bMaxChangeUp = panesList[activeIndex + 1].getMaxDiff()
+  const idx = index || activeIndex
+  const nextIdx = idx + 1
+  const aMaxChangeUp = panesList[idx].getMinDiff()
+  const bMaxChangeUp = panesList[nextIdx].getMaxDiff()
 
-  minMaxLogicUp(panesList, aMaxChangeUp - bMaxChangeUp, activeIndex, activeIndex + 1, 0, maxPaneSize)
+  minMaxLogicUp(panesList, aMaxChangeUp - bMaxChangeUp, idx, nextIdx, 0, maxPaneSize)
 
   // initMinMaxLogic()
-  const aMaxChangeDown = panesList[activeIndex + 1].getMinDiff()
-  const bMaxChangeDown = panesList[activeIndex].getMaxDiff()
-  minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, activeIndex, activeIndex + 1, 0, maxPaneSize)
-  calculateAxes(activeIndex)
+  const aMaxChangeDown = panesList[nextIdx].getMinDiff()
+  const bMaxChangeDown = panesList[idx].getMaxDiff()
+  minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, idx, nextIdx, 0, maxPaneSize)
+  calculateAxes(idx)
 }
 
-export const calculateAxes = ({panesList, maxTopAxis, resizerSize, activeIndex}: any) => {
+export const calculateAxes = ({panesList, maxTopAxis, resizerSize, activeIndex}: any, index?: number) => {
 //   const {panesList, maxTopAxis, resizerSize} = serviceRef.current
+  const idx = index || activeIndex
   const resizerSizeHalf = Math.floor(resizerSize / 2)
-  const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, activeIndex) + activeIndex * resizerSize + resizerSizeHalf
-  const topAxis = maxTopAxis + getMinSizeSum(panesList, 0, activeIndex) + activeIndex * resizerSize + resizerSizeHalf
+  const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
+  const topAxis = maxTopAxis + getMinSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
   return {
     bottomAxis,
     topAxis
