@@ -114,7 +114,7 @@ export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent 
       movement: movementX
     }
   }
-  keyConsole({...resizeEvent})
+  // keyConsole({...resizeEvent})
   return resizeEvent
 }
 

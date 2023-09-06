@@ -115,7 +115,7 @@ export const minMaxLogicUp = (
 export const minMaxLogicDown = (
   panesList: PaneModel[], value: number, aIndex: number, bIndex: number, sum = 0, maxPaneSize: number) => {
   const lastIndex = panesList.length - 1
-  keyConsole({aIndex, bIndex, value, sum})
+  // keyConsole({aIndex, bIndex, value, sum})
   let nextValue
   let nextAIndex = aIndex
   let nextBIndex = bIndex

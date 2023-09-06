@@ -150,7 +150,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   const setDirection = (e: any) => {
     const {prevDirection} = serviceRef.current
     const direction = getDirection(e)
-    keyConsole({direction})
+    // keyConsole({direction})
     directionBehaviourConsole(direction, prevDirection)
 
     if (prevDirection !== direction) {

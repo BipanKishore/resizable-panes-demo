@@ -93,7 +93,7 @@ export class PaneModel {
       this.pane.current.style.height = toPx(this.size)
     } else {
       this.pane.current.style.width = toPx(this.size)
-      keyConsole({isVertical: this.isVertical, px: toPx(this.size)})
+      // keyConsole({isVertical: this.isVertical, px: toPx(this.size)})
     }
 
     return this.size

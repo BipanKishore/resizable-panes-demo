@@ -7,7 +7,6 @@ import useResizablePanes from '../hooks/use-resizable-panes'
 import {getContainerClass, getResizableEvent, noop} from '../utils/new-util'
 
 import '../style.css'
-import {keyConsole} from '../utils/development-util'
 import {IResizablePanesProps} from '../@types/component-types'
 
 export const ResizablePanes = (props: IResizablePanesProps) => {
@@ -50,7 +49,6 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
 
   const onMouseMove = useCallback((e: any) => {
     const resizableEvent = getResizableEvent(e, isVertical)
-    keyConsole({resizableEvent: JSON.stringify(resizableEvent)})
     calculateAndSetHeight(resizableEvent)
     const resizeParams = getIdToSizeMap()
     onResize(resizeParams)
