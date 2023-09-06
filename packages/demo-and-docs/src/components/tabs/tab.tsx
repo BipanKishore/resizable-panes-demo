@@ -1,24 +1,24 @@
-import React from "react";
-
+import React from 'react'
 
 export interface ITabProps {
     active: boolean,
-    text: string,
-    onClick?: any
+    label: string,
+    onClick?: any,
+    component?: any,
+    path: string
 }
 
-
 export const Tab = (props: ITabProps) => {
+  const {active, label, onClick, path} = props
 
-    const {active, text, onClick} =props
+  const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
 
-    const className = active ? 'tab tab-active' : 'tab'
-
-    return (
-        <div 
-            onClick={() => onClick(text)} 
-            className={className}>
-            {text}
-        </div>
-    )
+  return (
+    <div
+      className={className}
+      onClick={() => onClick(path)}
+    >
+      {label}
+    </div>
+  )
 }
