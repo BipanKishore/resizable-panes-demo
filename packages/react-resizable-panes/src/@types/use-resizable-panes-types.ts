@@ -36,3 +36,12 @@ export interface IUseResizablePanesParams {
     storage: any,
     onResizeStart?: onResizeType
   }
+
+export interface IInitPaneService {
+    children: any[],
+    containerRef: any,
+    panesRefs: any[],
+    resizerSize: number,
+    isVertical: boolean,
+    storage: any
+}

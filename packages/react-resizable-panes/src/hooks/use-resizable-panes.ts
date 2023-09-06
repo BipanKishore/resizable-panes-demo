@@ -1,5 +1,4 @@
 import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
-import {IInitPaneService} from '../models/pane-service-models'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
 import {getDirection} from '../utils/util'
@@ -10,7 +9,7 @@ import {
   restoreDefaultFn,
   setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
 } from '../utils/new-util'
-import {IServiceRef, IUseResizablePanesParams} from '../@types/use-resizable-panes-types'
+import {IInitPaneService, IServiceRef, IUseResizablePanesParams} from '../@types/use-resizable-panes-types'
 import {IKeyToBoolMap} from '../@types/general-type'
 
 const useResizablePanes = (props: IUseResizablePanesParams) => {
@@ -39,17 +38,16 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     closeFullSizeFn(serviceRef.current)
   }
 
-  const clearStorage = () => {
-
-  }
-
   const restoreDefault = () => {
     restoreDefaultFn(serviceRef.current)
   }
 
   const setVisibility = (param: IKeyToBoolMap) => {
-    console.log(param)
-    setVisibilityFn(serviceRef.current, param)
+    const sizeChangeMap = setVisibilityFn(serviceRef.current, param)
+    keyConsole({...sizeChangeMap}, 'v-------')
+
+    // const resizableEvent = getResizableEvent(e, isVertical)
+    // setMouseDownAndPaneAxisDetails(resizableEvent)
   }
 
   // ---------------------------------  API --------------------------------------------//
