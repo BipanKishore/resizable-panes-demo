@@ -1,5 +1,5 @@
 import {ZERO} from '../constant'
-import { keyConsole } from '../utils/development-util'
+import {keyConsole} from '../utils/development-util'
 import {toPx} from '../utils/util'
 
 export class PaneModel {
@@ -83,13 +83,13 @@ export class PaneModel {
     return this.setSize(newSize)
   }
 
-  setFixSize(size: number) {
+  setFixSize (size: number) {
     this.size = size
   }
 
   setUISize () {
     this.uiSize = this.size
-    if(this.isVertical){
+    if (this.isVertical) {
       this.pane.current.style.height = toPx(this.size)
     } else {
       this.pane.current.style.width = toPx(this.size)
@@ -99,11 +99,11 @@ export class PaneModel {
     return this.size
   }
 
-  synPreservedSize(){
+  synPreservedSize () {
     this.storedSize = this.size
   }
 
-  synSizeToStored(){
+  synSizeToStored () {
     this.size = this.storedSize
   }
 
@@ -153,8 +153,8 @@ export class PaneModel {
     return this.defaultMaxSize - this.size
   }
 
-  removeProperty(property: string) {
+  removeProperty (property: string) {
     this.pane.current.style.removeProperty('height')
-    this.pane.current.style.removeProperty('width') 
+    this.pane.current.style.removeProperty('width')
   }
 }

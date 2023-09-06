@@ -1,25 +1,25 @@
 import React, {
   forwardRef, useMemo
 } from 'react'
-import { getSizeStyle } from '../utils/new-util'
-import { IPane } from '../@types/component-types'
+import {getSizeStyle} from '../utils/new-util'
+import {IPane} from '../@types/component-types'
 
 function Pane (props: IPane, ref: any) {
   const {
-    className, 
-    children, 
+    className,
+    children,
     size,
     split
   } = props
 
   const style = useMemo(
-                  () => getSizeStyle(split, size),
-                  [split, size])
+    () => getSizeStyle(split, size),
+    [split, size])
 
   return (
     <div
-      className={className} 
-      ref={ref} 
+      className={className}
+      ref={ref}
       style={style}
     >
       {children}
@@ -28,4 +28,3 @@ function Pane (props: IPane, ref: any) {
 }
 
 export default forwardRef(Pane)
-

@@ -1,30 +1,27 @@
-
-import PropTypes from 'prop-types'
 import React, {
   cloneElement,
   createRef, useCallback, useEffect, useMemo, useRef
 } from 'react'
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
-import { getContainerClass, getResizableEvent } from '../utils/new-util'
+import {getContainerClass, getResizableEvent, noop} from '../utils/new-util'
 
 import '../style.css'
-import { keyConsole } from '../utils/development-util'
-import { IResizablePanesProps } from '../@types/component-types'
-import { noop } from '../utils/new-util'
+import {keyConsole} from '../utils/development-util'
+import {IResizablePanesProps} from '../@types/component-types'
 
 export const ResizablePanes = (props: IResizablePanesProps) => {
   console.log('rerender')
   const {
-    children, 
-    resizerSize, 
-    onReady = noop, 
+    children,
+    resizerSize,
+    onReady = noop,
     split,
-    storage, 
+    storage,
     resizerNode,
     onResizeStop = noop,
     onResizeStart = noop,
-    onResize = noop,
+    onResize = noop
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -97,10 +94,10 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
       content.push(
         <Resizer
           key={`${key}-resizer`}
-          resizerSize={resizerSize}
           node={resizerNode}
-          onMouseDown={(e: any) => onMouseDown(e, iCopy)}
+          resizerSize={resizerSize}
           split={split}
+          onMouseDown={(e: any) => onMouseDown(e, iCopy)}
         />
       )
     }
@@ -115,9 +112,7 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
     children, onMouseDown, resizerSize
   ])
 
-
   const className = getContainerClass(split, isVertical)
-
 
   return (
     <div

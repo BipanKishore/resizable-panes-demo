@@ -4,7 +4,6 @@ import {
 
 export const isNotRightButtonPressed = (e) => e.button !== RIGHT_BUTTON_VALUE
 
-
 export const toPx = (value) => `${value}px`
 
 export const getDirection = e => e.movement < ZERO ? DIRECTIONS.UP : DIRECTIONS.DOWN
@@ -47,4 +46,3 @@ export const getMinSizeSum = (panesList, start, end) => {
   }
   return sum
 }
-

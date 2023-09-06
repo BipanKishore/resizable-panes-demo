@@ -123,7 +123,7 @@
         // "max-len": ["error", { "code": 120 }],
         // "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
         // "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-        // "no-multi-spaces": "error",
+        // 
         // "no-whitespace-before-property":"error",
         // "object-curly-spacing": ["error", "never"], // not required,
         // "space-before-blocks": "error",

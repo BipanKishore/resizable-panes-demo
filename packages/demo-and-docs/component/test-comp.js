@@ -2,15 +2,12 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 export const TestComp = ({
-
-    name
+  name
 }) => {
-
-    console.log('v-- rendering ', name)
-    return <div>{name}</div>
-
+  console.log('v-- rendering ', name)
+  return <div>{name}</div>
 }
 
 TestComp.propTypes = {
-    name: PropTypes.string
+  name: PropTypes.string
 }

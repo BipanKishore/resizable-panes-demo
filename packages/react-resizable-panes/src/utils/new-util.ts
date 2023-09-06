@@ -1,14 +1,13 @@
-import { IAnyMap, IResizableEvent, SplitType } from '../@types'
-import { IServiceRef } from '../@types/use-resizable-panes-types'
+import {IAnyMap, IResizableEvent, SplitType} from '../@types'
+import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {APP_NAME, MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
-import { PaneModel } from '../models/pane-model'
-import { keyConsole } from './development-util'
+import {PaneModel} from '../models/pane-model'
+import {keyConsole} from './development-util'
 import {minMaxLogicDown, minMaxLogicUp} from './panes'
-import { storageGetItem, storageSetItem } from './storage'
+import {storageGetItem, storageSetItem} from './storage'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
 
-
-export const noop = (_: any): any =>  _
+export const noop = (_: any): any => _
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
@@ -93,16 +92,16 @@ const storeIdtoSizeMap = (panesList: PaneModel[], storage: any) => {
 // Need to delete Ids and match min Max
 const storeReadAndSetSizes = ({storage, panesList}: IServiceRef) => {
   const panesMap = storageGetItem(storage, SIZE_MAP_STORAGE_KEY)
-  if(panesMap) {
+  if (panesMap) {
     panesList.forEach((pane) => {
-      
+
     })
   }
 }
 
 export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent => {
-  let resizeEvent 
-  if(isVertical){
+  let resizeEvent
+  if (isVertical) {
     const {clientY, movementY} = e
     resizeEvent = {
       mouseCoordinate: clientY,
@@ -122,7 +121,7 @@ export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent 
 export const getSizeStyle = (split: SplitType, size: number) => {
   const style: any = {}
   const px = toPx(size)
-  if(split === 'horizontal'){
+  if (split === 'horizontal') {
     style.width = px
   } else {
     style.height = px
@@ -143,20 +142,19 @@ export const getContainerClass = (split: SplitType, isVertical: boolean) => {
 }
 
 export const joinClassName = (param: IJoinClassNameParam) => {
-    const keys = Object.keys(param)
-    return keys.map((key) => param[key] ? key: '' ).join(' ')
+  const keys = Object.keys(param)
+  return keys.map((key) => param[key] ? key : '').join(' ')
 }
 
 export const findPaneIndex = (param: IServiceRef, paneId: string) => {
   const {panesList} = param
-  return panesList.findIndex((({id}) => id === paneId))
+  return panesList.findIndex(({id}) => id === paneId)
 }
-
 
 export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   const {panesList} = param
   panesList.forEach((pane) => {
-    if(pane.id === paneId) {
+    if (pane.id === paneId) {
       pane.synPreservedSize()
       pane.removeProperty('')
       pane.pane.current.classList.add('full-page-class')
@@ -169,7 +167,7 @@ export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
   const {panesList, maxPaneSize} = param
   panesList.forEach((pane) => {
     pane.synPreservedSize()
-    if(pane.id === paneId) {
+    if (pane.id === paneId) {
       pane.size = maxPaneSize
     } else {
       pane.size = 0
@@ -194,11 +192,10 @@ export const restoreDefaultFn = (param: IServiceRef) => {
   setUISizesFn(param)
 }
 
-
 export const createMap = (paneList: PaneModel[]) => {
   const map: IAnyMap = {}
   paneList.forEach(({id, size, show, index}) => {
-    map[id] ={
+    map[id] = {
       size,
       show,
       index
@@ -207,10 +204,9 @@ export const createMap = (paneList: PaneModel[]) => {
   return map
 }
 
-
 export const createItToSizeMap = (paneList: PaneModel[]) => {
   const map: IAnyMap = {}
-  paneList.forEach(({id, size, show, index}) => {
+  paneList.forEach(({id, size}) => {
     map[id] = size
   })
   return map

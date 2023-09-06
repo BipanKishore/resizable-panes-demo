@@ -111,7 +111,6 @@ export const getMovementDirection = (e) => {
   return direction
 }
 
-
 export const isDirectionUpFn = (e) => e.movementY < ZERO
 
 export const isDirectionDown = (e) => e.movementY > ZERO

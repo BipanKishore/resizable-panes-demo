@@ -1,29 +1,27 @@
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
   Panes, ResizablePanes
 } from 'react-resizable-panes'
 import {TestComp} from './test-comp'
 import {CLASS_NAME} from './constant'
-import { ResizerNode1 } from './src/components/resizer-nodes/resize-node-1'
+import {ResizerNode1} from './src/components/resizer-nodes/resize-node-1'
 
 export const DefaultSizes = ({
   onReady, set, split
 }) => {
-
-
   return (
     <ResizablePanes
+      resizerNode={ResizerNode1}
       resizerSize={25}
-      onReady={onReady}
       split={split}
       storage={window.sessionStorage}
-      resizerNode={ResizerNode1}
+      onReady={onReady}
       onResize={(map) => {
         // console.log('v-- onResize', map)
       }}
-      onResizeStop={(map) => {
+      onResizeStop ={(map) => {
         // console.log('v-- onResizeStop', map)
       }}
     >
@@ -41,7 +39,7 @@ export const DefaultSizes = ({
         </Panes>
       ))
 
-    }
+            }
 
     </ResizablePanes>
   )
@@ -49,6 +47,6 @@ export const DefaultSizes = ({
 
 DefaultSizes.propTypes = {
   set: PropTypes.object,
-  onReady: PropTypes.func,
-  split: PropTypes.string
+  split: PropTypes.string,
+  onReady: PropTypes.func
 }

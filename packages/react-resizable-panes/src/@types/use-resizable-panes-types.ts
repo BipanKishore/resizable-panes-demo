@@ -1,5 +1,5 @@
-import { PaneModel } from "../models/pane-model"
-import { onResizeType } from "./component-types"
+import {PaneModel} from '../models/pane-model'
+import {onResizeType} from './component-types'
 
 export interface IServiceRef{
     containerRef?: any,
@@ -24,7 +24,6 @@ export interface IResizableApi {
     toFullPage: (paneId: string) => void
 }
 
-
 export interface IUseResizablePanesParams {
     children: any,
     containerRef: any,
@@ -35,20 +34,7 @@ export interface IUseResizablePanesParams {
     storage: any,
     onResizeStart?: onResizeType
   }
-  
 
-export interface IUseResizablePanesParams {
-    children: any,
-    containerRef: any,
-    panesRefs: any,
-    resizerSize: any,
-    isVertical: boolean,
-    onReady: (api: IResizableApi) => void
-  }
-  
-
-  export interface IPanesIdBoolMap {
+export interface IPanesIdBoolMap {
     [name: string]: boolean
   }
-
-  

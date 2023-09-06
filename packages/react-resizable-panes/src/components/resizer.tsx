@@ -1,8 +1,6 @@
-import PropTypes, { node } from 'prop-types'
 import React, {MouseEventHandler, forwardRef, useMemo} from 'react'
-import {toPx} from '../utils/util'
-import { getSizeStyle } from '../utils/new-util'
-import { SplitType } from '../@types'
+import {getSizeStyle} from '../utils/new-util'
+import {SplitType} from '../@types'
 
 interface IResizer {
   onMouseDown: MouseEventHandler<HTMLDivElement>,
@@ -11,7 +9,7 @@ interface IResizer {
   node: any
 }
 
- const Resizer = (props: IResizer, ref: any) => {
+const Resizer = (props: IResizer, ref: any) => {
   const {
     onMouseDown, resizerSize, split, node: Node
   } = props
@@ -28,7 +26,7 @@ interface IResizer {
       onMouseDown={onMouseDown}
     >
       {/* <Node className='d-block m-auto' /> */}
-      </div>
+    </div>
   )
 }
 

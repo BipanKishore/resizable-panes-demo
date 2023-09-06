@@ -1,4 +1,3 @@
-
 type SplitType = 'horizontal' | 'vertical'
 type StorageType = 'local' | 'session'
 
@@ -7,13 +6,10 @@ export interface IResizableEvent {
     movement: number
 }
 
-
-
-
 export interface IMapIdToSize {
   [key:string] : number
 }
 
-export  interface IAnyMap {
+export interface IAnyMap {
     [key: string]: any
   }

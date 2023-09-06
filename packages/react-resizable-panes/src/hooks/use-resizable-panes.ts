@@ -10,26 +10,24 @@ import {
   restoreDefaultFn,
   setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
 } from '../utils/new-util'
-import { IServiceRef, IUseResizablePanesParams } from '../@types/use-resizable-panes-types'
-
+import {IServiceRef, IUseResizablePanesParams} from '../@types/use-resizable-panes-types'
 
 const useResizablePanes = (props: IUseResizablePanesParams) => {
   const {
     children,
     containerRef,
     panesRefs,
-    resizerSize, 
+    resizerSize,
     isVertical,
     onReady,
     storage
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
-  //---------------------------------  API --------------------------------------------//
+  // ---------------------------------  API --------------------------------------------//
 
   const toFullPage = (paneId: string) => {
     toFullPageFn(serviceRef.current, paneId)
-    
   }
 
   const toFullSize = (paneId: string) => {
@@ -41,14 +39,14 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const clearStorage = () => {
-    
+
   }
 
   const restoreDefault = () => {
     restoreDefaultFn(serviceRef.current)
   }
 
-  //---------------------------------  API --------------------------------------------//
+  // ---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
     initPanesService({
@@ -143,9 +141,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     }
   }, [])
 
-  
   const getIdToSizeMap = () => {
-   return createItToSizeMap(serviceRef.current.panesList)
+    return createItToSizeMap(serviceRef.current.panesList)
   }
 
   const setDirection = (e: any) => {
@@ -196,6 +193,5 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     getIdToSizeMap
   }
 }
-
 
 export default useResizablePanes
