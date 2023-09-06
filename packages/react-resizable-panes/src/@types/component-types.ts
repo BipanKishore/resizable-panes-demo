@@ -13,3 +13,11 @@ export interface IResizablePanesProps {
     onResizeStart?: onResizeType,
     onResize?: onResizeType,
   }
+
+  export interface IPane {
+    className: string,
+    children: any[], 
+    id: string, 
+    size: number,
+    split: SplitType
+  }
