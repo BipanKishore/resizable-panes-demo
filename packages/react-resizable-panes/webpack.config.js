@@ -18,7 +18,7 @@ const babelLoader = {
 
 module.exports = {
     entry: {
-        index: './index.js'
+        index: './index.ts'
     },
     mode: 'development',
     devtool:'source-map',
