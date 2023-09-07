@@ -19,10 +19,12 @@ export const Tab = (props: ITabProps) => {
   // const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
 
   return (
+
     <div
       className={className}
       onClick={() => onClick(path)}
     >
+
       {label}
     </div>
   )

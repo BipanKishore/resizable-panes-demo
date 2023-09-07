@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Tabs, Router} from '../components'
+import Header from '../components/header'
 export const PanesDashboard = () => {
   const [path, setPath] = useState<any>('apiDocs')
 
@@ -8,12 +9,15 @@ export const PanesDashboard = () => {
   }
 
   return (
-    <div className="display-flex">
-      <Tabs onClick={onClickTabs} />
-      <div>
-        <Router path={path} />
+    <>
+      <Header/>
+      <div className="display-flex">
+        <Tabs onClick={onClickTabs} />
+        <div className="router">
+          <Router path={path} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 // http://localhost:8080
