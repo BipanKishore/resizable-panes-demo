@@ -2,7 +2,10 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const glob = require('glob')
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack')
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -23,7 +26,7 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: [babelLoader,  'ts-loader'],
+                use: ['ts-loader'],
                 exclude: /node_modules/,
             },
             {
@@ -57,6 +60,15 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: './public/index.html',
             title: 'CRA without CRA'
+        }),
+        new ForkTsCheckerWebpackPlugin(),
+        new ForkTsCheckerNotifierWebpackPlugin({
+          title: 'TypeScript',
+          excludeWarnings: false,
+        }),
+        new WebpackNotifierPlugin({
+            title: 'Webpack',
+            emoji: true
         })
     ],
     resolve: {
