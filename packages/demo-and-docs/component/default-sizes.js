@@ -9,7 +9,7 @@ import {CLASS_NAME} from './constant'
 import {ResizerNode1} from '../src/components/resizer-nodes/resize-node-1'
 
 export const DefaultSizes = ({
-  onReady, set, split
+  onReady, set, split, justUpdate
 }) => {
   return (
     <ResizablePanes
@@ -35,7 +35,7 @@ export const DefaultSizes = ({
           minSize={set.minSizes[index]}
           size={set.sizes[index]}
         >
-          <TestComp name={id} />
+          <TestComp justUpdate={justUpdate} name={id} />
         </Panes>
       ))
 

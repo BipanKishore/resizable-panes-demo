@@ -2,7 +2,8 @@ import React from 'react'
 import {routerComponentSelector} from './util'
 
 interface IRouterProps {
-    path: string
+    path: string,
+    index?: number
 }
 
 export const Router = (props: IRouterProps) => {

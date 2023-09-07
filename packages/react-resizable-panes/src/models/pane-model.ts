@@ -100,7 +100,9 @@ export class PaneModel {
   }
 
   synPreservedSize () {
-    this.storedSize = this.size
+    if (this.visibility) {
+      this.storedSize = this.size
+    }
   }
 
   synSizeToStored () {

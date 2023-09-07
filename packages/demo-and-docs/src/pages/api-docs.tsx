@@ -31,6 +31,7 @@ const configKeys: string[] = Object.keys(
 
 export const ApiDocs = () => {
   let [count, setCount] = useState(0)
+  const [justUpdate, setJustUpdate] = useState(true)
 
   const ref: any = useRef()
 
@@ -53,6 +54,8 @@ export const ApiDocs = () => {
   return (
     <div>
       <div className='App p-relative t-100' ></div>
+
+      <button onClick={() => setJustUpdate(!justUpdate) }>setJustUpdate </button>
       <button onClick={() => ref.current.toFullSize('pane1') }>toFullSize </button>
       <button onClick={() => ref.current.closeFullSize() }>closeFullSize </button>
       <button onClick={() => ref.current.restoreDefault() }>restoreDefault </button>
@@ -64,6 +67,7 @@ export const ApiDocs = () => {
       <button onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
       <ResizerNode1 />
       <DefaultSizes
+        justUpdate={justUpdate}
         set={PaneConfigSet[key]} split={split} onReady={(api) => {
           ref.current = api
         }}

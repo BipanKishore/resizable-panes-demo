@@ -1,6 +1,7 @@
 import React, {
+  RefObject,
   cloneElement,
-  createRef, useCallback, useEffect, useMemo, useRef
+  createRef, memo, useCallback, useEffect, useMemo, useRef
 } from 'react'
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
@@ -9,8 +10,8 @@ import {getContainerClass, getResizableEvent, noop} from '../utils/new-util'
 import '../style.css'
 import {IResizablePanesProps} from '../@types/component-types'
 
-export const ResizablePanes = (props: IResizablePanesProps) => {
-  console.log('rerender')
+export const ResizablePanes = memo((props: IResizablePanesProps) => {
+  console.log('rerender -> ResizablePanes')
   const {
     children,
     resizerSize,
@@ -26,19 +27,23 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
   const isVertical = split !== 'horizontal'
 
   const containerRef: any = createRef()
-  const panesRefs: any = useRef([])
+  const panesRefs: any = useRef<RefObject<HTMLDivElement>[]>([])
+  const resizerRefs: any = useRef([])
 
+  resizerRefs.current = children.map((_, i:number) => resizerRefs.current[i] ?? createRef())
   panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef())
 
   const {
     setMouseDownAndPaneAxisDetails,
     calculateAndSetHeight,
     getIdToSizeMap
+    // resizerVisibilityList
   } = useResizablePanes(
     {
       children,
       containerRef,
       panesRefs,
+      resizerRefs,
       resizerSize: 2,
       onReady,
       isVertical,
@@ -76,6 +81,7 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
   ])
 
   const contentJsx = useMemo(() => {
+    console.log('rerender -> contentJsx')
     const content = []
 
     let i = 0
@@ -86,13 +92,14 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
       content.push(cloneElement(children[iCopy], {
         split,
         key,
-        ref: panesRefs.current[iCopy]
+        innerRef: panesRefs.current[iCopy]
       }))
 
       content.push(
         <Resizer
           key={`${key}-resizer`}
           node={resizerNode}
+          ref={resizerRefs.current[iCopy]}
           resizerSize={resizerSize}
           split={split}
           onMouseDown={(e: any) => onMouseDown(e, iCopy)}
@@ -103,7 +110,7 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
     content.push(cloneElement(children[i], {
       split,
       key: children[i].props.id,
-      ref: panesRefs.current[i]
+      innerRef: panesRefs?.current[i]
     }))
     return content
   }, [
@@ -120,4 +127,4 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
       {contentJsx}
     </div>
   )
-}
+}, () => false)

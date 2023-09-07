@@ -1,3 +1,4 @@
+import {RefObject} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {onResizeType} from './component-types'
 import {IKeyToBoolMap} from './general-type'
@@ -15,7 +16,8 @@ export interface IServiceRef{
     prevDirection?: string,
     axisCoordinate?: number,
     isVertical?: boolean,
-    storage?: any
+    storage?: any,
+    resizerRefs?: any,
 }
 
 export interface IResizableApi {
@@ -30,6 +32,7 @@ export interface IUseResizablePanesParams {
     children: any,
     containerRef: any,
     panesRefs: any,
+    resizerRefs: any,
     resizerSize: any,
     isVertical: boolean,
     onReady: (api: IResizableApi) => void,

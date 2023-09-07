@@ -1,3 +1,4 @@
+import {Ref, RefObject} from 'react'
 import {SplitType} from '.'
 import {IMapIdToSize} from './general-type'
 
@@ -6,7 +7,7 @@ export type onResizeType = (param: IMapIdToSize) => void
 export interface IResizablePanesProps {
     children: any[],
     resizerSize: number,
-    onReady: () => {},
+    onReady: () => void,
     split: SplitType,
     storage?: any,
     resizerNode?: any,
@@ -21,5 +22,6 @@ export interface IPane {
     children: any[],
     id: string,
     size: number,
-    split: SplitType
+    split: SplitType,
+    innerRef: RefObject<HTMLDivElement>
   }
