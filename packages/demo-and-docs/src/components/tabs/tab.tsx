@@ -10,8 +10,13 @@ export interface ITabProps {
 
 export const Tab = (props: ITabProps) => {
   const {active, label, onClick, path} = props
-
-  const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
+  let className
+  if (active) {
+    className = 'tab tab-active radious-5'
+  } else {
+    className = 'tab radious-5 nonactive-tab'
+  }
+  // const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
 
   return (
     <div

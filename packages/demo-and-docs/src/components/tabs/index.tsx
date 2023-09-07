@@ -24,7 +24,7 @@ export const Tabs = (props: ITabsProps) => {
   }
 
   return (
-    <div>
+    <div className="tab-container">
       {
         tabList.map(
           (item) => <Tab {...item} onClick={onClickTab} />

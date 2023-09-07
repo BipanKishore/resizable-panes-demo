@@ -16,7 +16,8 @@ export const Router = (props: IRouterProps) => {
     )
   } else {
     return (
-      <h3>No Component Found</h3>
+
+      <h3 className="cbox">No Component Found</h3>
     )
   }
 }

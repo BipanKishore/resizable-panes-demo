@@ -11,7 +11,7 @@
 }
 
 .pane2 {
-    background-color: greenyellow;
+    background-color: rgb(103, 94, 235);
 }
 
 .pane3 {
@@ -47,4 +47,7 @@
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border: 0px solid #000000;
+}
+.display-flex{
+    display: flex;
 }
