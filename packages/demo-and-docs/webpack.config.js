@@ -68,12 +68,12 @@ module.exports = {
         }),
         new WebpackNotifierPlugin({
             title: 'Webpack',
-            emoji: true
+            emoji: true,
+            alwaysNotify: true
         })
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
       },
     watch: true
-
 }

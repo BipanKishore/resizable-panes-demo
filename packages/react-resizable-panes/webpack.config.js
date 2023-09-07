@@ -5,6 +5,7 @@ const glob = require('glob')
 const webpack = require('webpack')
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -64,6 +65,11 @@ module.exports = {
         new ForkTsCheckerNotifierWebpackPlugin({
           title: 'TypeScript',
           excludeWarnings: false,
+        }),
+        new WebpackNotifierPlugin({
+            title: 'Webpack',
+            emoji: true,
+            alwaysNotify: true
         })
     ],
     resolve: {
