@@ -80,6 +80,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     close Fullsize - Done
     setVisibility
     restore default
+    Touch Event
 
 **Props**
 onResizeStop -> Done
@@ -90,8 +91,6 @@ Dynamic Resizer Element
 Resizer Icon
 className
 
-Drag Enable to set Order
-Fit to screen -> Done
 
 **Memoizable**
 
@@ -101,6 +100,11 @@ Fit to screen -> Done
 
 
 # Not Doing in phase 1
+
+
+Drag Enable to set Order
+Fit to screen -> Done
+
 Close/Open Button
 Hide Button
 Full Size Button

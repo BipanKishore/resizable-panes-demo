@@ -2,8 +2,8 @@ import {IKeyToBoolMap} from '../@types/general-type'
 import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole} from './development-util'
-import {setCurrentMinMax, setUISizesFn} from './new-util'
-import {findById, synPanesMaxToSize, synPanesMinToSize, toPx} from './util'
+import {setUISizesFn} from './new-util'
+import {synPanesMaxToSize, synPanesMinToSize} from './util'
 
 // eslint-disable-next-line complexity
 export const minMaxLogicUp = (
