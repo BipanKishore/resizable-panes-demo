@@ -1,4 +1,4 @@
-import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react'
+import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
 import {getDirection} from '../utils/util'

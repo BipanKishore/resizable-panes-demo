@@ -268,3 +268,10 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
   setUISizesFn(param)
   return sizeChangeMap
 }
+
+export const setResizersVisibility = (param: IServiceRef, visibility: boolean) => {
+  const {resizerRefs} = param
+  for (const resizer of resizerRefs.current) {
+    resizer.current?.setVisibility(visibility)
+  }
+}
