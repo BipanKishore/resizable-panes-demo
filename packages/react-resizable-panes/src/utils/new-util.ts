@@ -1,9 +1,8 @@
 import {IResizableEvent, SplitType} from '../@types'
 import {IAnyMap} from '../@types/general-type'
 import {IServiceRef} from '../@types/use-resizable-panes-types'
-import {APP_NAME, MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
+import {MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {keyConsole} from './development-util'
 import {minMaxLogicDown, minMaxLogicUp, setResizersVisibility} from './panes'
 import {storageGetItem, storageSetItem} from './storage'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
@@ -137,11 +136,12 @@ interface IJoinClassNameParam {
   [key : string]: boolean | string
 }
 
-export const getContainerClass = (split: SplitType, isVertical: boolean) => {
+export const getContainerClass = (split: SplitType, isVertical: boolean, className: string) => {
   return joinClassName({
     'd-flex': true,
-    'f-row h-200 w-fit-content': !isVertical,
-    'f-column': isVertical
+    'f-row w-fit-content': !isVertical,
+    'f-column': isVertical,
+    [className]: className
   })
 }
 

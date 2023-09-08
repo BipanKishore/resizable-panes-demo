@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {ITabProps, Tab} from './tab'
 import './style.css'
-import {PANES_TABS_LIST} from '../../shared/constant'
+import {ROUTER_LIST_LEVEL_1} from '../../shared/constant'
 
 interface ITabsProps {
   onClick: (clickedLabel: string) => void
@@ -9,7 +9,7 @@ interface ITabsProps {
 
 export const Tabs = (props: ITabsProps) => {
   const {onClick} = props
-  const [tabList, setTabList] = useState<ITabProps[]>(PANES_TABS_LIST)
+  const [tabList, setTabList] = useState<ITabProps[]>(ROUTER_LIST_LEVEL_1)
 
   const onClickTab = (path: string) => {
     console.log(path)

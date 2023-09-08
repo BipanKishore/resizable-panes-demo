@@ -8,20 +8,23 @@ export interface IResizablePanesProps {
     children: any[],
     resizerSize: number,
     onReady: () => void,
-    split: SplitType,
+    split?: SplitType,
     storage?: any,
     resizerNode?: any,
     onResizeStop?: onResizeType,
     onResizeStart?: onResizeType,
     onResize?: onResizeType,
-    name: string
+    name: string,
+    className?: string
   }
 
 export interface IPane {
     className: string,
-    children: any[],
+    children: any | any[],
     id: string,
     size: number,
-    split: SplitType,
-    innerRef: RefObject<HTMLDivElement>
+    split?: SplitType,
+    innerRef?: RefObject<HTMLDivElement>,
+    maxSize?: number
+    minSize?: number
   }

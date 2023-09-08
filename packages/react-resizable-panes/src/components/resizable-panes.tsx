@@ -21,7 +21,8 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     resizerNode,
     onResizeStop = noop,
     onResizeStart = noop,
-    onResize = noop
+    onResize = noop,
+    className
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -117,11 +118,11 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     children, onMouseDown, resizerSize
   ])
 
-  const className = getContainerClass(split, isVertical)
+  const classname = getContainerClass(split, isVertical, className)
 
   return (
     <div
-      className={className}
+      className={classname}
       ref={containerRef}
     >
       {contentJsx}

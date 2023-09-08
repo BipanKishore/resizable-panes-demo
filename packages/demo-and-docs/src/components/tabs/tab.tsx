@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 export interface ITabProps {
     active: boolean,
@@ -16,6 +16,11 @@ export const Tab = (props: ITabProps) => {
   } else {
     className = 'tab radious-5 nonactive-tab'
   }
+
+  useEffect(() => {
+    onClick(path)
+  }, [])
+
   // const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
 
   return (
