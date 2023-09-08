@@ -195,6 +195,7 @@ export const restoreDefaultFn = (param: IServiceRef) => {
   panesList.forEach((pane) => {
     pane.restore()
   })
+  setResizersVisibility(param, true)
   setUISizesFn(param)
 }
 
