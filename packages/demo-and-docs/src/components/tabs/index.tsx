@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {ITabProps, Tab} from './tab'
 import './style.css'
 import {ROUTER_LIST_LEVEL_1} from '../../shared/constant'
@@ -22,6 +22,10 @@ export const Tabs = (props: ITabsProps) => {
     setTabList(newTabList)
     onClick(path)
   }
+
+  useEffect(() => {
+    onClick(ROUTER_LIST_LEVEL_1[0].path)
+  }, [])
 
   return (
     <div className="tab-container">
