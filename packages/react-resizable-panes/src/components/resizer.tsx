@@ -34,6 +34,7 @@ const Resizer = (props: IResizer, ref: any) => {
     return (
       <div
         className={`resizer ${className}`}
+        draggable="false"
         ref={resizerRref}
         onMouseDown={onMouseDown}
       >

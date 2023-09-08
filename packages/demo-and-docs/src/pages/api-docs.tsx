@@ -35,7 +35,7 @@ export const ApiDocs = () => {
 
   const ref: any = useRef()
 
-  const [split, setSplit] = useState('horizontal')
+  const [split, setSplit] = useState('vertical')
 
   const toggleShow = useCallback(() => {
     setCount(++count)
