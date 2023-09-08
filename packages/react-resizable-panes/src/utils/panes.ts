@@ -3,7 +3,7 @@ import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole} from './development-util'
 import {setCurrentMinMax, setUISizesFn} from './new-util'
-import {findById, synPanesMaxToSize, synPanesMinToSize} from './util'
+import {findById, synPanesMaxToSize, synPanesMinToSize, toPx} from './util'
 
 // eslint-disable-next-line complexity
 export const minMaxLogicUp = (
@@ -242,20 +242,36 @@ export const setUpMaxLimits = (panesList: PaneModel[], index: number) => {
 }
 
 export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
-  const {panesList} = param
+  const {panesList, resizerRefs} = param
   const keys = Object.keys(idMap)
 
   const sizeChangeMap: any = {}
 
   for (let i = 0; i < panesList.length; i++) {
     const pane = panesList[i]
-    if (keys.includes(pane.id)) {
-      sizeChangeMap[pane.id] = pane.size
-      pane.synPreservedSize()
-      pane.setFixSize(0)
-      pane.visibility = false
+    const {id, size} = pane
+    if (keys.includes(id)) {
+      const visibility = idMap[id]
+      if (visibility) {
+        sizeChangeMap[pane.id] = size
+        pane.setFixSize(pane.storedSize)
+        pane.visibility = true
+      } else {
+        pane.synPreservedSize()
+        sizeChangeMap[pane.id] = -size
+        pane.setFixSize(0)
+        pane.visibility = false
+      }
+      resizerRefs.current[i].current.setVisibility(idMap[id])
     }
   }
   setUISizesFn(param)
   return sizeChangeMap
+}
+
+export const setResizersVisibility = (param: IServiceRef, visibility: boolean) => {
+  const {resizerRefs} = param
+  for (const resizer of resizerRefs.current) {
+    resizer.current?.setVisibility(visibility)
+  }
 }

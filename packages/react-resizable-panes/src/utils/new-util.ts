@@ -4,7 +4,7 @@ import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {APP_NAME, MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole} from './development-util'
-import {minMaxLogicDown, minMaxLogicUp} from './panes'
+import {minMaxLogicDown, minMaxLogicUp, setResizersVisibility} from './panes'
 import {storageGetItem, storageSetItem} from './storage'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
 
@@ -168,15 +168,16 @@ export const toFullPageFn = (param: IServiceRef, paneId: string) => {
 }
 
 export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
-  const {panesList, maxPaneSize} = param
+  const {panesList, maxPaneSize, resizerSize} = param
   panesList.forEach((pane) => {
     pane.synPreservedSize()
     if (pane.id === paneId) {
-      pane.size = maxPaneSize
+      pane.size = maxPaneSize + (panesList.length - 1) * resizerSize
     } else {
       pane.size = 0
     }
   })
+  setResizersVisibility(param, false)
   setUISizesFn(param)
 }
 
@@ -185,6 +186,7 @@ export const closeFullSizeFn = (param: IServiceRef) => {
   panesList.forEach((pane) => {
     pane.synSizeToStored()
   })
+  setResizersVisibility(param, true)
   setUISizesFn(param)
 }
 
@@ -193,6 +195,7 @@ export const restoreDefaultFn = (param: IServiceRef) => {
   panesList.forEach((pane) => {
     pane.restore()
   })
+  setResizersVisibility(param, true)
   setUISizesFn(param)
 }
 

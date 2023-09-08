@@ -1,4 +1,4 @@
-import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react'
+import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
 import {getDirection} from '../utils/util'
@@ -20,11 +20,12 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     resizerSize,
     isVertical,
     onReady,
-    storage
+    storage,
+    resizerRefs
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
-  const [resizerVisibilityList, setResizerVisibilityList] = useState([])
+  // const [resizerVisibilityList, setResizerVisibilityList] = useState([])
 
   // ---------------------------------  API --------------------------------------------//
 
@@ -47,7 +48,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   const setVisibility = (param: IKeyToBoolMap) => {
     const sizeChangeMap = setVisibilityFn(serviceRef.current, param)
     const list = <boolean[]>getList(serviceRef.current.panesList, 'visibility')
-    setResizerVisibilityList(list)
+    // setResizerVisibilityList(list)
     keyConsole({...sizeChangeMap}, 'v-------')
 
     // const resizableEvent = getResizableEvent(e, isVertical)
@@ -105,6 +106,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     serviceRef.current.resizerSize = resizerSize
     serviceRef.current.isVertical = isVertical
     serviceRef.current.storage = storage
+    serviceRef.current.resizerRefs = resizerRefs
     createPaneList({panesRefs, children, isVertical})
     setMaxLimitingSize(containerRef, isVertical)
   }
@@ -201,8 +203,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     setMouseDownAndPaneAxisDetails,
     setActiveIndex,
     calculateAndSetHeight,
-    getIdToSizeMap,
-    resizerVisibilityList
+    getIdToSizeMap
+    // resizerVisibilityList
   }
 }
 
