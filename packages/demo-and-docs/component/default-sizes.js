@@ -13,14 +13,18 @@ export const DefaultSizes = ({
 }) => {
   return (
     <ResizablePanes
-      resizerNode={ResizerNode1}
       resizerSize={25}
-      split={split}
+      split={split} // Values 'horizontal' | 'vertical'
+      // Note required
       storage={window.sessionStorage}
+
+      // Note required
       onReady={onReady}
+      // Note required
       onResize={(map) => {
         // console.log('v-- onResize', map)
       }}
+      // Note required
       onResizeStop ={(map) => {
         // console.log('v-- onResizeStop', map)
       }}
