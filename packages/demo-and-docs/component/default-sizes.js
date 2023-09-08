@@ -13,7 +13,7 @@ export const DefaultSizes = ({
 }) => {
   return (
     <ResizablePanes
-      className='h-200'
+      className=''
       resizerSize={25}
       onResizeStop ={(map) => {
         // console.log('v-- onResizeStop', map)

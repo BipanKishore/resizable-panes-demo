@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.h-300{
+    height: 300px;
+}
+
 .bg-lightblue {
     background-color: lightblue;
 }

@@ -80,18 +80,21 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     onReady, resizerSize, containerRef, panesRefs, children
   ])
 
+  // Not requird isVertical
   const createPaneList = useCallback(({panesRefs, children, isVertical}: any) => {
     serviceRef.current.panesRefs = panesRefs
     serviceRef.current.panesList = panesRefs
       ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
   }, [])
 
+  // isVertical Done
   const setMaxLimitingSize = useCallback((containerRef: any, isVertical: boolean) => {
     const rect = containerRef.current.getBoundingClientRect() || {}
     const {top, height, left, width} = rect
-    serviceRef.current.maxTopAxis = isVertical ? top : left
-    serviceRef.current.maxPaneSize = (isVertical ? height : width) -
+    serviceRef.current.maxTopAxis = isVertical ? left : top
+    serviceRef.current.maxPaneSize = (isVertical ? width : height) -
               ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
+    // serviceRef
   }, [])
 
   const initPanesService = ({

@@ -30,7 +30,7 @@ const Resizer = (props: IResizer, ref: any) => {
   })
 
   if (isVisibility) {
-    const className = isVertical ? 'resizer-vertical' : 'resizer-horizontal'
+    const className = isVertical ? 'resizer-horizontal' : 'resizer-vertical'
     return (
       <div
         className={`resizer ${className}`}

@@ -12,7 +12,7 @@ export const HorizantalPanes = () => {
 
   return (
     <ResizablePanes
-      className='h-200'
+      className=''
       name='name'
       resizerSize={25}
       onResizeStop ={(map) => {
@@ -62,7 +62,7 @@ export const HorizantalPanes = () => {
       </Panes>
 
       <Panes
-        className={pane3}
+        className={pane2}
         id={'pane4'}
         maxSize={500}
         minSize={0}

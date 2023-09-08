@@ -90,9 +90,9 @@ export class PaneModel {
   setUISize () {
     this.uiSize = this.size
     if (this.isVertical) {
-      this.pane.current.style.height = toPx(this.size)
-    } else {
       this.pane.current.style.width = toPx(this.size)
+    } else {
+      this.pane.current.style.height = toPx(this.size)
       // keyConsole({isVertical: this.isVertical, px: toPx(this.size)})
     }
 

@@ -105,16 +105,16 @@ const storeReadAndSetSizes = ({storage, panesList}: IServiceRef) => {
 export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent => {
   let resizeEvent
   if (isVertical) {
-    const {clientY, movementY} = e
-    resizeEvent = {
-      mouseCoordinate: clientY,
-      movement: movementY
-    }
-  } else {
     const {clientX, movementX} = e
     resizeEvent = {
       mouseCoordinate: clientX,
       movement: movementX
+    }
+  } else {
+    const {clientY, movementY} = e
+    resizeEvent = {
+      mouseCoordinate: clientY,
+      movement: movementY
     }
   }
   // keyConsole({...resizeEvent})
@@ -125,9 +125,9 @@ export const getSizeStyle = (split: SplitType, size: number) => {
   const style: any = {}
   const px = toPx(size)
   if (split === 'horizontal') {
-    style.width = px
-  } else {
     style.height = px
+  } else {
+    style.width = px
   }
   return style
 }
@@ -139,8 +139,8 @@ interface IJoinClassNameParam {
 export const getContainerClass = (split: SplitType, isVertical: boolean, className: string) => {
   return joinClassName({
     'd-flex': true,
-    'f-row w-fit-content': !isVertical,
-    'f-column': isVertical,
+    'f-row w-fit-content': isVertical,
+    'f-column': !isVertical,
     [className]: className
   })
 }
