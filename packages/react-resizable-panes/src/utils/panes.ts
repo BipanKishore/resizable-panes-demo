@@ -8,6 +8,7 @@ import {synPanesMaxToSize, synPanesMinToSize} from './util'
 // eslint-disable-next-line complexity
 export const minMaxLogicUp = (
   panesList: PaneModel[], value: number, aIndex: number, bIndex: number, sum = 0, maxPaneSize: number) => {
+  // Failing for going up Reached Max
   const lastIndex = panesList.length - 1
 
   keyConsole({aIndex, bIndex, value, sum}, 'newMinMaxLogicUpnewMinMaxLogicUp')
@@ -92,18 +93,20 @@ export const minMaxLogicUp = (
           sum += panesList[aIndex].resetMin()
           // synPanesMinToSize(panesList, bIndex + 1, lastIndex) // It wont run
           panesList[bIndex].maxSize = maxPaneSize - sum
-          break
+          return
 
         case value === 0:
           sum += panesList[aIndex].resetMin()
           sum += panesList[bIndex].resetMax()
+          return
 
         case value > 0:
           sum += panesList[bIndex].resetMax()
           // synPanesMaxToSize(panesList, 0, aIndex - 1) // It wont Run
           panesList[aIndex].minSize = maxPaneSize - sum
+          return
       }
-      return
+
       // ---------------------------------------------------------------------------------
     default:
       console.error('v---------------------------------------------------------------')
@@ -200,18 +203,20 @@ export const minMaxLogicDown = (
           sum += panesList[aIndex].resetMax()
           // synPanesMinToSize(panesList, bIndex + 1, lastIndex) // It wont run
           panesList[bIndex].minSize = maxPaneSize - sum
-          break
+          return
 
         case value === 0:
-          sum += panesList[aIndex].resetMax()
           sum += panesList[bIndex].resetMin()
+          sum += panesList[aIndex].resetMax()
+          return
 
         case value > 0:
           sum += panesList[bIndex].resetMin()
           // synPanesMaxToSize(panesList, 0, aIndex - 1) // It wont Run
           panesList[aIndex].maxSize = maxPaneSize - sum
+          return
       }
-      return
+
       // ---------------------------------------------------------------------------------
     default:
       console.error('v---------------------------------------------------------------')

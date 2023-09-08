@@ -57,16 +57,6 @@ export const VerticalPanes = () => {
       >
       </Panes>
 
-      <Panes
-        className={pane2}
-        id={'pane4'}
-        key={'pane4'}
-        maxSize={500}
-        minSize={0}
-        size={100}
-      >
-      </Panes>
-
     </ResizablePanes>
   )
 }

@@ -15,20 +15,8 @@ export const HorizantalPanes = () => {
       className=''
       name='name'
       resizerSize={25}
-      onResizeStop ={(map) => {
-        // console.log('v-- onResizeStop', map)
-      }}
-
-      // Note required
-      split={'horizontal'} // Values 'horizontal' | 'vertical'
-      // Note required
-      storage={window.sessionStorage}
-      // Note required
+      split={'horizontal'}
       onReady={onReady}
-      // Note required
-      onResize={(map) => {
-        // console.log('v-- onResize', map)
-      }}
     >
 
       <Panes
@@ -61,14 +49,14 @@ export const HorizantalPanes = () => {
       >
       </Panes>
 
-      <Panes
+      {/* <Panes
         className={pane2}
         id={'pane4'}
         maxSize={500}
         minSize={0}
         size={200}
       >
-      </Panes>
+      </Panes> */}
 
     </ResizablePanes>
   )

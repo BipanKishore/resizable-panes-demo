@@ -3,6 +3,7 @@ import {IAnyMap} from '../@types/general-type'
 import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
+import {paneConsole, setPaneList} from './development-util'
 import {minMaxLogicDown, minMaxLogicUp, setResizersVisibility} from './panes'
 import {storageGetItem, storageSetItem} from './storage'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
@@ -52,13 +53,20 @@ export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, ind
   const aMaxChangeUp = panesList[idx].getMinDiff()
   const bMaxChangeUp = panesList[nextIdx].getMaxDiff()
 
+  // setPaneList(panesList, ['minSize', 'maxSize'], null)
+
   minMaxLogicUp(panesList, aMaxChangeUp - bMaxChangeUp, idx, nextIdx, 0, maxPaneSize)
 
+  paneConsole(panesList, 'minSize')
+  paneConsole(panesList, 'maxSize')
   // initMinMaxLogic()
+  // setPaneList(panesList, ['minSize', 'maxSize'], null)
   const aMaxChangeDown = panesList[nextIdx].getMinDiff()
   const bMaxChangeDown = panesList[idx].getMaxDiff()
   minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, idx, nextIdx, 0, maxPaneSize)
   calculateAxes(idx)
+  paneConsole(panesList, 'minSize')
+  paneConsole(panesList, 'maxSize')
 }
 
 export const calculateAxes = ({panesList, maxTopAxis, resizerSize, activeIndex}: any, index?: number) => {

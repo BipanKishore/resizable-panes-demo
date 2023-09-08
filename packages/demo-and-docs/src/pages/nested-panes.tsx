@@ -77,16 +77,6 @@ export const NestedPanes = () => {
           >
           </Panes>
 
-          <Panes
-            className={'pane3'}
-            id={'pane4'}
-            key={'pane4'}
-            maxSize={500}
-            minSize={0}
-            size={200}
-          >
-          </Panes>
-
         </ResizablePanes>
       </Panes>
 
@@ -94,9 +84,9 @@ export const NestedPanes = () => {
         className={pane2}
         id={pane2}
         key={pane2}
-        maxSize={500}
+        maxSize={800}
         minSize={100}
-        size={200}
+        size={600}
       >
       </Panes>
 
@@ -146,28 +136,8 @@ export const NestedPanes = () => {
           >
           </Panes>
 
-          <Panes
-            className={'pane3'}
-            id={'pane4'}
-            key={'pane4'}
-            maxSize={500}
-            minSize={0}
-            size={200}
-          >
-          </Panes>
-
         </ResizablePanes>
 
-      </Panes>
-
-      <Panes
-        className={'pane3'}
-        id={'pane4'}
-        key={'pane4'}
-        maxSize={500}
-        minSize={0}
-        size={200}
-      >
       </Panes>
 
     </ResizablePanes>
