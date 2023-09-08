@@ -12,21 +12,22 @@ export const NestedPanes = () => {
 
   return (
     <ResizablePanes
+      className=''
       name='name'
       resizerSize={25}
-      split={'horizontal'} // Values 'horizontal' | 'vertical'
+      onResizeStop ={(map) => {
+        // console.log('v-- onResizeStop', map)
+      }}
+
+      // Note required
+      split={'vertical'} // Values 'horizontal' | 'vertical'
       // Note required
       storage={window.sessionStorage}
-
       // Note required
       onReady={onReady}
       // Note required
       onResize={(map) => {
         // console.log('v-- onResize', map)
-      }}
-      // Note required
-      onResizeStop ={(map) => {
-        // console.log('v-- onResizeStop', map)
       }}
     >
 
@@ -42,7 +43,7 @@ export const NestedPanes = () => {
         <ResizablePanes
           name='name2'
           resizerSize={25}
-          split={'vertical'}
+          split={'horizontal'}
           onReady={onReady}
         >
 
@@ -111,7 +112,7 @@ export const NestedPanes = () => {
         <ResizablePanes
           name='name2'
           resizerSize={25}
-          split={'vertical'}
+          split={'horizontal'}
           onReady={onReady}
         >
 

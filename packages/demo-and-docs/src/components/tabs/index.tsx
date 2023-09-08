@@ -20,11 +20,13 @@ export const Tabs = (props: ITabsProps) => {
       return {...item, active: false}
     })
     setTabList(newTabList)
+    localStorage.setItem('path', path)
     onClick(path)
   }
 
   useEffect(() => {
-    onClick(ROUTER_LIST_LEVEL_1[0].path)
+    const path = localStorage.getItem('path') ?? ROUTER_LIST_LEVEL_1[0].path
+    onClick(path)
   }, [])
 
   return (
