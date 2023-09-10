@@ -69,11 +69,11 @@ module.exports = {
             template: './public/index.html',
             title: 'CRA without CRA'
         }),
-        new ForkTsCheckerWebpackPlugin(),
-        new ForkTsCheckerNotifierWebpackPlugin({
-          title: 'TypeScript',
-          excludeWarnings: false,
-        }),
+        // new ForkTsCheckerWebpackPlugin(),
+        // new ForkTsCheckerNotifierWebpackPlugin({
+        //   title: 'TypeScript',
+        //   excludeWarnings: false,
+        // }),
         new WebpackNotifierPlugin({
             title: 'Webpack',
             emoji: true,

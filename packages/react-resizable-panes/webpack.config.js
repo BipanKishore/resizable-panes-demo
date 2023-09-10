@@ -61,8 +61,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, '/dist'),
-         publicPath: "/he/"
+        path: path.join(__dirname, '/dist')
     },
 
     plugins: [
@@ -70,11 +69,11 @@ module.exports = {
         //     template: './src/index.html',
         //     title: 'CRA without CRA'
         // })
-        new ForkTsCheckerWebpackPlugin(),
-        new ForkTsCheckerNotifierWebpackPlugin({
-          title: 'TypeScript',
-          excludeWarnings: false,
-        }),
+        // new ForkTsCheckerWebpackPlugin(),
+        // new ForkTsCheckerNotifierWebpackPlugin({
+        //   title: 'TypeScript',
+        //   excludeWarnings: false,
+        // }),
         new WebpackNotifierPlugin({
             title: 'Webpack',
             emoji: true,
