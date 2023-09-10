@@ -14,7 +14,6 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
   console.log('rerender -> ResizablePanes')
   const {
     children,
-    resizerSize,
     onReady = noop,
     split,
     storage,
@@ -101,7 +100,6 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
           key={`${key}-resizer`}
           node={resizerNode}
           ref={resizerRefs.current[iCopy]}
-          resizerSize={resizerSize}
           split={split}
           onMouseDown={(e: any) => onMouseDown(e, iCopy)}
         />
@@ -115,7 +113,7 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     }))
     return content
   }, [
-    children, onMouseDown, resizerSize
+    children, onMouseDown
   ])
 
   const classname = getContainerClass(split, isVertical, className)

@@ -15,5 +15,8 @@
   },
   "scripts": {
     "demo": "cd ./packages/demo-and-docs && npm start"
+  },
+  "dependencies": {
+    "@uiw/react-md-editor": "^3.23.5"
   }
 }

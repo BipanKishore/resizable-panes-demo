@@ -1,10 +1,8 @@
 import React, {MouseEventHandler, forwardRef, useImperativeHandle, useRef, useState} from 'react'
 import {SplitType} from '../@types'
-import {toPx} from '../utils/util'
 
 interface IResizer {
   onMouseDown: MouseEventHandler<HTMLDivElement>,
-  resizerSize?: number,
   split: SplitType,
   node?: any,
   visibility?: boolean
