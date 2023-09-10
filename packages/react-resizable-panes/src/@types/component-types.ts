@@ -1,6 +1,7 @@
 import {RefObject} from 'react'
 import {SplitType} from '.'
 import {IMapIdToSize} from './general-type'
+import {IResizableApi} from './use-resizable-panes-types'
 
 export type onResizeType = (param: IMapIdToSize) => void
 
@@ -24,5 +25,9 @@ export interface IPane {
     split?: SplitType,
     innerRef?: RefObject<HTMLDivElement>,
     maxSize?: number
-    minSize?: number
+    minSize?: number,
+    api?: IResizableApi,
+    toFullSize? : any,
+      closeFullSize?: any,
+      toFullPage?: any
   }

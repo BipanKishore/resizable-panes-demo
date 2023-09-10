@@ -85,7 +85,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 **Props**
 onResizeStop -> Done
 onResize -> Done
-direction
+split = 'vertical', 'horizontal
 
 Dynamic Resizer Element
 Resizer Icon

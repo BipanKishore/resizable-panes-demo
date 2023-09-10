@@ -1,6 +1,4 @@
 
-
-
 .d-flex{
     display: flex;
 }
@@ -66,3 +64,13 @@
     bottom: 100px;
     width: 100%;
 }
+
+
+.h-20 {
+    height: 20px;
+}
+
+.w-20 {
+    width: 20px;
+}
+

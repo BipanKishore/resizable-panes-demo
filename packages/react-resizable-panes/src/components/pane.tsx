@@ -3,6 +3,8 @@ import React, {
 } from 'react'
 import {getSizeStyle} from '../utils/new-util'
 import {IPane} from '../@types/component-types'
+import {Svg} from './svg'
+import {PaneIcons} from './pane-icons'
 
 export default class Pane extends Component<IPane> {
   // constructor (props: IPane) {
@@ -24,7 +26,11 @@ export default class Pane extends Component<IPane> {
       className,
       children,
       size,
-      split
+      split,
+      id,
+      toFullSize,
+      closeFullSize,
+      toFullPage
     } = this.props
     const style = getSizeStyle(split, size)
     return (
@@ -33,6 +39,12 @@ export default class Pane extends Component<IPane> {
         ref={this.props.innerRef}
         style={style}
       >
+        <PaneIcons
+          closeFullSize={closeFullSize}
+          id={id}
+          toFullPage={toFullPage}
+          toFullSize={toFullSize}
+        />
         {children}
       </div>
     )

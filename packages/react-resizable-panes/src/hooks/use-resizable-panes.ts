@@ -67,14 +67,16 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       storage
     })
 
+    const api = {
+      toFullSize,
+      closeFullSize,
+      restoreDefault,
+      toFullPage,
+      setVisibility
+    }
+    serviceRef.current.api = api
     if (onReady) {
-      onReady({
-        toFullSize,
-        closeFullSize,
-        restoreDefault,
-        toFullPage,
-        setVisibility
-      })
+      onReady(api)
     }
   }, [
     onReady, resizerSize, containerRef, panesRefs, children
@@ -206,7 +208,11 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     setMouseDownAndPaneAxisDetails,
     setActiveIndex,
     calculateAndSetHeight,
-    getIdToSizeMap
+    getIdToSizeMap,
+    api: serviceRef.current.api,
+    toFullSize,
+    closeFullSize,
+    toFullPage
     // resizerVisibilityList
   }
 }

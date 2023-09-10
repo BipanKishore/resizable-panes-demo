@@ -3,6 +3,14 @@ import {PaneModel} from '../models/pane-model'
 import {onResizeType} from './component-types'
 import {IKeyToBoolMap} from './general-type'
 
+export interface IResizableApi {
+    toFullSize: (paneId: string) => void,
+    closeFullSize: () => void,
+    restoreDefault: () => void,
+    toFullPage: (paneId: string) => void,
+    setVisibility: (map: IKeyToBoolMap) => void
+}
+
 export interface IServiceRef{
     containerRef?: any,
     panesRefs?: any
@@ -18,14 +26,7 @@ export interface IServiceRef{
     isVertical?: boolean,
     storage?: any,
     resizerRefs?: any,
-}
-
-export interface IResizableApi {
-    toFullSize: (paneId: string) => void,
-    closeFullSize: () => void,
-    restoreDefault: () => void,
-    toFullPage: (paneId: string) => void,
-    setVisibility: (map: IKeyToBoolMap) => void
+    api?: IResizableApi
 }
 
 export interface IUseResizablePanesParams {
