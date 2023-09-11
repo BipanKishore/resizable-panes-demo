@@ -89,13 +89,7 @@ export class PaneModel {
 
   setUISize () {
     this.uiSize = this.size
-    if (this.isVertical) {
-      this.pane.current.style.width = toPx(this.size)
-    } else {
-      this.pane.current.style.height = toPx(this.size)
-      // keyConsole({isVertical: this.isVertical, px: toPx(this.size)})
-    }
-
+    this.pane.current.setSize(this.size)
     return this.size
   }
 
@@ -156,8 +150,7 @@ export class PaneModel {
     return this.defaultMaxSize - this.size
   }
 
-  removeProperty (property: string) {
-    this.pane.current.style.removeProperty('height')
-    this.pane.current.style.removeProperty('width')
+  removeProperty () {
+    this.pane.current.removeSize()
   }
 }

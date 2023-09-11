@@ -168,8 +168,8 @@ export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   panesList.forEach((pane) => {
     if (pane.id === paneId) {
       pane.synPreservedSize()
-      pane.removeProperty('')
-      pane.pane.current.classList.add('full-page-class')
+      pane.removeProperty()
+      pane.pane.current.onFullPage()
     }
   })
   // setUISizesFn(param)
@@ -181,6 +181,7 @@ export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
     pane.synPreservedSize()
     if (pane.id === paneId) {
       pane.size = maxPaneSize + (panesList.length - 1) * resizerSize
+      pane.pane.current.onFullSize()
     } else {
       pane.size = 0
     }
@@ -193,6 +194,7 @@ export const closeFullSizeFn = (param: IServiceRef) => {
   const {panesList} = param
   panesList.forEach((pane) => {
     pane.synSizeToStored()
+    pane.pane.current.onCloseFullSize()
   })
   setResizersVisibility(param, true)
   setUISizesFn(param)

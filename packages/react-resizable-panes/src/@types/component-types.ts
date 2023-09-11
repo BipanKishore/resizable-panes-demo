@@ -28,6 +28,7 @@ export interface IPane {
     minSize?: number,
     api?: IResizableApi,
     toFullSize? : any,
-      closeFullSize?: any,
-      toFullPage?: any
+    closeFullSize?: any,
+    toFullPage?: any,
+    isVertical?: boolean
   }

@@ -1,5 +1,6 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, forwardRef, useCallback, useImperativeHandle, useState} from 'react'
 import {Svg} from './svg'
+import {PANE_MODE} from '../constant'
 
 interface IPaneIconsProps{
     id: string,
@@ -8,16 +9,51 @@ interface IPaneIconsProps{
     toFullPage: any
 }
 
-export const PaneIcons = (props: IPaneIconsProps) => {
+const PaneIcons = (props: IPaneIconsProps, ref: any) => {
   const {toFullSize, closeFullSize, toFullPage, id} = props
 
-  const [state, setState] = useState()
+  const [mode, setMode] = useState<string>(PANE_MODE.NORMAL)
 
+  const onClickExpand = useCallback(() => toFullSize(id),
+    [toFullSize, id])
+
+  const onClickFullPage = useCallback(() => toFullPage(id),
+    [toFullPage, id])
+
+  const onClickCloseFullSize = useCallback(() => closeFullSize(),
+    [])
+
+  useImperativeHandle(ref, () => {
+    return {
+      setModeAct: (mode: string) => {
+        setMode(mode)
+      }
+    }
+  })
+
+  const fullSizeIcon = <Svg name='Expand' onClick={onClickExpand} />
+  const fullPageIcon = <Svg name='FullPage' onClick={onClickFullPage} />
+  const closeFullSizeIcon = <Svg name='compress' onClick={onClickCloseFullSize} />
+
+  let contextTsx: any = []
+  switch (mode) {
+    case PANE_MODE.NORMAL:
+      contextTsx = [fullSizeIcon, fullPageIcon]
+      break
+    case PANE_MODE.FULL_SIZE:
+      contextTsx = [fullPageIcon, closeFullSizeIcon]
+      break
+    case PANE_MODE.FULL_PAGE:
+      contextTsx = [fullPageIcon, closeFullSizeIcon]
+      break
+  }
+
+  console.log(contextTsx)
   return (
     <Fragment>
-      <Svg name='Expand' onClick={() => toFullSize(id)} />
-      <Svg name='FullPage' onClick={() => toFullPage(id)} />
-      <Svg name='compress' onClick={() => closeFullSize()} />
+      {contextTsx}
     </Fragment>
   )
 }
+
+export default forwardRef(PaneIcons)

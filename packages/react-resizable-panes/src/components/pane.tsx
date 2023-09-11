@@ -1,52 +1,73 @@
 import React, {
-  Component
+  createRef, forwardRef, useImperativeHandle, useRef
 } from 'react'
 import {getSizeStyle} from '../utils/new-util'
 import {IPane} from '../@types/component-types'
-import {Svg} from './svg'
-import {PaneIcons} from './pane-icons'
+import PaneIcons from './pane-icons'
+import {toPx} from '../utils/util'
+import {PANE_MODE} from '../constant'
 
-export default class Pane extends Component<IPane> {
-  // constructor (props: IPane) {
-  //   super(props)
-  // }
+const Pane = (props: IPane, ref: any) => {
+  const paneIconRef: any = useRef()
+  const paneElementRef: any = useRef()
 
-  componentDidMount (): void {
-    console.log('v-------- Pane componentDidMount')
-  }
+  const {
+    className,
+    children,
+    size,
+    split,
+    id,
+    toFullSize,
+    closeFullSize,
+    toFullPage,
+    isVertical
+  } = props
 
-  shouldComponentUpdate (nextProps: Readonly<IPane>, nextState: Readonly<{}>, nextContext: any): boolean {
-    const {split, className, children} = this.props
-    return split !== nextProps.split || className !== nextProps.className || nextProps.children !== children
-  }
+  useImperativeHandle(ref, () => {
+    const {setModeAct} = paneIconRef.current
 
-  render (): React.ReactNode {
-    console.log('v-------- Pane render')
-    const {
-      className,
-      children,
-      size,
-      split,
-      id,
-      toFullSize,
-      closeFullSize,
-      toFullPage
-    } = this.props
-    const style = getSizeStyle(split, size)
-    return (
-      <div
-        className={className}
-        ref={this.props.innerRef}
-        style={style}
-      >
-        <PaneIcons
-          closeFullSize={closeFullSize}
-          id={id}
-          toFullPage={toFullPage}
-          toFullSize={toFullSize}
-        />
-        {children}
-      </div>
-    )
-  }
+    return {
+      setSize: (size: number) => {
+        if (isVertical) {
+          paneElementRef.current.style.width = toPx(size)
+        } else {
+          paneElementRef.current.style.height = toPx(size)
+        }
+      },
+      removeSize: () => {
+        paneElementRef.current.style.removeProperty('height')
+        paneElementRef.current.style.removeProperty('width')
+      },
+      onFullSize: () => {
+        setModeAct(PANE_MODE.FULL_SIZE)
+      },
+      onFullPage: () => {
+        setModeAct(PANE_MODE.FULL_PAGE)
+        paneElementRef.current.classList.add('full-page-class')
+      },
+      onCloseFullSize: () => {
+        setModeAct(PANE_MODE.NORMAL)
+      }
+    }
+  })
+
+  const style = getSizeStyle(split, size)
+  return (
+    <div
+      className={className}
+      ref={paneElementRef}
+      style={style}
+    >
+      <PaneIcons
+        closeFullSize={closeFullSize}
+        id={id}
+        ref={paneIconRef}
+        toFullPage={toFullPage}
+        toFullSize={toFullSize}
+      />
+      {children}
+    </div>
+  )
 }
+
+export default forwardRef(Pane)

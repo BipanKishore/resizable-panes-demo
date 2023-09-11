@@ -37,11 +37,9 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     setMouseDownAndPaneAxisDetails,
     calculateAndSetHeight,
     getIdToSizeMap,
-    api,
     toFullSize,
     closeFullSize,
     toFullPage
-    // resizerVisibilityList
   } = useResizablePanes(
     {
       children,
@@ -94,9 +92,10 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
       const iCopy = i
       key = children[iCopy].props.id
       content.push(cloneElement(children[iCopy], {
+        isVertical,
         split,
         key,
-        innerRef: panesRefs.current[iCopy],
+        ref: panesRefs.current[iCopy],
         toFullSize,
         closeFullSize,
         toFullPage
@@ -114,16 +113,17 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     }
 
     content.push(cloneElement(children[i], {
+      isVertical,
       split,
       key: children[i].props.id,
-      innerRef: panesRefs?.current[i],
+      ref: panesRefs?.current[i],
       toFullSize,
       closeFullSize,
       toFullPage
     }))
     return content
   }, [
-    children, onMouseDown, api
+    children, onMouseDown
   ])
 
   const classname = getContainerClass(split, isVertical, className)

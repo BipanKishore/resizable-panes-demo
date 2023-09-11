@@ -209,7 +209,6 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     setActiveIndex,
     calculateAndSetHeight,
     getIdToSizeMap,
-    api: serviceRef.current.api,
     toFullSize,
     closeFullSize,
     toFullPage
