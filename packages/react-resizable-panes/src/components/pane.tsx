@@ -7,7 +7,7 @@ import {PANE_MODE} from '../constant'
 
 const Pane = (props: IPane, ref: any) => {
   const paneIconRef: any = useRef()
-  const paneElementRef: any = useRef()
+  const paneElementRef: any = useRef<HTMLDivElement>()
 
   const {
     className,

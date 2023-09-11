@@ -1,4 +1,4 @@
-import React, {Fragment, forwardRef, useCallback, useImperativeHandle, useState} from 'react'
+import React, {Fragment, forwardRef, useCallback, useImperativeHandle, useState, ReactNode} from 'react'
 import {Svg} from './svg'
 import {PANE_MODE} from '../constant'
 
@@ -35,7 +35,7 @@ const PaneIcons = (props: IPaneIconsProps, ref: any) => {
   const fullPageIcon = <Svg name='FullPage' onClick={onClickFullPage} />
   const closeFullSizeIcon = <Svg name='compress' onClick={onClickCloseFullSize} />
 
-  let contextTsx: any = []
+  let contextTsx: ReactNode[] = []
   switch (mode) {
     case PANE_MODE.NORMAL:
       contextTsx = [fullSizeIcon, fullPageIcon]

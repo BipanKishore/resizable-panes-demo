@@ -76,8 +76,7 @@ module.exports = {
         // }),
         new WebpackNotifierPlugin({
             title: 'Webpack',
-            emoji: true,
-            alwaysNotify: true
+            emoji: true
         })
     ],
     resolve: {
