@@ -8,3 +8,10 @@ export interface IMapIdToSize {
 export interface IAnyMap {
       [key: string]: any
     }
+
+export type SplitType = 'horizontal' | 'vertical'
+
+export interface IResizableEvent {
+    mouseCoordinate: number,
+    movement: number
+}

@@ -5,10 +5,11 @@ import React, {
 } from 'react'
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
-import {getContainerClass, getResizableEvent, noop} from '../utils/new-util'
 
 import '../style.css'
-import {IResizablePanesProps} from '../@types/component-types'
+import {IResizablePanesProps} from '../@types'
+import {noop} from '../utils/util'
+import {getContainerClass, getResizableEvent} from '../utils/dom'
 
 export const ResizablePanes = memo((props: IResizablePanesProps) => {
   console.log('rerender -> ResizablePanes')
@@ -126,7 +127,7 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     children, onMouseDown
   ])
 
-  const classname = getContainerClass(split, isVertical, className)
+  const classname = getContainerClass(isVertical, className)
 
   return (
     <div

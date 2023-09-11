@@ -1,16 +1,18 @@
 import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
-import {setDownMaxLimits, setUpMaxLimits, setVisibilityFn} from '../utils/panes'
-import {getDirection} from '../utils/util'
+import {createItToSizeMap} from '../utils/util'
 import {directionBehaviourConsole, getList, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
+
+import {IInitPaneService, IServiceRef, IUseResizablePanesParams, IKeyToBoolMap} from '../@types'
+
+import {closeFullSizeFn, restoreDefaultFn, setVisibilityFn, toFullPageFn, toFullSizeFn} from '../utils/api'
 import {
-  calculateAxes, closeFullSizeFn, createItToSizeMap, goingDownLogic, goingUpLogic,
-  restoreDefaultFn,
-  setCurrentMinMax, setUISizesFn, syncAxisSizesFn, toFullPageFn, toFullSizeFn
-} from '../utils/new-util'
-import {IInitPaneService, IServiceRef, IUseResizablePanesParams} from '../@types/use-resizable-panes-types'
-import {IKeyToBoolMap} from '../@types/general-type'
+  calculateAxes, goingDownLogic, goingUpLogic,
+  setCurrentMinMax
+} from '../utils/resizable-pane'
+import {getDirection} from '../utils/dom'
+import {setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxisSizesFn} from '../utils/panes'
 
 const useResizablePanes = (props: IUseResizablePanesParams) => {
   const {

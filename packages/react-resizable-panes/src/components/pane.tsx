@@ -1,9 +1,8 @@
 import React, {forwardRef, useImperativeHandle, useRef} from 'react'
-import {getSizeStyle} from '../utils/new-util'
-import {IPane} from '../@types/component-types'
+import {IPane} from '../@types'
 import PaneIcons from './pane-icons'
-import {toPx} from '../utils/util'
 import {PANE_MODE} from '../constant'
+import {getSizeStyle, toPx} from '../utils/dom'
 
 const Pane = (props: IPane, ref: any) => {
   const paneIconRef: any = useRef()
@@ -44,6 +43,7 @@ const Pane = (props: IPane, ref: any) => {
         paneElementRef.current.classList.add('full-page-class')
       },
       onCloseFullSize: () => {
+        paneElementRef.current.classList.remove('full-page-class')
         setModeAct(PANE_MODE.NORMAL)
       }
     }
