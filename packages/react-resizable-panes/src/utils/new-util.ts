@@ -1,11 +1,10 @@
 import {IResizableEvent, SplitType} from '../@types'
 import {IAnyMap} from '../@types/general-type'
 import {IServiceRef} from '../@types/use-resizable-panes-types'
-import {MINUS_ONE, SIZE_MAP_STORAGE_KEY, ZERO} from '../constant'
+import {MINUS_ONE, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {paneConsole, setPaneList} from './development-util'
+import {paneConsole} from './development-util'
 import {minMaxLogicDown, minMaxLogicUp, setResizersVisibility} from './panes'
-import {storageGetItem, storageSetItem} from './storage'
 import {getMaxSizeSum, getMinSizeSum, toPx} from './util'
 
 export const noop = (_: any): any => _
@@ -87,27 +86,11 @@ export const syncAxisSizesFn = ({panesList}: any) => {
   })
 }
 
-export const setUISizesFn = ({panesList, storage}: any) => {
+export const setUISizesFn = ({panesList}: any) => {
   panesList.forEach((pane: any) => {
     pane.setUISize()
   })
-  storeIdtoSizeMap(panesList, storage)
   // publishPanes(e)
-}
-
-const storeIdtoSizeMap = (panesList: PaneModel[], storage: any) => {
-  const map = createMap(panesList)
-  storageSetItem(storage, SIZE_MAP_STORAGE_KEY, map)
-}
-
-// Need to delete Ids and match min Max
-const storeReadAndSetSizes = ({storage, panesList}: IServiceRef) => {
-  const panesMap = storageGetItem(storage, SIZE_MAP_STORAGE_KEY)
-  if (panesMap) {
-    panesList.forEach((pane) => {
-
-    })
-  }
 }
 
 export const getResizableEvent = (e: any, isVertical: boolean): IResizableEvent => {

@@ -15,10 +15,10 @@ export const ONE = 1
 export const MINUS_ONE = -1
 
 export const APP_NAME = 'react-split-pane'
-export const SIZE_MAP_STORAGE_KEY = 'size-map'
 
 export const PANE_MODE = {
   NORMAL: 'NORMAL',
   FULL_SIZE: 'FULL_SIZE',
-  FULL_PAGE: 'FULL_PAGE'
+  FULL_PAGE: 'FULL_PAGE',
+  HIDDEN: 'HIDDEN'
 }

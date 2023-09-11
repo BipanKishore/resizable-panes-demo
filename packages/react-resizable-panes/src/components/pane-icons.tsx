@@ -21,7 +21,7 @@ const PaneIcons = (props: IPaneIconsProps, ref: any) => {
     [toFullPage, id])
 
   const onClickCloseFullSize = useCallback(() => closeFullSize(),
-    [])
+    [closeFullSize])
 
   useImperativeHandle(ref, () => {
     return {

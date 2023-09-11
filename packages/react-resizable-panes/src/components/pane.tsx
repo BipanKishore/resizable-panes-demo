@@ -1,6 +1,4 @@
-import React, {
-  createRef, forwardRef, useImperativeHandle, useRef
-} from 'react'
+import React, {forwardRef, useImperativeHandle, useRef} from 'react'
 import {getSizeStyle} from '../utils/new-util'
 import {IPane} from '../@types/component-types'
 import PaneIcons from './pane-icons'
