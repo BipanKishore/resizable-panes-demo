@@ -1,21 +1,15 @@
 import {IServiceRef} from '../@types'
 import {PaneModel} from '../models/pane-model'
 
-export const syncAxisSizesFn = ({panesList}: any) => {
-  panesList.forEach((pane: any) => {
-    pane.syncAxisSize()
-  })
+export const syncAxisSizesFn = ({panesList}: IServiceRef) => {
+  panesList.forEach(pane => pane.syncAxisSize())
 }
 
-export const setUISizesFn = ({panesList}: any) => {
-  panesList.forEach((pane: any) => {
-    pane.setUISize()
-  })
-  // publishPanes(e)
+export const setUISizesFn = ({panesList}: IServiceRef) => {
+  panesList.forEach(pane => pane.setUISize())
 }
 
-export const findPaneIndex = (param: IServiceRef, paneId: string) => {
-  const {panesList} = param
+export const findPaneIndex = ({panesList}: IServiceRef, paneId: string) => {
   return panesList.findIndex(({id}) => id === paneId)
 }
 

@@ -57,7 +57,6 @@ export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, ind
   const aMaxChangeDown = panesList[nextIdx].getMinDiff()
   const bMaxChangeDown = panesList[idx].getMaxDiff()
   minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, idx, nextIdx, 0, maxPaneSize)
-  calculateAxes(idx)
   paneConsole(panesList, 'minSize')
   paneConsole(panesList, 'maxSize')
 }
