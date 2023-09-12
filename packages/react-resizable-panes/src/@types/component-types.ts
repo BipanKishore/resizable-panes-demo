@@ -32,3 +32,10 @@ export interface IPane {
     toFullPage?: any,
     isVertical?: boolean
   }
+
+export interface IPaneRef {
+    setSize: (size: number) => void,
+    onFullSize: () => void,
+    onFullPage: () => void,
+    onCloseFullSize: () => void,
+  }

@@ -4,12 +4,11 @@ import {setUISizesFn} from './panes'
 export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   const {panesList} = param
   panesList.forEach((pane) => {
+    pane.synPreservedSize()
     if (pane.id === paneId) {
-      pane.synPreservedSize()
       pane.pane.current.onFullPage()
     }
   })
-  // setUISizesFn(param)
 }
 
 export const toFullSizeFn = (param: IServiceRef, paneId: string) => {

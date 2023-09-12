@@ -1,10 +1,11 @@
-import React, {forwardRef, useImperativeHandle, useRef} from 'react'
+import React, {Ref, forwardRef, useImperativeHandle, useRef} from 'react'
 import {IPane} from '../@types'
 import PaneIcons from './pane-icons'
 import {PANE_MODE} from '../constant'
 import {getSizeStyle, toPx} from '../utils/dom'
+import {IPaneRef} from '../@types/component-types'
 
-const Pane = (props: IPane, ref: any) => {
+const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
   const paneIconRef: any = useRef()
   const paneElementRef: any = useRef<HTMLDivElement>()
 
@@ -20,7 +21,7 @@ const Pane = (props: IPane, ref: any) => {
     isVertical
   } = props
 
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(ref, (): IPaneRef => {
     const {setModeAct} = paneIconRef.current
     const paneElement = paneElementRef.current
 

@@ -10,6 +10,7 @@ import '../style.css'
 import {IResizablePanesProps} from '../@types'
 import {noop} from '../utils/util'
 import {getContainerClass, getResizableEvent} from '../utils/dom'
+import {IPaneRef} from '../@types/component-types'
 
 export const ResizablePanes = memo((props: IResizablePanesProps) => {
   console.log('rerender -> ResizablePanes')
@@ -32,8 +33,7 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
   const resizerRefs: any = useRef([])
 
   resizerRefs.current = children.map((_, i:number) => resizerRefs.current[i] ?? createRef())
-  panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef())
-
+  panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef() as RefObject<IPaneRef>)
   const {
     setMouseDownAndPaneAxisDetails,
     calculateAndSetHeight,
