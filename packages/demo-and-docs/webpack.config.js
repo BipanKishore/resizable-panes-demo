@@ -21,7 +21,7 @@ module.exports = {
         index: './index.tsx'
     },
     mode: 'development',
-    devtool:'source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -48,14 +48,22 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                  "style-loader",
-                  "css-loader",
-                  "sass-loader",
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
                 ],
             },
             {
                 test: /\.svg$/,
                 loader: 'svg-inline-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ]
     },
@@ -81,6 +89,6 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-      },
+    },
     watch: true
 }

@@ -1,6 +1,6 @@
 export {
   default as Panes
-} from './/pane'
+} from './pane'
 export {
   ResizablePanes
 } from './resizable-panes'

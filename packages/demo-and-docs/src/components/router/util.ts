@@ -3,6 +3,7 @@ import {GettingStarted} from '../../pages/getting-started'
 import {HideShowPanes} from '../../pages/hide-show-panes'
 import {HorizantalPanes} from '../../pages/horizantal-panes'
 import {NestedPanes} from '../../pages/nested-panes'
+import {PropsDescription} from '../../pages/props-description/props-description'
 import {VerticalPanes} from '../../pages/vertical-pane'
 
 // eslint-disable-next-line complexity
@@ -20,5 +21,7 @@ export const routerComponentSelector = (path: string): any => {
       return NestedPanes
     case 'show-n-hide':
       return HideShowPanes
+    case 'props-docs':
+      return PropsDescription
   }
 }
