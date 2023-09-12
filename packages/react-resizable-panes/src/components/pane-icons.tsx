@@ -44,7 +44,7 @@ const PaneIcons = (props: IPaneIconsProps, ref: any) => {
       contextTsx = [fullPageIcon, closeFullSizeIcon]
       break
     case PANE_MODE.FULL_PAGE:
-      contextTsx = [fullPageIcon, closeFullSizeIcon]
+      contextTsx = [fullSizeIcon, closeFullSizeIcon]
       break
   }
 

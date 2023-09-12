@@ -147,8 +147,4 @@ export class PaneModel {
   getMaxDiff () {
     return this.defaultMaxSize - this.size
   }
-
-  removeProperty () {
-    this.pane.current.removeSize()
-  }
 }

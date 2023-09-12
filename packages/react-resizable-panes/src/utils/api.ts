@@ -6,7 +6,6 @@ export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   panesList.forEach((pane) => {
     if (pane.id === paneId) {
       pane.synPreservedSize()
-      pane.removeProperty()
       pane.pane.current.onFullPage()
     }
   })
@@ -40,9 +39,7 @@ export const closeFullSizeFn = (param: IServiceRef) => {
 
 export const restoreDefaultFn = (param: IServiceRef) => {
   const {panesList} = param
-  panesList.forEach((pane) => {
-    pane.restore()
-  })
+  panesList.forEach((pane) => pane.restore())
   setResizersVisibility(param, true)
   setUISizesFn(param)
 }

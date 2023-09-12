@@ -22,28 +22,28 @@ const Pane = (props: IPane, ref: any) => {
 
   useImperativeHandle(ref, () => {
     const {setModeAct} = paneIconRef.current
+    const paneElement = paneElementRef.current
 
     return {
       setSize: (size: number) => {
         if (isVertical) {
-          paneElementRef.current.style.width = toPx(size)
+          paneElement.style.width = toPx(size)
         } else {
-          paneElementRef.current.style.height = toPx(size)
+          paneElement.style.height = toPx(size)
         }
-      },
-      removeSize: () => {
-        paneElementRef.current.style.removeProperty('height')
-        paneElementRef.current.style.removeProperty('width')
       },
       onFullSize: () => {
         setModeAct(PANE_MODE.FULL_SIZE)
+        paneElement.classList.remove('full-page-class')
       },
       onFullPage: () => {
         setModeAct(PANE_MODE.FULL_PAGE)
-        paneElementRef.current.classList.add('full-page-class')
+        paneElement.style.removeProperty('height')
+        paneElement.style.removeProperty('width')
+        paneElement.classList.add('full-page-class')
       },
       onCloseFullSize: () => {
-        paneElementRef.current.classList.remove('full-page-class')
+        paneElement.classList.remove('full-page-class')
         setModeAct(PANE_MODE.NORMAL)
       }
     }
