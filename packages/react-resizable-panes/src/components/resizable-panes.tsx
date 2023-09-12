@@ -23,7 +23,8 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     onResizeStop = noop,
     onResizeStart = noop,
     onResize = noop,
-    className
+    className,
+    onChangeVisibility
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -51,7 +52,8 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
       onReady,
       isVertical,
       storage,
-      onResizeStart
+      onResizeStart,
+      onChangeVisibility
     }
   )
 

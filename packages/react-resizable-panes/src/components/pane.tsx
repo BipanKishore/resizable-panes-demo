@@ -2,7 +2,7 @@ import React, {Ref, forwardRef, useImperativeHandle, useRef} from 'react'
 import {IPane} from '../@types'
 import PaneIcons from './pane-icons'
 import {PANE_MODE} from '../constant'
-import {getSizeStyle, toPx} from '../utils/dom'
+import {getSizeStyle, joinClassName, toPx} from '../utils/dom'
 import {IPaneRef} from '../@types/component-types'
 
 const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
@@ -50,10 +50,16 @@ const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
     }
   })
 
+  const classname = joinClassName(
+    {
+      'overflow-hidden': true,
+      [className]: className
+    }
+  )
   const style = getSizeStyle(split, size)
   return (
     <div
-      className={className}
+      className={classname}
       ref={paneElementRef}
       style={style}
     >

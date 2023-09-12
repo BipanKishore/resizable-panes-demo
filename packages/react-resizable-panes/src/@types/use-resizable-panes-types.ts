@@ -38,7 +38,8 @@ export interface IUseResizablePanesParams {
     isVertical: boolean,
     onReady: (api: IResizableApi) => void,
     storage: any,
-    onResizeStart?: onResizeType
+    onResizeStart?: onResizeType,
+    onChangeVisibility: (api: IKeyToBoolMap) => unknown
   }
 
 export interface IInitPaneService {

@@ -64,7 +64,7 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
         pane.setFixSize(0)
         pane.visibility = false
       }
-      resizerRefs.current[i].current.setVisibility(idMap[id])
+      resizerRefs.current[i].current?.setVisibility(idMap[id])
     }
   }
   setUISizesFn(param)

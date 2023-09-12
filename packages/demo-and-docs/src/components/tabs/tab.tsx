@@ -25,7 +25,6 @@ export const Tab = (props: ITabProps) => {
       className={className}
       onClick={() => onClick(path)}
     >
-
       {label}
     </div>
   )

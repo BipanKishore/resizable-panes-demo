@@ -10,14 +10,11 @@ export const findById = (list: PaneModel[] = [
   }) => id === _id)
 }
 
-export const createMap = (paneList: PaneModel[]) => {
+export const createMap = (paneList: PaneModel[], key: keyof PaneModel) => {
   const map: IAnyMap = {}
-  paneList.forEach(({id, size, visibility, index}) => {
-    map[id] = {
-      size,
-      visibility,
-      index
-    }
+  paneList.forEach((pane) => {
+    const {id} = pane
+    map[id] = pane[key] as PaneModel
   })
   return map
 }

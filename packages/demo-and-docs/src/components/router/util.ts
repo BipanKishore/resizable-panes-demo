@@ -1,5 +1,6 @@
 import {ApiDocs} from '../../pages/api-docs'
 import {GettingStarted} from '../../pages/getting-started'
+import {HideShowPanes} from '../../pages/hide-show-panes'
 import {HorizantalPanes} from '../../pages/horizantal-panes'
 import {NestedPanes} from '../../pages/nested-panes'
 import {VerticalPanes} from '../../pages/vertical-pane'
@@ -17,5 +18,7 @@ export const routerComponentSelector = (path: string): any => {
       return VerticalPanes
     case 'nested-panes':
       return NestedPanes
+    case 'show-n-hide':
+      return HideShowPanes
   }
 }

@@ -74,3 +74,6 @@
     width: 20px;
 }
 
+.overflow-hidden {
+    overflow: hidden;   
+   }

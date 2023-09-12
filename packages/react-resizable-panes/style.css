@@ -33,3 +33,7 @@
 .horizontal-cursur:hover {
     cursor: e-resize;
 }
+
+.overflow-hidden {
+ overflow: hidden;   
+}

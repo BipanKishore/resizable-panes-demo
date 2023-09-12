@@ -1,6 +1,6 @@
 import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
-import {createItToSizeMap} from '../utils/util'
+import {createItToSizeMap, createMap} from '../utils/util'
 import {directionBehaviourConsole, getList, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 
@@ -23,7 +23,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     isVertical,
     onReady,
     storage,
-    resizerRefs
+    resizerRefs,
+    onChangeVisibility
   } = props
   const serviceRef = useRef<IServiceRef>({})
 
@@ -50,6 +51,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   const setVisibility = (param: IKeyToBoolMap) => {
     const sizeChangeMap = setVisibilityFn(serviceRef.current, param)
     const list = <boolean[]>getList(serviceRef.current.panesList, 'visibility')
+    const visibilityMap = createMap(serviceRef.current.panesList, 'visibility')
+    onChangeVisibility(visibilityMap)
     // setResizerVisibilityList(list)
     keyConsole({...sizeChangeMap}, 'v-------')
 

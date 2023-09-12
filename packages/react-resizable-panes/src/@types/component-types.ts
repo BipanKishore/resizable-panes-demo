@@ -1,13 +1,13 @@
 import {RefObject} from 'react'
 import {SplitType} from '.'
-import {IMapIdToSize} from './general-type'
+import {IKeyToBoolMap, IMapIdToSize} from './general-type'
 import {IResizableApi} from './use-resizable-panes-types'
 
 export type onResizeType = (param: IMapIdToSize) => void
 
 export interface IResizablePanesProps {
     children: any[],
-    onReady?: () => void,
+    onReady?: (api: IResizableApi) => unknown,
     split?: SplitType,
     storage?: any,
     resizerNode?: any,
@@ -15,6 +15,7 @@ export interface IResizablePanesProps {
     onResizeStart?: onResizeType,
     onResize?: onResizeType,
     className?: string
+    onChangeVisibility?: (map:IKeyToBoolMap) => unknown
   }
 
 export interface IPane {
