@@ -31,9 +31,9 @@ const PaneIcons = (props: IPaneIconsProps, ref: any) => {
     }
   })
 
-  const fullSizeIcon = <Svg name='Expand' onClick={onClickExpand} />
-  const fullPageIcon = <Svg name='FullPage' onClick={onClickFullPage} />
-  const closeFullSizeIcon = <Svg name='compress' onClick={onClickCloseFullSize} />
+  const fullSizeIcon = <Svg key={'expand'} name='Expand' onClick={onClickExpand} />
+  const fullPageIcon = <Svg key={'fullpage'} name='FullPage' onClick={onClickFullPage} />
+  const closeFullSizeIcon = <Svg key={'compress'} name='compress' onClick={onClickCloseFullSize} />
 
   let contextTsx: ReactNode[] = []
   switch (mode) {
@@ -48,7 +48,6 @@ const PaneIcons = (props: IPaneIconsProps, ref: any) => {
       break
   }
 
-  console.log(contextTsx)
   return (
     <Fragment>
       {contextTsx}
