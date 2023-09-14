@@ -1,7 +1,7 @@
 import {IServiceRef} from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {keyConsole, paneConsole} from './development-util'
+import {keyConsole, paneConsole, setPaneList} from './development-util'
 import {getMaxSizeSum, getMinSizeSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
@@ -41,7 +41,6 @@ export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: a
 
 export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, index?: number) => {
   // initMinMaxLogic()
-//   const {panesList, maxPaneSize, activeIndex} = serviceRef.current
   const idx = index || activeIndex
   const nextIdx = idx + 1
   const aMaxChangeUp = panesList[idx].getMinDiff()
@@ -58,12 +57,11 @@ export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, ind
   const aMaxChangeDown = panesList[nextIdx].getMinDiff()
   const bMaxChangeDown = panesList[idx].getMaxDiff()
   minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, idx, nextIdx, 0, maxPaneSize)
-  paneConsole(panesList, 'minSize')
-  paneConsole(panesList, 'maxSize')
+  // paneConsole(panesList, 'minSize')
+  // paneConsole(panesList, 'maxSize')
 }
 
 export const calculateAxes = ({panesList, maxTopAxis, resizerSize, activeIndex}: any, index?: number) => {
-//   const {panesList, maxTopAxis, resizerSize} = serviceRef.current
   const idx = index || activeIndex
   const resizerSizeHalf = Math.floor(resizerSize / 2)
   const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
@@ -296,13 +294,25 @@ export const minMaxLogicDown = (
 }
 
 export const hideLogic = (indexToHide: number, {panesList, resizerSize}: IServiceRef) => {
-  let hiddenPaneSize = panesList[indexToHide].setVisibility(false)
+  let sizeChange = panesList[indexToHide].setVisibility(false) + resizerSize
 
   for (let i = indexToHide - 1; i > MINUS_ONE; i--) {
-    hiddenPaneSize = panesList[i].setVisibilitySize(hiddenPaneSize)
+    sizeChange = panesList[i].addVisibilitySize(sizeChange)
   }
 
   for (let i = indexToHide + 1; i < panesList.length; i++) {
-    hiddenPaneSize = panesList[i].setVisibilitySize(hiddenPaneSize)
+    sizeChange = panesList[i].addVisibilitySize(sizeChange)
+  }
+}
+
+export const showPaneLogic = (indexToShow: number, {panesList, resizerSize}: IServiceRef) => {
+  let sizeChange = panesList[indexToShow].setVisibility(true) + resizerSize
+
+  for (let i = indexToShow - 1; i > MINUS_ONE; --i) {
+    sizeChange = panesList[i].removeVisibilitySize(sizeChange)
+  }
+
+  for (let i = indexToShow + 1; i < panesList.length; i++) {
+    sizeChange = panesList[i].removeVisibilitySize(sizeChange)
   }
 }

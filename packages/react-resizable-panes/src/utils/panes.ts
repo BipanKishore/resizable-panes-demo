@@ -47,20 +47,20 @@ export const getMinSizeSum = (panesList: PaneModel[], start: number, end: number
 
 export const setDownMaxLimits = (panesList: PaneModel[], index: number) => {
   for (let i = 0; i <= index; i++) {
-    panesList[i].size = panesList[i].maxSize
+    panesList[i].synSizeToMaxSize()
   }
 
   for (let i = index + 1; i < panesList.length; i++) {
-    panesList[i].size = panesList[i].minSize
+    panesList[i].synSizeToMinSize()
   }
 }
 
 export const setUpMaxLimits = (panesList: PaneModel[], index: number) => {
   for (let i = 0; i <= index; i++) {
-    panesList[i].size = panesList[i].minSize
+    panesList[i].synSizeToMinSize()
   }
 
   for (let i = index + 1; i < panesList.length; i++) {
-    panesList[i].size = panesList[i].maxSize
+    panesList[i].synSizeToMaxSize()
   }
 }

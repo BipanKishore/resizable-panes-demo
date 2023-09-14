@@ -1,6 +1,8 @@
 import {IKeyToBoolMap, IServiceRef} from '../@types'
+import {getList, paneConsole} from './development-util'
 import {setUISizesFn} from './panes'
-import {hideLogic} from './resizable-pane'
+import {hideLogic, showPaneLogic} from './resizable-pane'
+import {isUndefinedOrNull} from './util'
 
 export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   const {panesList} = param
@@ -44,7 +46,9 @@ export const restoreDefaultFn = (param: IServiceRef) => {
   setUISizesFn(param)
 }
 
+// eslint-disable-next-line complexity
 export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
+  console.log('v-- idMap', idMap)
   const {panesList, resizerRefs} = param
   const keys = Object.keys(idMap)
 
@@ -52,22 +56,23 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
 
   for (let i = 0; i < panesList.length; i++) {
     const pane = panesList[i]
-    const {id, size} = pane
+    const {id} = pane
     if (keys.includes(id)) {
       const visibility = idMap[id]
+
+      resizerRefs.current[i].current?.setVisibility(visibility ?? pane.visibility)
+      if (isUndefinedOrNull(visibility) || visibility === pane.visibility) {
+        continue
+      }
+
       if (visibility) {
-        // sizeChangeMap[pane.id] = size
-        // pane.setFixSize(pane.storedSize)
-        // pane.visibility = true
+        showPaneLogic(pane.index, param)
       } else {
         hideLogic(pane.index, param)
-        // pane.synPreservedSize()
-        // sizeChangeMap[pane.id] = -size
-        // pane.setFixSize(0)
-        // pane.visibility = false
       }
-      resizerRefs.current[i].current?.setVisibility(idMap[id])
     }
+    console.log('v---- idMap[id]', id, idMap[id])
+    const visibleCount = getList(panesList, 'visibility').filter((value) => value).length
   }
   setUISizesFn(param)
   return sizeChangeMap

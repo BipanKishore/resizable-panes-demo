@@ -168,13 +168,19 @@ export class PaneModel {
   }
 
   resetMax (reduce = 0) {
-    this.maxSize = this.defaultMaxSize - reduce
-    return this.maxSize
+    if (this.visibility) {
+      this.maxSize = this.defaultMaxSize - reduce
+      return this.maxSize
+    }
+    return ZERO
   }
 
   resetMin () {
-    this.minSize = this.defaultMinSize
-    return this.minSize
+    if (this.visibility) {
+      this.minSize = this.defaultMinSize
+      return this.minSize
+    }
+    return ZERO
   }
 
   synMaxToSize () {
@@ -188,10 +194,28 @@ export class PaneModel {
   }
 
   getMinDiff () {
-    return this.size - this.defaultMinSize
+    if (this.visibility) {
+      return this.size - this.defaultMinSize
+    }
+    return ZERO
   }
 
   getMaxDiff () {
-    return this.defaultMaxSize - this.size
+    if (this.visibility) {
+      return this.defaultMaxSize - this.size
+    }
+    return ZERO
+  }
+
+  synSizeToMinSize () {
+    if (this.visibility) {
+      this.size = this.minSize
+    }
+  }
+
+  synSizeToMaxSize () {
+    if (this.visibility) {
+      this.size = this.maxSize
+    }
   }
 }
