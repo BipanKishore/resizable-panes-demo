@@ -57,18 +57,56 @@ export class PaneModel {
   }
 
   setSize (newSize: number) {
-    if (newSize >= this.minSize && newSize <= this.maxSize) {
-      this.size = newSize
-      this.left = ZERO
-      return ZERO
-    } else if (newSize > this.maxSize) {
-      this.size = this.maxSize
-    } else {
-      this.size = this.minSize
+    if (this.visibility) {
+      if (newSize >= this.minSize && newSize <= this.maxSize) {
+        this.size = newSize
+        this.left = ZERO
+        return ZERO
+      } else if (newSize > this.maxSize) {
+        this.size = this.maxSize
+      } else {
+        this.size = this.minSize
+      }
     }
     const left = Math.abs(this.size - newSize)
     this.left = left
     return left
+  }
+
+  setVisibilitySize (sizeChange: number) {
+    const newSize = this.size + sizeChange
+    if (this.visibility) {
+      if (newSize >= this.defaultMinSize && newSize <= this.defaultMaxSize) {
+        this.size = newSize
+        this.left = ZERO
+        return ZERO
+      } else if (newSize > this.defaultMaxSize) {
+        this.size = this.defaultMaxSize
+      } else {
+        this.size = this.defaultMinSize
+      }
+    }
+
+    const left = Math.abs(this.size - newSize)
+    this.left = left
+    return left
+  }
+
+  setVisibility (visibility: boolean) {
+    if (this.visibility === visibility) {
+      return ZERO
+    }
+
+    this.visibility = visibility
+    if (visibility) {
+      this.size = this.storedSize
+      this.storedSize = null
+      return this.size
+    } else {
+      this.storedSize = this.size
+      this.size = 0
+      return this.storedSize
+    }
   }
 
   addSize (sizeChange: number) {

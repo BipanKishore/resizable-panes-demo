@@ -1,9 +1,10 @@
+import {IServiceRef} from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole, paneConsole} from './development-util'
 import {getMaxSizeSum, getMinSizeSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
 
-export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
+export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
   if (sizeChange < ZERO) {
     return
@@ -292,4 +293,16 @@ export const minMaxLogicDown = (
   }
 
   minMaxLogicDown(panesList, nextValue, nextAIndex, nextBIndex, sum, maxPaneSize)
+}
+
+export const hideLogic = (indexToHide: number, {panesList, resizerSize}: IServiceRef) => {
+  let hiddenPaneSize = panesList[indexToHide].setVisibility(false)
+
+  for (let i = indexToHide - 1; i > MINUS_ONE; i--) {
+    hiddenPaneSize = panesList[i].setVisibilitySize(hiddenPaneSize)
+  }
+
+  for (let i = indexToHide + 1; i < panesList.length; i++) {
+    hiddenPaneSize = panesList[i].setVisibilitySize(hiddenPaneSize)
+  }
 }

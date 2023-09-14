@@ -1,5 +1,6 @@
 import {IKeyToBoolMap, IServiceRef} from '../@types'
 import {setUISizesFn} from './panes'
+import {hideLogic} from './resizable-pane'
 
 export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   const {panesList} = param
@@ -55,14 +56,15 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
     if (keys.includes(id)) {
       const visibility = idMap[id]
       if (visibility) {
-        sizeChangeMap[pane.id] = size
-        pane.setFixSize(pane.storedSize)
-        pane.visibility = true
+        // sizeChangeMap[pane.id] = size
+        // pane.setFixSize(pane.storedSize)
+        // pane.visibility = true
       } else {
-        pane.synPreservedSize()
-        sizeChangeMap[pane.id] = -size
-        pane.setFixSize(0)
-        pane.visibility = false
+        hideLogic(pane.index, param)
+        // pane.synPreservedSize()
+        // sizeChangeMap[pane.id] = -size
+        // pane.setFixSize(0)
+        // pane.visibility = false
       }
       resizerRefs.current[i].current?.setVisibility(idMap[id])
     }
