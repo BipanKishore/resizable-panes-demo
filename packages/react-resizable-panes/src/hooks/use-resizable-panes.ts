@@ -56,6 +56,10 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   // ---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
+    if (serviceRef.current.containerRef?.current) {
+      return
+    }
+
     initPanesService({
       children,
       containerRef,
@@ -72,12 +76,8 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
       setVisibility
     }
 
-    if (onReady) {
-      onReady(api)
-    }
-  }, [
-    containerRef
-  ])
+    onReady(api)
+  }, [containerRef])
 
   const initPanesService = ({
     children,
@@ -159,13 +159,11 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     } = calculateAxes(serviceRef.current)
 
     if (e.mouseCoordinate <= topAxis) {
-      console.log('v-----  setUpMaxLimits')
       setUpMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = topAxis
       return false
     } else if (e.mouseCoordinate >= bottomAxis) {
-      console.log('v-----  setDownMaxLimits')
       setDownMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = bottomAxis

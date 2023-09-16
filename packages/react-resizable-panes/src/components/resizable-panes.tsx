@@ -1,7 +1,7 @@
 import React, {
   RefObject,
   cloneElement,
-  createRef, memo, useCallback, useEffect, useMemo, useRef
+  createRef, useCallback, useEffect, useMemo, useRef
 } from 'react'
 import Resizer from './resizer'
 import useResizablePanes from '../hooks/use-resizable-panes'
@@ -12,18 +12,16 @@ import {noop} from '../utils/util'
 import {getContainerClass, getResizableEvent} from '../utils/dom'
 import {IPaneRef} from '../@types/component-types'
 
-export const ResizablePanes = memo((props: IResizablePanesProps) => {
+export const ResizablePanes = (props: IResizablePanesProps) => {
   console.log('rerender -> ResizablePanes')
+
   const {
     children,
-    onReady = noop,
     split,
     resizerNode,
-    onResizeStop = noop,
-    onResizeStart = noop,
-    onResize = noop,
-    className,
-    onChangeVisibility
+    onResizeStop,
+    onResize,
+    className
   } = props
 
   const isVertical = split !== 'horizontal'
@@ -134,4 +132,11 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
       {contentJsx}
     </div>
   )
-}, () => false)
+}
+
+ResizablePanes.defaultProps = {
+  onResizeStop: noop,
+  onResizeStart: noop,
+  onReady: noop,
+  onChangeVisibility: noop
+}
