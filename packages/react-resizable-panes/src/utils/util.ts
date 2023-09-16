@@ -1,4 +1,4 @@
-import {IAnyMap} from '../@types'
+import {IAnyMap, IPaneModelKey} from '../@types'
 import {PaneModel} from '../models/pane-model'
 
 export const noop = (_: any): any => _
@@ -10,19 +10,18 @@ export const findById = (list: PaneModel[] = [
   }) => id === _id)
 }
 
-export const createMap = (paneList: PaneModel[], key: keyof PaneModel) => {
+export const createMap = (paneList: PaneModel[], ...keys: IPaneModelKey[]) => {
   const map: IAnyMap = {}
   paneList.forEach((pane) => {
     const {id} = pane
-    map[id] = pane[key] as PaneModel
-  })
-  return map
-}
-
-export const createItToSizeMap = (paneList: PaneModel[]) => {
-  const map: IAnyMap = {}
-  paneList.forEach(({id, size}) => {
-    map[id] = size
+    if (keys.length === 1) {
+      map[id] = pane[keys[0]]
+    } else {
+      map[id] = keys.reduce((acc: any, key) => {
+        acc[key] = pane[key]
+        return acc
+      }, {})
+    }
   })
   return map
 }

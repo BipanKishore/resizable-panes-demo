@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useRef} from 'react'
-import {createItToSizeMap, createMap} from '../utils/util'
-import {getList, keyConsole, localConsole, minMaxTotal, sizesConsole} from '../utils/development-util'
+import {createMap} from '../utils/util'
+import {minMaxTotal, sizesConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 
 import {IInitPaneService, IServiceRef, IUseResizablePanesParams, IKeyToBoolMap} from '../@types'
@@ -130,7 +130,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   }, [])
 
   const getIdToSizeMap = () => {
-    return createItToSizeMap(serviceRef.current.panesList)
+    return createMap(serviceRef.current.panesList, 'size')
   }
 
   const setDirection = (e: any) => {

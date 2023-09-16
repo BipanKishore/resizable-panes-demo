@@ -40,3 +40,5 @@ export interface IInitPaneService {
     resizerSize: number,
     isVertical: boolean
 }
+
+export type IPaneModelKey = keyof PaneModel
