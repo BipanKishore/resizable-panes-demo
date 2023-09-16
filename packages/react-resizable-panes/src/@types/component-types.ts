@@ -26,10 +26,6 @@ export interface IPane {
     innerRef?: RefObject<HTMLDivElement>,
     maxSize?: number
     minSize?: number,
-    api?: IResizableApi,
-    toFullSize? : any,
-    closeFullSize?: any,
-    toFullPage?: any,
     isVertical?: boolean
   }
 

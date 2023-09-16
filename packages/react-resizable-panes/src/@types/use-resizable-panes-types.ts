@@ -20,7 +20,6 @@ export interface IServiceRef{
     axisCoordinate?: number,
     isVertical?: boolean,
     resizerRefs?: any,
-    api?: IResizableApi
 }
 
 export interface IUseResizablePanesParams {
@@ -32,7 +31,7 @@ export interface IUseResizablePanesParams {
     isVertical: boolean,
     onReady: (api: IResizableApi) => void,
     onResizeStart?: onResizeType,
-    onChangeVisibility: (api: IKeyToBoolMap) => unknown
+    onChangeVisibility: (mapKeyToBool: IKeyToBoolMap) => unknown
   }
 
 export interface IInitPaneService {

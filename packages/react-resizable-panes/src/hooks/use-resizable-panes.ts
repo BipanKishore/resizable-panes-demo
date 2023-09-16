@@ -71,7 +71,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
       toFullPage,
       setVisibility
     }
-    serviceRef.current.api = api
+
     if (onReady) {
       onReady(api)
     }
