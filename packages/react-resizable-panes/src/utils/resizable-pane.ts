@@ -331,8 +331,8 @@ export const showPaneLogic = (indexToShow: number, {panesList, resizerSize}: ISe
   }
 }
 
-export const getMaxContainerSizes = ({containerRef, isVertical, panesList, resizerSize} :IServiceRef) => {
-  const {top, height, left, width} = containerRef.current.getBoundingClientRect() || {}
+export const getMaxContainerSizes = ({getContainerRect, isVertical, panesList, resizerSize} :IServiceRef) => {
+  const {top, height, left, width} = getContainerRect()
   const maxTopAxis = isVertical ? left : top
   const maxPaneSize = (isVertical ? width : height) - getResizerSum(panesList, 0, panesList.length - 2, resizerSize)
 

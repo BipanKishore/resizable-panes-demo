@@ -14,7 +14,7 @@ import {createPaneList, setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxis
 const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const {
     props,
-    containerRef,
+    getContainerRect,
     panesRefs,
     resizerSize,
     isVertical,
@@ -56,13 +56,9 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   // ---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
-    if (serviceRef.current.containerRef?.current) {
-      return
-    }
-
     initPanesService({
       children,
-      containerRef,
+      getContainerRect,
       panesRefs,
       resizerSize,
       isVertical
@@ -77,16 +73,16 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     }
 
     onReady(api)
-  }, [containerRef])
+  }, [panesRefs])
 
   const initPanesService = ({
     children,
-    containerRef,
+    getContainerRect,
     panesRefs,
     resizerSize,
     isVertical
   }: IInitPaneService) => {
-    serviceRef.current.containerRef = containerRef
+    serviceRef.current.getContainerRect = getContainerRect
     serviceRef.current.resizerSize = resizerSize
     // resizerRefs.current?.forEach((ref: any) => console.log('v-- getSize', ref.current?.getSize()))
     serviceRef.current.isVertical = isVertical

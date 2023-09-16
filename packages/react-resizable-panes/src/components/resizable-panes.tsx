@@ -37,6 +37,11 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
 
   resizerRefs.current = children.map((_, i:number) => resizerRefs.current[i] ?? createRef())
   panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef() as RefObject<IPaneRef>)
+
+  const getContainerRect = useCallback(() => {
+    return containerRef.current.getBoundingClientRect()
+  }, [])
+
   const {
     setMouseDownAndPaneAxisDetails,
     calculateAndSetHeight,
@@ -47,7 +52,7 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
   } = useResizablePanes(
     {
       props,
-      containerRef,
+      getContainerRect,
       panesRefs,
       resizerSize: 2,
       isVertical,
@@ -140,6 +145,7 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
 }
 
 ResizablePanes.defaultProps = {
+  onResize: noop,
   onResizeStop: noop,
   onResizeStart: noop,
   onReady: noop,
