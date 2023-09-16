@@ -18,7 +18,6 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     children,
     onReady = noop,
     split,
-    storage,
     resizerNode,
     onResizeStop = noop,
     onResizeStart = noop,
@@ -51,7 +50,6 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
       resizerSize: 2,
       onReady,
       isVertical,
-      storage,
       onResizeStart,
       onChangeVisibility
     }

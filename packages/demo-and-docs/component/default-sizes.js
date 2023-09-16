@@ -20,15 +20,14 @@ export const DefaultSizes = ({
       }}
 
       // Note required
-      split={split} // Values 'horizontal' | 'vertical'
-      // Note required
-      storage={window.sessionStorage}
-      // Note required
-      onReady={onReady}
-      // Note required
       onResize={(map) => {
         // console.log('v-- onResize', map)
       }}
+      // Note required
+      split={split} // Values 'horizontal' | 'vertical'
+      // Note required
+      // Note required
+      onReady={onReady}
     >
 
       {set.ids.map((id, index) => (

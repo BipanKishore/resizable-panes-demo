@@ -1,7 +1,7 @@
 import {IKeyToBoolMap, IServiceRef} from '../@types'
 import {getList, paneConsole} from './development-util'
 import {setUISizesFn} from './panes'
-import {hideLogic, showPaneLogic} from './resizable-pane'
+import {getMaxContainerSizes, hideLogic, showPaneLogic} from './resizable-pane'
 import {isUndefinedOrNull} from './util'
 
 export const toFullPageFn = (param: IServiceRef, paneId: string) => {
@@ -14,8 +14,10 @@ export const toFullPageFn = (param: IServiceRef, paneId: string) => {
   })
 }
 
-export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
-  const {panesList, maxPaneSize, resizerSize} = param
+export const toFullSizeFn = (serviceRefCurrent: IServiceRef, paneId: string) => {
+  const {panesList, resizerSize} = serviceRefCurrent
+
+  const {maxPaneSize} = getMaxContainerSizes(serviceRefCurrent)
   panesList.forEach((pane) => {
     pane.synPreservedSize()
     if (pane.id === paneId) {
@@ -25,8 +27,8 @@ export const toFullSizeFn = (param: IServiceRef, paneId: string) => {
       pane.size = 0
     }
   })
-  setResizersVisibility(param, false)
-  setUISizesFn(param)
+  setResizersVisibility(serviceRefCurrent, false)
+  setUISizesFn(serviceRefCurrent)
 }
 
 export const closeFullSizeFn = (param: IServiceRef) => {
@@ -52,8 +54,6 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
   const {panesList, resizerRefs} = param
   const keys = Object.keys(idMap)
 
-  const sizeChangeMap: any = {}
-
   for (let i = 0; i < panesList.length; i++) {
     const pane = panesList[i]
     const {id} = pane
@@ -75,7 +75,6 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
     const visibleCount = getList(panesList, 'visibility').filter((value) => value).length
   }
   setUISizesFn(param)
-  return sizeChangeMap
 }
 
 export const setResizersVisibility = (param: IServiceRef, visibility: boolean) => {

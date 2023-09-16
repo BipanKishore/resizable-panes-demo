@@ -9,7 +9,6 @@ export interface IResizablePanesProps {
     children: any[],
     onReady?: (api: IResizableApi) => unknown,
     split?: SplitType,
-    storage?: any,
     resizerNode?: any,
     onResizeStop?: onResizeType,
     onResizeStart?: onResizeType,
@@ -27,10 +26,6 @@ export interface IPane {
     innerRef?: RefObject<HTMLDivElement>,
     maxSize?: number
     minSize?: number,
-    api?: IResizableApi,
-    toFullSize? : any,
-    closeFullSize?: any,
-    toFullPage?: any,
     isVertical?: boolean
   }
 
