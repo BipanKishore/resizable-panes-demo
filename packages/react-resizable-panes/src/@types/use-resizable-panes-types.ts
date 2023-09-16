@@ -1,5 +1,5 @@
 import {PaneModel} from '../models/pane-model'
-import {onResizeType} from './component-types'
+import {IResizablePanesProps} from './component-types'
 import {IKeyToBoolMap} from './general-type'
 
 export interface IResizableApi {
@@ -22,15 +22,12 @@ export interface IServiceRef{
 }
 
 export interface IUseResizablePanesParams {
-    children: any,
     containerRef: any,
     panesRefs: any,
     resizerRefs: any,
     resizerSize: any,
     isVertical: boolean,
-    onReady: (api: IResizableApi) => void,
-    onResizeStart?: onResizeType,
-    onChangeVisibility: (mapKeyToBool: IKeyToBoolMap) => unknown
+    props?: IResizablePanesProps
   }
 
 export interface IInitPaneService {

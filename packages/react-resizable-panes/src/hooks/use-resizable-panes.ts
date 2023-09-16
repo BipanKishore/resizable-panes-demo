@@ -2,9 +2,7 @@ import {useCallback, useEffect, useRef} from 'react'
 import {createMap} from '../utils/util'
 import {minMaxTotal, sizesConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
-
 import {IInitPaneService, IServiceRef, IUseResizablePanesParams, IKeyToBoolMap} from '../@types'
-
 import {closeFullSizeFn, restoreDefaultFn, setVisibilityFn, toFullPageFn, toFullSizeFn} from '../utils/api'
 import {
   calculateAxes, goingDownLogic, goingUpLogic,
@@ -15,15 +13,19 @@ import {createPaneList, setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxis
 
 const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const {
-    children,
+    props,
     containerRef,
     panesRefs,
     resizerSize,
     isVertical,
-    onReady,
-    resizerRefs,
-    onChangeVisibility
+    resizerRefs
   } = hookParams
+
+  const {
+    children,
+    onReady,
+    onChangeVisibility
+  } = props
 
   const serviceRef = useRef<IServiceRef>({})
 

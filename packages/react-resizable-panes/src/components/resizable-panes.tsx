@@ -43,15 +43,12 @@ export const ResizablePanes = memo((props: IResizablePanesProps) => {
     toFullPage
   } = useResizablePanes(
     {
-      children,
+      props,
       containerRef,
       panesRefs,
-      resizerRefs,
       resizerSize: 2,
-      onReady,
       isVertical,
-      onResizeStart,
-      onChangeVisibility
+      resizerRefs
     }
   )
 
