@@ -13,14 +13,9 @@ export interface IResizableApi {
 
 export interface IServiceRef{
     containerRef?: any,
-    panesRefs?: any
     resizerSize?: number,
     panesList?: PaneModel[],
-    maxTopAxis?: number,
-    maxPaneSize?: number,
     activeIndex?: number
-    topAxis?: number,
-    bottomAxis?: number,
     prevDirection?: string,
     axisCoordinate?: number,
     isVertical?: boolean,

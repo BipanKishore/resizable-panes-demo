@@ -54,8 +54,6 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
   const {panesList, resizerRefs} = param
   const keys = Object.keys(idMap)
 
-  const sizeChangeMap: any = {}
-
   for (let i = 0; i < panesList.length; i++) {
     const pane = panesList[i]
     const {id} = pane
@@ -77,7 +75,6 @@ export const setVisibilityFn = (param: IServiceRef, idMap: IKeyToBoolMap) => {
     const visibleCount = getList(panesList, 'visibility').filter((value) => value).length
   }
   setUISizesFn(param)
-  return sizeChangeMap
 }
 
 export const setResizersVisibility = (param: IServiceRef, visibility: boolean) => {
