@@ -2,6 +2,7 @@ import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {DIRECTIONS} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {subscription} from '../services/subscription'
+import {getMaxContainerSizes} from './resizable-pane'
 
 export const keyConsole = (obj: any = {}, add = 'v--') => {
   const keys = Object.keys(obj)
@@ -9,8 +10,10 @@ export const keyConsole = (obj: any = {}, add = 'v--') => {
   console.log(str)
 }
 
-export const minMaxTotal = (param: IServiceRef) => {
-  const {panesList, maxPaneSize} = param
+export const minMaxTotal = (serviceRefCurrent: IServiceRef) => {
+  const {panesList} = serviceRefCurrent
+
+  const {maxPaneSize} = getMaxContainerSizes(serviceRefCurrent)
   let sum = 0
   panesList
     .forEach(({minSize, maxSize}) => {
@@ -37,7 +40,7 @@ export const paneConsole = (panesList: PaneModel[], key: string) => {
 
 export const setPaneList = (panesList: PaneModel[], keys: string[] = [], value: any = null) => {
   panesList.forEach((pane: any) => keys.forEach((key: string) => (pane[key] = value)))
-  keys.forEach((key) => paneConsole(panesList, key))
+  // keys.forEach((key) => paneConsole(panesList, key))
 }
 
 // eslint-disable-next-line complexity

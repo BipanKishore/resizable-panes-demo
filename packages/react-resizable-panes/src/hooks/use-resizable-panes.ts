@@ -94,16 +94,6 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
   }, [])
 
-  // isVertical Done
-  const setMaxLimitingSize = useCallback((containerRef: any, isVertical: boolean) => {
-    const rect = containerRef.current.getBoundingClientRect() || {}
-    const {top, height, left, width} = rect
-    serviceRef.current.maxTopAxis = isVertical ? left : top
-    serviceRef.current.maxPaneSize = (isVertical ? width : height) -
-              ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
-    // serviceRef
-  }, [])
-
   const initPanesService = ({
     children,
     containerRef,
@@ -118,7 +108,6 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     serviceRef.current.storage = storage
     serviceRef.current.resizerRefs = resizerRefs
     createPaneList({panesRefs, children, isVertical})
-    setMaxLimitingSize(containerRef, isVertical)
   }
 
   const setCurrentMinMaxAndAxes = useCallback((index?: number) => {
@@ -137,9 +126,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     syncAxisSizesFn(serviceRef.current)
   }, [])
 
-  const setUISizes = useCallback((e: SyntheticEvent) => {
+  const setUISizes = useCallback(() => {
     setUISizesFn(serviceRef.current)
-    // publishPanes(e)
   }, [])
 
   const setActiveIndex = useCallback((index: number) => {
@@ -160,7 +148,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
         }
       }
 
-      setUISizes(e)
+      setUISizes()
     }
   }, [])
 

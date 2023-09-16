@@ -39,20 +39,20 @@ export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: a
   }
 }
 
-export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, index?: number) => {
-  // initMinMaxLogic()
+export const setCurrentMinMax = (serviceRefCurrent: IServiceRef, index?: number) => {
+  const {panesList, activeIndex} = serviceRefCurrent
+  const {maxPaneSize} = getMaxContainerSizes(serviceRefCurrent)
   const idx = index || activeIndex
   const nextIdx = idx + 1
   const aMaxChangeUp = panesList[idx].getMinDiff()
   const bMaxChangeUp = panesList[nextIdx].getMaxDiff()
 
-  // setPaneList(panesList, ['minSize', 'maxSize'], null)
+  setPaneList(panesList, ['minSize', 'maxSize'], null)
 
   minMaxLogicUp(panesList, aMaxChangeUp - bMaxChangeUp, idx, nextIdx, 0, maxPaneSize)
 
   paneConsole(panesList, 'minSize')
   paneConsole(panesList, 'maxSize')
-  // initMinMaxLogic()
   // setPaneList(panesList, ['minSize', 'maxSize'], null)
   const aMaxChangeDown = panesList[nextIdx].getMinDiff()
   const bMaxChangeDown = panesList[idx].getMaxDiff()
@@ -61,7 +61,11 @@ export const setCurrentMinMax = ({panesList, maxPaneSize, activeIndex}: any, ind
   // paneConsole(panesList, 'maxSize')
 }
 
-export const calculateAxes = ({panesList, maxTopAxis, resizerSize, activeIndex}: any, index?: number) => {
+export const calculateAxes = (serviceRefCurrent: IServiceRef, index?: number) => {
+  const {panesList, resizerSize, activeIndex} = serviceRefCurrent
+
+  const {maxTopAxis} = getMaxContainerSizes(serviceRefCurrent)
+
   const idx = index || activeIndex
   const resizerSizeHalf = Math.floor(resizerSize / 2)
   const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
@@ -314,5 +318,16 @@ export const showPaneLogic = (indexToShow: number, {panesList, resizerSize}: ISe
 
   for (let i = indexToShow + 1; i < panesList.length; i++) {
     sizeChange = panesList[i].removeVisibilitySize(sizeChange)
+  }
+}
+
+export const getMaxContainerSizes = ({containerRef, isVertical, panesList, resizerSize} :IServiceRef) => {
+  const {top, height, left, width} = containerRef.current.getBoundingClientRect() || {}
+  const maxTopAxis = isVertical ? left : top
+  const maxPaneSize = (isVertical ? width : height) -
+  ((panesList.length - 1) * resizerSize)
+  return {
+    maxTopAxis,
+    maxPaneSize
   }
 }
