@@ -112,13 +112,15 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     isVertical,
     storage
   }: IInitPaneService) => {
-    serviceRef.current.containerRef = containerRef
-    serviceRef.current.resizerSize = resizerSize
-    serviceRef.current.isVertical = isVertical
-    serviceRef.current.storage = storage
-    serviceRef.current.resizerRefs = resizerRefs
-    createPaneList({panesRefs, children, isVertical})
-    setMaxLimitingSize(containerRef, isVertical)
+    if (!serviceRef.current.containerRef) {
+      serviceRef.current.containerRef = containerRef
+      serviceRef.current.resizerSize = resizerSize
+      serviceRef.current.isVertical = isVertical
+      serviceRef.current.storage = storage
+      serviceRef.current.resizerRefs = resizerRefs
+      createPaneList({panesRefs, children, isVertical})
+      setMaxLimitingSize(containerRef, isVertical)
+    }
   }
 
   const setCurrentMinMaxAndAxes = useCallback((index?: number) => {
