@@ -175,8 +175,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     return true
   }
 
-  const setMouseDownAndPaneAxisDetails = (e: any, index: number) => {
-    const {mouseCoordinate} = e
+  const setMouseDownAndPaneAxisDetails = ({mouseCoordinate}: any, index: number) => {
     setActiveIndex(index)
     serviceRef.current.prevDirection = DIRECTIONS.NONE
     serviceRef.current.axisCoordinate = mouseCoordinate
