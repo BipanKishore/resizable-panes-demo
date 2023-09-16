@@ -1,5 +1,5 @@
 import {IServiceRef} from '../@types'
-import {MINUS_ONE, ZERO} from '../constant'
+import {MINUS_ONE} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole, localConsole, paneConsole, setPaneList} from './development-util'
 import {getMaxSizeSum, getMinSizeSum, getResizerSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
@@ -16,7 +16,7 @@ export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}:
   for (let i = activeIndex; i > MINUS_ONE; i -= 1) {
     sizeChangeUp = panesList[i].addSize(sizeChangeUp)
   }
-  localStorage.setItem('goingDownLogic', sizeChangeUp.toString())
+
   sizeChange -= sizeChangeUp
 
   for (let i = activeIndex + 1; i < panesList.length; i += 1) {
@@ -35,7 +35,6 @@ export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: a
     sizeChangeUp = panesList[i].addSize(sizeChangeUp)
   }
 
-  localStorage.setItem('goingUpLogic', sizeChangeUp.toString())
   sizeChange -= sizeChangeUp
 
   for (let i = activeIndex; i > MINUS_ONE; i -= 1) {
