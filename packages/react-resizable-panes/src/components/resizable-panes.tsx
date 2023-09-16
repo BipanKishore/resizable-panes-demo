@@ -15,6 +15,11 @@ import {IPaneRef} from '../@types/component-types'
 export const ResizablePanes = (props: IResizablePanesProps) => {
   console.log('rerender -> ResizablePanes')
 
+  useEffect(() => {
+    console.error('v----- Reeeeeeeeeeeee Mountttttttiinnnnnng')
+    return () => console.error('v----- Uuuuuuuuuunmountiiiiiiiiiiinnnnnnnngggggg')
+  }, [])
+
   const {
     children,
     split,
@@ -55,13 +60,13 @@ export const ResizablePanes = (props: IResizablePanesProps) => {
     calculateAndSetHeight(resizableEvent)
     const resizeParams = getIdToSizeMap()
     onResize(resizeParams)
-  }, [isVertical, onResize])
+  }, [isVertical, onResize, getIdToSizeMap, calculateAndSetHeight])
 
   const onMouseUp = useCallback(() => {
     document.removeEventListener('mousemove', onMouseMove)
     const resizeParams = getIdToSizeMap()
     onResizeStop(resizeParams)
-  }, [onMouseMove])
+  }, [onMouseMove, onResizeStop, getIdToSizeMap])
 
   useEffect(() => {
     document.addEventListener('mouseup', onMouseUp)
