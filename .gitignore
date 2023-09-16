@@ -10,6 +10,7 @@
 
 # production
 /build
+/packages/demo-and-docs/dist
 
 # misc
 .DS_Store

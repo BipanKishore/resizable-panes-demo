@@ -1,4 +1,5 @@
 import {ApiDocs} from '../../pages/api-docs'
+import {FullScreenModes} from '../../pages/full-screen-modes'
 import {GettingStarted} from '../../pages/getting-started'
 import {HideShowPanes} from '../../pages/hide-show-panes'
 import {HorizantalPanes} from '../../pages/horizantal-panes'
@@ -26,5 +27,7 @@ export const routerComponentSelector = (path: string): any => {
       return PropsDescription
     case 'min-n-max':
       return PanesMinMax
+    case 'full-screen-modes':
+      return FullScreenModes
   }
 }
