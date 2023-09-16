@@ -185,13 +185,11 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
 
   return {
     setMouseDownAndPaneAxisDetails,
-    setActiveIndex,
     calculateAndSetHeight,
     getIdToSizeMap,
     toFullSize,
     closeFullSize,
     toFullPage
-    // resizerVisibilityList
   }
 }
 
