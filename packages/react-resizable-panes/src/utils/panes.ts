@@ -64,3 +64,8 @@ export const setUpMaxLimits = (panesList: PaneModel[], index: number) => {
     panesList[i].synSizeToMaxSize()
   }
 }
+
+export const createPaneList = ({panesRefs, children, isVertical}: any) => {
+  return panesRefs
+    ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
+}

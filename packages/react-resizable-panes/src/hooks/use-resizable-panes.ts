@@ -12,7 +12,7 @@ import {
   setCurrentMinMax
 } from '../utils/resizable-pane'
 import {getDirection} from '../utils/dom'
-import {setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxisSizesFn} from '../utils/panes'
+import {createPaneList, setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxisSizesFn} from '../utils/panes'
 
 const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const {
@@ -25,11 +25,10 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     resizerRefs,
     onChangeVisibility
   } = hookParams
+
   const serviceRef = useRef<IServiceRef>({})
 
-  // const [resizerVisibilityList, setResizerVisibilityList] = useState([])
-
-  // ---------------------------------  API --------------------------------------------//
+  // ---------------------------------  API -------------------------------------------- //
 
   const toFullPage = (paneId: string) => {
     toFullPageFn(serviceRef.current, paneId)
@@ -79,12 +78,6 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     containerRef
   ])
 
-  // Not requird isVertical
-  const createPaneList = useCallback(({panesRefs, children, isVertical}: any) => {
-    serviceRef.current.panesList = panesRefs
-      ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
-  }, [])
-
   const initPanesService = ({
     children,
     containerRef,
@@ -97,7 +90,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     // resizerRefs.current?.forEach((ref: any) => console.log('v-- getSize', ref.current?.getSize()))
     serviceRef.current.isVertical = isVertical
     serviceRef.current.resizerRefs = resizerRefs
-    createPaneList({panesRefs, children, isVertical})
+    serviceRef.current.panesList = createPaneList({panesRefs, children, isVertical})
   }
 
   const setCurrentMinMaxAndAxes = useCallback((index?: number) => {
