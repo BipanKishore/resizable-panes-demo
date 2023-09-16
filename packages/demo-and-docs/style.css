@@ -15,15 +15,15 @@
 }
 
 .pane1 {
-    background-color: red;
+    background-color:#212F3D;
 }
 
 .pane2 {
-    background-color: rgb(103, 94, 235);
+    background-color:#424949;
 }
 
 .pane3 {
-    background-color: orange;
+    background-color:#839fad ;
 }
 
 
@@ -72,3 +72,13 @@
 .m-2px-8px{
     margin: 2px 4px;
 }
+.maxxmin{
+    text-align: center;
+    position: relative;
+    top:100px;
+    color:white;
+    font-size: 20px;
+    font-variant-numeric:tabular-nums;
+    font-weight: bold;
+}
+

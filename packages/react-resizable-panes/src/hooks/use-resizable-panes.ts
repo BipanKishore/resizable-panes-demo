@@ -1,4 +1,4 @@
-import {SyntheticEvent, useCallback, useEffect, useRef} from 'react'
+import {useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {createItToSizeMap, createMap} from '../utils/util'
 import {directionBehaviourConsole, getList, keyConsole, minMaxTotal} from '../utils/development-util'
@@ -14,7 +14,7 @@ import {
 import {getDirection} from '../utils/dom'
 import {setDownMaxLimits, setUISizesFn, setUpMaxLimits, syncAxisSizesFn} from '../utils/panes'
 
-const useResizablePanes = (props: IUseResizablePanesParams) => {
+const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const {
     children,
     containerRef,
@@ -22,10 +22,9 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     resizerSize,
     isVertical,
     onReady,
-    storage,
     resizerRefs,
     onChangeVisibility
-  } = props
+  } = hookParams
   const serviceRef = useRef<IServiceRef>({})
 
   // const [resizerVisibilityList, setResizerVisibilityList] = useState([])
@@ -49,15 +48,9 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const setVisibility = (param: IKeyToBoolMap) => {
-    const sizeChangeMap = setVisibilityFn(serviceRef.current, param)
-    const list = <boolean[]>getList(serviceRef.current.panesList, 'visibility')
+    setVisibilityFn(serviceRef.current, param)
     const visibilityMap = createMap(serviceRef.current.panesList, 'visibility')
     onChangeVisibility(visibilityMap)
-    // setResizerVisibilityList(list)
-    keyConsole({...sizeChangeMap}, 'v-------')
-
-    // const resizableEvent = getResizableEvent(e, isVertical)
-    // setMouseDownAndPaneAxisDetails(resizableEvent)
   }
 
   // ---------------------------------  API --------------------------------------------//
@@ -68,8 +61,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       containerRef,
       panesRefs,
       resizerSize,
-      isVertical,
-      storage
+      isVertical
     })
 
     const api = {
@@ -79,7 +71,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       toFullPage,
       setVisibility
     }
-    serviceRef.current.api = api
+
     if (onReady) {
       onReady(api)
     }
@@ -89,19 +81,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
 
   // Not requird isVertical
   const createPaneList = useCallback(({panesRefs, children, isVertical}: any) => {
-    serviceRef.current.panesRefs = panesRefs
     serviceRef.current.panesList = panesRefs
       ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
-  }, [])
-
-  // isVertical Done
-  const setMaxLimitingSize = useCallback((containerRef: any, isVertical: boolean) => {
-    const rect = containerRef.current.getBoundingClientRect() || {}
-    const {top, height, left, width} = rect
-    serviceRef.current.maxTopAxis = isVertical ? left : top
-    serviceRef.current.maxPaneSize = (isVertical ? width : height) -
-              ((serviceRef.current.panesList.length - 1) * serviceRef.current.resizerSize)
-    // serviceRef
   }, [])
 
   const initPanesService = ({
@@ -109,26 +90,17 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     containerRef,
     panesRefs,
     resizerSize,
-    isVertical,
-    storage
+    isVertical
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
     serviceRef.current.isVertical = isVertical
-    serviceRef.current.storage = storage
     serviceRef.current.resizerRefs = resizerRefs
     createPaneList({panesRefs, children, isVertical})
-    setMaxLimitingSize(containerRef, isVertical)
   }
 
   const setCurrentMinMaxAndAxes = useCallback((index?: number) => {
     setCurrentMinMax(serviceRef.current, index)
-    const {
-      bottomAxis,
-      topAxis
-    } = calculateAxes(serviceRef.current, index)
-    serviceRef.current.bottomAxis = bottomAxis
-    serviceRef.current.topAxis = topAxis
 
     minMaxTotal(serviceRef.current)
   }, [])
@@ -137,9 +109,8 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
     syncAxisSizesFn(serviceRef.current)
   }, [])
 
-  const setUISizes = useCallback((e: SyntheticEvent) => {
+  const setUISizes = useCallback(() => {
     setUISizesFn(serviceRef.current)
-    // publishPanes(e)
   }, [])
 
   const setActiveIndex = useCallback((index: number) => {
@@ -160,7 +131,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
         }
       }
 
-      setUISizes(e)
+      setUISizes()
     }
   }, [])
 
@@ -186,22 +157,28 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
   }
 
   const setAxisConfig = (e: any) => {
-    const {bottomAxis, topAxis, panesList, activeIndex} = serviceRef.current
+    const {panesList, activeIndex} = serviceRef.current
+    const {
+      bottomAxis,
+      topAxis
+    } = calculateAxes(serviceRef.current)
+
     if (e.mouseCoordinate <= topAxis) {
       setUpMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = topAxis
+      return false
     } else if (e.mouseCoordinate >= bottomAxis) {
       setDownMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = bottomAxis
+      return false
     }
 
     return true
   }
 
-  const setMouseDownAndPaneAxisDetails = (e: any, index: number) => {
-    const {mouseCoordinate} = e
+  const setMouseDownAndPaneAxisDetails = ({mouseCoordinate}: any, index: number) => {
     setActiveIndex(index)
     serviceRef.current.prevDirection = DIRECTIONS.NONE
     serviceRef.current.axisCoordinate = mouseCoordinate
@@ -210,13 +187,11 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
 
   return {
     setMouseDownAndPaneAxisDetails,
-    setActiveIndex,
     calculateAndSetHeight,
     getIdToSizeMap,
     toFullSize,
     closeFullSize,
     toFullPage
-    // resizerVisibilityList
   }
 }
 
