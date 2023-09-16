@@ -58,6 +58,10 @@ module.exports = {
                 type: 'asset/resource'
             },
             {
+                test: /\.(md)$/i, 
+                type: 'asset/source'
+            },
+            {
                 test: /\.(svg)$/i, 
                 type: 'asset/inline'
             }

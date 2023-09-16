@@ -2,9 +2,8 @@ import React from 'react'
 import {
   Panes, ResizablePanes
 } from 'react-resizable-panes'
-
 import MarkdownPreview from '@uiw/react-markdown-preview'
-import {VERTICAL_PANE_MARKDOWN_JSX} from './data'
+import VERTICAL_PANE_MD from './vertical-pane.md'
 export const VerticalPanes = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
@@ -54,7 +53,7 @@ export const VerticalPanes = () => {
       </ResizablePanes>
 
       <div className="mark-down-container">
-        <MarkdownPreview className="" source={VERTICAL_PANE_MARKDOWN_JSX} />
+        <MarkdownPreview className="" source={VERTICAL_PANE_MD} />
       </div>
     </div>
   )
