@@ -109,11 +109,15 @@ export class PaneModel {
     this.visibility = visibility
     if (visibility) {
       this.size = this.storedSize
+      this.minSize = this.defaultMinSize
+      this.maxSize = this.defaultMaxSize
       this.storedSize = null
       return this.size
     } else {
       this.storedSize = this.size
       this.size = 0
+      this.minSize = 0
+      this.maxSize = 0
       return this.storedSize
     }
   }

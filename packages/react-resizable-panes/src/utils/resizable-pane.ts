@@ -2,7 +2,7 @@ import {IServiceRef} from '../@types'
 import {MINUS_ONE, ZERO} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {keyConsole, paneConsole, setPaneList} from './development-util'
-import {getMaxSizeSum, getMinSizeSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
+import {getMaxSizeSum, getMinSizeSum, getResizerSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
@@ -52,15 +52,17 @@ export const setCurrentMinMax = (serviceRefCurrent: IServiceRef, index?: number)
   // paneConsole(panesList, 'maxSize')
 }
 
-export const calculateAxes = (serviceRefCurrent: IServiceRef, index?: number) => {
+export const calculateAxes = (serviceRefCurrent: IServiceRef) => {
   const {panesList, resizerSize, activeIndex} = serviceRefCurrent
 
   const {maxTopAxis} = getMaxContainerSizes(serviceRefCurrent)
+  const idx = activeIndex
 
-  const idx = index || activeIndex
   const resizerSizeHalf = Math.floor(resizerSize / 2)
-  const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
-  const topAxis = maxTopAxis + getMinSizeSum(panesList, 0, idx) + idx * resizerSize + resizerSizeHalf
+  const resizerAddon = getResizerSum(panesList, 0, idx, resizerSize) + resizerSizeHalf
+
+  const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + resizerAddon
+  const topAxis = maxTopAxis + getMinSizeSum(panesList, 0, idx) + resizerAddon
   return {
     bottomAxis,
     topAxis

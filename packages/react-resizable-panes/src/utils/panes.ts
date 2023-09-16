@@ -29,6 +29,16 @@ export const synPanesMinToSize = (panesList: PaneModel[], start: number, end: nu
   return sum
 }
 
+export const getResizerSum = (panesList: PaneModel[], start: number, end: number, resizerSize: number) => {
+  let sum = 0
+  for (let i = start; i <= end; i++) {
+    if (panesList[i].visibility) {
+      sum += resizerSize
+    }
+  }
+  return sum
+}
+
 export const getMaxSizeSum = (panesList: PaneModel[], start: number, end: number) => {
   let sum = 0
   for (let i = start; i <= end; i++) {

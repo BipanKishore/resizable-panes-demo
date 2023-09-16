@@ -1,5 +1,4 @@
 import {useCallback, useEffect, useRef} from 'react'
-import {PaneModel} from '../models/pane-model'
 import {createItToSizeMap, createMap} from '../utils/util'
 import {getList, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
