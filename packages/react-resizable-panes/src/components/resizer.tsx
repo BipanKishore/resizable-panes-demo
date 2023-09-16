@@ -5,13 +5,15 @@ interface IResizer {
   onMouseDown: MouseEventHandler<HTMLDivElement>,
   split: SplitType,
   node?: any,
-  visibility?: boolean
+  visibility?: boolean,
+  children?: any[]
 }
 
 const Resizer = (props: IResizer, ref: any) => {
   const {
     onMouseDown,
-    split
+    split,
+    children
   } = props
 
   const resizerRref = useRef<any>()
@@ -23,7 +25,20 @@ const Resizer = (props: IResizer, ref: any) => {
       setVisibility: (visibility: boolean) => {
         setIsVisibility(visibility)
       },
-      getRect: () => resizerRref.current.getBoundingClientRect()
+      getRect: () => resizerRref.current.getBoundingClientRect(),
+      getSize: () => {
+        const {height, width, top, bottom} = resizerRref.current.getBoundingClientRect()
+        // keyConsole({height, width, top, bottom})
+        if (isVisibility) {
+          return 0
+        } else if (!children) {
+          return 2
+        } else if (isVertical) {
+          return width
+        } else {
+          return height
+        }
+      }
     }
   })
 

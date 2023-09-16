@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useRef} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {createItToSizeMap, createMap} from '../utils/util'
-import {directionBehaviourConsole, getList, keyConsole, minMaxTotal} from '../utils/development-util'
+import {getList, keyConsole, minMaxTotal} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 
 import {IInitPaneService, IServiceRef, IUseResizablePanesParams, IKeyToBoolMap} from '../@types'
@@ -94,6 +94,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
+    // resizerRefs.current?.forEach((ref: any) => console.log('v-- getSize', ref.current?.getSize()))
     serviceRef.current.isVertical = isVertical
     serviceRef.current.resizerRefs = resizerRefs
     createPaneList({panesRefs, children, isVertical})
@@ -142,7 +143,6 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const setDirection = (e: any) => {
     const {prevDirection} = serviceRef.current
     const direction = getDirection(e)
-    directionBehaviourConsole(direction, prevDirection)
 
     if (prevDirection !== direction) {
       directionChangeActions(e)
