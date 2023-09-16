@@ -6,16 +6,11 @@ import {getMaxSizeSum, getMinSizeSum, synPanesMaxToSize, synPanesMinToSize} from
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
-  if (sizeChange < ZERO) {
-    return
-  }
   let sizeChangeUp = sizeChange
 
   for (let i = activeIndex; i > MINUS_ONE; i -= 1) {
     sizeChangeUp = panesList[i].addSize(sizeChangeUp)
   }
-
-  sizeChange -= sizeChangeUp
 
   for (let i = activeIndex + 1; i < panesList.length; i += 1) {
     sizeChange = panesList[i].removeSize(sizeChange)
@@ -24,16 +19,12 @@ export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}:
 
 export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = axisCoordinate - e.mouseCoordinate
-  if (sizeChange < ZERO) {
-    return
-  }
   let sizeChangeUp = sizeChange
 
   for (let i = activeIndex + 1; i < panesList.length; i++) {
     sizeChangeUp = panesList[i].addSize(sizeChangeUp)
   }
 
-  sizeChange -= sizeChangeUp
   for (let i = activeIndex; i > MINUS_ONE; i -= 1) {
     sizeChange = panesList[i].removeSize(sizeChange)
   }

@@ -162,14 +162,17 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
       bottomAxis,
       topAxis
     } = calculateAxes(serviceRef.current)
+
     if (e.mouseCoordinate <= topAxis) {
       setUpMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = topAxis
+      return false
     } else if (e.mouseCoordinate >= bottomAxis) {
       setDownMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = bottomAxis
+      return false
     }
 
     return true
