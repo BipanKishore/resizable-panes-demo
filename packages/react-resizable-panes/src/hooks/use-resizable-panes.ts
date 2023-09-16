@@ -22,7 +22,6 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     resizerSize,
     isVertical,
     onReady,
-    storage,
     resizerRefs,
     onChangeVisibility
   } = hookParams
@@ -62,8 +61,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
       containerRef,
       panesRefs,
       resizerSize,
-      isVertical,
-      storage
+      isVertical
     })
 
     const api = {
@@ -92,13 +90,11 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     containerRef,
     panesRefs,
     resizerSize,
-    isVertical,
-    storage
+    isVertical
   }: IInitPaneService) => {
     serviceRef.current.containerRef = containerRef
     serviceRef.current.resizerSize = resizerSize
     serviceRef.current.isVertical = isVertical
-    serviceRef.current.storage = storage
     serviceRef.current.resizerRefs = resizerRefs
     createPaneList({panesRefs, children, isVertical})
   }

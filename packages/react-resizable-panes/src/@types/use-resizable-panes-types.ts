@@ -19,7 +19,6 @@ export interface IServiceRef{
     prevDirection?: string,
     axisCoordinate?: number,
     isVertical?: boolean,
-    storage?: any,
     resizerRefs?: any,
     api?: IResizableApi
 }
@@ -32,7 +31,6 @@ export interface IUseResizablePanesParams {
     resizerSize: any,
     isVertical: boolean,
     onReady: (api: IResizableApi) => void,
-    storage: any,
     onResizeStart?: onResizeType,
     onChangeVisibility: (api: IKeyToBoolMap) => unknown
   }
@@ -42,6 +40,5 @@ export interface IInitPaneService {
     containerRef: any,
     panesRefs: any[],
     resizerSize: number,
-    isVertical: boolean,
-    storage: any
+    isVertical: boolean
 }
