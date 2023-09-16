@@ -2,9 +2,8 @@ import React from 'react'
 import {
   Panes, ResizablePanes
 } from 'react-resizable-panes'
-import MarkdownPreview from '@uiw/react-markdown-preview'
-import VERTICAL_PANE_MD from './vertical-pane.md'
-export const VerticalPanes = () => {
+
+export const PanesMinMax = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
   const pane3 = 'pane3'
@@ -24,6 +23,10 @@ export const VerticalPanes = () => {
       <ResizablePanes
         className='h-300'
         split='vertical'
+
+        onResize={(e) => {
+          console.log(e, 'vvsfasfsfasdf')
+        }}
       >
 
         <Panes
@@ -52,9 +55,6 @@ export const VerticalPanes = () => {
 
       </ResizablePanes>
 
-      <div className="mark-down-container">
-        <MarkdownPreview className="" source={VERTICAL_PANE_MD} />
-      </div>
     </div>
   )
 }

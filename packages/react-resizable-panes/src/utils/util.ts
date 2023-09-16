@@ -26,3 +26,5 @@ export const createItToSizeMap = (paneList: PaneModel[]) => {
   })
   return map
 }
+
+export const isUndefinedOrNull = (value: any) => value === undefined || value === null

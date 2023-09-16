@@ -15,7 +15,8 @@
     "sass-loader": "^13.3.2"
   },
   "scripts": {
-    "demo": "cd ./packages/demo-and-docs && npm start"
+    "demo": "cd ./packages/demo-and-docs && npm start",
+    "demo-build": "cd ./packages/demo-and-docs && npm run build"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5"

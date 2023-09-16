@@ -1,3 +1,5 @@
+export {PANE_MODE} from './src/constant'
+
 export {
   Panes,
   ResizablePanes,

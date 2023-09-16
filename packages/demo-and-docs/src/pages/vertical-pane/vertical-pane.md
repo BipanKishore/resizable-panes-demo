@@ -1,4 +1,4 @@
-export const VERTICAL_PANE_MARKDOWN_JSX = `\`\`\`jsx mdx:preview
+```jsx mdx:preview
 import React from 'react';
 import {Panes, ResizablePanes} from 'react-resizable-panes'
 
@@ -12,4 +12,4 @@ import {Panes, ResizablePanes} from 'react-resizable-panes'
         <Panes className={pane3} id={pane3} key={pane3} size={200}>
         </Panes>
 </ResizablePanes>
-\`\`\``
+```

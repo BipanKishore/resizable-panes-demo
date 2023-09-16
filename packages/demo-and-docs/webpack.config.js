@@ -54,24 +54,28 @@ module.exports = {
                 ],
             },
             {
-                test: /\.svg$/,
-                loader: 'svg-inline-loader'
+                test: /\.(jpe?g|png|gif)$/i, 
+                type: 'asset/resource'
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],
+                test: /\.(md)$/i, 
+                type: 'asset/source'
+            },
+            {
+                test: /\.(svg)$/i, 
+                type: 'asset/inline'
             }
+            // {
+            //     test: /\.svg$/,
+            //     loader: 'svg-inline-loader'
+            // }
         ]
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, '/dist')
+        path: path.join(__dirname, '/dist'),
+        clean: true
     },
-
     plugins: [
         new HTMLWebpackPlugin({
             template: './public/index.html',

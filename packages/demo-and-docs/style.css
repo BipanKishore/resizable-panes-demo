@@ -59,3 +59,16 @@
 .display-flex{
     display: flex;
 }
+
+
+.float-right {
+    float: right;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.m-2px-8px{
+    margin: 2px 4px;
+}
