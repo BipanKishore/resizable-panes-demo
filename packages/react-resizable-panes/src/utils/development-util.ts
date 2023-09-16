@@ -10,6 +10,10 @@ export const keyConsole = (obj: any = {}, add = 'v--') => {
   console.log(str)
 }
 
+export const localConsole = (obj: any = {}, key : string) => {
+  localStorage.setItem(key, JSON.stringify(obj))
+}
+
 export const minMaxTotal = (serviceRefCurrent: IServiceRef) => {
   const {panesList} = serviceRefCurrent
 
@@ -69,4 +73,12 @@ export const publishPanes = (e:any, panesList: PaneModel[], axisCoordinate: numb
       axisCoordinate
     })
   })
+}
+
+export const sizesConsole = (panesList: PaneModel[]) => {
+  const t = panesList.map((pane) => {
+    return pane.getObj(['size', 'minSize', 'maxSize', 'defaultMinSize', 'defaultMaxSize'])
+  })
+
+  localConsole(t, 'sizesConsole')
 }

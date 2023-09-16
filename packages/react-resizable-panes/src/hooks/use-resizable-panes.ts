@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useRef} from 'react'
 import {createItToSizeMap, createMap} from '../utils/util'
-import {getList, keyConsole, minMaxTotal} from '../utils/development-util'
+import {getList, keyConsole, localConsole, minMaxTotal, sizesConsole} from '../utils/development-util'
 import {DIRECTIONS, ZERO} from '../constant'
 
 import {IInitPaneService, IServiceRef, IUseResizablePanesParams, IKeyToBoolMap} from '../@types'
@@ -113,6 +113,7 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
   const calculateAndSetHeight = useCallback((e: any) => {
     const {movement} = e
     if (movement) {
+      sizesConsole(serviceRef.current.panesList)
       setDirection(e)
       const isChangeRequired = setAxisConfig(e)
 
@@ -156,11 +157,13 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     } = calculateAxes(serviceRef.current)
 
     if (e.mouseCoordinate <= topAxis) {
+      console.log('v-----  setUpMaxLimits')
       setUpMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = topAxis
       return false
     } else if (e.mouseCoordinate >= bottomAxis) {
+      console.log('v-----  setDownMaxLimits')
       setDownMaxLimits(panesList, activeIndex)
       syncAxisSizes()
       serviceRef.current.axisCoordinate = bottomAxis

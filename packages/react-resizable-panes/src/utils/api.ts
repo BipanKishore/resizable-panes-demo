@@ -21,6 +21,7 @@ export const toFullSizeFn = (serviceRefCurrent: IServiceRef, paneId: string) => 
   panesList.forEach((pane) => {
     pane.synPreservedSize()
     if (pane.id === paneId) {
+      // need to only add visible resizerSize
       pane.size = maxPaneSize + (panesList.length - 1) * resizerSize
       pane.pane.current.onFullSize()
     } else {

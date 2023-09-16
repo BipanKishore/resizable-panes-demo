@@ -56,6 +56,16 @@ export class PaneModel {
     }
   }
 
+  // eslint-disable-next-line no-use-before-define
+  getObj (keys: keyOfPaneModel[]) {
+    const obj: any = {}
+    keys.forEach(key => {
+      obj[key] = this[key as keyof this]
+    })
+
+    return obj
+  }
+
   setSize (newSize: number) {
     if (this.visibility) {
       if (newSize >= this.minSize && newSize <= this.maxSize) {
@@ -223,3 +233,5 @@ export class PaneModel {
     }
   }
 }
+
+type keyOfPaneModel = keyof PaneModel
