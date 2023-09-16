@@ -1,12 +1,8 @@
 import React, {Ref, forwardRef, useImperativeHandle, useRef} from 'react'
-import {IPane} from '../@types'
-import PaneIcons from './pane-icons'
-import {PANE_MODE} from '../constant'
+import {IPane, IPaneRef} from '../@types'
 import {getSizeStyle, joinClassName, toPx} from '../utils/dom'
-import {IPaneRef} from '../@types/component-types'
 
 const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
-  const paneIconRef: any = useRef()
   const paneElementRef: any = useRef<HTMLDivElement>()
 
   const {
@@ -15,14 +11,10 @@ const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
     size,
     split,
     id,
-    toFullSize,
-    closeFullSize,
-    toFullPage,
     isVertical
   } = props
 
   useImperativeHandle(ref, (): IPaneRef => {
-    const {setModeAct} = paneIconRef.current
     const paneElement = paneElementRef.current
 
     return {
@@ -34,18 +26,15 @@ const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
         }
       },
       onFullSize: () => {
-        setModeAct(PANE_MODE.FULL_SIZE)
         paneElement.classList.remove('full-page-class')
       },
       onFullPage: () => {
-        setModeAct(PANE_MODE.FULL_PAGE)
         paneElement.style.removeProperty('height')
         paneElement.style.removeProperty('width')
         paneElement.classList.add('full-page-class')
       },
       onCloseFullSize: () => {
         paneElement.classList.remove('full-page-class')
-        setModeAct(PANE_MODE.NORMAL)
       }
     }
   })
@@ -63,13 +52,6 @@ const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
       ref={paneElementRef}
       style={style}
     >
-      <PaneIcons
-        closeFullSize={closeFullSize}
-        id={id}
-        ref={paneIconRef}
-        toFullPage={toFullPage}
-        toFullSize={toFullSize}
-      />
       {children}
     </div>
   )

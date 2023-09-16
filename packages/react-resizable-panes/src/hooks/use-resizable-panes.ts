@@ -84,7 +84,7 @@ const useResizablePanes = (props: IUseResizablePanesParams) => {
       onReady(api)
     }
   }, [
-    onReady, resizerSize, containerRef, panesRefs, children
+    containerRef
   ])
 
   // Not requird isVertical

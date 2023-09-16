@@ -33,7 +33,7 @@ export const Tabs = (props: ITabsProps) => {
     <div className="tab-container">
       {
         tabList.map(
-          (item) => <Tab {...item} onClick={onClickTab} />
+          (item) => <Tab key={item.path} {...item} onClick={onClickTab} />
         )
       }
     </div>
