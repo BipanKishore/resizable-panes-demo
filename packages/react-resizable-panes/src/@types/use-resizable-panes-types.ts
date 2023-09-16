@@ -1,4 +1,3 @@
-import {RefObject} from 'react'
 import {PaneModel} from '../models/pane-model'
 import {onResizeType} from './component-types'
 import {IKeyToBoolMap} from './general-type'
