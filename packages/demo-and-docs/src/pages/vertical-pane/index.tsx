@@ -4,7 +4,6 @@ import {
 } from 'react-resizable-panes'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import VERTICAL_PANE_MD from './vertical-pane.md'
-import {StackBiltzLink} from '../../components/stackbiltz-link'
 export const VerticalPanes = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
@@ -50,8 +49,6 @@ export const VerticalPanes = () => {
 
         </ResizablePanes>
       </div>
-
-      <StackBiltzLink label='Try it yourself' link='#' />
 
       <div className="mark-down-container m-20-0">
         <MarkdownPreview className="" source={VERTICAL_PANE_MD} />
