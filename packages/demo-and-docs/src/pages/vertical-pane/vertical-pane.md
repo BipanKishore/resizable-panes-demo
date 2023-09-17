@@ -1,3 +1,7 @@
+[![Open in StackBiltz](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=StackBlitz)](https://codesandbox.io/embed/react-markdown-preview-co1mj?fontsize=14&hidenavigation=1&theme=dark)
+
+
+
 ```jsx mdx:preview
 import React from 'react';
 import {Panes, ResizablePanes} from 'react-resizable-panes'
@@ -11,5 +15,6 @@ import {Panes, ResizablePanes} from 'react-resizable-panes'
         
         <Panes className={pane3} id={pane3} key={pane3} size={200}>
         </Panes>
+
 </ResizablePanes>
 ```

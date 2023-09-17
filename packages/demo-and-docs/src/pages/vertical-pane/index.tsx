@@ -4,6 +4,7 @@ import {
 } from 'react-resizable-panes'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import VERTICAL_PANE_MD from './vertical-pane.md'
+import {StackBiltzLink} from '../../components/stackbiltz-link'
 export const VerticalPanes = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
@@ -11,48 +12,48 @@ export const VerticalPanes = () => {
   return (
     <div>
       <div>
-        <h4>Some Title</h4>
+        <h3 className='t-color-mainBlue t-aligin-center'>Vertical Panes</h3>
       </div>
 
-      <div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries.
-        versions of Lorem Ipsum.
+      <div className='m-20-0'>
+        To align panes vertical just pass "vertical" as split prop for ResizablePanes.
+      </div>
+      <div className='m-20-0' >
+        <ResizablePanes
+          className='h-300'
+          split='vertical'
+        >
+
+          <Panes
+            className={pane1}
+            id={pane1}
+            key={pane1}
+            size={350}
+          >
+          </Panes>
+
+          <Panes
+            className={pane2}
+            id={pane2}
+            key={pane2}
+            size={300}
+          >
+          </Panes>
+
+          <Panes
+            className={pane3}
+            id={pane3}
+            key={pane3}
+            size={200}
+          >
+          </Panes>
+
+        </ResizablePanes>
       </div>
 
-      <ResizablePanes
-        className='h-300'
-        split='vertical'
-      >
+      <StackBiltzLink label='Try it yourself' link='#' />
 
-        <Panes
-          className={pane1}
-          id={pane1}
-          key={pane1}
-          size={350}
-        >
-        </Panes>
-
-        <Panes
-          className={pane2}
-          id={pane2}
-          key={pane2}
-          size={300}
-        >
-        </Panes>
-
-        <Panes
-          className={pane3}
-          id={pane3}
-          key={pane3}
-          size={200}
-        >
-        </Panes>
-
-      </ResizablePanes>
-
-      <div className="mark-down-container">
+      <div className="mark-down-container m-20-0">
         <MarkdownPreview className="" source={VERTICAL_PANE_MD} />
       </div>
     </div>

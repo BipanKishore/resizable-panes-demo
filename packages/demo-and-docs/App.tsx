@@ -3,7 +3,7 @@ import {PanesDashboard} from './src/pages/panes-dashboard'
 
 function App () {
   return (
-    <div>
+    <div className='w-m-1012 m-r-auto m-l-auto' >
       <PanesDashboard />
     </div>
   )
