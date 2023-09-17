@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import MinMaxViewer from '../../components/min-max-viewer'
 import './style.scss'
 
@@ -11,6 +11,10 @@ export const PanesMinMax = () => {
   const pane2 = 'pane2'
   const pane3 = 'pane3'
   const [pansizes, setPansizes] = useState<any>({})
+
+  const onResize = useCallback((e: any) => {
+    setPansizes(e)
+  }, [])
 
   return (
     <div>
@@ -29,8 +33,7 @@ export const PanesMinMax = () => {
         className='h-300'
         split='vertical'
 
-        onResize={(e) => {
-          console.log(e, 'vvsfasfsfasdf')
+        onResize={(e: any) => {
           setPansizes(e)
         }}
       >

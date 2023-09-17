@@ -127,9 +127,9 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     }
   }, [])
 
-  const getIdToSizeMap = () => {
+  const getIdToSizeMap = useCallback(() => {
     return createMap(serviceRef.current.panesList, 'size')
-  }
+  }, [])
 
   const setDirection = (e: any) => {
     const {prevDirection} = serviceRef.current
@@ -176,7 +176,13 @@ const useResizablePanes = (hookParams: IUseResizablePanesParams) => {
     syncAxisSizes()
   }
 
+  const getActiveIndex = useCallback(() => {
+    return serviceRef.current.activeIndex
+  }, [])
+
   return {
+    getActiveIndex,
+    setActiveIndex,
     setMouseDownAndPaneAxisDetails,
     calculateAndSetHeight,
     getIdToSizeMap,
