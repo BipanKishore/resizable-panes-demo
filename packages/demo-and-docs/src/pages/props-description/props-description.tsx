@@ -15,12 +15,13 @@ export const PropsDescription = () => {
         splitter used between the panes. The SplitType enum is used to define the splitter type,
         and it can have values like 'vertical' or 'horizontal'.
       </div>
-
+      <hr />
       <div className='m-20-0'>
         onResizeStart?: onResizeType
         An optional callback function that is called when a resize operation is initiated.
         It receives an IResizableApi object as its argument.
       </div>
+      <hr />
 
       <div className='m-20-0'>
         onResizeStop?: onResizeType
