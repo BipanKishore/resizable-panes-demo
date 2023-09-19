@@ -76,10 +76,6 @@ module.exports = {
                 test: /\.(svg)$/i, 
                 type: 'asset/inline'
             }
-            // {
-            //     test: /\.svg$/,
-            //     loader: 'svg-inline-loader'
-            // }
         ]
     },
     output: {
@@ -92,11 +88,6 @@ module.exports = {
             template: './public/index.html',
             title: 'CRA without CRA'
         }),
-        // new ForkTsCheckerWebpackPlugin(),
-        // new ForkTsCheckerNotifierWebpackPlugin({
-        //   title: 'TypeScript',
-        //   excludeWarnings: false,
-        // }),
         new miniCssExtractPlugin(),
         new WebpackNotifierPlugin({
             title: 'Webpack',
