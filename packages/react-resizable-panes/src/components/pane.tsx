@@ -18,7 +18,6 @@ const Pane = (props: any) => {
 
   const setSize = (size: number) => {
     if (context.isVertical) {
-      // console.log('setSize', size)
       paneElementRef.current.style.width = toPx(size)
     } else {
       paneElementRef.current.style.height = toPx(size)
@@ -53,7 +52,6 @@ const Pane = (props: any) => {
   })
 
   const style = getSizeStyle(context.isVertical, size)
-  console.log('style', props.id, style)
   return (
     <Fragment>
       <div

@@ -12,7 +12,6 @@ export const Tabs = (props: ITabsProps) => {
   const [tabList, setTabList] = useState<ITabProps[]>(ROUTER_LIST_LEVEL_1)
 
   const onClickTab = (path: string) => {
-    console.log(path)
     const newTabList = tabList.map((item) => {
       if (item.path === path) {
         return {...item, active: true}

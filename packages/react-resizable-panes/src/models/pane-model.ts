@@ -133,13 +133,11 @@ export class PaneModel {
   }
 
   addSize (sizeChange: number) {
-    console.log('axisSize ', this.axisSize, 'sizeChange ', sizeChange)
     const newSize = this.axisSize + sizeChange
     return this.setSize(newSize)
   }
 
   removeSize (sizeChange: number) {
-    console.log('axisSize ', this.axisSize, 'sizeChange ', sizeChange)
     const newSize = this.axisSize - sizeChange
     return this.setSize(newSize)
   }
@@ -170,7 +168,6 @@ export class PaneModel {
   }
 
   syncAxisSize () {
-    console.log('syncAxisSize', this.size)
     this.axisSize = this.size
     return this.axisSize
   }

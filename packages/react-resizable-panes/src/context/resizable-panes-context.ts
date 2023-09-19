@@ -117,7 +117,6 @@ export const getResizableContext = (props: any) => {
       contextDetails.axisCoordinate = bottomAxis
       return false
     }
-
     return true
   }
 

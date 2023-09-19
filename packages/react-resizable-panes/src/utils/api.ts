@@ -50,7 +50,6 @@ export const restoreDefaultFn = (param: IServiceRef) => {
 
 // eslint-disable-next-line complexity
 export const setVisibilityFn = (param: any, idMap: IKeyToBoolMap) => {
-  console.log('v-- idMap', idMap)
   const {panesList, resizersList} = param
   const keys = Object.keys(idMap)
 
@@ -71,7 +70,6 @@ export const setVisibilityFn = (param: any, idMap: IKeyToBoolMap) => {
         hideLogic(pane.index, param)
       }
     }
-    console.log('v---- idMap[id]', id, idMap[id])
     const visibleCount = getList(panesList, 'visibility').filter((value) => value).length
   }
   setUISizesFn(param.panesList)
