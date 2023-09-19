@@ -3,6 +3,7 @@ import {DIRECTIONS} from '../constant'
 import {PaneModel} from '../models/pane-model'
 import {subscription} from '../services/subscription'
 import {getMaxContainerSizes} from './resizable-pane'
+import {useEffect} from 'react'
 
 export const keyConsole = (obj: any = {}, add = 'v--') => {
   const keys = Object.keys(obj)
@@ -81,4 +82,12 @@ export const sizesConsole = (panesList: PaneModel[]) => {
   })
 
   localConsole(t, 'sizesConsole')
+}
+
+export const useMountingConsole = () => {
+  console.log('rerender -> ResizablePanes')
+  useEffect(() => {
+    console.error('v----- Reeeeeeeeeeeee Mountttttttiinnnnnng')
+    return () => console.error('v----- Uuuuuuuuuunmountiiiiiiiiiiinnnnnnnngggggg')
+  }, [])
 }

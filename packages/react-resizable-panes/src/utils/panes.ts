@@ -1,11 +1,11 @@
 import {IServiceRef} from '../@types'
 import {PaneModel} from '../models/pane-model'
 
-export const syncAxisSizesFn = ({panesList}: IServiceRef) => {
+export const syncAxisSizesFn = (panesList: PaneModel[]) => {
   panesList.forEach(pane => pane.syncAxisSize())
 }
 
-export const setUISizesFn = ({panesList}: IServiceRef) => {
+export const setUISizesFn = (panesList: PaneModel[]) => {
   panesList.forEach(pane => pane.setUISize())
 }
 
@@ -29,12 +29,10 @@ export const synPanesMinToSize = (panesList: PaneModel[], start: number, end: nu
   return sum
 }
 
-export const getResizerSum = (panesList: PaneModel[], start: number, end: number, resizerSize: number) => {
+export const getResizerSum = (resizersList: any[], start: number, end: number) => {
   let sum = 0
   for (let i = start; i <= end; i++) {
-    if (panesList[i].visibility) {
-      sum += resizerSize
-    }
+    sum += resizersList[i].current.getSize()
   }
   return sum
 }
@@ -75,7 +73,11 @@ export const setUpMaxLimits = (panesList: PaneModel[], index: number) => {
   }
 }
 
+// Not using
 export const createPaneList = ({panesRefs, children, isVertical}: any) => {
   return panesRefs
     ?.current?.map((pane: any, index: number) => new PaneModel(pane, index, children[index], isVertical))
+}
+export const findIndexById = (children: any, _id: string) => {
+  return children.findIndex(({props: {id}}: any) => id === _id)
 }

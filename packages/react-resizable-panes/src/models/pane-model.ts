@@ -23,10 +23,10 @@ export class PaneModel {
   // Development Variables
   left: number
 
-  constructor (pane: any, index: number, child: any, isVertical: boolean) {
+  constructor (pane: any, index: number, paneProps: any, isVertical: boolean) {
     const {
       id, minSize = ZERO, size, maxSize = Infinity
-    } = child.props
+    } = paneProps
 
     this.id = id
     this.index = index
@@ -133,11 +133,13 @@ export class PaneModel {
   }
 
   addSize (sizeChange: number) {
+    console.log('axisSize ', this.axisSize, 'sizeChange ', sizeChange)
     const newSize = this.axisSize + sizeChange
     return this.setSize(newSize)
   }
 
   removeSize (sizeChange: number) {
+    console.log('axisSize ', this.axisSize, 'sizeChange ', sizeChange)
     const newSize = this.axisSize - sizeChange
     return this.setSize(newSize)
   }
@@ -148,7 +150,7 @@ export class PaneModel {
 
   setUISize () {
     this.uiSize = this.size
-    this.pane.current.setSize(this.size)
+    this.pane.setSize(this.size)
     return this.size
   }
 
@@ -168,6 +170,7 @@ export class PaneModel {
   }
 
   syncAxisSize () {
+    console.log('syncAxisSize', this.size)
     this.axisSize = this.size
     return this.axisSize
   }

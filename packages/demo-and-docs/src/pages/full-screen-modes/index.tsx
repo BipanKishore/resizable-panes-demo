@@ -14,7 +14,7 @@ export const FullScreenModes = () => {
     <ResizablePanes
       className=''
       split='horizontal'
-      onReady={(api) => {
+      onReady={(api: any) => {
         resizableRef.current.api = api
       }}
     >

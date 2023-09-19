@@ -27,6 +27,14 @@ export const VerticalPanes = () => {
             className={pane1}
             id={pane1}
             key={pane1}
+            resizer={
+              <div
+                style={{
+                  width: '15px'
+                }}
+              >
+              </div>
+            }
             size={350}
           >
           </Panes>

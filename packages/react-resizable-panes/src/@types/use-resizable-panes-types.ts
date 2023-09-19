@@ -12,7 +12,6 @@ export interface IResizableApi {
 
 export interface IServiceRef{
     getContainerRect?: any,
-    resizerSize?: number,
     panesList?: PaneModel[],
     activeIndex?: number
     prevDirection?: string,
@@ -25,7 +24,6 @@ export interface IUseResizablePanesParams {
     getContainerRect: any,
     panesRefs: any,
     resizerRefs: any,
-    resizerSize: any,
     isVertical: boolean,
     props?: IResizablePanesProps
   }
@@ -34,7 +32,6 @@ export interface IInitPaneService {
     children: any[],
     getContainerRect: any,
     panesRefs: any[],
-    resizerSize: number,
     isVertical: boolean
 }
 
