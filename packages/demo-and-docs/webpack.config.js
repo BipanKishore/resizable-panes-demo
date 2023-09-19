@@ -6,6 +6,8 @@ const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-web
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack')
 var WebpackNotifierPlugin = require('webpack-notifier');
+const autoprefixer = require('autoprefixer')
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -38,18 +40,27 @@ module.exports = {
                 test: /\.css$/i,
                 use: [
                     {
-                        loader: 'style-loader',
-                        options: {
-                            injectType: 'singletonStyleTag'
-                        }
-                    }, 'css-loader'
+                        loader: miniCssExtractPlugin.loader
+                    },'css-loader'
                 ]
             },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    "style-loader",
+                    {
+                        loader: miniCssExtractPlugin.loader
+                    },
                     "css-loader",
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                          postcssOptions: {
+                            plugins: [
+                              autoprefixer
+                            ]
+                          }
+                        }
+                      },
                     "sass-loader",
                 ],
             },
@@ -86,6 +97,7 @@ module.exports = {
         //   title: 'TypeScript',
         //   excludeWarnings: false,
         // }),
+        new miniCssExtractPlugin(),
         new WebpackNotifierPlugin({
             title: 'Webpack',
             emoji: true
