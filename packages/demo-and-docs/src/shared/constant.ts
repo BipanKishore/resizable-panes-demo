@@ -10,7 +10,5 @@ export const ROUTER_LIST_LEVEL_1 = [
   {active: false, label: 'Props Description', path: 'props-docs'},
   {active: false, label: 'Events Description', path: 'event-docs'},
   {active: false, label: 'Api Description', path: 'api-docs'},
-  {active: false, label: 'Dev', path: 'dev'},
   {active: false, label: 'Demo', path: 'demo'}
-
 ]
