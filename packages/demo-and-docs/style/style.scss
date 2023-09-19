@@ -1,10 +1,2 @@
 @import "bootstrap/scss/bootstrap";
-@import 'lengths.scss',
-'margin-padding.scss',
-'colors.scss',
-'text.scss';
-
-
-body {
-    background-color: red;
-}
+@import 'lengths.scss', 'margin-padding.scss', 'colors.scss', 'text.scss';
