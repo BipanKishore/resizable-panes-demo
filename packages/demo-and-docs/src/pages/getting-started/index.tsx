@@ -7,8 +7,6 @@ import VERTICAL_PANE_MD from '../vertical-pane/vertical-pane.md'
 export const GettingStarted = () => {
   return (
     <div>
-      <h2>Getting Started</h2>
-
       <h3>Overview</h3>
       The ResizablePanes component is a React component designed to create resizable panes that allow users to
       adjust the size of individual sections within a container. This component is highly customizable and can

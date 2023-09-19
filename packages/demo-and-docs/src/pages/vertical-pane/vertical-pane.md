@@ -6,15 +6,17 @@
 import React from 'react';
 import {Panes, ResizablePanes} from 'react-resizable-panes'
 
- <ResizablePanes className='h-300' split='vertical'>
-        <Panes className={pane1} id={pane1} size={350}>
+ <ResizablePanes split='vertical'>
+        <Panes id="pane1" size={350}>
+        ...Your Element...
         </Panes>
 
-        <Panes className={pane2} id={pane2} size={300}>
+        <Panes id="pane2" size={300}>
+        ...Your Element...
         </Panes>
         
-        <Panes className={pane3} id={pane3} size={200}>
+        <Panes id="pane3" size={200}>
+        ...Your Element...
         </Panes>
-
 </ResizablePanes>
 ```
