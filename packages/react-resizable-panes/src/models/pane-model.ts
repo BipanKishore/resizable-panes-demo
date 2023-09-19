@@ -1,3 +1,4 @@
+import {keyOfPaneModel} from '../@types'
 import {ZERO} from '../constant'
 
 export class PaneModel {
@@ -56,7 +57,6 @@ export class PaneModel {
     }
   }
 
-  // eslint-disable-next-line no-use-before-define
   getObj (keys: keyOfPaneModel[]) {
     const obj: any = {}
     keys.forEach(key => {
@@ -233,5 +233,3 @@ export class PaneModel {
     }
   }
 }
-
-type keyOfPaneModel = keyof PaneModel

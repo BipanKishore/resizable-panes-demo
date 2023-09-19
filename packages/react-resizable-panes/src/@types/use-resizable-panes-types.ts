@@ -2,6 +2,8 @@ import {PaneModel} from '../models/pane-model'
 import {IResizablePanesProps} from './component-types'
 import {IKeyToBoolMap} from './general-type'
 
+export type keyOfPaneModel = keyof PaneModel
+
 export interface IResizableApi {
     toFullSize: (paneId: string) => void,
     closeFullSize: () => void,

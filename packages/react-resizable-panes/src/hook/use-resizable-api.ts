@@ -5,7 +5,6 @@ import {createMap} from '../utils/util'
 
 export const useResizableApi = (context: any, props: any) => {
   const {contextDetails} = context
-  // ---------------------------------  API -------------------------------------------- //
   const {onReady, onChangeVisibility} = props
   const toFullPage = (paneId: string) => {
     toFullPageFn(contextDetails.panesList, paneId)
@@ -28,8 +27,6 @@ export const useResizableApi = (context: any, props: any) => {
     const visibilityMap = createMap(contextDetails.panesList, 'visibility')
     onChangeVisibility(visibilityMap)
   }
-
-  // ---------------------------------  API --------------------------------------------//
 
   useEffect(() => {
     const api = {

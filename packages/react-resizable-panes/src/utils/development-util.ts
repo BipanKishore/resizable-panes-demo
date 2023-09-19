@@ -1,7 +1,6 @@
 import {IServiceRef} from '../@types/use-resizable-panes-types'
 import {DIRECTIONS} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {subscription} from '../services/subscription'
 import {getMaxContainerSizes} from './resizable-pane'
 import {useEffect} from 'react'
 
@@ -64,16 +63,6 @@ export const directionBehaviourConsole = (direction: string, prevDirection: stri
       console.warn('direction Down to UP')
       break
   }
-}
-
-export const publishPanes = (e:any, panesList: PaneModel[], axisCoordinate: number) => {
-  panesList.forEach((pane) => {
-    subscription.publish(pane.id, {
-      ...pane,
-      Y: e.mouseCoordinate,
-      axisCoordinate
-    })
-  })
 }
 
 export const sizesConsole = (panesList: PaneModel[]) => {
