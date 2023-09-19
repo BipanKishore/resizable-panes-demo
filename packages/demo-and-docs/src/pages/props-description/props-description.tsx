@@ -29,7 +29,7 @@ export const PropsDescription = () => {
         It receives an IResizableApi object as its argument.
       </div>
 
-      <img src={Img} />
+      {/* <img src={Img} /> */}
     </div>
   )
 }

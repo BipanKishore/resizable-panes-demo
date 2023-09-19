@@ -2,20 +2,36 @@ import React from 'react'
 import {
   Panes, ResizablePanes
 } from 'react-resizable-panes'
+import HORIZONTAL_PANES_MD from './horizontal-panes.md'
+import MarkdownPreview from '@uiw/react-markdown-preview'
 
 export const HorizantalPanes = () => {
   const pane2 = 'pane2'
   const pane3 = 'pane3'
 
   return (
-    <ResizablePanes split='horizontal'>
+    <div>
+      <div>
+        <h3 className='t-color-mainBlue t-aligin-center'>Horizontal Panes</h3>
+      </div>
+      <div className='m-20-0'>
+        To align panes horizontally just pass "horizontal" as split prop for ResizablePanes.
+      </div>
+      <ResizablePanes split='horizontal'>
 
-      <Panes className={pane2} id={pane2} size={200}>
-      </Panes>
+        <Panes className={pane2} id={pane2} size={150}>
+        </Panes>
 
-      <Panes className={pane3} id={pane3} size={200}>
-      </Panes>
+        <Panes className={pane3} id={pane3} size={150}>
+        </Panes>
 
-    </ResizablePanes>
+      </ResizablePanes>
+
+      <div className="mark-down-container m-20-0">
+        <MarkdownPreview className="" source={HORIZONTAL_PANES_MD} />
+      </div>
+
+    </div>
+
   )
 }

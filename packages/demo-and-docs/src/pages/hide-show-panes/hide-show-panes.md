@@ -1,7 +1,10 @@
+[![Open in StackBiltz](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=StackBlitz)](https://codesandbox.io/embed/react-markdown-preview-co1mj?fontsize=14&hidenavigation=1&theme=dark)
+
+
+
+```jsx mdx:preview
 import React, {Ref, useRef, useState} from 'react'
 import {Panes, ResizablePanes, IResizableApi} from 'react-resizable-panes'
-import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
-import MarkdownPreview from '@uiw/react-markdown-preview'
 
 interface IIDMap{
     [id: string]: boolean
@@ -35,13 +38,6 @@ export const HideShowPanes = () => {
 
   return (
     <div>
-      <div>
-        <h3 className='t-color-mainBlue t-aligin-center'>Show and hide panes</h3>
-      </div>
-      <div className='m-20-0'>
-        To use nested panes just place another ResizablePanes component inside a Pane component.
-      </div>
-
       <ResizablePanes
         className='h-300'
         split='vertical' onChangeVisibility={(e:any) => {
@@ -49,16 +45,20 @@ export const HideShowPanes = () => {
         }}
         onReady={onReady}
       >
-        <Panes className={'pane1'} id={'pane1'} minSize={50} size={200}>
+        <Panes id='pane1' minSize={50} size={200}>
+        ...Your Element...
         </Panes>
 
-        <Panes className={'pane2'} id={'pane2'} maxSize={150} minSize={50} size={100}>
+        <Panes id='pane2' maxSize={150} minSize={50} size={100}>
+        ...Your Element...
         </Panes>
 
-        <Panes className={'pane3'} id={'pane3'} maxSize={200} minSize={100} size={200}>
+        <Panes id='pane3' maxSize={200} minSize={100} size={200}>
+        ...Your Element...
         </Panes>
 
-        <Panes className={'pane1'} id={'pane4'} maxSize={250} minSize={50} size={200}>
+        <Panes id='pane4' maxSize={250} minSize={50} size={200}>
+        ...Your Element...
         </Panes>
       </ResizablePanes>
 
@@ -82,9 +82,8 @@ export const HideShowPanes = () => {
         <button onClick={setVisibility} >Submit</button>
       </div>
 
-      <div className="mark-down-container m-20-0">
-        <MarkdownPreview className="" source={HIDE_SHOW_PANES_MD} />
-      </div>
     </div>
   )
 }
+
+```

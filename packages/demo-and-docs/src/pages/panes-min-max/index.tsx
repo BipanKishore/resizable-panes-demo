@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react'
 import MinMaxViewer from '../../components/min-max-viewer'
-import './style.scss'
+import MIN_MAX_PANES_MD from './min-max-panes.md'
+import MarkdownPreview from '@uiw/react-markdown-preview'
 
 import {
   Panes, ResizablePanes
@@ -23,14 +24,11 @@ export const PanesMinMax = () => {
   return (
     <div>
       <div>
-        <h4>Some Title</h4>
+        <h3 className='t-color-mainBlue t-aligin-center'>Min and Max sizes</h3>
       </div>
 
-      <div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries.
-        versions of Lorem Ipsum.
+      <div className='m-20-0'>
+        To set min and max size of a pane use minSize and MaxSize Prop.
       </div>
 
       <ResizablePanes
@@ -80,6 +78,9 @@ export const PanesMinMax = () => {
 
       </ResizablePanes>
 
+      <div className="mark-down-container m-20-0">
+        <MarkdownPreview className="" source={MIN_MAX_PANES_MD} />
+      </div>
     </div>
   )
 }
