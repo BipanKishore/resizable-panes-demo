@@ -19,7 +19,7 @@ export const VerticalPanes = () => {
       </div>
       <div className='m-20-0' >
         <ResizablePanes className='h-300' split='vertical'>
-          <Panes className={pane1} id={pane1} size={350}>
+          <Panes className={pane1} id={pane1} size={280}>
           </Panes>
 
           <Panes className={pane2} id={pane2} size={300}>
