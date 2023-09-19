@@ -30,7 +30,7 @@
 .resizer {
     box-sizing: border-box;
     background-clip: padding-box;
-    background-color: darkblue;
+    background-color: grey;
 }
 
 .resizer-vertical {
@@ -50,7 +50,7 @@
 }
 
 .resizer:hover{
-    background-color: brown;
+    background-color: whitesmoke;
 }
 
 
