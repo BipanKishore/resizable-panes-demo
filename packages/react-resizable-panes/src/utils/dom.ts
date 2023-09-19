@@ -1,10 +1,10 @@
 import {IResizableEvent, SplitType, IJoinClassNameParam} from '../@types'
 import {DIRECTIONS, RIGHT_BUTTON_VALUE, ZERO} from '../constant'
 
-export const getSizeStyle = (split: SplitType, size: number) => {
+export const getSizeStyle = (isVertical: boolean, size: number) => {
   const style: any = {}
   const px = toPx(size)
-  if (split === 'horizontal') {
+  if (!isVertical) {
     style.height = px
   } else {
     style.width = px
@@ -16,7 +16,10 @@ export const isNotRightButtonPressed = (e: MouseEvent) => e.button !== RIGHT_BUT
 
 export const toPx = (size: number) => `${size}px`
 
-export const joinClassName = (param: IJoinClassNameParam) => {
+export const joinClassName = (param: IJoinClassNameParam, notRequired: boolean | any = false) => {
+  if (notRequired) {
+    return ''
+  }
   const keys = Object.keys(param)
   return keys.map((key) => param[key] ? key : '').join(' ')
 }
