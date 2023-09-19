@@ -10,7 +10,11 @@ export const PanesMinMax = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
   const pane3 = 'pane3'
-  const [pansizes, setPansizes] = useState<any>({})
+  const [pansizes, setPansizes] = useState<any>({
+    pane1: 350,
+    pane2: 300,
+    pane3: 200
+  })
 
   const onResize = useCallback((e: any) => {
     setPansizes(e)
@@ -30,18 +34,12 @@ export const PanesMinMax = () => {
       </div>
 
       <ResizablePanes
-        className='h-300'
-        split='vertical'
-
-        onResize={(e: any) => {
-          setPansizes(e)
-        }}
+        className='h-300' split='vertical'
+        onResize={onResize}
       >
 
         <Panes
-          className={pane1}
-          id={pane1}
-          key={pane1}
+          className={pane1} id={pane1}
           maxSize={450}
           minSize={100}
           size={350}
@@ -55,24 +53,20 @@ export const PanesMinMax = () => {
         </Panes>
 
         <Panes
-          className={pane2}
-          id={pane2}
-          key={pane2}
+          className={pane2} id={pane2}
           maxSize={400}
-          minSize={120}
+          minSize={100}
           size={300}
         >
           <MinMaxViewer
             maxSize={400}
-            minSize={120}
+            minSize={100}
             size={pansizes.pane2}
           />
         </Panes>
 
-        {/* <Panes
-          className={pane3}
-          id={pane3}
-          key={pane3}
+        <Panes
+          className={pane3} id={pane3}
           maxSize={500}
           minSize={150}
           size={200}
@@ -82,7 +76,7 @@ export const PanesMinMax = () => {
             minSize={150}
             size={pansizes.pane3}
           />
-        </Panes> */}
+        </Panes>
 
       </ResizablePanes>
 

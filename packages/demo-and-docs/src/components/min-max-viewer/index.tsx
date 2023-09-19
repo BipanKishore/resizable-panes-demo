@@ -8,11 +8,19 @@ interface IMinMaxViewerProps{
 
 const MinMaxViewer = (props:IMinMaxViewerProps) => {
   const {maxSize, minSize, size = 0} = props
+  let maxSizeClass = ''
+  let minSizeClass = ''
+  if (size >= maxSize) {
+    maxSizeClass = 'color-red'
+  }
+  if (size <= minSize) {
+    minSizeClass = 'color-red'
+  }
   return (
     <div className="maxxmin">
-      <span>{minSize}</span><br />
+      <span className={minSizeClass}>{minSize}</span><br />
       <span >{size.toFixed(1)}  </span><br />
-      <span>{maxSize}</span>
+      <span className={maxSizeClass} >{maxSize}</span>
     </div>
   )
 }
