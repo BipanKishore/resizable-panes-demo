@@ -6,7 +6,6 @@ import {getMaxSizeSum, getMinSizeSum, getResizerSum, synPanesMaxToSize, synPanes
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
-  console.log('goingDownLogic', sizeChange)
   if (sizeChange < 0) {
     // throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
   }
@@ -26,7 +25,6 @@ export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}:
 
 export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = axisCoordinate - e.mouseCoordinate
-  console.log('goingUpLogic', sizeChange)
   if (sizeChange < 0) {
     // throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
   }
