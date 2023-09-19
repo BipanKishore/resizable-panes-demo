@@ -9,7 +9,6 @@ export interface IResizablePanesProps {
     children: any[],
     onReady?: (api: IResizableApi) => unknown,
     split?: SplitType,
-    resizerNode?: any,
     onResizeStop?: onResizeType,
     onResizeStart?: onResizeType,
     onResize?: onResizeType,

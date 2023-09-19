@@ -1,14 +1,14 @@
 import {IServiceRef} from '../@types'
 import {MINUS_ONE} from '../constant'
 import {PaneModel} from '../models/pane-model'
-import {keyConsole, localConsole, paneConsole, setPaneList} from './development-util'
+import {getList, keyConsole, localConsole, paneConsole, setPaneList} from './development-util'
 import {getMaxSizeSum, getMinSizeSum, getResizerSum, synPanesMaxToSize, synPanesMinToSize} from './panes'
 
 export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}: IServiceRef) => {
   let sizeChange = e.mouseCoordinate - axisCoordinate
-
+  console.log('goingDownLogic', sizeChange)
   if (sizeChange < 0) {
-    throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+    // throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
   }
 
   let sizeChangeUp = sizeChange
@@ -26,8 +26,9 @@ export const goingDownLogic = (e: any, {axisCoordinate, panesList, activeIndex}:
 
 export const goingUpLogic = (e: any, {axisCoordinate, panesList, activeIndex}: any) => {
   let sizeChange = axisCoordinate - e.mouseCoordinate
+  console.log('goingUpLogic', sizeChange)
   if (sizeChange < 0) {
-    throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+    // throw new Error('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
   }
   let sizeChangeUp = sizeChange
 
@@ -54,24 +55,26 @@ export const setCurrentMinMax = (serviceRefCurrent: IServiceRef, index?: number)
 
   minMaxLogicUp(panesList, aMaxChangeUp - bMaxChangeUp, idx, nextIdx, 0, maxPaneSize)
 
-  paneConsole(panesList, 'minSize')
-  paneConsole(panesList, 'maxSize')
+  localConsole(getList(panesList, 'minSize'), 'minSize')
+  localConsole(getList(panesList, 'maxSize'), 'maxSize')
   // setPaneList(panesList, ['minSize', 'maxSize'], null)
   const aMaxChangeDown = panesList[nextIdx].getMinDiff()
   const bMaxChangeDown = panesList[idx].getMaxDiff()
   minMaxLogicDown(panesList, bMaxChangeDown - aMaxChangeDown, idx, nextIdx, 0, maxPaneSize)
   // paneConsole(panesList, 'minSize')
   // paneConsole(panesList, 'maxSize')
+  console.log('minSize ', getList(panesList, 'minSize'))
+  console.log('maxSize ', getList(panesList, 'maxSize'))
 }
 
-export const calculateAxes = (serviceRefCurrent: IServiceRef) => {
-  const {panesList, resizerSize, activeIndex} = serviceRefCurrent
+export const calculateAxes = (serviceRefCurrent: any) => {
+  const {panesList, resizersList, activeIndex} = serviceRefCurrent
 
   const {maxTopAxis} = getMaxContainerSizes(serviceRefCurrent)
   const idx = activeIndex
 
-  const resizerSizeHalf = Math.floor(resizerSize / 2)
-  const resizerAddon = getResizerSum(panesList, 0, idx - 1, resizerSize) + resizerSizeHalf
+  const resizerSizeHalf = Math.floor(resizersList[idx].current.getSize() / 2)
+  const resizerAddon = getResizerSum(resizersList, 0, idx - 1) + resizerSizeHalf
 
   const bottomAxis = maxTopAxis + getMaxSizeSum(panesList, 0, idx) + resizerAddon
   const topAxis = maxTopAxis + getMinSizeSum(panesList, 0, idx) + resizerAddon
@@ -92,7 +95,7 @@ export const minMaxLogicUp = (
   // Failing for going up Reached Max
   const lastIndex = panesList.length - 1
 
-  keyConsole({aIndex, bIndex, value, sum}, 'newMinMaxLogicUpnewMinMaxLogicUp')
+  // keyConsole({aIndex, bIndex, value, sum}, 'newMinMaxLogicUpnewMinMaxLogicUp')
   let nextValue
   let nextAIndex = aIndex
   let nextBIndex = bIndex
@@ -307,8 +310,10 @@ export const minMaxLogicDown = (
   minMaxLogicDown(panesList, nextValue, nextAIndex, nextBIndex, sum, maxPaneSize)
 }
 
-export const hideLogic = (indexToHide: number, {panesList, resizerSize}: IServiceRef) => {
-  let sizeChange = panesList[indexToHide].setVisibility(false) + resizerSize
+export const hideLogic = (indexToHide: number, {panesList, resizersList}: any) => {
+  // No need to add if we are hiding last pane
+  const sizeChangeResizer = resizersList[indexToHide]?.current.getSize() ?? 0
+  let sizeChange = panesList[indexToHide].setVisibility(false) + sizeChangeResizer
 
   for (let i = indexToHide - 1; i > MINUS_ONE; i--) {
     sizeChange = panesList[i].addVisibilitySize(sizeChange)
@@ -319,8 +324,9 @@ export const hideLogic = (indexToHide: number, {panesList, resizerSize}: IServic
   }
 }
 
-export const showPaneLogic = (indexToShow: number, {panesList, resizerSize}: IServiceRef) => {
-  let sizeChange = panesList[indexToShow].setVisibility(true) + resizerSize
+export const showPaneLogic = (indexToShow: number, {panesList, resizersList}: any) => {
+  const sizeChangeResizer = resizersList[indexToShow]?.current.getSize() ?? 0
+  let sizeChange = panesList[indexToShow].setVisibility(true) + sizeChangeResizer
 
   for (let i = indexToShow - 1; i > MINUS_ONE; --i) {
     sizeChange = panesList[i].removeVisibilitySize(sizeChange)
@@ -331,10 +337,10 @@ export const showPaneLogic = (indexToShow: number, {panesList, resizerSize}: ISe
   }
 }
 
-export const getMaxContainerSizes = ({getContainerRect, isVertical, panesList, resizerSize} :IServiceRef) => {
+export const getMaxContainerSizes = ({getContainerRect, isVertical, panesList, resizersList} :any) => {
   const {top, height, left, width} = getContainerRect()
   const maxTopAxis = isVertical ? left : top
-  const maxPaneSize = (isVertical ? width : height) - getResizerSum(panesList, 0, panesList.length - 2, resizerSize)
+  const maxPaneSize = (isVertical ? width : height) - getResizerSum(resizersList, 0, panesList.length - 2)
 
   localStorage.setItem('maxsizes', JSON.stringify({
     maxTopAxis,

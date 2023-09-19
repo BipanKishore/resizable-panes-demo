@@ -69,7 +69,7 @@ export const PanesMinMax = () => {
           />
         </Panes>
 
-        <Panes
+        {/* <Panes
           className={pane3}
           id={pane3}
           key={pane3}
@@ -82,7 +82,7 @@ export const PanesMinMax = () => {
             minSize={150}
             size={pansizes.pane3}
           />
-        </Panes>
+        </Panes> */}
 
       </ResizablePanes>
 

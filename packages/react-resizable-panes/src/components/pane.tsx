@@ -1,60 +1,74 @@
-import React, {Ref, forwardRef, useImperativeHandle, useRef} from 'react'
-import {IPane, IPaneRef} from '../@types'
+import React, {useRef, useContext, Fragment, useEffect} from 'react'
+import {IPane} from '../@types'
 import {getSizeStyle, joinClassName, toPx} from '../utils/dom'
+import {ResizablePaneContext} from '../context/resizable-panes-context'
+import Resizer from './resizer'
 
-const Pane = (props: IPane, ref: Ref<IPaneRef>) => {
+const Pane = (props: any) => {
   const paneElementRef: any = useRef<HTMLDivElement>()
+  const resizerRef : any = useRef()
+  const context: any = useContext(ResizablePaneContext)
 
   const {
     className,
     children,
     size,
-    split,
-    id,
-    isVertical
+    resizer
   } = props
 
-  useImperativeHandle(ref, (): IPaneRef => {
-    const paneElement = paneElementRef.current
-
-    return {
-      setSize: (size: number) => {
-        if (isVertical) {
-          paneElement.style.width = toPx(size)
-        } else {
-          paneElement.style.height = toPx(size)
-        }
-      },
-      onFullSize: () => {
-        paneElement.classList.remove('full-page-class')
-      },
-      onFullPage: () => {
-        paneElement.style.removeProperty('height')
-        paneElement.style.removeProperty('width')
-        paneElement.classList.add('full-page-class')
-      },
-      onCloseFullSize: () => {
-        paneElement.classList.remove('full-page-class')
-      }
+  const setSize = (size: number) => {
+    if (context.isVertical) {
+      // console.log('setSize', size)
+      paneElementRef.current.style.width = toPx(size)
+    } else {
+      paneElementRef.current.style.height = toPx(size)
     }
+  }
+  const onCloseFullSize = () => {
+    paneElementRef.current.classList.remove('full-page-class')
+  }
+
+  const onFullSize = () => {
+    onCloseFullSize()
+  }
+
+  const onFullPage = () => {
+    paneElementRef.current.style.removeProperty('height')
+    paneElementRef.current.style.removeProperty('width')
+    paneElementRef.current.classList.add('full-page-class')
+  }
+
+  useEffect(() => {
+    context.registerPaneAndResizer({
+      setSize,
+      onFullSize,
+      onFullPage,
+      onCloseFullSize
+    }, props, resizerRef)
+  }, [])
+
+  const classname = joinClassName({
+    'overflow-hidden': true,
+    [className]: className
   })
 
-  const classname = joinClassName(
-    {
-      'overflow-hidden': true,
-      [className]: className
-    }
-  )
-  const style = getSizeStyle(split, size)
+  const style = getSizeStyle(context.isVertical, size)
+  console.log('style', props.id, style)
   return (
-    <div
-      className={classname}
-      ref={paneElementRef}
-      style={style}
-    >
-      {children}
-    </div>
+    <Fragment>
+      <div
+        className={classname}
+        ref={paneElementRef}
+        style={style}
+      >
+        {children}
+      </div>
+
+      <Resizer id={props.id} ref={resizerRef}>
+        {resizer}
+      </Resizer>
+    </Fragment>
   )
 }
 
-export default forwardRef(Pane)
+export default (Pane)

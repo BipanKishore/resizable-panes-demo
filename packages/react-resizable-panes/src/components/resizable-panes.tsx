@@ -1,153 +1,31 @@
 import React, {
-  RefObject,
-  cloneElement,
-  createRef, useCallback, useEffect, useMemo, useRef
+  createRef,
+  useContext
 } from 'react'
-import Resizer from './resizer'
-import useResizablePanes from '../hooks/use-resizable-panes'
-
 import '../style.css'
 import {IResizablePanesProps} from '../@types'
-import {noop} from '../utils/util'
-import {getContainerClass, getResizableEvent} from '../utils/dom'
-import {IPaneRef} from '../@types/component-types'
+import {getContainerClass} from '../utils/dom'
+import {ResizablePaneContext} from '../context/resizable-panes-context'
 
 export const ResizablePanes = (props: IResizablePanesProps) => {
-  console.log('rerender -> ResizablePanes')
-
-  useEffect(() => {
-    console.error('v----- Reeeeeeeeeeeee Mountttttttiinnnnnng')
-    return () => console.error('v----- Uuuuuuuuuunmountiiiiiiiiiiinnnnnnnngggggg')
-  }, [])
-
-  const {
-    children,
-    split,
-    resizerNode,
-    onResizeStop,
-    onResize,
-    className
-  } = props
-
-  const isVertical = split !== 'horizontal'
-
+  const {children, className} = props
+  const context: any = useContext(ResizablePaneContext)
   const containerRef: any = createRef()
-  const panesRefs: any = useRef<RefObject<HTMLDivElement>[]>([])
-  const resizerRefs: any = useRef([])
 
-  resizerRefs.current = children.map((_, i:number) => resizerRefs.current[i] ?? createRef())
-  panesRefs.current = children.map((_, i:number) => panesRefs.current[i] ?? createRef() as RefObject<IPaneRef>)
-
-  const getContainerRect = useCallback(() => {
+  const getContainerRect = () => {
     return containerRef.current.getBoundingClientRect()
-  }, [])
+  }
 
-  const {
-    setMouseDownAndPaneAxisDetails,
-    calculateAndSetHeight,
-    getIdToSizeMap,
-    toFullSize,
-    closeFullSize,
-    toFullPage
-  } = useResizablePanes(
-    {
-      props,
-      getContainerRect,
-      panesRefs,
-      resizerSize: 2,
-      isVertical,
-      resizerRefs
-    }
-  )
+  context.register({getContainerRect})
 
-  const onMouseMove = useCallback((e: any) => {
-    const resizableEvent = getResizableEvent(e, isVertical)
-    calculateAndSetHeight(resizableEvent)
-    const resizeParams = getIdToSizeMap()
-    onResize(resizeParams)
-  }, [isVertical, onResize, getIdToSizeMap, calculateAndSetHeight])
-
-  const onMouseUp = useCallback(() => {
-    document.removeEventListener('mousemove', onMouseMove)
-    const resizeParams = getIdToSizeMap()
-    onResizeStop(resizeParams)
-  }, [onMouseMove, onResizeStop, getIdToSizeMap])
-
-  useEffect(() => {
-    document.addEventListener('mouseup', onMouseUp)
-    return () => document.removeEventListener('mouseup', onMouseUp)
-  }, [onMouseUp])
-
-  const onMouseDown = useCallback((e: any, index: number) => {
-    const resizableEvent = getResizableEvent(e, isVertical)
-    setMouseDownAndPaneAxisDetails(resizableEvent, index)
-    document.addEventListener('mousemove', onMouseMove)
-  }, [
-    setMouseDownAndPaneAxisDetails,
-    onMouseMove,
-    isVertical
-  ])
-
-  const contentJsx = useMemo(() => {
-    console.log('rerender -> contentJsx')
-    const content = []
-
-    let i = 0
-    let key
-    for (;i < children.length - 1; i += 1) {
-      const iCopy = i
-      key = children[iCopy].props.id
-      content.push(cloneElement(children[iCopy], {
-        isVertical,
-        split,
-        key,
-        ref: panesRefs.current[iCopy],
-        toFullSize,
-        closeFullSize,
-        toFullPage
-      }))
-
-      content.push(
-        <Resizer
-          key={`${key}-resizer`}
-          node={resizerNode}
-          ref={resizerRefs.current[iCopy]}
-          split={split}
-          onMouseDown={(e: any) => onMouseDown(e, iCopy)}
-        />
-      )
-    }
-
-    content.push(cloneElement(children[i], {
-      isVertical,
-      split,
-      key: children[i].props.id,
-      ref: panesRefs?.current[i],
-      toFullSize,
-      closeFullSize,
-      toFullPage
-    }))
-    return content
-  }, [
-    children, onMouseDown
-  ])
-
-  const classname = getContainerClass(isVertical, className)
+  const classname = getContainerClass(context.isVertical, className)
 
   return (
     <div
       className={classname}
       ref={containerRef}
     >
-      {contentJsx}
+      {children}
     </div>
   )
-}
-
-ResizablePanes.defaultProps = {
-  onResize: noop,
-  onResizeStop: noop,
-  onResizeStart: noop,
-  onReady: noop,
-  onChangeVisibility: noop
 }

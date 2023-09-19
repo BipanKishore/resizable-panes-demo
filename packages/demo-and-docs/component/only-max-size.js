@@ -2,45 +2,45 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-    Panes, ResizablePanes
+  Panes, ResizablePanes
 } from '../resizable-panes'
 import {TestComp} from './test-comp'
 
 export const OnlyMaxSize = ({
-    onReady
+  onReady
 }) => {
+  return (
 
-    return(
-
-      <ResizablePanes
-            resizerSize={5}
-            onReady={onReady}
+    <ResizablePanes
+      onReady={onReady}
+    >
+      {
+        <Panes
+          className='pane1'
+          id='pane1'
+          maxSize={200} size={200}
         >
-          {
-              <Panes
-                    id='pane1'
-                    className='pane1'
-                    size={200} maxSize={200} >
-                  <TestComp name={'Pane 1'} />
-                </Panes>
+          <TestComp name={'Pane 1'} />
+        </Panes>
             }
 
-          <Panes
-                id='pane2' className='pane2' size={50 } maxSize={100} >
-              <TestComp name={'Pane 2'} />
-            </Panes>
+      <Panes
+        className='pane2' id='pane2' maxSize={100} size={50 }
+      >
+        <TestComp name={'Pane 2'} />
+      </Panes>
 
-          <Panes id='pane3' className='pane3' size={100} maxSize={130}>
-              Pane 111
-            </Panes>
+      <Panes className='pane3' id='pane3' maxSize={130} size={100}>
+        Pane 111
+      </Panes>
 
-          <Panes id='pane4' className='pane2' size={250} maxSize={300}>
-              Pane 1111
-            </Panes>
-        </ResizablePanes>
-    )
+      <Panes className='pane2' id='pane4' maxSize={300} size={250}>
+        Pane 1111
+      </Panes>
+    </ResizablePanes>
+  )
 }
 
 OnlyMaxSize.propTypes = {
-    onReady: PropTypes.func
+  onReady: PropTypes.func
 }
