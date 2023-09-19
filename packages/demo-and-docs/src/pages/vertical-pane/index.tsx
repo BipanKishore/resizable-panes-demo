@@ -18,43 +18,15 @@ export const VerticalPanes = () => {
         To align panes vertical just pass "vertical" as split prop for ResizablePanes.
       </div>
       <div className='m-20-0' >
-        <ResizablePanes
-          className='h-300'
-          split='vertical'
-        >
-
-          <Panes
-            className={pane1}
-            id={pane1}
-            key={pane1}
-            resizer={
-              <div
-                style={{
-                  width: '15px'
-                }}
-              >
-              </div>
-            }
-            size={350}
-          >
+        <ResizablePanes className='h-300' split='vertical'>
+          <Panes className={pane1} id={pane1} size={350}>
           </Panes>
 
-          <Panes
-            className={pane2}
-            id={pane2}
-            key={pane2}
-            size={300}
-          >
+          <Panes className={pane2} id={pane2} size={300}>
           </Panes>
 
-          <Panes
-            className={pane3}
-            id={pane3}
-            key={pane3}
-            size={200}
-          >
+          <Panes className={pane3} id={pane3} size={200}>
           </Panes>
-
         </ResizablePanes>
       </div>
 

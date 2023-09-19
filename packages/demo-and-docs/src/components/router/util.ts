@@ -1,4 +1,5 @@
 import {ApiDocs} from '../../pages/api-docs'
+import {CustomResizer} from '../../pages/custom-resizer'
 import {FullScreenModes} from '../../pages/full-screen-modes'
 import {GettingStarted} from '../../pages/getting-started'
 import {HideShowPanes} from '../../pages/hide-show-panes'
@@ -19,6 +20,8 @@ export const routerComponentSelector = (path: string): any => {
       return HorizantalPanes
     case 'vertical-panes':
       return VerticalPanes
+    case 'custom-resizer':
+      return CustomResizer
     case 'nested-panes':
       return NestedPanes
     case 'show-n-hide':

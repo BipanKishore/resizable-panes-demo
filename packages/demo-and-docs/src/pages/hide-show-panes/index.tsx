@@ -54,8 +54,8 @@ export const HideShowPanes = () => {
       <button onClick={setVisibility} >Submit</button>
 
       <ResizablePanes
-      // className='h-300'
-        split='horizontal' onChangeVisibility={(e:any) => {
+        className='h-300'
+        split='vertical' onChangeVisibility={(e:any) => {
           console.log('onChangeVisibility', e)
         }}
 

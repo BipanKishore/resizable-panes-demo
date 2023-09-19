@@ -1,7 +1,7 @@
 import {IKeyToBoolMap, IServiceRef} from '../@types'
 import {PaneModel} from '../models/pane-model'
 import {getList} from './development-util'
-import {setUISizesFn} from './panes'
+import {getResizerSum, setUISizesFn} from './panes'
 import {getMaxContainerSizes, hideLogic, showPaneLogic} from './resizable-pane'
 import {isUndefinedOrNull} from './util'
 
@@ -18,10 +18,10 @@ export const toFullSizeFn = (serviceRefCurrent: any, paneId: string) => {
   const {panesList, resizersList} = serviceRefCurrent
 
   const {maxPaneSize} = getMaxContainerSizes(serviceRefCurrent)
-  panesList.forEach((pane: any, index: number) => {
+  panesList.forEach((pane: any) => {
     pane.synPreservedSize()
     if (pane.id === paneId) {
-      pane.size = maxPaneSize + (panesList.length - 1) * resizersList[index].current.getSize()
+      pane.size = maxPaneSize + getResizerSum(resizersList, 0, resizersList.length - 1)
       pane.pane.onFullSize()
     } else {
       pane.size = 0
