@@ -10,9 +10,12 @@ body{
     margin:0;
 }
 .tab-container{
-width:220px;
-height: calc(100vh - 30);
-padding:2px;
+width:270px;
+/* height: calc(100vh - 30px); */
+padding: 0 12px;
+    padding-top: 0px;
+  padding-top: 15px;
+background-color: #f6f8fa;
 }
 
 .tab {
@@ -22,13 +25,14 @@ padding:2px;
     margin:auto;
     padding:10px;
     border: 1px solid transparent;
+    cursor: pointer;
 
 }
 
 
 .tab-active{
-    background-color:#E6F7FF;
-    color:#087EA4;
+    background-color: #8c8c8c;
+    color: #ffffff;
     border: 1px solid blue;
     font-weight:600;
     
@@ -47,11 +51,17 @@ padding:2px;
 } */
 .header{
     text-align: center;
-    background-color:#f6f8fa;
+    /* background-color:#f6f8fa; */
     padding:5px 0;
     color:#23272F;
+    margin: 20px 0;
 
 }
 .router{
-    padding:10px 5px;
+    padding:10px 30px;
+}
+
+.router h3 {
+    text-align: left;
+    font-weight: 600;
 }
