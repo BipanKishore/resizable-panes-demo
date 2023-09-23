@@ -9,8 +9,9 @@
 /coverage
 
 # production
-/build
 /packages/demo-and-docs/dist
+/packages/react-resizable-panes/dist
+/build
 
 # misc
 .DS_Store
