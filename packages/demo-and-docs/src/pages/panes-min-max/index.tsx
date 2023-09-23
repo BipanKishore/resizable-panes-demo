@@ -5,7 +5,7 @@ import MarkdownPreview from '@uiw/react-markdown-preview'
 
 import {
   Panes, ResizablePanes
-} from 'react-resizable-panes'
+} from 'resizable-panes-react'
 
 export const PanesMinMax = () => {
   const pane1 = 'pane1'

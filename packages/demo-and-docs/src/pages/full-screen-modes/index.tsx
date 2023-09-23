@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import {
   Panes, ResizablePanes
-} from 'react-resizable-panes'
+} from 'resizable-panes-react'
 import PaneModesIcons from '../../components/pane-modes-icons'
 
 export const FullScreenModes = () => {

@@ -1,5 +1,5 @@
 import React, {Ref, useRef, useState} from 'react'
-import {Panes, ResizablePanes, IResizableApi} from 'react-resizable-panes'
+import {Panes, ResizablePanes, IResizableApi} from 'resizable-panes-react'
 import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 

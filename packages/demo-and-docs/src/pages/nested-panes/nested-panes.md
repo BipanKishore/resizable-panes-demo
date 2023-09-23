@@ -4,7 +4,7 @@
 
 ```jsx mdx:preview
 import React from 'react';
-import {Panes, ResizablePanes} from 'react-resizable-panes'
+import {Panes, ResizablePanes} from 'resizable-panes-react'
 
       <ResizablePanes split='vertical'>
         <Panes className={pane1} id={pane1} minSize={100} size={200}>
