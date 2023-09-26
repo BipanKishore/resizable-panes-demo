@@ -25,7 +25,7 @@
     "build-prod": "webpack --config configs/webpack.prod.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
-    "start": "npm-run-all --serial link-local demo"
+    "start": "npm-run-all --serial link-local start-demo"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
