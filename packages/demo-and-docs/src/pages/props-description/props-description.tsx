@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Img from '../../../assets/images/dummy-doc.png'
+// import Img from '../../../assets/images/dummy-doc.png'
 
 export const PropsDescription = () => {
   return (

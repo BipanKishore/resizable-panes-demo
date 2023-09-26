@@ -10,6 +10,7 @@
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
     "lerna": "^7.2.0",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.66.1",
     "sass-lint": "^1.13.1",
     "sass-loader": "^13.3.2"
@@ -17,8 +18,11 @@
   "scripts": {
     "demo": "cd ./packages/demo-and-docs && npm start",
     "build": "cd ./packages/demo-and-docs && npm run build",
+    "build-prod": "webpack --config configs/webpack.prod.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -b master -d build",
+    "sync-resizable-panes-react": "npm link resizable-panes-react",
+    "start": "npm-run-all --serial sync-resizable-panes-react demo"    
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
