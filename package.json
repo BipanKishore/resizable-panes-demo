@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": [
     "packages/demo-and-docs",
-    "packages/react-resizable-panes"
+    "packages/resizable-panes-react"
   ],
   "devDependencies": {
     "@types/react-dom": "^18.2.7",
@@ -19,6 +19,7 @@
     "demo-build": "cd ./packages/demo-and-docs && npm run build"
   },
   "dependencies": {
-    "@uiw/react-md-editor": "^3.23.5"
+    "@uiw/react-md-editor": "^3.23.5",
+    "resizable-panes-react": "^0.2.0"
   }
 }

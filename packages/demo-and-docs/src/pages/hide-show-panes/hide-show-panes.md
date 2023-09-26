@@ -4,7 +4,7 @@
 
 ```jsx mdx:preview
 import React, {Ref, useRef, useState} from 'react'
-import {Panes, ResizablePanes, IResizableApi} from 'react-resizable-panes'
+import {Panes, ResizablePanes, IResizableApi} from 'resizable-panes-react'
 
 interface IIDMap{
     [id: string]: boolean

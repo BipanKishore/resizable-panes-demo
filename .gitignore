@@ -9,8 +9,7 @@
 /coverage
 
 # production
-/packages/demo-and-docs/dist
-/packages/react-resizable-panes/dist
+/packages/resizable-panes-react/dist
 /build
 
 # misc

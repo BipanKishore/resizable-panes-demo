@@ -3,7 +3,7 @@ import React from 'react'
 
 import {
   Panes, ResizablePanes
-} from 'react-resizable-panes'
+} from 'resizable-panes-react'
 import {TestComp} from './test-comp'
 import {CLASS_NAME} from './constant'
 import {ResizerNode1} from '../src/components/resizer-nodes/resize-node-1'

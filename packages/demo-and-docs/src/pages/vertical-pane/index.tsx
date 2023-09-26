@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Panes, ResizablePanes
-} from 'react-resizable-panes'
+} from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import VERTICAL_PANE_MD from './vertical-pane.md'
 export const VerticalPanes = () => {

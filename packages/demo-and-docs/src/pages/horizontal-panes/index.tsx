@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Panes, ResizablePanes
-} from 'react-resizable-panes'
+} from 'resizable-panes-react'
 import HORIZONTAL_PANES_MD from './horizontal-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 
