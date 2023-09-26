@@ -80,7 +80,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, '/docs'),
+        path: path.join(__dirname, '../../build/'),
         clean: true
     },
     plugins: [
@@ -95,7 +95,9 @@ module.exports = {
         })
     ],
     resolve: {
+        alias: {
+            react:  path.join(__dirname,  '../../node_modules/react')
+        },
         extensions: ['.tsx', '.ts', '.js'],
-    },
-    watch: true
+    }
 }

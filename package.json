@@ -16,10 +16,14 @@
   },
   "scripts": {
     "demo": "cd ./packages/demo-and-docs && npm start",
-    "demo-build": "cd ./packages/demo-and-docs && npm run build"
+    "build": "cd ./packages/demo-and-docs && npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
-    "resizable-panes-react": "^0.2.0"
-  }
+    "gh-pages": "^6.0.0",
+    "resizable-panes-react": "^0.3.2"
+  },
+  "homepage": "https://bipankishore.github.io/resizable-panes-demo"
 }
