@@ -5,7 +5,7 @@ import {
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import {CustomResizerFirst} from './custom-resizer-first'
 import {CustomResizerSecond} from './custom-resizer-second'
-import CUSTOM_RESIZER_MD from './custom-resizer.md'
+import CUSTOM_RESIZER_MD from '../../../assets/mark-downs/custom-resizer.md'
 
 export const CustomResizer = () => {
   const pane1 = 'pane1'
