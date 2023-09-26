@@ -1,5 +1,5 @@
 ```bash
-$ npm install @uiw/react-markdown-preview --save
+$ npm i resizable-panes-react --save
 # or
-yarn add
+yarn add resizable-panes-react
 ```

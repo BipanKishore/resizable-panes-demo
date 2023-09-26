@@ -37,6 +37,7 @@ export const HideShowPanes = () => {
     <div>
       <div>
         <h3 className='t-color-mainBlue t-aligin-center'>Show and hide panes</h3>
+        <h6>Note: Experimental features!</h6>
       </div>
       <div className='m-20-0'>
         To use nested panes just place another ResizablePanes component inside a Pane component.
