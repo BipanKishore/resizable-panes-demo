@@ -12,10 +12,8 @@ body{
 .tab-container{
 width:270px;
 /* height: calc(100vh - 30px); */
-padding: 0 12px;
-    padding-top: 0px;
-  padding-top: 15px;
-background-color: #f6f8fa;
+/* padding: 0 12px; */
+/* background-color: #f6f8fa; */
 }
 
 .tab {
@@ -23,7 +21,7 @@ background-color: #f6f8fa;
     color:rgb(5, 5, 5);
     text-align:left ;
     margin:auto;
-    padding:10px;
+    padding: 10px 15px;
     border: 1px solid transparent;
     cursor: pointer;
 
@@ -31,8 +29,8 @@ background-color: #f6f8fa;
 
 
 .tab-active{
-    background-color: #8c8c8c;
-    color: #ffffff;
+    background-color: #e6f7ff;
+    color: #087eba;
     border: 1px solid blue;
     font-weight:600;
     
@@ -54,7 +52,17 @@ background-color: #f6f8fa;
     /* background-color:#f6f8fa; */
     padding:5px 0;
     color:#23272F;
-    margin: 20px 0;
+    margin: 20px 0px 40px 0px;
+
+}
+
+.header h2 {
+background-color: #f3f4f6;
+  padding: 12px 10px;
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: 600;
+  color:#23272f;
 
 }
 .router{
