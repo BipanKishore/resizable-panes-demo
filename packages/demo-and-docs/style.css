@@ -15,15 +15,18 @@
 }
 
 .pane1 {
-    background-color: #cfd8dc;
+    background-color: #efefef;
+  border-radius: 5px;
 }
 
 .pane2 {
     background-color:#b0bec5;
+    border-radius: 5px;
 }
 
 .pane3 {
-    background-color:#c5cae9 ;
+ background-color: #efefef;
+  border-radius: 5px;
 }
 
 
@@ -51,9 +54,9 @@
 }
 
 .radious-5 {
-    border-radius: 5px 5px 5px 5px;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius:  20px 20px 20px 20px;
+    -webkit-border-radius:  20px 20px 20px 20px;
     border: 0px solid #000000;
 }
 .display-flex{
@@ -82,3 +85,7 @@
     font-weight: normal;
 }
 
+
+.crhover:hover{
+    background-color: aqua;
+}

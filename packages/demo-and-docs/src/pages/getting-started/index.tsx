@@ -12,8 +12,9 @@ export const GettingStarted = () => {
       adjust the size of individual sections within a container. This component is highly customizable and can
       be used in various applications where flexible layout management is required.
 
-      <h3>Installation</h3>
+
       <div className="mark-down-container m-20-0">
+        <h3>Installation</h3>
         <MarkdownPreview className="" source={GETTING_STARTED_MD} />
       </div>
 
