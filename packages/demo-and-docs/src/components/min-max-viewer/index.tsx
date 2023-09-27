@@ -19,7 +19,7 @@ const MinMaxViewer = (props:IMinMaxViewerProps) => {
   return (
     <div className="maxxmin">
       <span className={minSizeClass}>{minSize}</span><br />
-      <span >{size.toFixed(1)}  </span><br />
+      <span >{size.toFixed(0)}  </span><br />
       <span className={maxSizeClass} >{maxSize}</span>
     </div>
   )
