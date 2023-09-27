@@ -92,24 +92,41 @@
 
 
 .custom-resizer-1st-parent {
+    padding: 2px;
+    background-color: white;
+}
 
+.custom-resizer-1st-parent:hover {
+    padding: 3px;
 }
 
 .custom-resizer-1st-child {
     background-color: gold;
     border-radius: 5px;
-    margin: 2px;
+}
+
+.custom-resizer-1st-child:hover {
 }
 
 .custom-resizer-2st-parent {
+    padding: 2px;
+    background-color: white;
+}
 
+.custom-resizer-2st-parent:hover {
+    padding: 3px;
 }
 
 .custom-resizer-2st-child {
     background-color: gold;
     border-radius: 5px;
-    margin: 2px;
 }
+
+.custom-resizer-2st-child:hover {
+
+}
+
+
 
 .max-limit-reached{
     color: red;

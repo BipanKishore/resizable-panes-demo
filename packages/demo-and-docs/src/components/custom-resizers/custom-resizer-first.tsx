@@ -7,21 +7,18 @@ export const CustomResizerFirst = ({horizontal}: {
 }) => {
   const parentClassName = joinClassName({
     'custom-resizer-1st-parent': true,
-    'h-100p': !horizontal,
-    '': horizontal
+    'h-100p w-12': !horizontal,
+    'h-12': horizontal
   })
 
   const childClassName = joinClassName({
     'custom-resizer-1st-child': true,
-    'h-100p w-8': !horizontal,
-    '.w-100p h-8': horizontal
+    'h-100p w-100p': true
   })
-  return (
-    <div
-      className={parentClassName}
-    >
-      <div className={childClassName} ></div>
 
+  return (
+    <div className={parentClassName}>
+      <div className={childClassName}></div>
     </div>
   )
 }
