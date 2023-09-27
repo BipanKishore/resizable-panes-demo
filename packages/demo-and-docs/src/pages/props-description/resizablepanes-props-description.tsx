@@ -12,7 +12,7 @@ export const ResizablePanesPropsDescription = () => {
           with the <code>ResizablePanes</code> API.
         </p>
       </div>
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>vertical (boolean):</strong> An optional boolean prop that,
           when set to <code>true</code>, configures the <code>ResizablePanes</code> to align the panes
@@ -20,7 +20,7 @@ export const ResizablePanesPropsDescription = () => {
         </p>
       </div>
 
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>resizer (React Element):</strong> An optional prop that allows you to
           provide a custom resizer component for the panes within the <code>ResizablePanes</code> component.
@@ -30,7 +30,7 @@ export const ResizablePanesPropsDescription = () => {
 
       </div>
 
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>onResizeStop (function):</strong> A callback function triggered when a resizing operation
           is completed. It receives a parameter of type <code>IMapIdToSize</code>, which maps
@@ -38,7 +38,7 @@ export const ResizablePanesPropsDescription = () => {
         </p>
       </div>
 
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>onResize (function):</strong> A callback function invoked during a resizing operation,
           providing real-time feedback on the resizing process.
@@ -47,14 +47,14 @@ export const ResizablePanesPropsDescription = () => {
         </p>
       </div>
 
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>className (string):</strong> The CSS class
           name to apply to the <code>ResizablePanes</code> component.
         </p>
       </div>
 
-      <hr />
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>onChangeVisibility (function):</strong> A callback function that is called when the
           visibility of panes changes. It receives a parameter of type <code>IKeyToBoolMap</code>,
