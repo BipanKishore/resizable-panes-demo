@@ -1,3 +1,4 @@
+import {LiveDemo} from '../../pages/LiveDemo'
 import {ApiDocs} from '../../pages/api-docs'
 import {CustomResizer} from '../../pages/custom-resizer'
 import {FullScreenModes} from '../../pages/full-screen-modes'
@@ -14,6 +15,8 @@ export const routerComponentSelector = (path: string): any => {
   switch (path) {
     case 'getting-started':
       return GettingStarted
+    case 'live-demo':
+      return LiveDemo
     case 'api-docs':
       return ApiDocs
     case 'horizontal-panes':
