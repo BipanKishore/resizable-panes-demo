@@ -16,7 +16,7 @@ export const HorizantalPanes = () => {
         <h3 className='t-color-mainBlue t-aligin-center'>Horizontal Panes</h3>
       </div>
       <div className='m-20-0'>
-        By default ResizablePanes will aligin the panes horizontally.
+        <p>By default, the <code>ResizablePanes</code> component aligns the panes horizontally.</p>
       </div>
       <ResizablePanes
         resizer={

@@ -18,15 +18,9 @@ export const FullScreenModes = () => {
         <h3 className='t-color-mainBlue t-aligin-center'>Fullscreen modes</h3>
       </div>
       <div className='m-20-0'>
-        The ResizablePanes has an event onReady. OnReady provides an api as param. It has has
-        following methods to change the view of panes:
-
-        <ul>
-          <li>toFullSize: pass param as paneId</li>
-          <li>toFullPage: pass param as paneId</li>
-          <li>closeFullSize</li>
-        </ul>
-
+        <p>The panes have the capability to expand to full screen or to the maximum
+          size of the <code>ResizablePanes</code> through the <code>ResizablePanes</code> API.
+        </p>
       </div>
 
       <ResizablePanes

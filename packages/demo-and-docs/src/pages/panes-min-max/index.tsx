@@ -29,7 +29,9 @@ export const PanesMinMax = () => {
       </div>
 
       <div className='m-20-0'>
-        To set min and max size of a pane use minSize and MaxSize Prop.
+        <p>You can control a pane's minimum and maximum size by using
+          the <code>minSize</code> and <code>maxSize</code> props.
+        </p>
       </div>
 
       <ResizablePanes

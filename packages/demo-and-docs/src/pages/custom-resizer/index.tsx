@@ -18,7 +18,10 @@ export const CustomResizer = () => {
       </div>
 
       <div className='m-20-0'>
-        To align panes vertical just pass "vertical" as split prop for ResizablePanes.
+        <p>You can customize the resizer by using the <code>resizer</code> prop. When applied
+          to the <code>ResizablePanes</code> component, it affects all panes. Alternatively, you can use
+          the <code>Pane</code> component's <code>resizer</code> prop to customize the resizer for a specific pane.
+        </p>
       </div>
       <div className='m-20-0' >
         <ResizablePanes

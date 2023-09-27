@@ -17,7 +17,9 @@ export const NestedPanes = () => {
         <h3 className='t-color-mainBlue t-aligin-center'>Nested Panes</h3>
       </div>
       <div className='m-20-0'>
-        To use nested panes just place another ResizablePanes component inside a Pane component.
+        <p>For nested panes, simply nest another <code>ResizablePanes</code> component
+          inside a <code>Pane</code> component.
+        </p>
       </div>
       <ResizablePanes
         resizer={

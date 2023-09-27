@@ -40,7 +40,8 @@ export const HideShowPanes = () => {
         <h6>Note: Experimental features!</h6>
       </div>
       <div className='m-20-0'>
-        To use nested panes just place another ResizablePanes component inside a Pane component.
+        You can toggle the visibility of a pane using the ResizablePanes API.
+        This action hides or shows the pane without removing the element from the view.
       </div>
 
       <ResizablePanes

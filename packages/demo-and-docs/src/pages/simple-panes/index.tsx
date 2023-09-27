@@ -15,8 +15,9 @@ export const SimplePanes = () => {
       </div>
 
       <div className='m-20-0'>
-        The id and size are the required props of Panes to adjust himself on screen.
-        By default ResizablePanes will split the panes horizontal.
+        <p>By default, the <code>ResizablePanes</code> component comes with a default resizer set at 2 pixels.
+          However, if you wish to use your own custom resizer, you can do so by utilizing the <code>resizer</code> prop.
+        </p>
       </div>
       <div className='m-20-0' >
         <ResizablePanes>

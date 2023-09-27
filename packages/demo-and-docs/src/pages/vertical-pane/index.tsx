@@ -16,7 +16,9 @@ export const VerticalPanes = () => {
       </div>
 
       <div className='m-20-0'>
-        To align panes vertically just pass vertical as prop for ResizablePanes.
+        <p>To align the panes vertically, simply pass the <code>vertical</code>(boolean) prop to
+          the <code>ResizablePanes</code> component.
+        </p>
       </div>
       <div className='m-20-0' >
         <ResizablePanes
