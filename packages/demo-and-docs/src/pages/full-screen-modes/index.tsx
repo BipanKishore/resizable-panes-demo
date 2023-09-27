@@ -12,15 +12,16 @@ export const FullScreenModes = () => {
 
   return (
     <ResizablePanes
+      resizer={
+        <CustomResizerFirst horizontal />
+          }
       split='horizontal'
       onReady={(api: any) => {
         resizableRef.current.api = api
       }}
     >
       <Panes
-        className={pane1} id={pane1} resizer={
-          <CustomResizerFirst horizontal />
-            } size={200}
+        className={pane1} id={pane1} size={200}
       >
         <PaneModesIcons id={pane1} resizableRef={resizableRef} />
       </Panes>

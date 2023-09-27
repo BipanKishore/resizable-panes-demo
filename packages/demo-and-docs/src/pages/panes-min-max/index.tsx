@@ -33,7 +33,8 @@ export const PanesMinMax = () => {
       </div>
 
       <ResizablePanes
-        className='h-300' split='vertical'
+        className='h-300' resizer={ <CustomResizerFirst />}
+        split='vertical'
         onResize={onResize}
       >
 
@@ -41,10 +42,6 @@ export const PanesMinMax = () => {
           className={pane1} id={pane1}
           maxSize={450}
           minSize={100}
-          resizer={
-            <CustomResizerFirst />
-            }
-
           size={350}
         >
           <MinMaxViewer
@@ -59,9 +56,6 @@ export const PanesMinMax = () => {
           className={pane2} id={pane2}
           maxSize={400}
           minSize={100}
-          resizer={
-            <CustomResizerFirst />
-            }
           size={300}
         >
           <MinMaxViewer

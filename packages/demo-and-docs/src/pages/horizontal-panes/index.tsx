@@ -18,19 +18,19 @@ export const HorizantalPanes = () => {
       <div className='m-20-0'>
         To align panes horizontally just pass "horizontal" as split prop for ResizablePanes.
       </div>
-      <ResizablePanes split='horizontal'>
+      <ResizablePanes
+        resizer={
+          <CustomResizerFirst horizontal />
+            } split='horizontal'
+      >
 
         <Panes
-          className={pane2} id={pane2} resizer={
-            <CustomResizerFirst horizontal />
-            } size={150}
+          className={pane2} id={pane2} size={150}
         >
         </Panes>
 
         <Panes
-          className={pane3} id={pane3} resizer={
-            <CustomResizerFirst />
-            } size={150}
+          className={pane3} id={pane3} size={150}
         >
         </Panes>
 

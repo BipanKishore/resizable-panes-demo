@@ -19,19 +19,23 @@ export const NestedPanes = () => {
       <div className='m-20-0'>
         To use nested panes just place another ResizablePanes component inside a Pane component.
       </div>
-      <ResizablePanes split='vertical'>
+      <ResizablePanes
+        resizer={
+          <CustomResizerFirst />
+            } split='vertical'
+      >
         <Panes
           className={pane1} id={pane1} minSize={100}
-          resizer={
-            <CustomResizerFirst />
-            }
+
           size={200}
         >
-          <ResizablePanes split='horizontal'>
+          <ResizablePanes
+            resizer={
+              <CustomResizerFirst horizontal />
+            } split='horizontal'
+          >
             <Panes
-              className={pane1} id={pane1} resizer={
-                <CustomResizerFirst horizontal />
-            } size={150}
+              className={pane1} id={pane1} size={150}
             >
             </Panes>
             <Panes className={pane3} id={pane3} size={150}> </Panes>
@@ -39,18 +43,18 @@ export const NestedPanes = () => {
         </Panes>
 
         <Panes
-          className={pane2} id={pane2} minSize={100} resizer={
-            <CustomResizerFirst />
-            } size={400}
+          className={pane2} id={pane2} minSize={100} size={400}
         >
         </Panes>
 
         <Panes className={pane3} id={pane3} minSize={100} size={200}>
-          <ResizablePanes split='horizontal'>
+          <ResizablePanes
+            resizer={
+              <CustomResizerFirst horizontal />
+            } split='horizontal'
+          >
             <Panes
-              className={pane1} id={pane1} resizer={
-                <CustomResizerFirst horizontal />
-            } size={150}
+              className={pane1} id={pane1} size={150}
             >
             </Panes>
             <Panes className={pane3} id={pane3} size={150}> </Panes>
