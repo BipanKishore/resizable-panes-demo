@@ -15,7 +15,6 @@ export const FullScreenModes = () => {
       resizer={
         <CustomResizerFirst horizontal />
           }
-      split='horizontal'
       onReady={(api: any) => {
         resizableRef.current.api = api
       }}

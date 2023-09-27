@@ -22,7 +22,8 @@ export const NestedPanes = () => {
       <ResizablePanes
         resizer={
           <CustomResizerFirst />
-            } split='vertical'
+            }
+        vertical
       >
         <Panes
           className={pane1} id={pane1} minSize={100}
@@ -32,7 +33,7 @@ export const NestedPanes = () => {
           <ResizablePanes
             resizer={
               <CustomResizerFirst horizontal />
-            } split='horizontal'
+            }
           >
             <Panes
               className={pane1} id={pane1} size={150}
@@ -51,7 +52,7 @@ export const NestedPanes = () => {
           <ResizablePanes
             resizer={
               <CustomResizerFirst horizontal />
-            } split='horizontal'
+            }
           >
             <Panes
               className={pane1} id={pane1} size={150}

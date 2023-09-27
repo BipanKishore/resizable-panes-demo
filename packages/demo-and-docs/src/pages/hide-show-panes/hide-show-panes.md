@@ -40,7 +40,7 @@ export const HideShowPanes = () => {
     <div>
       <ResizablePanes
         className='h-300'
-        split='vertical' onChangeVisibility={(e:any) => {
+        vertical onChangeVisibility={(e:any) => {
           console.log('onChangeVisibility', e)
         }}
         onReady={onReady}

@@ -21,7 +21,7 @@ export const CustomResizer = () => {
         To align panes vertical just pass "vertical" as split prop for ResizablePanes.
       </div>
       <div className='m-20-0' >
-        <ResizablePanes className='h-300' split='vertical'>
+        <ResizablePanes className='h-300' vertical >
           <Panes
             className={pane1} id={pane1}
             resizer={

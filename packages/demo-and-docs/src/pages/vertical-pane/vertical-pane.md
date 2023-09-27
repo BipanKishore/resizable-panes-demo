@@ -6,7 +6,7 @@
 import React from 'react';
 import {Panes, ResizablePanes} from 'resizable-panes-react'
 
- <ResizablePanes split='vertical'>
+ <ResizablePanes vertical>
         <Panes id="pane1" size={350}>
         ...Your Element...
         </Panes>

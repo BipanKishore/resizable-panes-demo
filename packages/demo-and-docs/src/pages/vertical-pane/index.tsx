@@ -16,14 +16,14 @@ export const VerticalPanes = () => {
       </div>
 
       <div className='m-20-0'>
-        To align panes vertically just pass "vertical" as split prop for ResizablePanes.
+        To align panes vertically just pass vertical as prop for ResizablePanes.
       </div>
       <div className='m-20-0' >
         <ResizablePanes
           className='h-300' resizer={
             <CustomResizerFirst />
             }
-          split='vertical'
+          vertical
         >
           <Panes
             className={pane1} id={pane1} size={280}

@@ -16,12 +16,12 @@ export const HorizantalPanes = () => {
         <h3 className='t-color-mainBlue t-aligin-center'>Horizontal Panes</h3>
       </div>
       <div className='m-20-0'>
-        To align panes horizontally just pass "horizontal" as split prop for ResizablePanes.
+        By default ResizablePanes will aligin the panes horizontally.
       </div>
       <ResizablePanes
         resizer={
           <CustomResizerFirst horizontal />
-            } split='horizontal'
+            }
       >
 
         <Panes

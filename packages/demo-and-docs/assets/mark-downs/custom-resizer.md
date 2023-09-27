@@ -6,7 +6,7 @@
 import React from 'react';
 import {Panes, ResizablePanes} from 'resizable-panes-react'
 
-        <ResizablePanes className='h-300' split='vertical'>
+        <ResizablePanes className='h-300' vertical >
           <Panes
             className={pane1} id={pane1}
             resizer={

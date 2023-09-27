@@ -6,9 +6,9 @@
 import React from 'react';
 import {Panes, ResizablePanes} from 'resizable-panes-react'
 
-      <ResizablePanes split='vertical'>
+      <ResizablePanes vertical>
         <Panes className={pane1} id={pane1} minSize={100} size={200}>
-          <ResizablePanes split='horizontal'>
+          <ResizablePanes>
             <Panes className={pane1} id={pane1} size={150}>
               ...Your Element...
             </Panes>
@@ -25,7 +25,7 @@ import {Panes, ResizablePanes} from 'resizable-panes-react'
         </Panes>
 
         <Panes className={pane3} id={pane3} minSize={100} size={200}>
-          <ResizablePanes split='horizontal'>
+          <ResizablePanes>
             <Panes className={pane1} id={pane1} size={150}>
               ...Your Element...
             </Panes>

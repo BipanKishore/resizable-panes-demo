@@ -34,7 +34,7 @@ export const PanesMinMax = () => {
 
       <ResizablePanes
         className='h-300' resizer={ <CustomResizerFirst />}
-        split='vertical'
+        vertical
         onResize={onResize}
       >
 

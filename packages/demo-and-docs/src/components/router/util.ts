@@ -7,6 +7,7 @@ import {HorizantalPanes} from '../../pages/horizontal-panes'
 import {NestedPanes} from '../../pages/nested-panes'
 import {PanesMinMax} from '../../pages/panes-min-max'
 import {PropsDescription} from '../../pages/props-description/props-description'
+import {SimplePanes} from '../../pages/simple-panes'
 import {VerticalPanes} from '../../pages/vertical-pane'
 
 // eslint-disable-next-line complexity
@@ -14,6 +15,8 @@ export const routerComponentSelector = (path: string): any => {
   switch (path) {
     case 'getting-started':
       return GettingStarted
+    case 'simple-panes':
+      return SimplePanes
     case 'api-docs':
       return ApiDocs
     case 'horizontal-panes':

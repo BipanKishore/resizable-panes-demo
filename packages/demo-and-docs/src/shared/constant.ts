@@ -1,5 +1,6 @@
 export const ROUTER_LIST_LEVEL_1 = [
   {active: true, label: 'Getting Started', path: 'getting-started'},
+  {active: false, label: 'Simple Panes', path: 'simple-panes'},
   {active: false, label: 'Vertical Panes', path: 'vertical-panes'},
   {active: false, label: 'Horizontal Panes', path: 'horizontal-panes'},
   {active: false, label: 'Min & Max Sizes', path: 'min-n-max'},
