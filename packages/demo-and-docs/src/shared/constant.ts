@@ -1,14 +1,16 @@
+export const GETTING_STARTED_PATH = 'getting-started'
+
 export const ROUTER_LIST_LEVEL_1 = [
-  {active: true, label: 'Getting Started', path: 'getting-started'},
-  {active: false, label: 'Simple Panes', path: 'simple-panes'},
-  {active: false, label: 'Vertical Panes', path: 'vertical-panes'},
-  {active: false, label: 'Horizontal Panes', path: 'horizontal-panes'},
-  {active: false, label: 'Min & Max Sizes', path: 'min-n-max'},
-  {active: false, label: 'Custom Resizer', path: 'custom-resizer'},
-  {active: false, label: 'Show & Hide Panes', path: 'show-n-hide'},
-  {active: false, label: 'Nested Panes', path: 'nested-panes'},
-  {active: false, label: 'Full screen modes', path: 'full-screen-modes'},
-  {active: false, label: 'ResizablePanes Props', path: 'resizable-panes-props'},
-  {active: false, label: 'Pane Props', path: 'pane-props'},
-  {active: false, label: 'Api Description', path: 'api-docs'}
+  {label: 'Getting Started', path: GETTING_STARTED_PATH},
+  {label: 'Simple Panes', path: 'simple-panes'},
+  {label: 'Vertical Panes', path: 'vertical-panes'},
+  {label: 'Horizontal Panes', path: 'horizontal-panes'},
+  {label: 'Min & Max Sizes', path: 'min-n-max'},
+  {label: 'Custom Resizer', path: 'custom-resizer'},
+  {label: 'Show & Hide Panes', path: 'show-n-hide'},
+  {label: 'Nested Panes', path: 'nested-panes'},
+  {label: 'Full screen modes', path: 'full-screen-modes'},
+  {label: 'ResizablePanes Props', path: 'resizable-panes-props'},
+  {label: 'Pane Props', path: 'pane-props'},
+  {label: 'Api Description', path: 'api-docs'}
 ]

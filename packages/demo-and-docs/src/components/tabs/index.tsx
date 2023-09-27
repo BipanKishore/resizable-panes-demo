@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {ITabProps, Tab} from './tab'
 import './style.css'
-import {ROUTER_LIST_LEVEL_1} from '../../shared/constant'
+import {GETTING_STARTED_PATH, ROUTER_LIST_LEVEL_1} from '../../shared/constant'
 
 interface ITabsProps {
   onClick: (clickedLabel: string) => void
@@ -24,8 +24,8 @@ export const Tabs = (props: ITabsProps) => {
   }
 
   useEffect(() => {
-    const path = localStorage.getItem('path') ?? ROUTER_LIST_LEVEL_1[0].path
-    onClick(path)
+    const path = localStorage.getItem('path') || GETTING_STARTED_PATH
+    onClickTab(path)
   }, [])
 
   return (
