@@ -4,6 +4,7 @@ import {
 } from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import VERTICAL_PANE_MD from './vertical-pane.md'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 export const VerticalPanes = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
@@ -19,10 +20,20 @@ export const VerticalPanes = () => {
       </div>
       <div className='m-20-0' >
         <ResizablePanes className='h-300' split='vertical'>
-          <Panes className={pane1} id={pane1} size={280}>
+          <Panes
+            className={pane1} id={pane1} resizer={
+              <CustomResizerFirst />
+                  }
+            size={280}
+          >
           </Panes>
 
-          <Panes className={pane2} id={pane2} size={300}>
+          <Panes
+            className={pane2} id={pane2} resizer={
+              <CustomResizerFirst />
+                  }
+            size={300}
+          >
           </Panes>
 
           <Panes className={pane3} id={pane3} size={200}>

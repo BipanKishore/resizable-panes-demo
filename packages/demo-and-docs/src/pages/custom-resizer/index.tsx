@@ -3,9 +3,9 @@ import {
   Panes, ResizablePanes
 } from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
-import {CustomResizerFirst} from './custom-resizer-first'
-import {CustomResizerSecond} from './custom-resizer-second'
 import CUSTOM_RESIZER_MD from '../../../assets/mark-downs/custom-resizer.md'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
+import {CustomResizerSecond} from '../../components/custom-resizers/custom-resizer-second'
 
 export const CustomResizer = () => {
   const pane1 = 'pane1'

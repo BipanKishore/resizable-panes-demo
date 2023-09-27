@@ -89,3 +89,24 @@
 .crhover:hover{
     background-color: aqua;
 }
+
+
+.custom-resizer-1st-parent {
+
+}
+
+.custom-resizer-1st-child {
+    background-color: gold;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.custom-resizer-2st-parent {
+
+}
+
+.custom-resizer-2st-child {
+    background-color: gold;
+    border-radius: 5px;
+    margin: 2px;
+}

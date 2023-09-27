@@ -4,6 +4,7 @@ import {
 } from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import NESTED_PANES_MD from './nested-panes.md'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
 export const NestedPanes = () => {
   const pane1 = 'pane1'
@@ -19,18 +20,39 @@ export const NestedPanes = () => {
         To use nested panes just place another ResizablePanes component inside a Pane component.
       </div>
       <ResizablePanes split='vertical'>
-        <Panes className={pane1} id={pane1} minSize={100} size={200}>
+        <Panes
+          className={pane1} id={pane1} minSize={100}
+          resizer={
+            <CustomResizerFirst />
+            }
+          size={200}
+        >
           <ResizablePanes split='horizontal'>
-            <Panes className={pane1} id={pane1} size={150}> </Panes>
+            <Panes
+              className={pane1} id={pane1} resizer={
+                <CustomResizerFirst horizontal />
+            } size={150}
+            >
+            </Panes>
             <Panes className={pane3} id={pane3} size={150}> </Panes>
           </ResizablePanes>
         </Panes>
 
-        <Panes className={pane2} id={pane2} minSize={100} size={400}></Panes>
+        <Panes
+          className={pane2} id={pane2} minSize={100} resizer={
+            <CustomResizerFirst />
+            } size={400}
+        >
+        </Panes>
 
         <Panes className={pane3} id={pane3} minSize={100} size={200}>
           <ResizablePanes split='horizontal'>
-            <Panes className={pane1} id={pane1} size={150}> </Panes>
+            <Panes
+              className={pane1} id={pane1} resizer={
+                <CustomResizerFirst horizontal />
+            } size={150}
+            >
+            </Panes>
             <Panes className={pane3} id={pane3} size={150}> </Panes>
           </ResizablePanes>
         </Panes>

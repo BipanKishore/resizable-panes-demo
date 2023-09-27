@@ -6,6 +6,7 @@ import MarkdownPreview from '@uiw/react-markdown-preview'
 import {
   Panes, ResizablePanes
 } from 'resizable-panes-react'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
 export const PanesMinMax = () => {
   const pane1 = 'pane1'
@@ -40,6 +41,10 @@ export const PanesMinMax = () => {
           className={pane1} id={pane1}
           maxSize={450}
           minSize={100}
+          resizer={
+            <CustomResizerFirst />
+            }
+
           size={350}
         >
           <MinMaxViewer
@@ -54,6 +59,9 @@ export const PanesMinMax = () => {
           className={pane2} id={pane2}
           maxSize={400}
           minSize={100}
+          resizer={
+            <CustomResizerFirst />
+            }
           size={300}
         >
           <MinMaxViewer

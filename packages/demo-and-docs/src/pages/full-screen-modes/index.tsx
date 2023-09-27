@@ -3,6 +3,7 @@ import {
   Panes, ResizablePanes
 } from 'resizable-panes-react'
 import PaneModesIcons from '../../components/pane-modes-icons'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
 export const FullScreenModes = () => {
   const resizableRef = useRef<any>({})
@@ -16,7 +17,11 @@ export const FullScreenModes = () => {
         resizableRef.current.api = api
       }}
     >
-      <Panes className={pane1} id={pane1} size={200}>
+      <Panes
+        className={pane1} id={pane1} resizer={
+          <CustomResizerFirst horizontal />
+            } size={200}
+      >
         <PaneModesIcons id={pane1} resizableRef={resizableRef} />
       </Panes>
 

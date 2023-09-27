@@ -4,6 +4,7 @@ import {
 } from 'resizable-panes-react'
 import HORIZONTAL_PANES_MD from './horizontal-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
 export const HorizantalPanes = () => {
   const pane2 = 'pane2'
@@ -19,10 +20,18 @@ export const HorizantalPanes = () => {
       </div>
       <ResizablePanes split='horizontal'>
 
-        <Panes className={pane2} id={pane2} size={150}>
+        <Panes
+          className={pane2} id={pane2} resizer={
+            <CustomResizerFirst horizontal />
+            } size={150}
+        >
         </Panes>
 
-        <Panes className={pane3} id={pane3} size={150}>
+        <Panes
+          className={pane3} id={pane3} resizer={
+            <CustomResizerFirst />
+            } size={150}
+        >
         </Panes>
 
       </ResizablePanes>
