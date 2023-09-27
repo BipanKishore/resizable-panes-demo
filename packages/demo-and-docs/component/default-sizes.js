@@ -24,6 +24,7 @@ export const DefaultSizes = ({
         // console.log('v-- onResize', map)
       }}
       // Note required
+      vertical
       split={split} // Values 'horizontal' | 'vertical'
       // Note required
       // Note required
