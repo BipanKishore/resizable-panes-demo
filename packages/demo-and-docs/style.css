@@ -54,9 +54,9 @@
 }
 
 .radious-5 {
-    border-radius: 20px 20px 20px 20px;
-    -moz-border-radius:  20px 20px 20px 20px;
-    -webkit-border-radius:  20px 20px 20px 20px;
+    border-radius: 15px 15px 15px 15px;
+    -moz-border-radius:  15px 15px 15px 15px;
+    -webkit-border-radius:  15px 15px 15px 15px;
     border: 0px solid #000000;
 }
 .display-flex{
