@@ -19,13 +19,6 @@ export const PanesPropsDescription = () => {
       </div>
       <hr />
 
-      <div className='m-20-0'>
-        <p><strong>minSize (number):</strong> The <code>minSize</code> prop sets the minimum allowed size
-          for the pane. If the user tries to resize the pane to a size smaller than this value,
-          it won't go below the specified minimum size.
-        </p>
-      </div>
-
       <hr />
       <div className='m-20-0'>
         <p><strong>minSize (number):</strong> The <code>minSize</code> prop sets the minimum allowed size

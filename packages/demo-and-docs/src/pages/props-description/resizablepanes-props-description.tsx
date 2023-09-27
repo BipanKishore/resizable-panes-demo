@@ -19,6 +19,17 @@ export const ResizablePanesPropsDescription = () => {
           vertically. By default, it's set to <code>false</code>, resulting in horizontal alignment.
         </p>
       </div>
+
+      <hr />
+      <div className='m-20-0'>
+        <p><strong>resizer (React Element):</strong> An optional prop that allows you to
+          provide a custom resizer component for the panes within the <code>ResizablePanes</code> component.
+          Instead of using the default resizer, you can specify your own React element to handle
+          resizing interactions. This allows for custom styling and behavior of the resizer.
+        </p>
+
+      </div>
+
       <hr />
       <div className='m-20-0'>
         <p><strong>onResizeStop (function):</strong> A callback function triggered when a resizing operation
