@@ -3,7 +3,7 @@ import {
   Panes, ResizablePanes
 } from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
-import CUSTOM_RESIZER_MD from '../../../assets/mark-downs/custom-resizer.md'
+import CUSTOM_RESIZER_MD from './custom-resizer.md'
 import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 import {CustomResizerSecond} from '../../components/custom-resizers/custom-resizer-second'
 
@@ -21,12 +21,14 @@ export const CustomResizer = () => {
         To align panes vertical just pass "vertical" as split prop for ResizablePanes.
       </div>
       <div className='m-20-0' >
-        <ResizablePanes className='h-300' vertical >
+        <ResizablePanes
+          className='h-300' resizer={
+            <CustomResizerFirst />
+            }
+          vertical
+        >
           <Panes
             className={pane1} id={pane1}
-            resizer={
-              <CustomResizerFirst />
-            }
             size={350}
           >
           </Panes>
