@@ -40,11 +40,6 @@ export const ResizablePanesPropsDescription = () => {
 
       <hr />
       <div className='m-20-0'>
-
-      </div>
-
-      <hr />
-      <div className='m-20-0'>
         <p><strong>onResize (function):</strong> A callback function invoked during a resizing operation,
           providing real-time feedback on the resizing process.
           It also receives a parameter of type <code>IMapIdToSize</code>, allowing you to track
