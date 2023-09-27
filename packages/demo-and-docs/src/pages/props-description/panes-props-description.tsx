@@ -17,7 +17,6 @@ export const PanesPropsDescription = () => {
           size of the pane. It specifies the width (or height, if the panes are vertical) of the pane in pixels.
         </p>
       </div>
-      <hr />
 
       <hr />
       <div className='m-20-0'>
