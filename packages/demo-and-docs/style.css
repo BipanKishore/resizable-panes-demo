@@ -110,3 +110,11 @@
     border-radius: 5px;
     margin: 2px;
 }
+
+.max-limit-reached{
+    color: red;
+}
+
+.min-limit-reached{
+    color: red;
+}

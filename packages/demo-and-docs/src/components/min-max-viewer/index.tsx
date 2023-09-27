@@ -11,10 +11,10 @@ const MinMaxViewer = (props:IMinMaxViewerProps) => {
   let maxSizeClass = ''
   let minSizeClass = ''
   if (size >= maxSize) {
-    maxSizeClass = 'color-red'
+    maxSizeClass = 'max-limit-reached'
   }
   if (size <= minSize) {
-    minSizeClass = 'color-red'
+    minSizeClass = 'min-limit-reached'
   }
   return (
     <div className="maxxmin">
