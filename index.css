@@ -1134,11 +1134,11 @@ body[data-color-mode*='light'] {
 
 
 .vertical-cursur:hover {
-    cursor: n-resize;
+    cursor: e-resize;
 }
 
 .horizontal-cursur:hover {
-    cursor: e-resize;
+    cursor: n-resize;
 }
 
 .p-relative{
@@ -1231,5 +1231,7 @@ body[data-color-mode*='light'] {
 .min-limit-reached{
     color: red;
 }
+
+
 
 /*# sourceMappingURL=index.css.map*/
