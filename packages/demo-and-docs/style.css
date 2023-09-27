@@ -16,23 +16,17 @@
 
 .pane1 {
     background-color: #efefef;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+    border-radius: 5px;
 }
 
 .pane2 {
     background-color:#b0bec5;
     border-radius: 5px;
-    margin-bottom: 5px;
-  margin-top: 5px;
 }
 
 .pane3 {
  background-color: #efefef;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+ border-radius: 5px;
 }
 
 
@@ -102,7 +96,6 @@
     background-color: white;
     justify-content: center;
   display: flex;
-  flex-direction: column;
 }
 
 .custom-resizer-1st-parent:hover {
@@ -111,6 +104,21 @@
 
 
 .h-70p { height: 70%;}
+
+.w-70p {
+    width: 70%;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+
+
 .custom-resizer-1st-child {
     background-color: #ccc;
     border-radius: 5px;
@@ -124,7 +132,6 @@
     background-color: white;
     justify-content: center;
   display: flex;
-  flex-direction: column;
 }
 
 .custom-resizer-2st-parent:hover {
