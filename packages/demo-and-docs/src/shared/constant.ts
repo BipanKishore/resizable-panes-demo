@@ -10,7 +10,7 @@ export const ROUTER_LIST_LEVEL_1 = [
   {label: 'Nested Panes', path: 'nested-panes'},
   {label: 'Full screen modes', path: 'full-screen-modes'},
   {label: 'ResizablePanes Props', path: 'resizable-panes-props'},
-  {label: 'Pane Props', path: 'pane-props'},
-  {label: 'Show & Hide Panes', path: 'show-n-hide'}
+  {label: 'Pane Props', path: 'pane-props'}
+  // {label: 'Show & Hide Panes', path: 'show-n-hide'}
   // {label: 'Api Description', path: 'api-docs'}
 ]
