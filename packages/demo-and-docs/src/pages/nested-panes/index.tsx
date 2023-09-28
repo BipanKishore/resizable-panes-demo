@@ -38,10 +38,10 @@ export const NestedPanes = () => {
             }
           >
             <Panes
-              className={pane1} id={pane1} size={150}
+              className={pane1} id={pane1} minSize={50} size={150}
             >
             </Panes>
-            <Panes className={pane3} id={pane3} size={150}> </Panes>
+            <Panes className={pane3} id={pane3} minSize={50} size={150}> </Panes>
           </ResizablePanes>
         </Panes>
 
@@ -57,10 +57,10 @@ export const NestedPanes = () => {
             }
           >
             <Panes
-              className={pane1} id={pane1} size={150}
+              className={pane1} id={pane1} minSize={50} size={150}
             >
             </Panes>
-            <Panes className={pane3} id={pane3} size={150}> </Panes>
+            <Panes className={pane3} id={pane3} minSize={50} size={150}> </Panes>
           </ResizablePanes>
         </Panes>
       </ResizablePanes>

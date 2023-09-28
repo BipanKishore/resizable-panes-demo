@@ -32,12 +32,12 @@ export const FullScreenModes = () => {
         }}
       >
         <Panes
-          className={pane1} id={pane1} size={200}
+          className={pane1} id={pane1} minSize={100} size={200}
         >
           <PaneModesIcons id={pane1} resizableRef={resizableRef} />
         </Panes>
 
-        <Panes className={pane2} id={pane2} size={200}>
+        <Panes className={pane2} id={pane2} minSize={100} size={200}>
           <PaneModesIcons id={pane2} resizableRef={resizableRef} />
         </Panes>
       </ResizablePanes>
