@@ -1259,4 +1259,14 @@ body[data-color-mode*='light'] {
     width: 90%;
 }
 
+.resizer-vertical{
+    width: 99%;
+    margin: -5px auto !important;
+}
+
+.resizer-horizontal {
+    margin: auto -5px !important;
+    height: 98%;
+}
+
 /*# sourceMappingURL=index.css.map*/
