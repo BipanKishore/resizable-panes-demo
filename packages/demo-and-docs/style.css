@@ -162,3 +162,13 @@
 .w-90p {
     width: 90%;
 }
+
+.resizer-vertical{
+    width: 99%;
+    margin: -5px auto !important;
+}
+
+.resizer-horizontal {
+    margin: auto -5px !important;
+    height: 98%;
+}
