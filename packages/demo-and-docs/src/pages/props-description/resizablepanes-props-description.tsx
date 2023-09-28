@@ -62,6 +62,30 @@ export const ResizablePanesPropsDescription = () => {
         </p>
       </div>
 
+      <p><strong>sessionStore (boolean):</strong> An optional
+        boolean flag that, when set to <code>true</code>, instructs
+        the <code>ResizablePanes</code> component to use <code>sessionStorage</code> for storage
+        instead of the default <code>localStorage</code>. This allows you
+        to store the component's memory data in the session storage, which persists
+        only for the duration of a browser session.
+
+      </p>
+
+      <hr className='w-90p' />
+      <div className='m-20-0'>
+        <p><strong>storeKey (string):</strong> An optional prop used as a unique key to store
+          memory data for the <code>ResizablePanes</code> component. By default, it utilizes <code>localStorage</code>.
+        </p>
+      </div>
+
+      <hr className='w-90p' />
+      <div className='m-20-0'>
+        <p><strong>sessionStore (boolean):</strong> An optional boolean flag.
+          When set to <code>true</code>, it makes the <code>ResizablePanes</code> component
+          use <code>sessionStorage</code> for storage.
+        </p>
+      </div>
+
     </div>
   )
 }
