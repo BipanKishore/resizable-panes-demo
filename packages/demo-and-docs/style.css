@@ -2,11 +2,11 @@
     height: 100%;
 }
 
-.w-100p{
+.w-100p {
     width: 100%;
 }
 
-.h-300{
+.h-300 {
     height: 300px;
 }
 
@@ -20,13 +20,13 @@
 }
 
 .pane2 {
-    background-color:#b0bec5;
+    background-color: #b0bec5;
     border-radius: 5px;
 }
 
 .pane3 {
- background-color: #efefef;
- border-radius: 5px;
+    background-color: #efefef;
+    border-radius: 5px;
 }
 
 
@@ -38,28 +38,30 @@
 
 
 .vertical-cursur:hover {
-    cursor: e-resize;
+    cursor: col-resize;
 }
 
 .horizontal-cursur:hover {
-    cursor: n-resize;
+    cursor: row-resize;
 }
 
-.p-relative{
-    position: relative;;
+.p-relative {
+    position: relative;
+    ;
 }
 
-.t-100{
+.t-100 {
     top: 70px;
 }
 
 .radious-5 {
     border-radius: 15px 15px 15px 15px;
-    -moz-border-radius:  15px 15px 15px 15px;
-    -webkit-border-radius:  15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
     border: 0px solid #000000;
 }
-.display-flex{
+
+.display-flex {
     display: flex;
 }
 
@@ -72,21 +74,22 @@
     display: inline-block;
 }
 
-.m-2px-8px{
+.m-2px-8px {
     margin: 2px 4px;
 }
-.maxxmin{
+
+.maxxmin {
     text-align: center;
     position: relative;
-    top:100px;
-    color:rgb(0, 0, 0);
+    top: 100px;
+    color: rgb(0, 0, 0);
     font-size: 24px;
-    font-variant-numeric:tabular-nums;
+    font-variant-numeric: tabular-nums;
     font-weight: normal;
 }
 
 
-.crhover:hover{
+.crhover:hover {
     background-color: aqua;
 }
 
@@ -95,7 +98,7 @@
     padding: 2px;
     background-color: white;
     justify-content: center;
-  display: flex;
+    display: flex;
 }
 
 .custom-resizer-1st-parent:hover {
@@ -103,17 +106,19 @@
 }
 
 
-.h-70p { height: 70%;}
+.h-70p {
+    height: 70%;
+}
 
 .w-70p {
     width: 70%;
 }
 
-.flex-row{
+.flex-row {
     flex-direction: row;
 }
 
-.flex-column{
+.flex-column {
     flex-direction: column;
 }
 
@@ -124,14 +129,13 @@
     border-radius: 5px;
 }
 
-.custom-resizer-1st-child:hover {
-}
+.custom-resizer-1st-child:hover {}
 
 .custom-resizer-2st-parent {
     padding: 2px;
     background-color: white;
     justify-content: center;
-  display: flex;
+    display: flex;
 }
 
 .custom-resizer-2st-parent:hover {
@@ -143,20 +147,18 @@
     border-radius: 5px;
 }
 
-.custom-resizer-2st-child:hover {
-
-}
+.custom-resizer-2st-child:hover {}
 
 
 
-.max-limit-reached{
+.max-limit-reached {
     color: red;
 }
 
-.min-limit-reached{
+.min-limit-reached {
     color: red;
 }
 
 .w-90p {
-    width:90%;
+    width: 90%;
 }
