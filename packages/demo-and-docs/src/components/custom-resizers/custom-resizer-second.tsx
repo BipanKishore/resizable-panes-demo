@@ -12,7 +12,7 @@ export const CustomResizerSecond = ({horizontal, onMouseDown}: {
   })
 
   const childClassName = joinClassName({
-    'custom-resizer-1st-child': true,
+    'custom-resizer-2st-child': true,
     'h-70p w-100p vertical-cursur': !horizontal,
     'w-70p h-100p horizontal-cursur': horizontal
   })
