@@ -46,7 +46,7 @@ export const NestedPanes = () => {
         </Panes>
 
         <Panes
-          className={pane2} id={pane2} minSize={100} size={400}
+          className={pane2} id={pane2} minSize={100} size={495}
         >
         </Panes>
 

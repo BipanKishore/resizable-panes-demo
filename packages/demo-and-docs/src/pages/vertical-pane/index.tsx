@@ -33,11 +33,11 @@ export const VerticalPanes = () => {
           </Panes>
 
           <Panes
-            className={pane2} id={pane2} size={300}
+            className={pane2} id={pane2} size={335}
           >
           </Panes>
 
-          <Panes className={pane3} id={pane3} size={200}>
+          <Panes className={pane3} id={pane3} size={280}>
           </Panes>
         </ResizablePanes>
       </div>

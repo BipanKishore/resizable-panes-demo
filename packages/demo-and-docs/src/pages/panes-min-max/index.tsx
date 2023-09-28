@@ -13,9 +13,9 @@ export const PanesMinMax = () => {
   const pane2 = 'pane2'
   const pane3 = 'pane3'
   const [pansizes, setPansizes] = useState<any>({
-    pane1: 350,
-    pane2: 300,
-    pane3: 200
+    pane1: 280,
+    pane2: 335,
+    pane3: 280
   })
 
   const onResize = useCallback((e: any) => {
@@ -44,7 +44,7 @@ export const PanesMinMax = () => {
           className={pane1} id={pane1}
           maxSize={450}
           minSize={100}
-          size={350}
+          size={280}
         >
           <MinMaxViewer
             maxSize={450}
@@ -58,7 +58,7 @@ export const PanesMinMax = () => {
           className={pane2} id={pane2}
           maxSize={400}
           minSize={100}
-          size={300}
+          size={335}
         >
           <MinMaxViewer
             maxSize={400}
@@ -71,7 +71,7 @@ export const PanesMinMax = () => {
           className={pane3} id={pane3}
           maxSize={500}
           minSize={150}
-          size={200}
+          size={280}
         >
           <MinMaxViewer
             maxSize={500}
@@ -81,7 +81,6 @@ export const PanesMinMax = () => {
         </Panes>
 
       </ResizablePanes>
-
       <div className="mark-down-container m-20-0">
         <MarkdownPreview className="" source={MIN_MAX_PANES_MD} />
       </div>
