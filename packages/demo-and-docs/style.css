@@ -101,7 +101,7 @@
     display: flex;
 }
 
-.custom-resizer-1st-parent:hover {
+.custom-resizer-1st-parent-hover {
     padding: 3px;
 }
 
@@ -138,7 +138,7 @@
     display: flex;
 }
 
-.custom-resizer-2st-parent:hover {
+.custom-resizer-2st-parent-hover {
     padding: 3px;
 }
 

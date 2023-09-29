@@ -25,6 +25,11 @@ export const CustomResizer = () => {
         <p>"The <code>CustomResizer</code> component should include an <code>onMouseDown</code> prop, which should
           be attached to the element that, upon being clicked and dragged, initiates the resizing of the pane's size."
         </p>
+        <p>The <code>CustomResizer</code> component will have
+          a <code>isMouseDown</code> boolean prop, which you can utilize to
+          style the <code>CustomResizer</code> component based on whether a mouse button
+          is being held down during resizing.
+        </p>
       </div>
       <div className='m-20-0' >
         <ResizablePanes
