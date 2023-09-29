@@ -10,6 +10,7 @@ import {PanesPropsDescription} from '../../pages/props-description/panes-props-d
 import {ResizablePanesPropsDescription} from '../../pages/props-description/resizablepanes-props-description'
 import {SimplePanes} from '../../pages/simple-panes'
 import {StorePanesSize} from '../../pages/store-panes-size'
+import {UnitTypes} from '../../pages/unit-types/units'
 import {VerticalPanes} from '../../pages/vertical-pane'
 
 // eslint-disable-next-line complexity
@@ -41,5 +42,7 @@ export const routerComponentSelector = (path: string): any => {
       return FullScreenModes
     case 'store-panes-size':
       return StorePanesSize
+    case 'unit-types' :
+      return UnitTypes
   }
 }

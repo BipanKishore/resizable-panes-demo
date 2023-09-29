@@ -5,3 +5,5 @@ export {
 export {
   Router
 } from './router'
+
+export {PlainDummy} from './dummy-pane-childs/plain-dummy'

@@ -1,14 +1,4 @@
-.h-100p {
-    height: 100%;
-}
 
-.w-100p {
-    width: 100%;
-}
-
-.h-300 {
-    height: 300px;
-}
 
 .bg-lightblue {
     background-color: lightblue;
@@ -110,9 +100,7 @@
     height: 70%;
 }
 
-.w-70p {
-    width: 70%;
-}
+
 
 .flex-row {
     flex-direction: row;
@@ -159,9 +147,7 @@
     color: red;
 }
 
-.w-90p {
-    width: 90%;
-}
+
 
 .resizer-vertical{
     width: 99%;

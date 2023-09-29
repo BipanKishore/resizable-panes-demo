@@ -21,50 +21,48 @@ export const NestedPanes = () => {
           inside a <code>Pane</code> component.
         </p>
       </div>
-      <ResizablePanes
-        resizer={
-          <CustomResizerFirst />
-            }
-        vertical
-      >
-        <Panes
-          className={pane1} id={pane1} minSize={100}
 
-          size={200}
+      <div className='h-300' >
+        <ResizablePanes
+          resizer={
+            <CustomResizerFirst />
+            }
+          unit="RATIO"
+          vertical
         >
-          <ResizablePanes
-            resizer={
-              <CustomResizerFirst horizontal />
+          <Panes className={pane1} id={pane1} minSize={10} size={25}>
+            <div className='h-300' >
+              <ResizablePanes
+                resizer={
+                  <CustomResizerFirst horizontal />
             }
-          >
-            <Panes
-              className={pane1} id={pane1} minSize={50} size={100}
-            >
-            </Panes>
-            <Panes className={pane3} id={pane3} minSize={50} size={200}> </Panes>
-          </ResizablePanes>
-        </Panes>
+                unit="RATIO"
+              >
+                <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
+                <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>
+              </ResizablePanes>
+            </div>
+          </Panes>
 
-        <Panes
-          className={pane2} id={pane2} minSize={100} size={495}
-        >
-        </Panes>
+          <Panes className={pane2} id={pane2} minSize={10} size={50}>
+          </Panes>
 
-        <Panes className={pane3} id={pane3} minSize={100} size={200}>
-          <ResizablePanes
-            resizer={
-              <CustomResizerFirst horizontal />
+          <Panes className={pane3} id={pane3} minSize={10} size={25}>
+
+            <div className='h-300' >
+              <ResizablePanes
+                resizer={
+                  <CustomResizerFirst horizontal />
             }
-          >
-            <Panes
-              className={pane1} id={pane1} minSize={50} size={100}
-            >
-            </Panes>
-            <Panes className={pane3} id={pane3} minSize={50} size={200}> </Panes>
-          </ResizablePanes>
-        </Panes>
-      </ResizablePanes>
-
+                unit="RATIO"
+              >
+                <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
+                <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>
+              </ResizablePanes>
+            </div>
+          </Panes>
+        </ResizablePanes>
+      </div>
       <div className="mark-down-container m-20-0">
         <MarkdownPreview className="" source={NESTED_PANES_MD} />
       </div>

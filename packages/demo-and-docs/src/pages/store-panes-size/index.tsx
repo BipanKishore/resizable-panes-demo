@@ -21,23 +21,27 @@ export const StorePanesSize = () => {
         </p>
       </div>
       <div className='m-20-0' >
-        <ResizablePanes
-          className='h-300' resizer={
-            <CustomResizerFirst />
+
+        <div className='h-300' >
+          <ResizablePanes
+            className='h-300' resizer={
+              <CustomResizerFirst />
             }
-          sessionStore
-          storeKey="panes-size"
-          vertical
-        >
-          <Panes className={pane1} id={pane1} minSize={100} size={280}>
-          </Panes>
+            sessionStore
+            storeKey="panes-size"
+            unit="RATIO"
+            vertical
+          >
+            <Panes className={pane1} id={pane1} minSize={1} size={3}>
+            </Panes>
 
-          <Panes className={pane2} id={pane2} minSize={100}size={335}>
-          </Panes>
+            <Panes className={pane2} id={pane2} minSize={1} size={4}>
+            </Panes>
 
-          <Panes className={pane3} id={pane3} minSize={100} size={280}>
-          </Panes>
-        </ResizablePanes>
+            <Panes className={pane3} id={pane3} minSize={1} size={3}>
+            </Panes>
+          </ResizablePanes>
+        </div>
       </div>
     </div>
   )

@@ -36,24 +36,25 @@ export const CustomResizer = () => {
           className='h-300' resizer={
             <CustomResizerFirst />
             }
+          unit="RATIO"
           vertical
         >
           <Panes
             className={pane1} id={pane1}
-            minSize={50} size={280}
+            minSize={5} size={30}
           >
           </Panes>
 
           <Panes
-            className={pane2} id={pane2} minSize={50}
+            className={pane2} id={pane2} minSize={5}
             resizer={
               <CustomResizerSecond />
             }
-            size={335}
+            size={40}
           >
           </Panes>
 
-          <Panes className={pane3} id={pane3} minSize={50} size={280}>
+          <Panes className={pane3} id={pane3} minSize={5} size={30}>
           </Panes>
 
         </ResizablePanes>
