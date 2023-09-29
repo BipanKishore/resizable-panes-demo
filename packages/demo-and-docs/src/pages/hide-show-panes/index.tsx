@@ -2,6 +2,7 @@ import React, {Ref, useRef, useState} from 'react'
 import {Panes, ResizablePanes, IResizableApi} from 'resizable-panes-react'
 import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
+import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
 interface IIDMap{
     [id: string]: boolean
@@ -46,6 +47,9 @@ export const HideShowPanes = () => {
 
       <ResizablePanes
         className='h-300'
+        resizer={
+          <CustomResizerFirst />
+          }
         vertical
         onChangeVisibility={(e:any) => {
           console.log('onChangeVisibility', e)
