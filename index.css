@@ -1197,7 +1197,7 @@ body[data-color-mode*='light'] {
     display: flex;
 }
 
-.custom-resizer-1st-parent:hover {
+.custom-resizer-1st-parent-hover {
     padding: 3px;
 }
 
@@ -1234,7 +1234,7 @@ body[data-color-mode*='light'] {
     display: flex;
 }
 
-.custom-resizer-2st-parent:hover {
+.custom-resizer-2st-parent-hover {
     padding: 3px;
 }
 
