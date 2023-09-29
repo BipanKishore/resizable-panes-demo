@@ -29,17 +29,13 @@ export const StorePanesSize = () => {
           storeKey="panes-size"
           vertical
         >
-          <Panes
-            className={pane1} id={pane1} size={280}
-          >
+          <Panes className={pane1} id={pane1} minSize={100} size={280}>
           </Panes>
 
-          <Panes
-            className={pane2} id={pane2} size={335}
-          >
+          <Panes className={pane2} id={pane2} minSize={100}size={335}>
           </Panes>
 
-          <Panes className={pane3} id={pane3} size={280}>
+          <Panes className={pane3} id={pane3} minSize={100} size={280}>
           </Panes>
         </ResizablePanes>
       </div>
