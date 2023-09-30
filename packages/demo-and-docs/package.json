@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "build-prod": "webpack --progress --config configs/webpack.prod.js",
+    "deploy": ""
   },
   "keywords": [],
   "author": "",

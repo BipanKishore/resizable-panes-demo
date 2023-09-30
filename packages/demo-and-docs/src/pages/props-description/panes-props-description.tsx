@@ -42,7 +42,12 @@ export const PanesPropsDescription = () => {
           React element to handle resizing interactions for this specific pane.
         </p>
       </div>
-
+      <hr className='w-90p' />
+      <div className='m-20-0'>
+        <p><strong>className (string):</strong> The CSS class
+          name to apply to the <code>Pane</code> component's container element.
+        </p>
+      </div>
     </div>
   )
 }
