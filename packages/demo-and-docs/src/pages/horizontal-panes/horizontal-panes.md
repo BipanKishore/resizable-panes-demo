@@ -14,9 +14,5 @@ import {Panes, ResizablePanes} from 'resizable-panes-react'
         <Panes id="pane2" size={300}>
         ...Your Element...
         </Panes>
-        
-        <Panes id="pane3" size={200}>
-        ...Your Element...
-        </Panes>
 </ResizablePanes>
 ```
