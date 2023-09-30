@@ -23,7 +23,7 @@ export const HorizantalPanes = () => {
           resizer={
             <CustomResizerFirst horizontal />
             }
-          unit='RATIO'
+          unit='ratio'
         >
 
           <Panes

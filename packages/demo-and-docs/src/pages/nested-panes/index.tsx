@@ -27,7 +27,7 @@ export const NestedPanes = () => {
           resizer={
             <CustomResizerFirst />
             }
-          unit="RATIO"
+          unit="ratio"
           vertical
         >
           <Panes className={pane1} id={pane1} minSize={10} size={25}>
@@ -36,7 +36,7 @@ export const NestedPanes = () => {
                 resizer={
                   <CustomResizerFirst horizontal />
             }
-                unit="RATIO"
+                unit="ratio"
               >
                 <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
                 <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>
@@ -54,7 +54,7 @@ export const NestedPanes = () => {
                 resizer={
                   <CustomResizerFirst horizontal />
             }
-                unit="RATIO"
+                unit="ratio"
               >
                 <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
                 <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>

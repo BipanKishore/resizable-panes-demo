@@ -29,7 +29,7 @@ export const StorePanesSize = () => {
             }
             sessionStore
             storeKey="panes-size"
-            unit="RATIO"
+            unit="ratio"
             vertical
           >
             <Panes className={pane1} id={pane1} minSize={1} size={3}>

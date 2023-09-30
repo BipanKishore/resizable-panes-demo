@@ -22,7 +22,10 @@ export const CustomResizer = () => {
           to the <code>ResizablePanes</code> component, it affects all panes. Alternatively, you can use
           the <code>Pane</code> component's <code>resizer</code> prop to customize the resizer for a specific pane.
         </p>
-        <p>"The <code>CustomResizer</code> component should include an <code>onMouseDown</code> prop, which should
+        <p>"The <code>CustomResizer</code> component should include
+          an <code>onMouseDown</code> (and <code>onTouchStartCapture </code>
+          for touch devices)
+          prop, which should
           be attached to the element that, upon being clicked and dragged, initiates the resizing of the pane's size."
         </p>
         <p>The <code>CustomResizer</code> component will have
@@ -36,7 +39,7 @@ export const CustomResizer = () => {
           className='h-300' resizer={
             <CustomResizerFirst />
             }
-          unit="RATIO"
+          unit="ratio"
           vertical
         >
           <Panes

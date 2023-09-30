@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Tabs, Router} from '../components'
 import Header from '../components/header'
+import Footer from '../components/footer'
 export const PanesDashboard = () => {
   const [path, setPath] = useState<any>('apiDocs')
 
@@ -17,6 +18,7 @@ export const PanesDashboard = () => {
           <Router path={path} />
         </div>
       </div>
+      <Footer />
     </>
   )
 }

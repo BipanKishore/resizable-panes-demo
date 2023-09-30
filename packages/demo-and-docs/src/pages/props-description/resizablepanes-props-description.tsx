@@ -21,6 +21,29 @@ export const ResizablePanesPropsDescription = () => {
       </div>
 
       <hr className='w-90p' />
+
+      <div className="m-20-0">
+        <p><strong>unit (string):</strong> An optional prop that determines the unit
+          of measurement for the <code>size</code> prop of panes within the <code>ResizablePanes</code> component.
+          It accepts two values:
+          <ul>
+            <li><code>"pixel"</code> (default): Sizes are
+              specified in pixels.
+            </li>
+            <li><code>"ratio"</code>: Sizes are specified as
+              ratios relative to the available space.
+            </li>
+          </ul>
+          <p>
+            <strong>Using Percent Values with Ratios:</strong> If you want to specify
+            pane sizes in percent values, ensure that the sum of all the ratios of
+            panes equals 100.
+          </p>
+        </p>
+
+      </div>
+
+      <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>resizer (React Element):</strong> An optional prop that allows you to
           provide a custom resizer component for the panes within the <code>ResizablePanes</code> component.

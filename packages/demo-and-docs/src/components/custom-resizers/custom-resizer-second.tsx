@@ -1,11 +1,11 @@
 import React from 'react'
 import {joinClassName} from '../../shared/utils'
+import {ICustomResizerProp} from './type'
 
-export const CustomResizerSecond = ({horizontal, onMouseDown, isMouseDown}: {
-  horizontal?: boolean,
-  onMouseDown?:any,
-  isMouseDown?: boolean
-}) => {
+export const CustomResizerSecond = ({
+  horizontal, onMouseDown,
+  isMouseDown, onTouchStartCapture
+}: ICustomResizerProp) => {
   const parentClassName = joinClassName({
     'custom-resizer-2st-parent': true,
     'h-100p w-12 flex-column': !horizontal,
@@ -21,7 +21,12 @@ export const CustomResizerSecond = ({horizontal, onMouseDown, isMouseDown}: {
 
   return (
     <div className={parentClassName}>
-      <div className={childClassName} onMouseDown={onMouseDown}></div>
+      <div
+        className={childClassName}
+        onMouseDown={onMouseDown}
+        onTouchStartCapture={onTouchStartCapture}
+      >
+      </div>
     </div>
   )
 }
