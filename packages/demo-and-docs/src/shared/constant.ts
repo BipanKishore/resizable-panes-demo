@@ -9,7 +9,7 @@ export const ROUTER_LIST_LEVEL_1 = [
   {label: 'Custom Resizer', path: 'custom-resizer'},
   {label: 'Nested Panes', path: 'nested-panes'},
   {label: 'Store Panes size', path: 'store-panes-size'},
-  {label: 'Full screen modes', path: 'full-screen-modes'},
+  // {label: 'Full screen modes', path: 'full-screen-modes'},
   {label: 'ResizablePanes Props', path: 'resizable-panes-props'},
   {label: 'Pane Props', path: 'pane-props'},
   // {label: 'Show Hide % Mode', path: 'show-hide-%-mode'},
