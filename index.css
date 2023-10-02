@@ -13139,6 +13139,18 @@ textarea.form-control-lg {
 .t-aligin-center {
   text-align: center;
 }
+
+.d-flex {
+  display: flex;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.d-grid {
+  display: grid;
+}
 /*!*****************************************************************!*\
   !*** css ../../node_modules/css-loader/dist/cjs.js!./style.css ***!
   \*****************************************************************/
