@@ -56,6 +56,7 @@ width:270px;
     padding:5px 0;
     color:#23272F;
     margin: 20px 0px 40px 0px;
+    position: relative;
 
 }
 
@@ -13310,4 +13311,9 @@ textarea.form-control-lg {
     margin: -5px auto !important;
 }
 
+.social-icon-top {position: absolute;top: 20%; right: 2%;}
 
+@media (max-width: 768px) {
+.social-icon-top {position: relative;}
+
+}
