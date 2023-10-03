@@ -1,5 +1,5 @@
 import React, {Ref, useRef, useState} from 'react'
-import {Panes, ResizablePanes, IResizableApi} from 'resizable-panes-react'
+import {Pane, ResizablePanes, IResizableApi} from 'resizable-panes-react'
 import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
@@ -45,11 +45,18 @@ export const HideShowPanes = () => {
         This action hides or shows the pane without removing the element from the view.
       </div>
 
+      <div className='m-20-0'>
+        <strong>Note: </strong> In case you are using your own custom resizer
+        provide the <code>resizerSize</code> prop to <code>ResizablePanes</code> Component
+        or  <code>Pane</code>  Component
+      </div>
+
       <ResizablePanes
         className='h-300'
         resizer={
           <CustomResizerFirst />
           }
+        resizerSize={12}
         sessionStore
         storeKey="visibility-doc"
         unit="ratio"
@@ -58,19 +65,24 @@ export const HideShowPanes = () => {
         onChangeVisibility={(e:any) => {
           console.log('onChangeVisibility', e)
         }}
+
         onReady={onReady}
+
+        onResizeStop={(e:any) => {
+          console.log('onResizeStop', e)
+        }}
       >
-        <Panes className='pane1' id='pane1' minSize={50} size={200}>
-        </Panes>
+        <Pane className='pane1' id='pane1' minSize={5} size={20}>
+        </Pane>
 
-        <Panes className='pane2' id='pane2' maxSize={150} minSize={50} size={100}>
-        </Panes>
+        <Pane className='pane2' id='pane2' maxSize={15} minSize={5} size={10}>
+        </Pane>
 
-        <Panes className='pane1' id='pane3' maxSize={200} minSize={100} size={200}>
-        </Panes>
+        <Pane className='pane1' id='pane3' maxSize={20} minSize={10} size={20}>
+        </Pane>
 
-        <Panes className='pane2' id='pane4' maxSize={250} minSize={50} size={200}>
-        </Panes>
+        <Pane className='pane2' id='pane4' maxSize={25} minSize={5} size={20}>
+        </Pane>
       </ResizablePanes>
 
       <div className='m-20-0'>

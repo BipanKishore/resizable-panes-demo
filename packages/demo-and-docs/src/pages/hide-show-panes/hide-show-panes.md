@@ -6,6 +6,9 @@
 import React, {Ref, useRef, useState} from 'react'
 import {Panes, ResizablePanes, IResizableApi} from 'resizable-panes-react'
 
+import React, {Ref, useRef, useState} from 'react'
+import {Pane, ResizablePanes, IResizableApi} from 'resizable-panes-react'
+
 interface IIDMap{
     [id: string]: boolean
 }
@@ -40,26 +43,36 @@ export const HideShowPanes = () => {
     <div>
       <ResizablePanes
         className='h-300'
-        vertical onChangeVisibility={(e:any) => {
+        resizer={
+          <Your Custom Resizer />
+          }
+        resizerSize={height or width depending up the split type of Panes }
+        sessionStore
+        storeKey="visibility-doc"
+        unit="ratio"
+        vertical
+
+        onChangeVisibility={(e:any) => {
           console.log('onChangeVisibility', e)
         }}
+
         onReady={onReady}
+
+        onResizeStop={(e:any) => {
+          console.log('onResizeStop', e)
+        }}
       >
-        <Panes id='pane1' minSize={50} size={200}>
-        ...Your Element...
-        </Panes>
+        <Pane className='pane1' id='pane1' minSize={5} size={20}>
+        </Pane>
 
-        <Panes id='pane2' maxSize={150} minSize={50} size={100}>
-        ...Your Element...
-        </Panes>
+        <Pane className='pane2' id='pane2' maxSize={15} minSize={5} size={10}>
+        </Pane>
 
-        <Panes id='pane3' maxSize={200} minSize={100} size={200}>
-        ...Your Element...
-        </Panes>
+        <Pane className='pane1' id='pane3' maxSize={20} minSize={10} size={20}>
+        </Pane>
 
-        <Panes id='pane4' maxSize={250} minSize={50} size={200}>
-        ...Your Element...
-        </Panes>
+        <Pane className='pane2' id='pane4' maxSize={25} minSize={5} size={20}>
+        </Pane>
       </ResizablePanes>
 
       <div className='m-20-0'>
@@ -81,7 +94,6 @@ export const HideShowPanes = () => {
 
         <button onClick={setVisibility} >Submit</button>
       </div>
-
     </div>
   )
 }

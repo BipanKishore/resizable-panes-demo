@@ -2,10 +2,10 @@ import React from 'react'
 import linkedinSvg from '../../../assets/icons/linkedin-color.svg'
 import npmSvg from '../../../assets/icons/npm-color.svg'
 import githubSvg from '../../../assets/icons/github-color.svg'
-import { GITHUB_URL, LINKEDIN, NPM_URL } from './constant'
+import {GITHUB_URL, LINKEDIN, NPM_URL} from './constant'
 
 const navigate = (url: string) => {
-  window.open(url)
+  window.open(url, '_self')
 }
 
 export const Links = () => {
