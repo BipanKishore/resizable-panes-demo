@@ -12,8 +12,6 @@ export const ROUTER_LIST_LEVEL_1 = [
   // {label: 'Full screen modes', path: 'full-screen-modes'},
   {label: 'ResizablePanes Props', path: 'resizable-panes-props'},
   {label: 'Pane Props', path: 'pane-props'},
-  // {label: 'Show Hide % Mode', path: 'show-hide-%-mode'},
-  // {label: 'Unit Types', path: 'unit-types'}
   {label: 'Show & Hide Panes', path: 'show-n-hide'}
   // {label: 'Api Description', path: 'api-docs'}
 ]

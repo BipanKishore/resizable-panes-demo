@@ -11,8 +11,8 @@ import {
   ONLY_SIZES_SET_1
   , SECOND_SIZE_MAX_SIZE_SAME_SET_1
 } from '../../component/constant'
-import { DefaultSizes } from '../../component/default-sizes'
-import { ResizerNode1 } from '../components/resizer-nodes/resize-node-1'
+import {DefaultSizes} from '../../component/default-sizes'
+import {ResizerNode1} from '../components/resizer-nodes/resize-node-1'
 
 const PaneConfigSet: any = {
   SECOND_SIZE_MAX_SIZE_SAME_SET_1,
@@ -60,8 +60,8 @@ export const ApiDocs = () => {
       <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.closeFullSize()}>closeFullSize </button>
       <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.restoreDefault()}>restoreDefault </button>
       <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.toFullPage('pane1')}>toFullPage </button>
-      <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.setVisibility({ pane1: false, pane4: false })}>Hide Pane 1 & 4 </button>
-      <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.setVisibility({ pane1: true, pane4: true })}>Show Pane 1 & 4 </button>
+      <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.setVisibility({pane1: false, pane4: false})}>Hide Pane 1 & 4 </button>
+      <button className='btn btn-secondary btn-sm ms-1' onClick={() => ref.current.setVisibility({pane1: true, pane4: true})}>Show Pane 1 & 4 </button>
 
       <button className='btn btn-secondary btn-sm ms-1' onClick={toggleShow} >Buttoib</button> <b>{key}</b>
       <button className='btn btn-secondary btn-sm ms-1' onClick={toggleSplit} >Buttoib</button> <b>{split}</b>
