@@ -75,13 +75,25 @@ export const HideShowPanes = () => {
         <Pane className='pane1' id='pane1' minSize={5} size={20}>
         </Pane>
 
-        <Pane className='pane2' id='pane2' maxSize={15} minSize={5} size={10}>
+        <Pane
+          className='pane2' id='pane2'
+          // maxSize={15}
+          minSize={5} size={10}
+        >
         </Pane>
 
-        <Pane className='pane1' id='pane3' maxSize={20} minSize={10} size={20}>
+        <Pane
+          className='pane1' id='pane3'
+          // maxSize={20}
+          minSize={10} size={20}
+        >
         </Pane>
 
-        <Pane className='pane2' id='pane4' maxSize={25} minSize={5} size={20}>
+        <Pane
+          className='pane2' id='pane4'
+          // maxSize={25}
+          minSize={5} size={20}
+        >
         </Pane>
       </ResizablePanes>
 
