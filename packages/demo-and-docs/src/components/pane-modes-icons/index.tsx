@@ -1,9 +1,9 @@
 import React, {useState, ReactNode} from 'react'
-import {PANE_MODE} from 'resizable-panes-react'
+// import {PANE_MODE} from 'resizable-panes-react'
 import expand from '../../../assets/icons/expand.svg'
 import compress from '../../../assets/icons/compress.svg'
 import maximize from '../../../assets/icons/maximize.svg'
-
+const PANE_MODE: any = {}
 interface IPaneIconsProps{
     id: string,
     resizableRef:{
