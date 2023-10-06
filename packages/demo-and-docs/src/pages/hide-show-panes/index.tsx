@@ -21,6 +21,7 @@ export const HideShowPanes = () => {
   const onReady = (api: IResizableApi) => {
     ref.current.api = api
   }
+
   const updateVisibilityMap = (e: any) => {
     const {name, checked} = e.currentTarget
     const newVisibilityMap = {
@@ -28,10 +29,7 @@ export const HideShowPanes = () => {
       [name]: checked
     }
     setVisibilityMap(newVisibilityMap)
-  }
-
-  const setVisibility = () => {
-    ref.current.api.setVisibility(visibilityMap)
+    ref.current.api.setVisibility(newVisibilityMap)
   }
 
   return (
@@ -62,23 +60,28 @@ export const HideShowPanes = () => {
         unit="ratio"
         vertical
 
+        // visibility={visibilityMap}
+
         onChangeVisibility={(e:any) => {
-          console.log('onChangeVisibility', e)
+          // console.log('onChangeVisibility', e)
         }}
 
         onReady={onReady}
 
         onResizeStop={(e:any) => {
-          console.log('onResizeStop', e)
+          // console.log('onResizeStop', e)
         }}
       >
         <Pane className='pane1' id='pane1' minSize={5} size={20}>
         </Pane>
 
         <Pane
-          className='pane2' id='pane2'
+          className='pane2'
+          id='pane2'
           // maxSize={15}
-          minSize={5} size={10}
+          minSize={5}
+          // show={false}
+          size={10}
         >
         </Pane>
 
@@ -97,6 +100,9 @@ export const HideShowPanes = () => {
         </Pane>
       </ResizablePanes>
 
+      <p>
+        Use the checkbox to set the visibility of panes
+      </p>
       <div className='m-20-0'>
         {Object
           .keys(visibilityMap)
@@ -114,7 +120,6 @@ export const HideShowPanes = () => {
 
           ))}
 
-        <button onClick={setVisibility} >Submit</button>
       </div>
 
       <div className="mark-down-container m-20-0">
