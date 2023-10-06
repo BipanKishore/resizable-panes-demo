@@ -1,5 +1,5 @@
-import React, {Ref, useRef, useState} from 'react'
-import {Pane, ResizablePanes, IResizableApi} from 'resizable-panes-react'
+import React, {useState} from 'react'
+import {Pane, ResizablePanes} from 'resizable-panes-react'
 import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
@@ -9,18 +9,12 @@ interface IIDMap{
 }
 
 export const HideShowPanes = () => {
-  const ref: Ref<any> = useRef({})
-
   const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
-    pane1: true,
+    pane1: false,
     pane2: true,
     pane3: true,
-    pane4: true
+    pane4: false
   })
-
-  const onReady = (api: IResizableApi) => {
-    ref.current.api = api
-  }
 
   const updateVisibilityMap = (e: any) => {
     const {name, checked} = e.currentTarget
@@ -29,17 +23,16 @@ export const HideShowPanes = () => {
       [name]: checked
     }
     setVisibilityMap(newVisibilityMap)
-    ref.current.api.setVisibility(newVisibilityMap)
   }
 
   return (
     <div>
       <div>
         <h3 className='t-color-mainBlue t-aligin-center'>Show and hide panes</h3>
-        <h6>Note: Hide and show Panes only through the api!</h6>
       </div>
       <div className='m-20-0'>
-        You can toggle the visibility of a pane using the ResizablePanes API.
+        You can toggle the visibility of a pane using the visibility prop of <code>ResizablePanes</code>.
+        It is a object that uses the id of <code>Pane</code> component to set the visibility of Panes.
         This action hides or shows the pane without removing the element from the view.
       </div>
 
@@ -51,25 +44,23 @@ export const HideShowPanes = () => {
 
       <ResizablePanes
         className='h-300'
-        resizer={
-          <CustomResizerFirst />
-          }
-        resizerSize={12}
+        // resizer={
+        //   <CustomResizerFirst />
+        //   }
+        // resizerSize={12}
         sessionStore
         storeKey="visibility-doc"
         unit="ratio"
         vertical
 
-        // visibility={visibilityMap}
+        visibility={visibilityMap}
 
         onChangeVisibility={(e:any) => {
-          // console.log('onChangeVisibility', e)
+          console.log('onChangeVisibility', e)
         }}
 
-        onReady={onReady}
-
         onResizeStop={(e:any) => {
-          // console.log('onResizeStop', e)
+          console.log('onResizeStop', e)
         }}
       >
         <Pane className='pane1' id='pane1' minSize={5} size={20}>
@@ -80,7 +71,6 @@ export const HideShowPanes = () => {
           id='pane2'
           // maxSize={15}
           minSize={5}
-          // show={false}
           size={10}
         >
         </Pane>
@@ -100,26 +90,30 @@ export const HideShowPanes = () => {
         </Pane>
       </ResizablePanes>
 
-      <p>
-        Use the checkbox to set the visibility of panes
-      </p>
-      <div className='m-20-0'>
-        {Object
-          .keys(visibilityMap)
-          .map((id) => (
+      <div className='m-10-0 display-flex flex-column '>
+        <div className='m-10-0 display-flex justify-context'>
 
-            <label key={id}>
-              <input
-                checked={visibilityMap[id]}
-                name={id}
-                type="checkbox"
-                onChange={updateVisibilityMap}
-              />
-              {id}
-            </label>
+          <strong>   Use the checkbox to set the visibility of panes</strong>
 
-          ))}
+        </div>
 
+        <div className=' display-flex justify-context'>
+          {Object
+            .keys(visibilityMap)
+            .map((id) => (
+
+              <label key={id}>
+                <input
+                  checked={visibilityMap[id]}
+                  name={id}
+                  type="checkbox"
+                  onChange={updateVisibilityMap}
+                />
+                {id}
+              </label>
+
+            ))}
+        </div>
       </div>
 
       <div className="mark-down-container m-20-0">
