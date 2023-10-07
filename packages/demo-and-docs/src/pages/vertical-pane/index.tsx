@@ -21,9 +21,9 @@ export const VerticalPanes = () => {
           the <code>ResizablePanes</code> component.
         </p>
       </div>
-      <div className='m-20-0' >
+      <div className='m-20-0 h-300' >
         <ResizablePanes
-          className='h-300' resizer={
+          className='' resizer={
             <CustomResizerFirst />
             }
           unit='ratio'
