@@ -13145,12 +13145,28 @@ textarea.form-control-lg {
   margin-left: 5px;
 }
 
+.m-b-0 {
+  margin-bottom: 0px;
+}
+
 .color-red {
   color: red;
 }
 
+.font-tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 .t-aligin-center {
   text-align: center;
+}
+
+.f-weight-500 {
+  font-weight: 500;
+}
+
+.f-size-16 {
+  font-size: 16px;
 }
 
 .d-flex {
@@ -13163,6 +13179,10 @@ textarea.form-control-lg {
 
 .d-grid {
   display: grid;
+}
+
+.jc-center {
+  justify-content: center;
 }
 /*!*****************************************************************!*\
   !*** css ../../node_modules/css-loader/dist/cjs.js!./style.css ***!
@@ -13234,17 +13254,6 @@ textarea.form-control-lg {
 .m-2px-8px {
     margin: 2px 4px;
 }
-
-.maxxmin {
-    text-align: center;
-    position: relative;
-    top: 100px;
-    color: rgb(0, 0, 0);
-    font-size: 24px;
-    font-variant-numeric: tabular-nums;
-    font-weight: normal;
-}
-
 
 .crhover:hover {
     background-color: aqua;
