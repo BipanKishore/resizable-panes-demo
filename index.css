@@ -13133,6 +13133,18 @@ textarea.form-control-lg {
   margin: 20px 0px;
 }
 
+.m-10-0 {
+  margin: 10px 0;
+}
+
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-l-5 {
+  margin-left: 5px;
+}
+
 .color-red {
   color: red;
 }
@@ -13208,9 +13220,7 @@ textarea.form-control-lg {
     border: 0px solid #000000;
 }
 
-.display-flex {
-    display: flex;
-}
+
 
 
 .float-right {
@@ -13257,7 +13267,9 @@ textarea.form-control-lg {
     height: 70%;
 }
 
-
+.display-flex {
+    display: flex;
+}
 
 .flex-row {
     flex-direction: row;
@@ -13266,6 +13278,11 @@ textarea.form-control-lg {
 .flex-column {
     flex-direction: column;
 }
+
+.justify-context{
+   justify-content: center;
+}
+
 
 
 
