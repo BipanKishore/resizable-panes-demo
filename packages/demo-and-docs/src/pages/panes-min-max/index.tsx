@@ -34,53 +34,55 @@ export const PanesMinMax = () => {
         </p>
       </div>
 
-      <ResizablePanes
-        className='h-300' resizer={ <CustomResizerFirst />}
-        vertical
-        onResize={onResize}
-      >
-
-        <Panes
-          className={pane1} id={pane1}
-          maxSize={450}
-          minSize={100}
-          size={280}
+      <div className='h-300' >
+        <ResizablePanes
+          resizer={ <CustomResizerFirst />}
+          vertical
+          onResize={onResize}
         >
-          <MinMaxViewer
+
+          <Panes
+            className={pane1} id={pane1}
             maxSize={450}
             minSize={100}
-            size={pansizes.pane1}
-          />
+            size={280}
+          >
+            <MinMaxViewer
+              maxSize={450}
+              minSize={100}
+              size={pansizes.pane1}
+            />
 
-        </Panes>
+          </Panes>
 
-        <Panes
-          className={pane2} id={pane2}
-          maxSize={400}
-          minSize={100}
-          size={335}
-        >
-          <MinMaxViewer
+          <Panes
+            className={pane2} id={pane2}
             maxSize={400}
             minSize={100}
-            size={pansizes.pane2}
-          />
-        </Panes>
+            size={335}
+          >
+            <MinMaxViewer
+              maxSize={400}
+              minSize={100}
+              size={pansizes.pane2}
+            />
+          </Panes>
 
-        <Panes
-          className={pane3} id={pane3}
-          maxSize={500}
-          minSize={150}
-          size={280}
-        >
-          <MinMaxViewer
+          <Panes
+            className={pane3} id={pane3}
             maxSize={500}
             minSize={150}
-            size={pansizes.pane3}
-          />
-        </Panes>
+            size={280}
+          >
+            <MinMaxViewer
+              maxSize={500}
+              minSize={150}
+              size={pansizes.pane3}
+            />
+          </Panes>
 
-      </ResizablePanes>
+        </ResizablePanes>
+      </div>
       <div className="mark-down-container m-20-0">
         <MarkdownPreview className="" source={MIN_MAX_PANES_MD} />
       </div>

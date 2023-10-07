@@ -24,7 +24,7 @@ export const StorePanesSize = () => {
 
         <div className='h-300' >
           <ResizablePanes
-            className='h-300' resizer={
+            resizer={
               <CustomResizerFirst />
             }
             sessionStore

@@ -25,9 +25,9 @@ export const CustomResizer = () => {
         </p>
 
       </div>
-      <div className='m-20-0' >
+      <div className='m-20-0 h-300' >
         <ResizablePanes
-          className='h-300' resizer={
+          resizer={
             <CustomResizerFirst />
             }
           unit="ratio"

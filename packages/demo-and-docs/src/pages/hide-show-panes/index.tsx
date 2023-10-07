@@ -49,8 +49,8 @@ export const HideShowPanes = () => {
             <CustomResizerFirst />
           }
           resizerSize={12}
-          // sessionStore
-          // storeKey="visibility-doc"
+          sessionStore
+          storeKey="visibility-doc"
           unit="ratio"
           vertical
 
