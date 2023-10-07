@@ -10,10 +10,10 @@ interface IIDMap{
 
 export const HideShowPanes = () => {
   const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
-    pane1: false,
+    pane1: true,
     pane2: true,
     pane3: true,
-    pane4: false
+    pane4: true
   })
 
   const updateVisibilityMap = (e: any) => {
