@@ -28,7 +28,7 @@ export const CustomResizer = () => {
       <div className='m-20-0 h-300' >
         <ResizablePanes
           resizer={
-            <CustomResizerFirst />
+            <CustomResizerFirst name='First Resizer' />
             }
           unit="ratio"
           vertical
@@ -42,7 +42,7 @@ export const CustomResizer = () => {
           <Panes
             className={pane2} id={pane2} minSize={5}
             resizer={
-              <CustomResizerSecond />
+              <CustomResizerSecond name='Second Resizer' />
             }
             size={40}
           >
