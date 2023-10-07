@@ -31,13 +31,15 @@ export const HideShowPanes = () => {
   }
 
   return (
-    <div>
+    <div style={{
+      height: '300px',
+      width: '100%'
+    }}>
       <ResizablePanes
-        className='h-300'
         resizer={
           <Your Custom Resizer />
           }
-        resizerSize={resizer Size}
+        resizerSize={Custom resizer Size}
         unit="ratio"
         vertical
 

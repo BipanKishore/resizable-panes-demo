@@ -38,57 +38,60 @@ export const HideShowPanes = () => {
 
       <div className='m-20-0'>
         <strong>Note: </strong> In case you are using your own custom resizer
-        provide the <code>resizerSize</code> prop to <code>ResizablePanes</code> Component
-        or  <code>Pane</code>  Component
+        provide the <code>resizerSize</code> prop to <code>ResizablePanes</code> component
+        or  <code>Pane</code> component. It is only required when you when you want to
+        display or hide the <code>Pane</code> components.
       </div>
 
-      <ResizablePanes
-        className='h-300'
-        // resizer={
-        //   <CustomResizerFirst />
-        //   }
-        // resizerSize={12}
-        sessionStore
-        storeKey="visibility-doc"
-        unit="ratio"
-        vertical
+      <div className=' w-100p h-300'>
+        <ResizablePanes
+          resizer={
+            <CustomResizerFirst />
+          }
+          resizerSize={12}
+          // sessionStore
+          // storeKey="visibility-doc"
+          unit="ratio"
+          vertical
 
-        visibility={visibilityMap}
+          visibility={visibilityMap}
 
-        onChangeVisibility={(e:any) => {
-          console.log('onChangeVisibility', e)
-        }}
+          onChangeVisibility={(e:any) => {
+            console.log('onChangeVisibility', e)
+          }}
 
-        onResizeStop={(e:any) => {
-          console.log('onResizeStop', e)
-        }}
-      >
-        <Pane className='pane1' id='pane1' minSize={5} size={20}>
-        </Pane>
+          onResizeStop={(e:any) => {
+            console.log('onResizeStop', e)
+          }}
+        >
+          <Pane className='pane1' id='pane1' minSize={5} size={20}>
 
-        <Pane
-          className='pane2'
-          id='pane2'
+          </Pane>
+
+          <Pane
+            className='pane2'
+            id='pane2'
           // maxSize={15}
-          minSize={5}
-          size={10}
-        >
-        </Pane>
+            minSize={5}
+            size={10}
+          >
+          </Pane>
 
-        <Pane
-          className='pane1' id='pane3'
+          <Pane
+            className='pane1' id='pane3'
           // maxSize={20}
-          minSize={10} size={20}
-        >
-        </Pane>
+            minSize={10} size={20}
+          >
+          </Pane>
 
-        <Pane
-          className='pane2' id='pane4'
+          <Pane
+            className='pane2' id='pane4'
           // maxSize={25}
-          minSize={5} size={20}
-        >
-        </Pane>
-      </ResizablePanes>
+            minSize={5} size={20}
+          >
+          </Pane>
+        </ResizablePanes>
+      </div>
 
       <div className='m-10-0 display-flex flex-column '>
         <div className='m-10-0 display-flex justify-context'>
@@ -102,14 +105,18 @@ export const HideShowPanes = () => {
             .keys(visibilityMap)
             .map((id) => (
 
-              <label key={id}>
+              <label className='m-r-10' htmlFor={id} key={id}>
                 <input
                   checked={visibilityMap[id]}
+                  id={id}
                   name={id}
                   type="checkbox"
                   onChange={updateVisibilityMap}
                 />
-                {id}
+                <span className='m-l-5' >
+                  {id}
+                </span>
+
               </label>
 
             ))}
