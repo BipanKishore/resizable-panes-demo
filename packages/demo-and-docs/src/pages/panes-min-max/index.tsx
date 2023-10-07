@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useState} from 'react'
 import MinMaxViewer from '../../components/min-max-viewer'
 import MIN_MAX_PANES_MD from './min-max-panes.md'
 import MarkdownPreview from '@uiw/react-markdown-preview'
@@ -12,15 +12,17 @@ export const PanesMinMax = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
   const pane3 = 'pane3'
-  const [pansizes, setPansizes] = useState<any>({
-    pane1: 280,
-    pane2: 335,
-    pane3: 280
-  })
+  const [pansizes, setPansizes] = useState<any>({})
+  const [paneMinSizes, setPaneMinSizes] = useState<any>({})
+  const [paneMaxSizes, setPaneMaxSizes] = useState<any>({})
 
-  const onResize = useCallback((e: any) => {
-    setPansizes(e)
-  }, [])
+  const onReady = (api: any) => {
+    const minSizes = api.getMap('minSize')
+    const maxSizes = api.getMap('maxSize')
+    setPaneMinSizes(minSizes)
+    setPaneMaxSizes(maxSizes)
+    console.log(minSizes, maxSizes)
+  }
 
   return (
     <div>
@@ -37,8 +39,11 @@ export const PanesMinMax = () => {
       <div className='h-300' >
         <ResizablePanes
           resizer={ <CustomResizerFirst />}
+          unit="ratio"
           vertical
-          onResize={onResize}
+          onReady={onReady}
+          onResize={setPansizes}
+          onResizeStop={setPansizes}
         >
 
           <Panes
@@ -48,9 +53,10 @@ export const PanesMinMax = () => {
             size={280}
           >
             <MinMaxViewer
-              maxSize={450}
-              minSize={100}
-              size={pansizes.pane1}
+              id={pane1}
+              maxSizes={paneMaxSizes}
+              minSizes={paneMinSizes}
+              sizes={pansizes}
             />
 
           </Panes>
@@ -62,9 +68,10 @@ export const PanesMinMax = () => {
             size={335}
           >
             <MinMaxViewer
-              maxSize={400}
-              minSize={100}
-              size={pansizes.pane2}
+              id={pane2}
+              maxSizes={paneMaxSizes}
+              minSizes={paneMinSizes}
+              sizes={pansizes}
             />
           </Panes>
 
@@ -75,9 +82,10 @@ export const PanesMinMax = () => {
             size={280}
           >
             <MinMaxViewer
-              maxSize={500}
-              minSize={150}
-              size={pansizes.pane3}
+              id={pane3}
+              maxSizes={paneMaxSizes}
+              minSizes={paneMinSizes}
+              sizes={pansizes}
             />
           </Panes>
 

@@ -29,16 +29,16 @@ export const VerticalPanes = () => {
           unit='ratio'
           vertical
         >
-          <Panes className={pane1} id={pane1} size={30}>
+          <Panes className={pane1} id={pane1} minSize={3} size={30}>
             <PlainDummy name="pane1" />
           </Panes>
 
           <Panes
-            className={pane2} id={pane2} size={40}
+            className={pane2} id={pane2} minSize={4} size={40}
           >
           </Panes>
 
-          <Panes className={pane3} id={pane3} size={30}>
+          <Panes className={pane3} id={pane3} minSize={3} size={30}>
           </Panes>
         </ResizablePanes>
       </div>

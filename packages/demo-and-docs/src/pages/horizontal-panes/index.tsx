@@ -27,12 +27,12 @@ export const HorizantalPanes = () => {
         >
 
           <Panes
-            className={pane2} id={pane2} size={50}
+            className={pane2} id={pane2} minSize={10} size={50}
           >
           </Panes>
 
           <Panes
-            className={pane3} id={pane3} size={50}
+            className={pane3} id={pane3} minSize={10} size={50}
           >
           </Panes>
 
