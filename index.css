@@ -13153,6 +13153,14 @@ textarea.form-control-lg {
   color: red;
 }
 
+.darkslateblue {
+  color: darkslateblue;
+}
+
+.white {
+  color: white;
+}
+
 .font-tabular-nums {
   font-variant-numeric: tabular-nums;
 }
@@ -13165,8 +13173,31 @@ textarea.form-control-lg {
   font-weight: 500;
 }
 
+.f-weight-700 {
+  font-weight: 700;
+}
+
+.f-weight-800 {
+  font-weight: 800;
+}
+
+.f-size-8 {
+  font-size: 8px;
+}
+
+.f-size-10 {
+  font-size: 10px;
+}
+
 .f-size-16 {
   font-size: 16px;
+}
+
+.resizer-text-vertical {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  text-align: center;
+  line-height: 0.7;
 }
 
 .d-flex {
