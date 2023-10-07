@@ -42,6 +42,16 @@ export const PanesPropsDescription = () => {
           React element to handle resizing interactions for this specific pane.
         </p>
       </div>
+      <div className="m-20-0">
+        <p>
+          <strong>resizerSize (number in pixel):</strong>
+          In case you are using your own custom resizer provide the <code>resizerSize</code> prop
+          to <code>ResizablePanes</code> component or Pane component.
+          <span className='f-weight-500'> It is only required when you when you want
+            to display or hide the <code>Pane</code> components.
+          </span>
+        </p>
+      </div>
       <hr className='w-90p' />
       <div className='m-20-0'>
         <p><strong>className (string):</strong> The CSS class
