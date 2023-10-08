@@ -1,5 +1,4 @@
 
-
 ```jsx mdx:preview
 
 interface ICustomResizerProp {
