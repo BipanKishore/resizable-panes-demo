@@ -93,14 +93,12 @@ export const HideShowPanes = () => {
         </ResizablePanes>
       </div>
 
-      <div className='m-10-0 display-flex flex-column '>
-        <div className='m-10-0 display-flex justify-context'>
-
-          <strong>   Use the checkbox to set the visibility of panes</strong>
-
+      <div className='m-10-0 d-flex flex-column '>
+        <div className='m-10-0 d-flex justify-context'>
+          <strong>Use the checkbox to set the visibility of panes</strong>
         </div>
 
-        <div className=' display-flex justify-context'>
+        <div className=' d-flex justify-context'>
           {Object
             .keys(visibilityMap)
             .map((id) => (

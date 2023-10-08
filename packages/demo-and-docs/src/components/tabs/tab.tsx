@@ -1,4 +1,5 @@
 import React from 'react'
+import {joinClassName} from '../../shared/utils'
 
 export interface ITabProps {
   active?: boolean,
@@ -10,14 +11,12 @@ export interface ITabProps {
 
 export const Tab = (props: ITabProps) => {
   const {active, label, onClick, path} = props
-  let className
-  if (active) {
-    className = 'tab tab-active radious-5'
-  } else {
-    className = 'tab radious-5 nonactive-tab'
-  }
 
-  // const className = active ? 'radious-5 tab tab-active' : 'radious-5 tab'
+  const className = joinClassName({
+    'tab radius-15': true,
+    'tab-active': active,
+    'nonactive-tab': !active
+  })
 
   return (
 

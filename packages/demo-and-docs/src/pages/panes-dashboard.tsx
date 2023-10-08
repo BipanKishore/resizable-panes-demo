@@ -12,7 +12,7 @@ export const PanesDashboard = () => {
   return (
     <>
       <Header/>
-      <div className="display-flex">
+      <div className="d-flex">
         <Tabs onClick={onClickTabs} />
         <div className="router w-100p">
           <Router path={path} />
