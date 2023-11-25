@@ -12070,6 +12070,10 @@ textarea.form-control-lg {
   height: 300px;
 }
 
+.h-500 {
+  height: 500px;
+}
+
 .h-50p {
   height: 50%;
 }
@@ -12112,6 +12116,10 @@ textarea.form-control-lg {
 
 .w-100p {
   width: 100%;
+}
+
+.m-auto {
+  margin: auto;
 }
 
 .m-r-auto {
@@ -12242,6 +12250,10 @@ textarea.form-control-lg {
 
 .d-grid {
   display: grid;
+}
+
+.columns-1-1-1-frs {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .jc-center {
