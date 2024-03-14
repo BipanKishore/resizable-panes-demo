@@ -103,7 +103,7 @@ export const ApiDocs = () => {
       <ResizerNode1 />
       <DefaultSizes
         justUpdate={justUpdate}
-        set={PaneConfigSet[key]} split={split} onReady={(api) => {
+        set={PaneConfigSet[key]} split={split} onReady={(api:any) => {
           ref.current = api
         }}
       />

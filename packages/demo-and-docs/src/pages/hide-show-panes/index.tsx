@@ -46,7 +46,7 @@ export const HideShowPanes = () => {
       <div className=' w-100p h-300'>
         <ResizablePanes
           resizer={
-            <CustomResizerFirst />
+            <CustomResizerFirst size={12} />
           }
           resizerSize={12}
           sessionStore
@@ -57,21 +57,27 @@ export const HideShowPanes = () => {
           visibility={visibilityMap}
 
           onChangeVisibility={(e:any) => {
-            console.log('onChangeVisibility', e)
+            setVisibilityMap(e)
           }}
 
           onResizeStop={(e:any) => {
-            console.log('onResizeStop', e)
+            // console.log('onResizeStop', e)
           }}
         >
-          <Pane className='pane1' id='pane1' minSize={5} size={20}>
+          <Pane
+            className='pane1'
+            id='pane1'
+            // maxSize={22}
+            minSize={5}
+            size={20}
+          >
 
           </Pane>
 
           <Pane
             className='pane2'
             id='pane2'
-          // maxSize={15}
+            // maxSize={15}
             minSize={5}
             size={10}
           >
@@ -79,15 +85,17 @@ export const HideShowPanes = () => {
 
           <Pane
             className='pane1' id='pane3'
-          // maxSize={20}
-            minSize={10} size={20}
+            // maxSize={20}
+            minSize={10}
+            size={20}
           >
           </Pane>
 
           <Pane
             className='pane2' id='pane4'
           // maxSize={25}
-            minSize={5} size={20}
+            minSize={5}
+            size={20}
           >
           </Pane>
         </ResizablePanes>

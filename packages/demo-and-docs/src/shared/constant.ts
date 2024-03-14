@@ -2,7 +2,7 @@ export const GETTING_STARTED_PATH = 'getting-started'
 
 export const ROUTER_LIST_LEVEL_1 = [
   {label: 'Getting Started', path: GETTING_STARTED_PATH},
-  {label: 'Simple Panes', path: 'simple-panes'},
+  {label: 'Demo', path: 'demo-panes'},
   {label: 'Vertical Panes', path: 'vertical-panes'},
   {label: 'Horizontal Panes', path: 'horizontal-panes'},
   {label: 'Min & Max Sizes', path: 'min-n-max'},

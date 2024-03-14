@@ -8,6 +8,12 @@ const webpack = require('webpack')
 var WebpackNotifierPlugin = require('webpack-notifier');
 const autoprefixer = require('autoprefixer')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
+// const PurgeCss = require('purgecss-webpack-plugin')
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+
+const purgePath = {
+    src: path.join(__dirname, "src")
+}
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -20,10 +26,15 @@ const babelLoader = {
 
 module.exports = {
     entry: {
-        index: './index.tsx'
+        index: './src/index.tsx'
     },
     mode: 'development',
     devtool: 'source-map',
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
+      },
     module: {
         rules: [
             {
@@ -79,7 +90,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: '[name].js',
+        filename: '[name]-[contenthash].js',
         path: path.join(__dirname, '../../build/'),
         clean: true
     },
@@ -92,7 +103,10 @@ module.exports = {
         new WebpackNotifierPlugin({
             title: 'Webpack',
             emoji: true
-        })
+        }),
+    //  new PurgeCSSPlugin({
+    //     paths: glob.sync(`${purgePath.src}/**/*`, {nodir: true})
+    // })
     ],
     resolve: {
         alias: {

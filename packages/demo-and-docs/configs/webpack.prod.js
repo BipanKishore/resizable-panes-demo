@@ -9,6 +9,7 @@ var WebpackNotifierPlugin = require('webpack-notifier');
 const autoprefixer = require('autoprefixer')
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require("terser-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -21,13 +22,16 @@ const babelLoader = {
 
 module.exports = {
     entry: {
-        index: './index.tsx'
+        index: './src/index.tsx'
     },
     mode: 'development',
     devtool: false,
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin()],
+        splitChunks: {
+            chunks: "all"
+        }
       },
     module: {
         rules: [
@@ -97,7 +101,11 @@ module.exports = {
         new WebpackNotifierPlugin({
             title: 'Webpack',
             emoji: true
-        })
+        }),
+        //  new PurgeCss.PurgeCSSPlugin({
+        //     paths: glob.sync(`${purgePath.src}/**/*`, {nodir: true})
+        // })
+    //    new CompressionPlugin()
     ],
     resolve: {
         alias: {

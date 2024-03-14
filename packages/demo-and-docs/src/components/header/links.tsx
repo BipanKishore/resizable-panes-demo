@@ -12,6 +12,5 @@ export const Links = () => {
       <Icon name='github' onClick={() => navigate(GITHUB_URL)} />
       <Icon name='linkedin' onClick={() => navigate(LINKEDIN)} />
     </div>
-
   )
 }

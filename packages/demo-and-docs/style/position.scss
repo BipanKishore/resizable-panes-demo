@@ -12,6 +12,11 @@ display: flex;
     display: grid;
 }
 
+.columns-1-1-1-frs{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
 .jc-center {
     justify-content: center;
 }

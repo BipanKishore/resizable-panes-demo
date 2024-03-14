@@ -3,5 +3,6 @@ export interface ICustomResizerProp {
     onMouseDown?:any,
     isMouseDown?: boolean,
     onTouchStartCapture?: any,
-    name?: string
+    name?: string,
+    size?: number
   }

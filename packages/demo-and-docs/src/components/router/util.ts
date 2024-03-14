@@ -1,5 +1,6 @@
 import {ApiDocs} from '../../pages/api-docs'
 import {CustomResizer} from '../../pages/custom-resizer'
+import {DemoPanes} from '../../pages/demo-panes'
 import {FullScreenModes} from '../../pages/full-screen-modes'
 import {GettingStarted} from '../../pages/getting-started'
 import {HideShowPanes} from '../../pages/hide-show-panes'
@@ -8,7 +9,7 @@ import {NestedPanes} from '../../pages/nested-panes'
 import {PanesMinMax} from '../../pages/panes-min-max'
 import {PanesPropsDescription} from '../../pages/props-description/panes-props-description'
 import {ResizablePanesPropsDescription} from '../../pages/props-description/resizablepanes-props-description'
-import {SimplePanes} from '../../pages/simple-panes'
+
 import {StorePanesSize} from '../../pages/store-panes-size'
 import {VerticalPanes} from '../../pages/vertical-pane'
 
@@ -17,8 +18,8 @@ export const routerComponentSelector = (path: string): any => {
   switch (path) {
     case 'getting-started':
       return GettingStarted
-    case 'simple-panes':
-      return SimplePanes
+    case 'demo-panes':
+      return DemoPanes
     case 'api-docs':
       return ApiDocs
     case 'horizontal-panes':
