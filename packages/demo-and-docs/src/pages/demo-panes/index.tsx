@@ -51,6 +51,11 @@ export const DemoPanes = () => {
             setVisibilityMapMain(e)
           }}
 
+          onReady={(api: any) => {
+            const map = api.getMap('visibility')
+            setVisibilityMapMain(map)
+          }}
+
           onResizeStop={(e:any) => {
             // console.log('onResizeStop', e)
           }}
