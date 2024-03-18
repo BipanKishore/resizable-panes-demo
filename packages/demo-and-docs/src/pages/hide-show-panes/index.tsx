@@ -60,6 +60,11 @@ export const HideShowPanes = () => {
             setVisibilityMap(e)
           }}
 
+          onReady={(api: any) => {
+            const map = api.getMap('visibility')
+            setVisibilityMap(map)
+          }}
+
           onResizeStop={(e:any) => {
             // console.log('onResizeStop', e)
           }}
