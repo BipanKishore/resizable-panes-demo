@@ -2,19 +2,19 @@
 
 ```jsx mdx:preview
 import React from 'react';
-import {Panes, ResizablePanes} from 'resizable-panes-react'
+import {Pane, ResizablePanes} from 'resizable-panes-react'
 
- <ResizablePanes vertical>
-        <Panes id="pane1" size={350}>
+ <ResizablePanes uniqueId="unique-id" vertical>
+        <Pane id="pane1" size={350}>
         ...Your Element...
-        </Panes>
+        </Pane>
 
-        <Panes id="pane2" size={300}>
+        <Pane id="pane2" size={300}>
         ...Your Element...
-        </Panes>
+        </Pane>
         
-        <Panes id="pane3" size={200}>
+        <Pane id="pane3" size={200}>
         ...Your Element...
-        </Panes>
+        </Pane>
 </ResizablePanes>
 ```

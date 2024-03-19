@@ -30,6 +30,7 @@ export const CustomResizer = () => {
           resizer={
             <CustomResizerFirst name='' />
             }
+          uniqueId='CustomResizerPanes1'
           unit="ratio"
           vertical
         >

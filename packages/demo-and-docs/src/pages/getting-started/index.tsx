@@ -23,8 +23,10 @@ export const GettingStarted = () => {
       it into your React application and include the following JSX
       in your  code.
       <div>
-        <p>The <code>id</code> and <code>size</code> props are mandatory when using
-          the <code>ResizablePanes</code> component.
+        <p>
+          The <code>uniqueId</code> prop is required for the <code>ResizablePanes</code> component
+          and <code>id</code> and <code>size</code> props
+          are required for the <code>Pane</code> component.
         </p>
       </div>
       <div className="mark-down-container m-20-0">

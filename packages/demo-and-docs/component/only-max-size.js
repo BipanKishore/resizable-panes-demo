@@ -12,6 +12,7 @@ export const OnlyMaxSize = ({
   return (
 
     <ResizablePanes
+      uniqueId='OnlyMaxPanes1'
       onReady={onReady}
     >
       {

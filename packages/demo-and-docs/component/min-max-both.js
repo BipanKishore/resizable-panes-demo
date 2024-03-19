@@ -12,6 +12,7 @@ export const MinMaxBoth = ({
   return (
 
     <ResizablePanes
+      uniqueId='minMaxPanes1'
       onReady={onReady}
     >
       {

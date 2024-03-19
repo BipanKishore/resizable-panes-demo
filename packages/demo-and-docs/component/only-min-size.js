@@ -12,6 +12,7 @@ export const OnlyMinSize = ({
   return (
 
     <ResizablePanes
+      uniqueId='OnlyMinPanes1'
       onReady={onReady}
     >
       {

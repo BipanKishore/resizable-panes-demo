@@ -34,14 +34,18 @@ export const DemoPanes = () => {
         </p>
       </div>
 
+      <div className="m-20-0">
+        <strong>Note: </strong> Only main ResizablePanes is storing data in Session Storage.
+      </div>
+
       <div className=' w-100p h-500'>
         <ResizablePanes
           resizer={
             <CustomResizerFirst size={12} />
           }
           resizerSize={12}
-          sessionStore
-          storeKey="visibility-doc"
+          storageApi={sessionStorage}
+          uniqueId="visibility-doc"
           unit="ratio"
           vertical
 
@@ -71,6 +75,7 @@ export const DemoPanes = () => {
             <ResizablePanes
               resizer={<CustomResizerFirst horizontal size={20} />}
               resizerSize={20}
+              uniqueId="visibility-doc2"
               unit="ratio"
               visibility={visibilityMapPane1}
             >
@@ -98,6 +103,7 @@ export const DemoPanes = () => {
             <ResizablePanes
               resizer={<CustomResizerFirst horizontal size={20} />}
               resizerSize={20}
+              uniqueId="visibility-doc3"
               unit="ratio"
               visibility={visibilityMapPane3}
             >

@@ -1,7 +1,5 @@
 [![Open in StackBiltz](https://img.shields.io/badge/Open%20in-StackBiltz-blue?logo=StackBlitz)](https://stackblitz.com/edit/stackblitz-starters-qphr7j?file=src%2FApp.tsx)
 
-
-
 ```jsx mdx:preview
 import React, {useState} from 'react'
 import {Pane, ResizablePanes} from 'resizable-panes-react'
@@ -14,11 +12,11 @@ interface IIDMap{
 }
 
 export const HideShowPanes = () => {
-   const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
-    pane1: false,
+  const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
+    pane1: true,
     pane2: true,
     pane3: true,
-    pane4: false
+    pane4: true
   })
 
   const updateVisibilityMap = (e: any) => {
@@ -31,65 +29,70 @@ export const HideShowPanes = () => {
   }
 
   return (
-    <div style={{
-      height: '300px',
-      width: '100%'
-    }}>
-      <ResizablePanes
-        resizer={
-          <Your Custom Resizer />
+    <div>
+      <div className=' w-100p h-300'>
+        <ResizablePanes
+          resizer={
+            <CustomResizerFirst size={12} />
           }
-        resizerSize={Custom resizer Size}
-        unit="ratio"
-        vertical
+          resizerSize={12}
+          storageApi={sessionStorage}
+          uniqueId="visibility-doc-1"
+          unit="ratio"
+          vertical
+          visibility={visibilityMap}
+          onChangeVisibility={(e:any) => {
+            setVisibilityMap(e)
+          }}
+          onReady={(api: any) => {
+            const map = api.getMap('visibility')
+            setVisibilityMap(map)
+          }}
+        >
+          <Pane className='pane1' id='pane1' minSize={5} size={20}>
+          </Pane>
 
-        visibility={visibilityMap}
+          <Pane className='pane2' id='pane2' minSize={5} size={10}>
+          </Pane>
 
-        onChangeVisibility={(e:any) => {
-          console.log('onChangeVisibility', e)
-        }}
+          <Pane className='pane1' id='pane3' minSize={10} size={20}>
+          </Pane>
 
-        onResizeStop={(e:any) => {
-          console.log('onResizeStop', e)
-        }}
-      >
-        <Pane className='pane1' id='pane1' minSize={5} size={20}>
-        ...Your Element...
-        </Pane>
+          <Pane className='pane2' id='pane4' minSize={5} size={20}>
+          </Pane>
+        </ResizablePanes>
+      </div>
 
-        <Pane className='pane2' id='pane2' minSize={5} size={10}>
-        ...Your Element...
-        </Pane>
+      <div className='m-10-0 d-flex flex-column '>
+        <div className='m-10-0 d-flex justify-context'>
+          <strong>Use the checkbox to set the visibility of panes</strong>
+        </div>
 
-        <Pane className='pane1' id='pane3' minSize={10} size={20}>
-        </Pane>
+        <div className=' d-flex justify-context'>
+          {Object
+            .keys(visibilityMap)
+            .map((id) => (
 
-        <Pane className='pane2' id='pane4' minSize={5} size={20}>
-        ...Your Element...
-        </Pane>
-      </ResizablePanes>
+              <label className='m-r-10' htmlFor={id} key={id}>
+                <input
+                  checked={visibilityMap[id]}
+                  id={id}
+                  name={id}
+                  type="checkbox"
+                  onChange={updateVisibilityMap}
+                />
+                <span className='m-l-5' >
+                  {id}
+                </span>
 
-      <div className='m-20-0'>
-        {Object
-          .keys(visibilityMap)
-          .map((id) => (
+              </label>
 
-            <label key={id}>
-              <input
-                checked={visibilityMap[id]}
-                name={id}
-                type="checkbox"
-                onChange={updateVisibilityMap}
-              />
-              {id}
-            </label>
-
-          ))}
-
-        <button onClick={setVisibility} >Submit</button>
+            ))}
+        </div>
       </div>
     </div>
   )
 }
+
 
 ```

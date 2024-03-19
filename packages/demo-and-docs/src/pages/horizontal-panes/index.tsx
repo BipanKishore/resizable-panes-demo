@@ -23,6 +23,7 @@ export const HorizantalPanes = () => {
           resizer={
             <CustomResizerFirst horizontal />
             }
+          uniqueId="horizontally-doc"
           unit='ratio'
         >
 

@@ -27,6 +27,7 @@ export const FullScreenModes = () => {
         resizer={
           <CustomResizerFirst horizontal />
           }
+        uniqueId="fullscreen-doc"
         onReady={(api: any) => {
           resizableRef.current.api = api
         }}

@@ -6,6 +6,13 @@ export const ResizablePanesPropsDescription = () => {
       <h2>ResizablePanes Props</h2>
 
       <div className='m-20-0'>
+        <p><strong>uniqueId (string) [Required]:</strong> It is required to uniquely
+          identify the <code>ResizablePanes</code>.
+        </p>
+      </div>
+      <hr className='w-90p' />
+
+      <div className='m-20-0'>
         <p>
           <strong>vertical (boolean):</strong> An optional boolean prop that,
           when set to <code>true</code>, configures the <code>ResizablePanes</code> to align the panes
@@ -67,12 +74,9 @@ export const ResizablePanesPropsDescription = () => {
       <hr className='w-90p' />
 
       <div className='m-20-0'>
-        <p><strong>storeKey (string):</strong> An optional prop used as a unique key to store
-          memory data for the <code>ResizablePanes</code> component. By default, it utilizes <code>localStorage</code>.
-        </p>
-        <p><strong>sessionStore (boolean):</strong> An optional boolean flag.
-          When set to <code>true</code>, it makes the <code>ResizablePanes</code> component
-          use <code>sessionStorage</code> for storage.
+        <p><strong>storageApi (Object):</strong> It is an optional prop. Use the prop to provide
+          the <code>localStorage</code> or <code>sessionStorage</code> or you can provide
+          your own custom storage api  to save data. <code>uniqueId</code> prop will be used as key to store data.
         </p>
       </div>
       <hr className='w-90p' />

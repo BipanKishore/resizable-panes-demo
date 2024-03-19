@@ -15,9 +15,11 @@ export const StorePanesSize = () => {
       </div>
 
       <div className='m-20-0'>
-        <p>The <code>ResizablePanes</code> component can persist sizes using the <code>storeKey</code> prop.
-          You can use an extra prop, <code>sessionStore</code>, to
-          instruct the <code>ResizablePanes</code> component to store data in <code>sessionStorage</code>.
+        <p>The <code>ResizablePanes</code> component can persist sizes and visibilities of Panes
+          using the <code>uniqueId</code> prop as key in Local or Session Storage.
+          Use the prop <code>storageApi</code> to provide
+          the <code>localStorage</code> or <code>sessionStorage</code> to save data
+          or you can provide your own custom storage api.
         </p>
       </div>
       <div className='m-20-0' >
@@ -27,8 +29,8 @@ export const StorePanesSize = () => {
             resizer={
               <CustomResizerFirst />
             }
-            sessionStore
-            storeKey="panes-size"
+            storageApi={localStorage}
+            uniqueId="panes-size"
             unit="ratio"
             vertical
           >

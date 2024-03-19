@@ -39,6 +39,7 @@ export const PanesMinMax = () => {
       <div className='h-300' >
         <ResizablePanes
           resizer={ <CustomResizerFirst />}
+          uniqueId='Min-Max-2'
           unit="ratio"
           vertical
           onReady={onReady}
