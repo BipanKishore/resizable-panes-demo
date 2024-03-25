@@ -37,7 +37,10 @@ export const HideShowPanes = () => {
       </div>
 
       <div className='m-20-0'>
-        <strong>Note: </strong> In case you are using your own custom resizer
+        <div>
+          <strong>Note: </strong>
+        </div>
+        In case you are using your own custom resizer
         provide the <code>resizerSize</code> prop to <code>ResizablePanes</code> component
         or  <code>Pane</code> component. It is only required when you when you want to
         display or hide the <code>Pane</code> components.
@@ -46,9 +49,9 @@ export const HideShowPanes = () => {
       <div className=' w-100p h-300'>
         <ResizablePanes
           resizer={
-            <CustomResizerFirst size={12} />
+            <CustomResizerFirst size={10} />
           }
-          resizerSize={12}
+          resizerSize={10}
           storageApi={sessionStorage}
           uniqueId="visibility-doc-1"
           unit="ratio"
