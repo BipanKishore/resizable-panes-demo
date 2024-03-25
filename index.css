@@ -12062,6 +12062,10 @@ textarea.form-control-lg {
   height: 10px;
 }
 
+.h-10 {
+  height: 10px;
+}
+
 .h-12 {
   height: 12px;
 }
@@ -12088,6 +12092,10 @@ textarea.form-control-lg {
 
 .w-8 {
   width: 8px;
+}
+
+.w-10 {
+  width: 10px;
 }
 
 .w-12 {
@@ -12348,13 +12356,16 @@ textarea.form-control-lg {
 
 
 .custom-resizer-1st-parent {
-    padding: 2px;
     background-color: white;
     justify-content: center;
     display: flex;
 }
 
-.custom-resizer-1st-parent-hover {
+.p-2px{
+    padding: 2px;
+}
+
+.p-3px{
     padding: 3px;
 }
 
