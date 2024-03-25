@@ -21,7 +21,37 @@ export const StorePanesSize = () => {
           the <code>localStorage</code> or <code>sessionStorage</code> to save data
           or you can provide your own custom storage api.
         </p>
+
+        <p>
+
+        </p>
       </div>
+
+      <div className='m-20-0'>
+        <div>
+          <strong>Note: </strong>
+        </div>
+        <div>
+          The <code>ResizablePanes</code> component intelligently clears storage memory in following condition:
+          <div>
+            <ul>
+              <li>
+                When there is alterations in Pane IDs
+              </li>
+
+              <li>
+                When change in number of Pane Elements
+              </li>
+
+              <li>
+                When change in the size of view port.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
       <div className='m-20-0' >
 
         <div className='h-300' >
