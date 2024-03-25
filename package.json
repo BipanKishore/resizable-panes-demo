@@ -33,7 +33,7 @@
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
     "gh-pages": "^6.0.0",
-    "resizable-panes-react": "^2.0.2"
+    "resizable-panes-react": "^2.0.5"
   },
   "homepage": "https://bipankishore.github.io/resizable-panes-demo",
   "version": "0.5.8"
