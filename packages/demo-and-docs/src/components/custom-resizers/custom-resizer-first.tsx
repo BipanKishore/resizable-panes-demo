@@ -20,7 +20,7 @@ export const CustomResizerFirst = ({
   })
 
   const childClassName = joinClassName({
-    'custom-resizer-1st-child f-weight-800 white': true,
+    'br-5 f-weight-800 white bg-slate-500': true,
     'h-70p w-100p vertical-cursur resizer-text-vertical': !horizontal,
     'w-70p h-100p horizontal-cursur': horizontal,
     'f-size-8': isMouseDown,
