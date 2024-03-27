@@ -72,13 +72,16 @@
 
 
 .custom-resizer-1st-parent {
-    padding: 2px;
     background-color: white;
     justify-content: center;
     display: flex;
 }
 
-.custom-resizer-1st-parent-hover {
+.p-2px{
+    padding: 2px;
+}
+
+.p-3px{
     padding: 3px;
 }
 
