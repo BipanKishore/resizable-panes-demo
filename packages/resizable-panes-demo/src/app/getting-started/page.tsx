@@ -1,9 +1,8 @@
-"use client"
 import React from 'react'
-import MarkdownPreview from '@uiw/react-markdown-preview'
 import GETTING_STARTED_MD from './getting-started.md'
 console.log('GETTING_STARTED_MD', GETTING_STARTED_MD)
-// import VERTICAL_PANE_MD from '../vertical-pane/vertical-pane.md'
+import VERTICAL_PANE_MD from '../vertical-panes/vertical-panes.md'
+import { MdPreview } from '@/components/md-preview'
 
  const GettingStarted = () => {
   return (
@@ -16,9 +15,7 @@ console.log('GETTING_STARTED_MD', GETTING_STARTED_MD)
 
       <div className="mark-down-container m-20-0">
         <h3>Installation</h3>
-        <MarkdownPreview className="" source={
-          GETTING_STARTED_MD
-        } />
+        <MdPreview className="" source={GETTING_STARTED_MD} />
       </div>
 
       <h3>Usage</h3>
@@ -33,7 +30,7 @@ console.log('GETTING_STARTED_MD', GETTING_STARTED_MD)
         </p>
       </div>
       <div className="mark-down-container m-20-0">
-        {/* <MarkdownPreview className="" source={VERTICAL_PANE_MD} /> */}
+        <MdPreview className="" source={VERTICAL_PANE_MD} />
       </div>
 
       <div className="m-20-0">
