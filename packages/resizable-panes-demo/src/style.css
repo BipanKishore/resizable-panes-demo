@@ -1,0 +1,156 @@
+
+
+.bg-lightblue {
+    background-color: lightblue;
+}
+
+.pane1 {
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+.pane2 {
+    background-color: #b0bec5;
+    border-radius: 5px;
+}
+
+.pane3 {
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+
+
+.pane-container {
+    /* height: 830px; */
+}
+
+
+
+.vertical-cursur:hover {
+    cursor: col-resize;
+}
+
+.horizontal-cursur:hover {
+    cursor: row-resize;
+}
+
+.p-relative {
+    position: relative;
+    ;
+}
+
+.t-100 {
+    top: 70px;
+}
+
+.radious-5 {
+    border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border: 0px solid #000000;
+}
+
+
+
+
+.float-right {
+    float: right;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.m-2px-8px {
+    margin: 2px 4px;
+}
+
+.crhover:hover {
+    background-color: aqua;
+}
+
+
+.custom-resizer-1st-parent {
+    padding: 2px;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+}
+
+.custom-resizer-1st-parent-hover {
+    padding: 3px;
+}
+
+
+.h-70p {
+    height: 70%;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-context{
+   justify-content: center;
+}
+
+
+
+
+.custom-resizer-1st-child {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.custom-resizer-1st-child:hover {}
+
+.custom-resizer-2st-parent {
+    padding: 2px;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+}
+
+.custom-resizer-2st-parent-hover {
+    padding: 3px;
+}
+
+.custom-resizer-2st-child {
+    background-color: #878686;
+    border-radius: 5px;
+}
+
+.custom-resizer-2st-child:hover {}
+
+
+
+.max-limit-reached {
+    color: red;
+}
+
+.min-limit-reached {
+    color: red;
+}
+
+
+
+.resizer-vertical{
+    width: 99%;
+    margin: -5px auto !important;
+}
+
+.social-icon-top {position: absolute;top: 20%; right: 2%;}
+
+@media (max-width: 768px) {
+.social-icon-top {position: relative;}
+
+}

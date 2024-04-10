@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": [
     "packages/demo-and-docs",
-    "packages/resizable-panes-react"
+    "packages/resizable-panes-demo"
   ],
   "devDependencies": {
     "@types/react-dom": "^18.2.7",
