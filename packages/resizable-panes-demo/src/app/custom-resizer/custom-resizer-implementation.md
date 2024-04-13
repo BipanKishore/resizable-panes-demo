@@ -1,6 +1,8 @@
 
 ```jsx mdx:preview
+
 interface ICustomResizerProp {
+    onMouseDown:any,
     isMouseDown: boolean,
     onTouchStartCapture: any
   }
