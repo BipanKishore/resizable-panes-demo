@@ -41,9 +41,9 @@ export const DemoPanes = () => {
       <div className=' w-100p h-500'>
         <ResizablePanes
           resizer={
-            <CustomResizerFirst size={12} />
+            <CustomResizerFirst size={10} />
           }
-          resizerSize={12}
+          resizerSize={10}
           storageApi={sessionStorage}
           uniqueId="visibility-doc"
           unit="ratio"
@@ -73,8 +73,8 @@ export const DemoPanes = () => {
           >
 
             <ResizablePanes
-              resizer={<CustomResizerFirst horizontal size={20} />}
-              resizerSize={20}
+              resizer={<CustomResizerFirst horizontal size={10} />}
+              resizerSize={10}
               uniqueId="visibility-doc2"
               unit="ratio"
               visibility={visibilityMapPane1}
@@ -101,8 +101,8 @@ export const DemoPanes = () => {
             size={25}
           >
             <ResizablePanes
-              resizer={<CustomResizerFirst horizontal size={20} />}
-              resizerSize={20}
+              resizer={<CustomResizerFirst horizontal size={10} />}
+              resizerSize={10}
               uniqueId="visibility-doc3"
               unit="ratio"
               visibility={visibilityMapPane3}

@@ -5,17 +5,17 @@
 }
 
 .pane1 {
-    background-color: #efefef;
+    background-color: rgb(241 245 249);
     border-radius: 5px;
 }
 
 .pane2 {
-    background-color: #b0bec5;
+    background-color: rgb(203 213 225);
     border-radius: 5px;
 }
 
 .pane3 {
-    background-color: #efefef;
+    background-color: rgb(241 245 249);
     border-radius: 5px;
 }
 
@@ -72,13 +72,16 @@
 
 
 .custom-resizer-1st-parent {
-    padding: 2px;
     background-color: white;
     justify-content: center;
     display: flex;
 }
 
-.custom-resizer-1st-parent-hover {
+.p-2px{
+    padding: 2px;
+}
+
+.p-3px{
     padding: 3px;
 }
 
@@ -104,14 +107,26 @@
 }
 
 
-
-
-.custom-resizer-1st-child {
-    background-color: #ccc;
+.br-5{
     border-radius: 5px;
 }
 
-.custom-resizer-1st-child:hover {}
+
+ /* TailWind */
+ .bg-slate-100 {
+    background-color: rgb(241 245 249);
+}
+
+.bg-slate-300 {
+    background-color: rgb(203 213 225);
+}
+
+.bg-slate-500 {
+    background-color: rgb(100 116 139);
+}
+
+ /* TailWind */
+
 
 .custom-resizer-2st-parent {
     padding: 2px;

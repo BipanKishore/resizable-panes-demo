@@ -4,20 +4,23 @@ import {ICustomResizerProp} from './type'
 
 export const CustomResizerFirst = ({
   horizontal, onMouseDown,
-  isMouseDown, onTouchStartCapture,
+  isMouseDown,
+  onTouchStartCapture,
   name, size
 }: ICustomResizerProp) => {
+  // const isMouseDown = true
   const parentClassName = joinClassName({
     'custom-resizer-1st-parent': true,
     'h-100p flex-column': !horizontal,
     'flex-row': horizontal,
-    'custom-resizer-1st-parent-hover': isMouseDown,
-    'h-12': !size && horizontal,
-    'w-12': !size && !horizontal
+    'p-2px': !isMouseDown,
+    'p-3px': isMouseDown,
+    'h-10': !size && horizontal,
+    'w-10': !size && !horizontal
   })
 
   const childClassName = joinClassName({
-    'custom-resizer-1st-child f-weight-800 white': true,
+    'br-5 f-weight-800 white bg-slate-500': true,
     'h-70p w-100p vertical-cursur resizer-text-vertical': !horizontal,
     'w-70p h-100p horizontal-cursur': horizontal,
     'f-size-8': isMouseDown,
