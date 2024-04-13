@@ -1,6 +1,6 @@
+"use client"
 import React from 'react'
 import GETTING_STARTED_MD from './getting-started.md'
-console.log('GETTING_STARTED_MD', GETTING_STARTED_MD)
 import VERTICAL_PANE_MD from '../vertical-panes/vertical-panes.md'
 import { MdPreview } from '@/components/md-preview'
 
@@ -12,7 +12,7 @@ import { MdPreview } from '@/components/md-preview'
       that allow users to
       adjust the size of individual sections within a container. This component is highly customizable and can
       be used in various applications where flexible layout management is required.
-
+      <iframe width={'100%s'} src="https://stackblitz.com/edit/angular?embed=1"></iframe>
       <div className="mark-down-container m-20-0">
         <h3>Installation</h3>
         <MdPreview className="" source={GETTING_STARTED_MD} />

@@ -1,12 +1,12 @@
+"use client"
 import React from 'react'
-import {
-  Panes, ResizablePanes
-} from 'resizable-panes-react'
+
+import {Pane, ResizablePanes} from 'resizable-panes-react'
 import MarkdownPreview from '@uiw/react-markdown-preview'
-import VERTICAL_PANE_MD from './vertical-pane.md'
+import VERTICAL_PANE_MD from './vertical-panes.md'
 import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 import {PlainDummy} from '../../components'
-export const VerticalPanes = () => {
+ const VerticalPanes = () => {
   const pane1 = 'pane1'
   const pane2 = 'pane2'
   const pane3 = 'pane3'
@@ -22,26 +22,28 @@ export const VerticalPanes = () => {
         </p>
       </div>
       <div className='m-20-0 h-300' >
-        <ResizablePanes
+        {/* <ResizablePanes
           className=''
           resizer={
             <CustomResizerFirst />
-            } uniqueId='vertical-pane-1'
+            } 
+            
+            uniqueId='vertical-pane-1'
           unit='ratio'
           vertical
         >
-          <Panes className={pane1} id={pane1} minSize={3} size={30}>
+          <Pane className={pane1} id={pane1} minSize={3} size={30}>
             <PlainDummy name="pane1" />
-          </Panes>
+          </Pane>
 
-          <Panes
+          <Pane
             className={pane2} id={pane2} minSize={4} size={40}
           >
-          </Panes>
+          </Pane>
 
-          <Panes className={pane3} id={pane3} minSize={3} size={30}>
-          </Panes>
-        </ResizablePanes>
+          <Pane className={pane3} id={pane3} minSize={3} size={30}>
+          </Pane>
+        </ResizablePanes> */}
       </div>
 
       <div className="mark-down-container m-20-0">
@@ -50,3 +52,6 @@ export const VerticalPanes = () => {
     </div>
   )
 }
+
+
+export default  VerticalPanes
