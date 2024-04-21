@@ -22,7 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body //className={inter.className}
+      >
         <div className='w-m-1200 mx-auto' >
           <Header />
           <div className="d-flex">

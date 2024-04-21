@@ -1,7 +1,7 @@
 export const GETTING_STARTED_PATH = 'getting-started'
 
 export const ROUTER_LIST_LEVEL_1 = [
-  {label: 'Home', path:'/'},
+  {label: 'Home', path:''},
   {label: 'Getting Started', path: GETTING_STARTED_PATH},
   {label: 'Demo', path: 'demo'},
   {label: 'Vertical Panes', path: 'vertical-panes'},
