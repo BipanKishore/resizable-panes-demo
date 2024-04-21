@@ -1,16 +1,8 @@
-"use client"
-import React from 'react'
-import {
-  Panes, ResizablePanes
-} from 'resizable-panes-react'
-import MarkdownPreview from '@uiw/react-markdown-preview'
-import NESTED_PANES_MD from './nested-panes.md'
-import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
-const NestedPanes = () => {
-  const pane1 = 'pane1'
-  const pane2 = 'pane2'
-  const pane3 = 'pane3'
+import React from 'react'
+import NestedPanes from './nested-panes'
+
+const Page = () => {
 
   return (
     <div>
@@ -24,49 +16,10 @@ const NestedPanes = () => {
       </div>
 
       <div className='h-300' >
-        <ResizablePanes
-          resizer={<CustomResizerFirst />}
-          uniqueId='Nesting-Main-container'
-          unit="ratio"
-          vertical
-        >
-          <Panes className={pane1} id={pane1} minSize={10} size={25}>
-            <div className='h-300' >
-              <ResizablePanes
-                resizer={<CustomResizerFirst horizontal />}
-                uniqueId='Nesting-child-2'
-                unit="ratio"
-              >
-                <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
-                <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>
-              </ResizablePanes>
-            </div>
-          </Panes>
-
-          <Panes className={pane2} id={pane2} minSize={10} size={50}>
-          </Panes>
-
-          <Panes className={pane3} id={pane3} minSize={10} size={25}>
-
-            <div className='h-300' >
-              <ResizablePanes
-                resizer={<CustomResizerFirst horizontal />}
-                uniqueId='Nesting-child-1'
-                unit="ratio"
-              >
-                <Panes className={pane1} id={pane1} minSize={17} size={34}></Panes>
-                <Panes className={pane3} id={pane3} minSize={17} size={66}> </Panes>
-              </ResizablePanes>
-            </div>
-          </Panes>
-        </ResizablePanes>
+        <NestedPanes />
       </div>
-      <div className="mark-down-container m-20-0">
-        <MarkdownPreview className="" source={NESTED_PANES_MD} />
-      </div>
-
     </div>
   )
 }
 
-export default NestedPanes
+export default Page

@@ -1,15 +1,8 @@
-"use client"
 import React from 'react'
+import VerticalPanes from './vertical-panes'
 
-import {Pane, ResizablePanes} from 'resizable-panes-react'
-import MarkdownPreview from '@uiw/react-markdown-preview'
-import VERTICAL_PANE_MD from './vertical-panes.md'
-import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
-import {PlainDummy} from '../../components'
- const VerticalPanes = () => {
-  const pane1 = 'pane1'
-  const pane2 = 'pane2'
-  const pane3 = 'pane3'
+
+ const VerticalPanesPage = () => {
   return (
     <div>
       <div>
@@ -17,41 +10,16 @@ import {PlainDummy} from '../../components'
       </div>
 
       <div className='m-20-0'>
-        <p>To align the panes vertically, simply pass the <code>vertical</code>(boolean) prop to
-          the <code>ResizablePanes</code> component.
+        <p>
+          By default, the <code>ResizablePanes</code> component aligns the panes vertically.
         </p>
       </div>
       <div className='m-20-0 h-300' >
-        {/* <ResizablePanes
-          className=''
-          resizer={
-            <CustomResizerFirst />
-            } 
-            
-            uniqueId='vertical-pane-1'
-          unit='ratio'
-          vertical
-        >
-          <Pane className={pane1} id={pane1} minSize={3} size={30}>
-            <PlainDummy name="pane1" />
-          </Pane>
-
-          <Pane
-            className={pane2} id={pane2} minSize={4} size={40}
-          >
-          </Pane>
-
-          <Pane className={pane3} id={pane3} minSize={3} size={30}>
-          </Pane>
-        </ResizablePanes> */}
-      </div>
-
-      <div className="mark-down-container m-20-0">
-        <MarkdownPreview className="" source={VERTICAL_PANE_MD} />
+        <VerticalPanes />
       </div>
     </div>
   )
 }
 
 
-export default  VerticalPanes
+export default  VerticalPanesPage

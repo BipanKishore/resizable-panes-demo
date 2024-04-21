@@ -28,12 +28,14 @@
     "build": "cd ./packages/demo-and-docs && npm run build",
     "predeploy": "cd ./packages/demo-and-docs && npm run build-prod",
     "deploy": "gh-pages -b master -d build",
-    "start": "npm-run-all --serial link-local start-demo"
+    "start": "npm-run-all --serial link-local start-demo",
+    "goTo:next-demo": "cd ./packages/resizable-panes-demo && npm run dev",
+    "start:next": "npm-run-all --serial link-local goTo:next-demo"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
     "gh-pages": "^6.0.0",
-    "resizable-panes-react": "^2.0.6"
+    "resizable-panes-react": "^2.0.9"
   },
   "homepage": "https://bipankishore.github.io/resizable-panes-demo",
   "version": "0.5.8"

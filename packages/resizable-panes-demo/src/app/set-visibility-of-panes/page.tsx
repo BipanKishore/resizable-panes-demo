@@ -1,30 +1,9 @@
-"use client"
-import React, {useState} from 'react'
-import {Pane, ResizablePanes} from 'resizable-panes-react'
-import HIDE_SHOW_PANES_MD from './hide-show-panes.md'
-import MarkdownPreview from '@uiw/react-markdown-preview'
-import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
 
-interface IIDMap{
-    [id: string]: boolean
-}
+import React from 'react'
+import VisibilityOperationsExample from './visibility-operations-example'
 
- const SetVisibilityOfPanes = () => {
-  const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
-    pane1: true,
-    pane2: true,
-    pane3: true,
-    pane4: true
-  })
+const SetVisibilityOfPanes = () => {
 
-  const updateVisibilityMap = (e: any) => {
-    const {name, checked} = e.currentTarget
-    const newVisibilityMap = {
-      ...visibilityMap,
-      [name]: checked
-    }
-    setVisibilityMap(newVisibilityMap)
-  }
 
   return (
     <div>
@@ -44,100 +23,7 @@ interface IIDMap{
         display or hide the <code>Pane</code> components.
       </div>
 
-      <div className=' w-100p h-300'>
-        <ResizablePanes
-          resizer={
-            <CustomResizerFirst size={12} />
-          }
-          resizerSize={12}
-          storageApi={sessionStorage}
-          uniqueId="visibility-doc-1"
-          unit="ratio"
-          vertical
-
-          visibility={visibilityMap}
-
-          onChangeVisibility={(e:any) => {
-            setVisibilityMap(e)
-          }}
-
-          onReady={(api: any) => {
-            const map = api.getMap('visibility')
-            setVisibilityMap(map)
-          }}
-
-          onResizeStop={(e:any) => {
-            // console.log('onResizeStop', e)
-          }}
-        >
-          <Pane
-            className='pane1'
-            id='pane1'
-            // maxSize={22}
-            minSize={5}
-            size={20}
-          >
-
-          </Pane>
-
-          <Pane
-            className='pane2'
-            id='pane2'
-            // maxSize={15}
-            minSize={5}
-            size={10}
-          >
-          </Pane>
-
-          <Pane
-            className='pane1' id='pane3'
-            // maxSize={20}
-            minSize={10}
-            size={20}
-          >
-          </Pane>
-
-          <Pane
-            className='pane2' id='pane4'
-          // maxSize={25}
-            minSize={5}
-            size={20}
-          >
-          </Pane>
-        </ResizablePanes>
-      </div>
-
-      <div className='m-10-0 d-flex flex-column '>
-        <div className='m-10-0 d-flex justify-context'>
-          <strong>Use the checkbox to set the visibility of panes</strong>
-        </div>
-
-        <div className=' d-flex justify-context'>
-          {Object
-            .keys(visibilityMap)
-            .map((id) => (
-
-              <label className='m-r-10' htmlFor={id} key={id}>
-                <input
-                  checked={visibilityMap[id]}
-                  id={id}
-                  name={id}
-                  type="checkbox"
-                  onChange={updateVisibilityMap}
-                />
-                <span className='m-l-5' >
-                  {id}
-                </span>
-
-              </label>
-
-            ))}
-        </div>
-      </div>
-
-      <div className="mark-down-container m-20-0">
-        <MarkdownPreview className="" source={HIDE_SHOW_PANES_MD} />
-      </div>
+      <VisibilityOperationsExample />
     </div>
   )
 }
