@@ -1,5 +1,6 @@
 
 "use client"
+import { EVEN_PANE_CLASS, ODD_PANE_CLASS } from '@/shared/constant'
 import React from 'react'
 import {
     Pane, ResizablePanes
@@ -21,15 +22,14 @@ export default function VerticalPanes() {
                 unit='ratio'
                 vertical
             >
-                <Pane className={pane1} id={pane1} minSize={3} size={30}>
+                <Pane className={ODD_PANE_CLASS} id='P0' minSize={3} size={30}>
                 </Pane>
 
-                <Pane
-                    className={pane2} id={pane2} minSize={4} size={40}
+                <Pane className={EVEN_PANE_CLASS} id='P1' minSize={4} size={40}
                 >
                 </Pane>
 
-                <Pane className={pane3} id={pane3} minSize={3} size={30}>
+                <Pane className={ODD_PANE_CLASS} id='P2' minSize={3} size={30}>
                 </Pane>
             </ResizablePanes>
 

@@ -16,7 +16,7 @@ export const Tab = (props: ITabProps) => {
   
 const currentPath = usePathname();
 
-const active = currentPath === `/${path}`
+const active = currentPath === `/${path}` || currentPath === path
 
   const className = joinClassName({
     'tab radius-15': true,

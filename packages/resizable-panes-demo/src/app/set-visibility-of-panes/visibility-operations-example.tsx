@@ -1,19 +1,19 @@
 "use client"
-import React, {useState} from 'react'
-import {Pane, ResizablePanes} from 'resizable-panes-react'
+import { EVEN_PANE_CLASS, ODD_PANE_CLASS } from '@/shared/constant'
+import { getLocalStorage } from '@/shared/utils'
+import React, { useState } from 'react'
+import { Pane, ResizablePanes } from 'resizable-panes-react'
 
-interface IIDMap{
-    [id: string]: boolean
+interface IIDMap {
+  [id: string]: boolean
 }
 
- const VisibilityOperationsExample = () => {
+const VisibilityOperationsExample = () => {
 
-  const [visibilityMap, setVisibilityMap] = useState<IIDMap>({
-    
-  })
+  const [visibilityMap, setVisibilityMap] = useState<IIDMap>({})
 
   const updateVisibilityMap = (e: any) => {
-    const {name, checked} = e.currentTarget
+    const { name, checked } = e.currentTarget
     const newVisibilityMap = {
       ...visibilityMap,
       [name]: checked
@@ -26,14 +26,14 @@ interface IIDMap{
 
       <div className=' w-100p h-300'>
         <ResizablePanes
-          storageApi={sessionStorage}
+      storageApi={getLocalStorage()}
           uniqueId="visibility-doc-1"
           unit="ratio"
           vertical
 
           visibility={visibilityMap}
 
-          onChangeVisibility={(e:any) => {
+          onChangeVisibility={(e: any) => {
             setVisibilityMap(e)
           }}
 
@@ -42,45 +42,42 @@ interface IIDMap{
             setVisibilityMap(map)
           }}
 
-          onResizeStop={(e:any) => {
+          onResizeStop={(e: any) => {
             // console.log('onResizeStop', e)
           }}
         >
-      
-      <Pane
-            className='pane1'
-            id='pane1'
+
+          <Pane
+            className={ODD_PANE_CLASS}
+            id='P0'
             // maxSize={22}
             minSize={5}
             size={20}
           >
 
           </Pane>
-
           <Pane
-            className='pane2'
-            id='pane2'
+            className={EVEN_PANE_CLASS} id='P1'
             // maxSize={15}
             minSize={5}
             size={10}
           >
           </Pane>
-
-          <Pane
-            className='pane1' id='pane3'
+          <Pane className={ODD_PANE_CLASS} id='P2'
             // maxSize={20}
             minSize={10}
             size={20}
           >
-          </Pane>
 
-          <Pane
-            className='pane2' id='pane4'
-          // maxSize={25}
+          </Pane>
+          <Pane className={EVEN_PANE_CLASS} id='P3'
+            // maxSize={25}
             minSize={5}
             size={20}
           >
           </Pane>
+
+
 
         </ResizablePanes>
       </div>
@@ -112,7 +109,7 @@ interface IIDMap{
             ))}
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

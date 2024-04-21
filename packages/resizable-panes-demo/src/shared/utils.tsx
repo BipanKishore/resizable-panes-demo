@@ -14,3 +14,8 @@ export const joinClassName = (param: IJoinClassNameParam, notRequired: boolean |
 
 
 
+export const getLocalStorage = () => {
+  if (typeof window !== 'undefined') {
+    localStorage
+  }
+}

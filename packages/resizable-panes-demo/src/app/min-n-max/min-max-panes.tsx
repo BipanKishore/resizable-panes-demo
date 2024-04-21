@@ -6,12 +6,11 @@ import MinMaxViewer from '../../components/min-max-viewer'
 import {
   Panes, ResizablePanes
 } from 'resizable-panes-react'
+import { EVEN_PANE_CLASS, ODD_PANE_CLASS } from '@/shared/constant'
 
 
 const MinMaxPanes = () => {
-    const pane1 = 'pane1'
-    const pane2 = 'pane2'
-    const pane3 = 'pane3'
+  
     const [pansizes, setPansizes] = useState<any>({})
     const [paneMinSizes, setPaneMinSizes] = useState<any>({})
     const [paneMaxSizes, setPaneMaxSizes] = useState<any>({})
@@ -35,13 +34,13 @@ const MinMaxPanes = () => {
           >
   
             <Panes
-              className={pane1} id={pane1}
+              className={ODD_PANE_CLASS} id='P0'
               maxSize={450}
               minSize={100}
               size={280}
             >
               <MinMaxViewer
-                id={pane1}
+                id='P0'
                 maxSizes={paneMaxSizes}
                 minSizes={paneMinSizes}
                 sizes={pansizes}
@@ -50,13 +49,13 @@ const MinMaxPanes = () => {
             </Panes>
   
             <Panes
-              className={pane2} id={pane2}
+              className={EVEN_PANE_CLASS} id='P1'
               maxSize={400}
               minSize={100}
               size={335}
             >
               <MinMaxViewer
-                id={pane2}
+                id='P1'
                 maxSizes={paneMaxSizes}
                 minSizes={paneMinSizes}
                 sizes={pansizes}
@@ -64,13 +63,13 @@ const MinMaxPanes = () => {
             </Panes>
   
             <Panes
-              className={pane3} id={pane3}
+            className={ODD_PANE_CLASS} id='P2'
               maxSize={500}
               minSize={150}
               size={280}
             >
               <MinMaxViewer
-                id={pane3}
+                id='P2'
                 maxSizes={paneMaxSizes}
                 minSizes={paneMinSizes}
                 sizes={pansizes}

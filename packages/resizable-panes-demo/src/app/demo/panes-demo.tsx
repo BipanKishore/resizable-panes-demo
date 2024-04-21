@@ -7,6 +7,7 @@ import {
   PANE1_IDS, PANE1_INITIAL_VALUE, PANE3_IDS,
   PANE3_INITIAL_VALUE, PANES_LIST, PANES_LIST_PANE1, PANES_LIST_PANE3, updateVisibilityMap
 } from './util'
+import { EVEN_PANE_CLASS, ODD_PANE_CLASS } from '@/shared/constant'
 
 interface IIDMap{
     [id: string]: boolean
@@ -46,8 +47,7 @@ const PanesDemo = () => {
           }}
         >
           <Pane
-            className='pane1'
-            id='pane1'
+         className={ODD_PANE_CLASS} id='P0'
             // maxSize={22}
             minSize={18}
             size={25}
@@ -58,15 +58,14 @@ const PanesDemo = () => {
               unit="ratio"
               visibility={visibilityMapPane1}
             >
-              <Pane className='pane1' id={PANE1_IDS.pane1} minSize={17} size={34}></Pane>
-              <Pane className='pane2' id={PANE1_IDS.pane2} minSize={17} size={66}> </Pane>
+            <Pane className={ODD_PANE_CLASS} id='P0-P0' minSize={1} size={2}></Pane>
+            <Pane className={EVEN_PANE_CLASS} id='P0-P1' minSize={1} size={4}> </Pane>
             </ResizablePanes>
 
           </Pane>
 
           <Pane
-            className='pane2'
-            id='pane2'
+         className={EVEN_PANE_CLASS} id='P1'
             // maxSize={15}
             minSize={5}
             size={50}
@@ -74,7 +73,7 @@ const PanesDemo = () => {
           </Pane>
 
           <Pane
-            className='pane1' id='pane3'
+         className={ODD_PANE_CLASS} id='P2'
             // maxSize={20}
             minSize={10}
             size={25}
@@ -84,8 +83,8 @@ const PanesDemo = () => {
               unit="ratio"
               visibility={visibilityMapPane3}
             >
-              <Pane className='pane1' id={PANE3_IDS.pane1} minSize={17} size={34}></Pane>
-              <Pane className='pane2' id={PANE3_IDS.pane2} minSize={17} size={66}> </Pane>
+              <Pane className={ODD_PANE_CLASS} id='P2-P0' minSize={1} size={2}></Pane>
+              <Pane className={EVEN_PANE_CLASS} id='P2-P1' minSize={1} size={4}> </Pane>
             </ResizablePanes>
           </Pane>
 

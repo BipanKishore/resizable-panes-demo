@@ -1,37 +1,28 @@
 "use client"
+import { EVEN_PANE_CLASS, ODD_PANE_CLASS } from '@/shared/constant'
+import { getLocalStorage } from '@/shared/utils'
 import React from 'react'
 import {
-  Panes, ResizablePanes
+  Pane, ResizablePanes
 } from 'resizable-panes-react'
 
-
-const getLocalStorage = () => {
-  if (typeof window !== 'undefined') {
-     localStorage
-  }
-}
-
 const StoreStateOfPanes = () => {
-  const pane1 = 'pane1'
-  const pane2 = 'pane2'
-  const pane3 = 'pane3'
-
-
   return (
     <ResizablePanes
       storageApi={getLocalStorage()}
-      uniqueId="panes-size"
+      uniqueId="store-eg"
       unit="ratio"
       vertical
     >
-      <Panes className={pane1} id={pane1} minSize={1} size={3}>
-      </Panes>
+      <Pane className={ODD_PANE_CLASS} id='P0' minSize={1} size={3}>
+      </Pane>
 
-      <Panes className={pane2} id={pane2} minSize={1} size={4}>
-      </Panes>
+      <Pane className={EVEN_PANE_CLASS} id='P1' minSize={1} size={4}
+      >
+      </Pane>
 
-      <Panes className={pane3} id={pane3} minSize={1} size={3}>
-      </Panes>
+      <Pane className={ODD_PANE_CLASS} id='P2' minSize={1} size={3}>
+      </Pane>
     </ResizablePanes>
   )
 }

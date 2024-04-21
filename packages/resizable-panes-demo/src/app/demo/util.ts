@@ -1,11 +1,11 @@
 export const PANE1_IDS = {
-  pane1: 'pane1-pane1',
-  pane2: 'pane1-pane2'
+  pane1: 'P0-P0',
+  pane2: 'P0-PQ'
 }
 
 export const PANE3_IDS = {
-  pane1: 'pane3-pane1',
-  pane2: 'pane3-pane2'
+  pane1: 'P2-P0',
+  pane2: 'P2-P1'
 }
 
 export const PANE1_INITIAL_VALUE = {
@@ -19,22 +19,22 @@ export const PANE3_INITIAL_VALUE = {
 }
 
 export const MAIN_PANES_INITIAL_VALUE = {
-  pane1: true,
-  pane2: true,
-  pane3: true
+  P0: true,
+  P1: true,
+  P2: true
 }
 
 export const PANES_LIST = [
   {
-    id: 'pane1',
+    id: 'P0',
     label: 'First pane'
   },
   {
-    id: 'pane2',
+    id: 'P1',
     label: 'Second Pane'
   },
   {
-    id: 'pane3',
+    id: 'P2',
     label: 'Third Pane'
   }]
 

@@ -1,16 +1,10 @@
-"use client"
-
 import React from 'react'
 import {
-  Panes, ResizablePanes
+  Pane, ResizablePanes
 } from 'resizable-panes-react'
-import {CustomResizerFirst} from '../../components/custom-resizers/custom-resizer-first'
-import {CustomResizerSecond} from '../../components/custom-resizers/custom-resizer-second'
+import PanesWithCustomResizer from './panes-with-custom-resizer'
 
- const CustomResizer = () => {
-  const pane1 = 'pane1'
-  const pane2 = 'pane2'
-  const pane3 = 'pane3'
+const CustomResizer = () => {
   return (
     <div>
       <div>
@@ -25,33 +19,7 @@ import {CustomResizerSecond} from '../../components/custom-resizers/custom-resiz
 
       </div>
       <div className='m-20-0 h-300' >
-        <ResizablePanes
-          resizer={
-            <CustomResizerFirst name='' />
-            }
-          uniqueId='CustomResizerPanes1'
-          unit="ratio"
-          vertical
-        >
-          <Panes
-            className={pane1} id={pane1}
-            minSize={5} size={30}
-          >
-          </Panes>
-
-          <Panes
-            className={pane2} id={pane2} minSize={5}
-            resizer={
-              <CustomResizerSecond name='Second' />
-            }
-            size={40}
-          >
-          </Panes>
-
-          <Panes className={pane3} id={pane3} minSize={5} size={30}>
-          </Panes>
-
-        </ResizablePanes>
+        <PanesWithCustomResizer />
       </div>
 
 

@@ -1,7 +1,7 @@
 export const GETTING_STARTED_PATH = 'getting-started'
 
 export const ROUTER_LIST_LEVEL_1 = [
-  {label: 'Home', path:''},
+  {label: 'Home', path:'/'},
   {label: 'Getting Started', path: GETTING_STARTED_PATH},
   {label: 'Demo', path: 'demo'},
   {label: 'Vertical Panes', path: 'vertical-panes'},
@@ -16,3 +16,10 @@ export const ROUTER_LIST_LEVEL_1 = [
   {label: 'Pane Props', path: 'pane-props'}
   // {label: 'Api Description', path: 'api-docs'}
 ]
+
+
+export const ODD_PANE_CLASS = 'bg-slate-100 rounded'
+
+export const EVEN_PANE_CLASS = 'bg-slate-300 rounded'
+
+// bg-slate-500

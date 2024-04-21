@@ -3,8 +3,6 @@ import React from 'react'
 import VisibilityOperationsExample from './visibility-operations-example'
 
 const SetVisibilityOfPanes = () => {
-
-
   return (
     <div>
       <div>

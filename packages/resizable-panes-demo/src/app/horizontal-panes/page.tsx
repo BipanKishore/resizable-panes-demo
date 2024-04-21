@@ -11,7 +11,7 @@ const HorizantalPanes = () => {
       </div>
       <div className='m-20-0'>
         To align the panes horizontally, simply pass the <code>vertical</code>(boolean) prop as <code>false</code> to
-          the  component.
+          the <code>ResizablePanes</code> component.
       </div>
       <div className='h-300' >
         <HorizontalPanes />

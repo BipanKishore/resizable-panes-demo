@@ -157,3 +157,32 @@
 code {
   color:  #cf222e;
 }
+
+h3, .h3 {
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+.bg-code {
+  background:   #f6f8fa;
+}
+
+.color-code-flag{
+  color: #0550ae;
+}
+
+.color-code-comment{
+    color: #6e7781;
+}
+
+.color-code-function {
+    color: #0a3069;
+}
+
