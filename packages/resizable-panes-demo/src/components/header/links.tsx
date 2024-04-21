@@ -2,12 +2,12 @@ import React from 'react'
 import {GITHUB_URL, LINKEDIN, NPM_URL} from './constant'
 import {Icon} from '../icon'
 
-export const Links = () => {
+export const Links = ({className}: any) => {
   return (
-    <div className='inline-flex md:justify-self-end justify-self-center self-center mr-2'>
+    <div className={`justify-self-end self-center ${className}`}>
       <Icon name='npm' url={NPM_URL}  />
       <Icon name='github' url={GITHUB_URL}  />
-      <Icon name='linkedin' url={LINKEDIN}  />
+      {/* <Icon name='linkedin' url={LINKEDIN}  /> */}
     </div>
   )
 }
