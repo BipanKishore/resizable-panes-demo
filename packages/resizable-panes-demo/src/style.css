@@ -147,13 +147,6 @@
     margin: -5px auto !important;
 }
 
-.social-icon-top {position: absolute;top: 20%; right: 2%;}
-
-@media (max-width: 768px) {
-.social-icon-top {position: relative;}
-
-}
-
 code {
   color:  #cf222e;
 }

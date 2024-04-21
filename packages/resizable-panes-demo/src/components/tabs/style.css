@@ -50,17 +50,11 @@ width:270px;
 
 } */
 .header{
-    text-align: center;
-    /* background-color:#f6f8fa; */
-    padding:5px 0;
     color:#23272F;
-    margin: 20px 0px 40px 0px;
-    position: relative;
 
 }
 
 .header h2 {
-background-color: #f3f4f6;
   padding: 12px 10px;
   border-radius: 10px;
   font-size: 32px;
