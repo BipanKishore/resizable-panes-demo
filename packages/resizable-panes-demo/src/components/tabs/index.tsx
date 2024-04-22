@@ -9,7 +9,7 @@ interface ITabsProps {
 export const Tabs = (props: ITabsProps) => {
 
   return (
-    <div className="tab-container hidden md:block">
+    <div id='side-menu' className="tab-container  hidden md:block z-40">
       {
         ROUTER_LIST_LEVEL_1.map(
           (item) => <Tab key={item.path} {...item} />

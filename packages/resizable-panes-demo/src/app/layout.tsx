@@ -28,7 +28,7 @@ export default function RootLayout({
           <Header />
           <div className="d-flex">
             <Tabs  />
-            <div className="router w-100p">
+            <div id="content" className="router w-100p">
               {children}
             </div>
           </div>

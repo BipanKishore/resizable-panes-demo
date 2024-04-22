@@ -1,6 +1,6 @@
 "use client"
-import React from 'react'
-import { joinClassName } from '../../shared/utils'
+import React, { useCallback } from 'react'
+import { hideSideMenu, joinClassName } from '../../shared/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 
@@ -24,8 +24,12 @@ const active = currentPath === `/${path}` || currentPath === path
     'nonactive-tab': !active
   })
 
+  const onClickLink = useCallback(() => {
+    hideSideMenu()
+  }, [])
+
   return (
-    <Link href={path}>
+    <Link onClick={onClickLink} href={path}>
       <div
         className={className}
       >
